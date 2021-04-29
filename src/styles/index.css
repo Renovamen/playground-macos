@@ -14,11 +14,6 @@ html, body {
   overflow: hidden;
 }
 
-.ccm {
-  grid-template-columns: repeat(4, 5rem);
-  grid-template-rows: repeat(5, 5rem);
-}
-
 .blur {
   backdrop-filter: blur(48px);
 }

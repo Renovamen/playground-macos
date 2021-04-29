@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import format from "date-fns/format";
+import { BsBatteryFull } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
+import { FaWifi } from "react-icons/fa";
+import { AiFillApple } from "react-icons/ai";
 
 function MenuItem({ children }) {
   return (
@@ -24,28 +28,19 @@ export default function MenuBar({
   return (
     <div className="w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
       <div className="flex flex-row items-center space-x-4">
-        <img
-          className="h-4 filter-invert"
-          src="menuicons/Apple.png"
-          alt="apple_icon"
-        />
+        <AiFillApple size={18} />
         <span className="font-semibold">{title}</span>
       </div>
       <div className="flex flex-row justify-end items-center space-x-2">
         <MenuItem>
-          <span className="text-xs">100%</span>
-          <img
-            className="h-4 filter-invert"
-            src="menuicons/battery.100.png"
-            alt="battery"
-          />
+          <span className="text-xs mt-0.5 mr-1">100%</span>
+          <BsBatteryFull size={20} />
         </MenuItem>
         <MenuItem>
-          <img
-            className="h-4 filter-invert"
-            src="menuicons/magnifyingglass.png"
-            alt="search"
-          />
+          <FaWifi size={17} />
+        </MenuItem>
+        <MenuItem>
+          <BiSearch size={17} />
         </MenuItem>
         <MenuItem>
           <img

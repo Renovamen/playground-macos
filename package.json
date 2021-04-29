@@ -65,7 +65,7 @@
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-feather": "2.0.9",
+    "react-icons": "^4.2.0",
     "react-rangeslider": "2.2.0",
     "react-rnd": "^10.2.4",
     "react-scripts": "4.0.3",
