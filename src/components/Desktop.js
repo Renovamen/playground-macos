@@ -10,12 +10,12 @@ import Notepad from "../apps/Notepad";
 
 export default function Desktop() {
   const [showControlCenter, setShowControlCenter] = useState(false);
+  const [currentTitle, setCurrentTitle] = useState("Playground");
 
   const [bioShow, setBioShow] = useState(true);
   const [faceTimeShow, setFaceTimeShow] = useState(false);
   const [safariShow, setSafariShow] = useState(false);
   const [cmdShow, setCmdShow] = useState(false);
-  const [currentTitle, setCurrentTitle] = useState("Playground");
 
   const [bioZ, setBioZ] = useState(2);
   const [faceTimeZ, setFaceTimeZ] = useState(2);
