@@ -4,6 +4,14 @@ export default function Dock({ openWindow }) {
   return (
     <div className="dock w-full pb-2 fixed bottom-0">
       <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-25 blur rounded-2xl shadow-2xl">
+        <li key="dock-text" onClick={() => openWindow("Notepad")}>
+          <img
+            className="w-12"
+            src="icons/text.png"
+            alt="Notepad"
+            title="Notepad"
+          />
+        </li>
         <li key="dock-safari" onClick={() => openWindow("Safari")}>
           <img
             className="w-12"
@@ -11,6 +19,30 @@ export default function Dock({ openWindow }) {
             alt="Safari"
             title="Safari"
           />
+        </li>
+        <li key="dock-mail">
+          <a href="mailto:xiaohan.zou@foxmail.com">
+            <img
+              className="w-12"
+              src="icons/mail.png"
+              alt="Mail"
+              title="Mail"
+            />
+          </a>
+        </li>
+        <li key="dock-github">
+          <a
+            href="https://github.com/Renovamen"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="w-12"
+              src="icons/github.png"
+              alt="Github"
+              title="Github"
+            />
+          </a>
         </li>
         <li key="dock-cmd" onClick={() => openWindow("Terminal")}>
           <img
@@ -26,14 +58,6 @@ export default function Dock({ openWindow }) {
             src="icons/facetime.png"
             alt="FaceTime"
             title="FaceTime"
-          />
-        </li>
-        <li key="dock-text" onClick={() => openWindow("Notepad")}>
-          <img
-            className="w-12"
-            src="icons/text.png"
-            alt="Notepad"
-            title="Notepad"
           />
         </li>
       </ul>

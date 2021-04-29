@@ -97,7 +97,7 @@ export default class Window extends Component {
         disableDragging={this.props.max}
         style={{ zIndex: this.props.z }}
         onMouseDown={() => this.props.active(this.props.title)}
-        className={`absolute transition-hw ${round} overflow-y-hidden bg-white w-full h-full shadow-md`}
+        className={`absolute transition-hw ${round} overflow-hidden bg-white w-full h-full shadow-md`}
       >
         <div
           className="relative h-6 text-center bg-gray-300"

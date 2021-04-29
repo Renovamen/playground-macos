@@ -11,14 +11,96 @@ function NotepadContent() {
         <div className="paragraph mt-4">
           Hey there! I'm Xiaohan Zou, <s>a dragon lost in human world</s> now an
           intern at CETC and a research assistant at Peking University. Before
-          that, I got my bachelor's degree in Software Engineering at Tongji
-          University. I'm trying to find a balance between research and
-          engineering.
+          that, I got my bachelor's degree in{" "}
+          <a
+            className="text-blue-500"
+            href="http://sse.tongji.edu.cn/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Software Engineering
+          </a>{" "}
+          at{" "}
+          <a
+            className="text-blue-500"
+            href="https://www.tongji.edu.cn/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Tongji University
+          </a>
+          . I'm trying to find a balance between research and engineering.
         </div>
         <div className="paragraph mt-4">
           Research-wise, I'm mainly working on topics related to exploring the
           capability of machines to develop intelligent behavior upon what they
           have learned, like meta-learning and continual learning.
+        </div>
+      </div>
+
+      <div className="charapter mt-8">
+        <div className="font-medium text-gray-800 text-lg heading">
+          About This Site
+        </div>
+        <div className="paragraph mt-4">
+          This site is inspired by{" "}
+          <a
+            className="text-blue-500"
+            href="https://www.apple.com/in/macos/big-sur/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            macOS Big Sur
+          </a>
+          , developed using{" "}
+          <a
+            className="text-blue-500"
+            href="https://reactjs.org/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            React
+          </a>{" "}
+          and{" "}
+          <a
+            className="text-blue-500"
+            href="https://tailwindcss.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            tailwindcss
+          </a>
+          , and hosted on{" "}
+          <a
+            className="text-blue-500"
+            href="https://vercel.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Vercel
+          </a>
+          . Some of the icons are generated using{" "}
+          <a
+            className="text-blue-500"
+            href="https://github.com/sindresorhus/file-icon-cli"
+            target="_blank"
+            rel="noreferrer"
+          >
+            sindresorhus/file-icon-cli
+          </a>
+          .
+        </div>
+        <div className="paragraph mt-4">
+          The source code is hosted{" "}
+          <a
+            className="text-blue-500"
+            href="https://github.com/Renovamen/playground-macos"
+            target="_blank"
+            rel="noreferrer"
+          >
+            here
+          </a>
+          .
         </div>
       </div>
 
