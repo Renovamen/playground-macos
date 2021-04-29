@@ -30,10 +30,10 @@ class TrafficLights extends Component {
 export default class Window extends Component {
   constructor(props) {
     super(props);
-    const width = props.width ? props.width : "640";
-    const height = props.height ? props.height : "400";
     const maxW = document.body.offsetWidth;
     const maxH = document.body.offsetHeight;
+    const width = Math.min(maxW, props.width ? props.width : "640");
+    const height = Math.min(maxH, props.height ? props.height : "400");
     this.state = {
       width: width,
       height: height,
@@ -54,9 +54,16 @@ export default class Window extends Component {
   }
 
   resize = () => {
+    const maxW = document.body.offsetWidth;
+    const maxH = document.body.offsetHeight;
+    const width = Math.min(maxW, this.state.width);
+    const height = Math.min(maxH, this.state.height);
+
     this.setState({
-      maxW: document.body.offsetWidth,
-      maxH: document.body.offsetHeight
+      maxW: maxW,
+      maxH: maxH,
+      width: width,
+      height: height
     });
   };
 

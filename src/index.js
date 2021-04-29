@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "./styles.css";
+import "./styles/index.css";
+import "./styles/index.tailwind.css";
 
 import Desktop from "./components/Desktop";
 import Login from "./components/Login";

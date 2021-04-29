@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "dev": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js ./",
     "lint-fix": "eslint --fix --ext .js ./"
@@ -55,14 +55,13 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "date-fns": "2.16.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -71,10 +70,15 @@
     "react-rnd": "^10.2.4",
     "react-scripts": "4.0.3",
     "react-webcam": "5.2.2",
-    "sort-package-json": "^1.49.0",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "autoprefixer": "^9",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "postcss": "^7",
+    "sort-package-json": "^1.49.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "4.2.4"
   }
 }

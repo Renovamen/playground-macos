@@ -22,7 +22,7 @@ yarn build
 
 &nbsp;
 
-## Acknowledgements
+## Credits
 
 - [macOS Big Sur](https://www.apple.com/in/macos/big-sur/)
 - [macOS Icon Gallery](https://www.macosicongallery.com/)
