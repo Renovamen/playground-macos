@@ -2,29 +2,25 @@
   "name": "playground-macos",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "date-fns": "2.16.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-feather": "2.0.9",
-    "react-rangeslider": "2.2.0",
-    "react-scripts": "4.0.3",
-    "react-webcam": "5.2.2",
-    "web-vitals": "^1.0.1"
-  },
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js ./",
+    "lint-fix": "eslint --fix --ext .js ./"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --fix --ext .js ./"
+    ],
+    "package.json": [
+      "sort-package-json"
     ]
   },
   "browserslist": {
@@ -38,5 +34,46 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "none"
+        }
+      ]
+    },
+    "ignorePatterns": [
+      "node_modules/",
+      "build/"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "date-fns": "2.16.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-feather": "2.0.9",
+    "react-rangeslider": "2.2.0",
+    "react-scripts": "4.0.3",
+    "react-webcam": "5.2.2",
+    "sort-package-json": "^1.49.0",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "typescript": "4.2.4"
   }
 }

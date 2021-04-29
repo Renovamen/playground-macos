@@ -7,8 +7,9 @@ function SafariContent() {
 
   const setURL = (e) => {
     const keyCode = e.which || e.keyCode;
-    if (keyCode === 13) { setGoURL(e.target.value);
-    console.log(e.target.value)
+    if (keyCode === 13) {
+      setGoURL(e.target.value);
+      console.log(e.target.value);
     }
   };
 
@@ -33,7 +34,7 @@ function SafariContent() {
   );
 }
 
-export default function Safari({show, setShow, active, z}) {
+export default function Safari({ show, setShow, active, z }) {
   const [safariMax, setSafariMax] = useState(false);
   return (
     <Window

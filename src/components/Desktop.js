@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import MenuBar from "./MenuBar";
 import Dock from "./Dock";
-import ControlCenterMenu from "./ControlCenterMenu"
+import ControlCenterMenu from "./ControlCenterMenu";
 import FaceTime from "../apps/FaceTime";
 import Terminal from "../apps/Terminal";
 import Safari from "../apps/Safari";
@@ -49,7 +49,7 @@ export default function Desktop() {
     setShow(true);
     setZ(maxZ + 1);
     setMaxZ(maxZ + 1);
-  }
+  };
 
   return (
     <div
@@ -63,10 +63,30 @@ export default function Desktop() {
       />
       {showControlCenter && <ControlCenterMenu />}
 
-      <FaceTime show={faceTimeShow} setShow={setFaceTimeShow} active={openWindow} z={faceTimeZ} />
-      <Terminal show={cmdShow} setShow={setCmdShow} active={openWindow} z={cmdZ} />
-      <Notepad show={bioShow} setShow={setBioShow} active={openWindow} z={bioZ} />
-      <Safari show={safariShow} setShow={setSafariShow} active={openWindow} z={safariZ} />
+      <FaceTime
+        show={faceTimeShow}
+        setShow={setFaceTimeShow}
+        active={openWindow}
+        z={faceTimeZ}
+      />
+      <Terminal
+        show={cmdShow}
+        setShow={setCmdShow}
+        active={openWindow}
+        z={cmdZ}
+      />
+      <Notepad
+        show={bioShow}
+        setShow={setBioShow}
+        active={openWindow}
+        z={bioZ}
+      />
+      <Safari
+        show={safariShow}
+        setShow={setSafariShow}
+        active={openWindow}
+        z={safariZ}
+      />
 
       <Dock openWindow={openWindow} />
     </div>

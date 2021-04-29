@@ -4,7 +4,7 @@ function TrafficLights({ setShow, max, setMax }) {
   const closeWindow = (e) => {
     e.stopPropagation();
     setShow(false);
-  }
+  };
 
   return (
     <div className="flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
@@ -24,8 +24,18 @@ function TrafficLights({ setShow, max, setMax }) {
   );
 }
 
-export default function Window({ content, title, show, setShow, max, setMax, active, z, size }) {
-  const minSize = size ? `${size} mt-16 mb-24` : "h-3/4 w-1/2 mt-16 mb-24"
+export default function Window({
+  content,
+  title,
+  show,
+  setShow,
+  max,
+  setMax,
+  active,
+  z,
+  size
+}) {
+  const minSize = size ? `${size} mt-16 mb-24` : "h-3/4 w-1/2 mt-16 mb-24";
   const windowSize = max ? "w-full h-full" : minSize;
   const round = max ? "rounded-none" : "rounded-lg";
 

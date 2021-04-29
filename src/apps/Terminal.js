@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Window from "../components/Window";
 
-export default function Terminal({show, setShow, active, z}) {
+export default function Terminal({ show, setShow, active, z }) {
   const [cmdMax, setCmdMax] = useState(false);
   return (
     <Window

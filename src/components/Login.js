@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Login({ setlogon }) {
   return (
-    <div 
+    <div
       className="text-center"
       style={{
         height: "100vh",
