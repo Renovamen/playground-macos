@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Window from "../components/Window";
+import Window from "../Window";
 
 export default function Terminal({ show, setShow, active, z }) {
   const [cmdMax, setCmdMax] = useState(false);

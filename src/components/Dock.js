@@ -1,10 +1,31 @@
 import React from "react";
 
-export default function Dock({ openWindow }) {
+export default function Dock({ openWindow, showLaunchpad, setShowLaunchpad }) {
+  const openApp = (title) => {
+    setShowLaunchpad(false);
+    openWindow(title);
+  };
+
   return (
-    <div className="dock w-full fixed bottom-0">
+    <div
+      className="dock w-full fixed bottom-0"
+      style={{
+        zIndex: 99999
+      }}
+    >
       <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
-        <li key="dock-text" onClick={() => openWindow("Notepad")}>
+        <li
+          key="dock-launchpad"
+          onClick={() => setShowLaunchpad(!showLaunchpad)}
+        >
+          <img
+            className="w-12"
+            src="icons/launchpad.png"
+            alt="Launchpad"
+            title="Launchpad"
+          />
+        </li>
+        <li key="dock-text" onClick={() => openApp("Notepad")}>
           <img
             className="w-12"
             src="icons/text.png"
@@ -12,7 +33,7 @@ export default function Dock({ openWindow }) {
             title="Notepad"
           />
         </li>
-        <li key="dock-safari" onClick={() => openWindow("Safari")}>
+        <li key="dock-safari" onClick={() => openApp("Safari")}>
           <img
             className="w-12"
             src="icons/safari.png"
@@ -44,7 +65,7 @@ export default function Dock({ openWindow }) {
             />
           </a>
         </li>
-        <li key="dock-cmd" onClick={() => openWindow("Terminal")}>
+        <li key="dock-cmd" onClick={() => openApp("Terminal")}>
           <img
             className="w-12"
             src="icons/terminal.png"
@@ -52,7 +73,7 @@ export default function Dock({ openWindow }) {
             title="Terminal"
           />
         </li>
-        <li key="dock-facetime" onClick={() => openWindow("FaceTime")}>
+        <li key="dock-facetime" onClick={() => openApp("FaceTime")}>
           <img
             className="w-12"
             src="icons/facetime.png"

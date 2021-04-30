@@ -15,7 +15,7 @@ html, body {
 }
 
 .blur {
-  backdrop-filter: blur(48px);
+  backdrop-filter: blur(40px);
 }
 
 .transition-hw {

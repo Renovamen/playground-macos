@@ -75,8 +75,6 @@ export default class Window extends Component {
       return <div />;
     }
 
-    console.log(this.props);
-
     return (
       <Rnd
         size={{

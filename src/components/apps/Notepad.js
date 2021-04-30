@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Window from "../components/Window";
+import Window from "../Window";
 
 const NotepadContent = () => {
   return (

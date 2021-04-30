@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import nightwind from "nightwind/helper";
 
-import MenuBar from "./MenuBar";
-import Dock from "./Dock";
-import ControlCenterMenu from "./ControlCenterMenu";
-import FaceTime from "../apps/FaceTime";
-import Terminal from "../apps/Terminal";
-import Safari from "../apps/Safari";
-import Notepad from "../apps/Notepad";
+import MenuBar from "../components/MenuBar";
+import Dock from "../components/Dock";
+import Launchpad from "../components/Launchpad";
+import ControlCenterMenu from "../components/ControlCenterMenu";
+import FaceTime from "../components/apps/FaceTime";
+import Terminal from "../components/apps/Terminal";
+import Safari from "../components/apps/Safari";
+import Notepad from "../components/apps/Notepad";
 
 export default function Desktop() {
   const [showControlCenter, setShowControlCenter] = useState(false);
+  const [showLaunchpad, setShowLaunchpad] = useState(false);
   const [currentTitle, setCurrentTitle] = useState("Playground");
 
   const [bioShow, setBioShow] = useState(true);
@@ -58,11 +60,13 @@ export default function Desktop() {
       style={{ backgroundImage: "url(img/wallpaper.jpg)" }}
     >
       <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
+
       <MenuBar
         title={currentTitle}
         showControlCenter={showControlCenter}
         setShowControlCenter={setShowControlCenter}
       />
+
       {showControlCenter && <ControlCenterMenu />}
 
       <FaceTime
@@ -90,7 +94,13 @@ export default function Desktop() {
         z={safariZ}
       />
 
-      <Dock openWindow={openWindow} />
+      {showLaunchpad && <Launchpad />}
+
+      <Dock
+        openWindow={openWindow}
+        showLaunchpad={showLaunchpad}
+        setShowLaunchpad={setShowLaunchpad}
+      />
     </div>
   );
 }
