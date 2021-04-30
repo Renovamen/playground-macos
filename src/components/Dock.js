@@ -21,7 +21,7 @@ export default function Dock({ openWindow }) {
           />
         </li>
         <li key="dock-mail">
-          <a href="mailto:xiaohan.zou@foxmail.com">
+          <a href="mailto:renovamenzxh@gmail.com">
             <img
               className="w-12"
               src="icons/mail.png"

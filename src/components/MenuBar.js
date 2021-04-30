@@ -45,7 +45,7 @@ export default function MenuBar({
         <MenuItem>
           <img
             className="w-4 h-4 filter-invert"
-            src="menuicons/controlcenter.png"
+            src="icons/menu/controlcenter.png"
             alt="control center"
             onClick={() => setShowControlCenter(!showControlCenter)}
           />
