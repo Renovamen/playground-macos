@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Rnd } from "react-rnd";
 
-const TrafficLights = ({ setShow, max, setMax }) => {
+const TrafficLights = ({ id, close, setMax }) => {
   const closeWindow = (e) => {
     e.stopPropagation();
-    setShow(false);
+    close(id);
   };
 
   return (
@@ -16,13 +16,13 @@ const TrafficLights = ({ setShow, max, setMax }) => {
       />
       <button
         className="w-3 h-3 rounded-full bg-yellow-500 outline-none focus:outline-none"
-        onClick={() => setMax(false)}
-        onTouchEnd={() => setMax(false)}
+        onClick={() => setMax(id, false)}
+        onTouchEnd={() => setMax(id, false)}
       />
       <button
         className="w-3 h-3 rounded-full bg-green-500 outline-none focus:outline-none"
-        onClick={() => setMax(!max)}
-        onTouchEnd={() => setMax(!max)}
+        onClick={() => setMax(id)}
+        onTouchEnd={() => setMax(id)}
       />
     </div>
   );
@@ -71,10 +71,6 @@ export default class Window extends Component {
   render() {
     const round = this.props.max ? "rounded-none" : "rounded-lg";
 
-    if (!this.props.show) {
-      return <div />;
-    }
-
     return (
       <Rnd
         size={{
@@ -98,16 +94,16 @@ export default class Window extends Component {
         dragHandleClassName="window-bar"
         disableDragging={this.props.max}
         style={{ zIndex: this.props.z }}
-        onMouseDown={() => this.props.active(this.props.title)}
+        onMouseDown={() => this.props.focus(this.props.id)}
         className={`absolute transition-hw ${round} overflow-hidden bg-transparent w-full h-full shadow-md`}
       >
         <div
           className="window-bar relative h-6 text-center bg-gray-300"
-          onDoubleClick={() => this.props.setMax(!this.props.max)}
+          onDoubleClick={() => this.props.setMax(this.props.id)}
         >
           <TrafficLights
-            setShow={this.props.setShow}
-            max={this.props.max}
+            id={this.props.id}
+            close={this.props.close}
             setMax={this.props.setMax}
           />
           <span className="font-semibold text-gray-700">

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import Window from "../Window";
+import React from "react";
 
-const NotepadContent = () => {
+export default function Notepad() {
   return (
     <div className="w-full h-full bg-gray-100 text-gray-700 overflow-scroll px-8 py-6">
       <div className="charapter">
@@ -186,22 +185,5 @@ const NotepadContent = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export default function Notepad({ show, setShow, active, z }) {
-  const [textMax, setTextMax] = useState(false);
-  return (
-    <Window
-      title="Notepad"
-      show={show}
-      setShow={setShow}
-      max={textMax}
-      setMax={setTextMax}
-      active={active}
-      z={z}
-    >
-      <NotepadContent />
-    </Window>
   );
 }

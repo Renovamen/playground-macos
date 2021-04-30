@@ -1,7 +1,6 @@
-import React, { useState, Component } from "react";
-import Window from "../Window";
+import React, { Component } from "react";
 
-class SafariContent extends Component {
+export default class Safari extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,22 +35,4 @@ class SafariContent extends Component {
       </div>
     );
   }
-}
-
-export default function Safari({ show, setShow, active, z }) {
-  const [safariMax, setSafariMax] = useState(false);
-  return (
-    <Window
-      title="Safari"
-      show={show}
-      setShow={setShow}
-      max={safariMax}
-      setMax={setSafariMax}
-      active={active}
-      z={z}
-      size={"h-3/4 w-3/5"}
-    >
-      <SafariContent />
-    </Window>
-  );
 }

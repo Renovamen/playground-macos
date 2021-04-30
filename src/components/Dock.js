@@ -1,23 +1,21 @@
 import React from "react";
+import apps from "../configs/apps";
 
-export default function Dock({ openWindow, showLaunchpad, setShowLaunchpad }) {
-  const openApp = (title) => {
-    setShowLaunchpad(false);
-    openWindow(title);
+export default function Dock({ open, toggleLaunchpad, hidde }) {
+  const openApp = (id) => {
+    toggleLaunchpad(false);
+    open(id);
   };
 
   return (
     <div
       className="dock w-full fixed bottom-0"
       style={{
-        zIndex: 99999
+        zIndex: hidde ? 0 : 99999
       }}
     >
       <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
-        <li
-          key="dock-launchpad"
-          onClick={() => setShowLaunchpad(!showLaunchpad)}
-        >
+        <li key="dock-launchpad" onClick={() => toggleLaunchpad()}>
           <img
             className="w-12"
             src="icons/launchpad.png"
@@ -25,22 +23,16 @@ export default function Dock({ openWindow, showLaunchpad, setShowLaunchpad }) {
             title="Launchpad"
           />
         </li>
-        <li key="dock-text" onClick={() => openApp("Notepad")}>
-          <img
-            className="w-12"
-            src="icons/text.png"
-            alt="Notepad"
-            title="Notepad"
-          />
-        </li>
-        <li key="dock-safari" onClick={() => openApp("Safari")}>
-          <img
-            className="w-12"
-            src="icons/safari.png"
-            alt="Safari"
-            title="Safari"
-          />
-        </li>
+        {apps.map((app) => (
+          <li key={`dock-${app.id}`} onClick={() => openApp(app.id)}>
+            <img
+              className="w-12"
+              src={app.img}
+              alt={app.title}
+              title={app.title}
+            />
+          </li>
+        ))}
         <li key="dock-mail">
           <a href="mailto:renovamenzxh@gmail.com">
             <img
@@ -64,22 +56,6 @@ export default function Dock({ openWindow, showLaunchpad, setShowLaunchpad }) {
               title="Github"
             />
           </a>
-        </li>
-        <li key="dock-cmd" onClick={() => openApp("Terminal")}>
-          <img
-            className="w-12"
-            src="icons/terminal.png"
-            alt="Terminal"
-            title="Terminal"
-          />
-        </li>
-        <li key="dock-facetime" onClick={() => openApp("FaceTime")}>
-          <img
-            className="w-12"
-            src="icons/facetime.png"
-            alt="FaceTime"
-            title="FaceTime"
-          />
         </li>
       </ul>
     </div>

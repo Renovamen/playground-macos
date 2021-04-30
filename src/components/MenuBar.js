@@ -14,11 +14,7 @@ const MenuItem = ({ children }) => {
   );
 };
 
-export default function MenuBar({
-  title,
-  showControlCenter,
-  setShowControlCenter
-}) {
+export default function MenuBar({ title, toggleControlCenter }) {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -48,7 +44,7 @@ export default function MenuBar({
             className="w-4 h-4 filter-invert"
             src="icons/menu/controlcenter.png"
             alt="control center"
-            onClick={() => setShowControlCenter(!showControlCenter)}
+            onClick={() => toggleControlCenter()}
           />
         </MenuItem>
         <span>{format(date, "eee d MMM h:mm aa")}</span>

@@ -1,6 +1,6 @@
-# playround-macos
+# playground-macos
 
-Have fun and know more about me in this macOS-like playground: https://zxh.vercel.app
+My portfolio website simulating macOS's GUI: https://zxh.vercel.app
 
 Powered by [React](https://reactjs.org/) and [tailwindcss](https://tailwindcss.com/).
 
@@ -27,7 +27,6 @@ yarn build
 - [macOS Big Sur](https://www.apple.com/in/macos/big-sur/)
 - [macOS Icon Gallery](https://www.macosicongallery.com/)
 - [sindresorhus/file-icon-cli](https://github.com/sindresorhus/file-icon-cli)
-- [tilak30/MacOS-Clone](https://github.com/tilak30/MacOS-Clone)
 
 
 &nbsp;

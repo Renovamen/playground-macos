@@ -1,106 +1,152 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import nightwind from "nightwind/helper";
 
 import MenuBar from "../components/MenuBar";
 import Dock from "../components/Dock";
 import Launchpad from "../components/Launchpad";
 import ControlCenterMenu from "../components/ControlCenterMenu";
-import FaceTime from "../components/apps/FaceTime";
-import Terminal from "../components/apps/Terminal";
-import Safari from "../components/apps/Safari";
-import Notepad from "../components/apps/Notepad";
+import Window from "../components/Window";
+import apps from "../configs/apps";
 
-export default function Desktop() {
-  const [showControlCenter, setShowControlCenter] = useState(false);
-  const [showLaunchpad, setShowLaunchpad] = useState(false);
-  const [currentTitle, setCurrentTitle] = useState("Playground");
+export default class Desktop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showApps: {},
+      appsZ: {},
+      maxApps: {},
+      maxZ: 2,
+      showLaunchpad: false,
+      showControlCenter: false,
+      currentTitle: "Finder",
+      hiddeDock: false
+    };
+  }
 
-  const [bioShow, setBioShow] = useState(true);
-  const [faceTimeShow, setFaceTimeShow] = useState(false);
-  const [safariShow, setSafariShow] = useState(false);
-  const [cmdShow, setCmdShow] = useState(false);
+  componentDidMount() {
+    this.getAppsData();
+  }
 
-  const [bioZ, setBioZ] = useState(2);
-  const [faceTimeZ, setFaceTimeZ] = useState(2);
-  const [safariZ, setSafariZ] = useState(2);
-  const [cmdZ, setCmdZ] = useState(2);
-  const [maxZ, setMaxZ] = useState(2);
-
-  const setFunc = {
-    Safari: {
-      setZ: setSafariZ,
-      setShow: setSafariShow
-    },
-    Notepad: {
-      setZ: setBioZ,
-      setShow: setBioShow
-    },
-    FaceTime: {
-      setZ: setFaceTimeZ,
-      setShow: setFaceTimeShow
-    },
-    Terminal: {
-      setZ: setCmdZ,
-      setShow: setCmdShow
-    }
+  getAppsData = () => {
+    let showApps = {};
+    let appsZ = {};
+    let maxApps = {};
+    apps.forEach((app) => {
+      showApps = {
+        ...showApps,
+        [app.id]: app.show
+      };
+      appsZ = {
+        ...appsZ,
+        [app.id]: 2
+      };
+      maxApps = {
+        ...maxApps,
+        [app.id]: false
+      };
+    });
+    this.setState({ showApps });
   };
 
-  const openWindow = (title) => {
-    setCurrentTitle(title);
-    const setShow = setFunc[title].setShow;
-    const setZ = setFunc[title].setZ;
-    setShow(true);
-    setZ(maxZ + 1);
-    setMaxZ(maxZ + 1);
+  toggleControlCenter = () => {
+    this.setState({ showControlCenter: !this.state.showControlCenter });
   };
 
-  return (
-    <div
-      className="w-screen h-screen overflow-hidden bg-center bg-cover"
-      style={{ backgroundImage: "url(img/wallpaper.jpg)" }}
-    >
-      <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
+  toggleLaunchpad = (target) => {
+    if (target !== undefined) this.setState({ showLaunchpad: target });
+    else this.setState({ showLaunchpad: !this.state.showLaunchpad });
+  };
 
-      <MenuBar
-        title={currentTitle}
-        showControlCenter={showControlCenter}
-        setShowControlCenter={setShowControlCenter}
-      />
+  closeApp = (id) => {
+    let showApps = this.state.showApps;
+    showApps[id] = false;
+    this.setState({ showApps });
+  };
 
-      {showControlCenter && <ControlCenterMenu />}
+  setAppMax = (id, target) => {
+    let maxApps = this.state.maxApps;
+    if (target === undefined) target = !maxApps[id];
+    maxApps[id] = target;
+    this.setState({
+      maxApps: maxApps,
+      hiddeDock: target
+    });
+  };
 
-      <FaceTime
-        show={faceTimeShow}
-        setShow={setFaceTimeShow}
-        active={openWindow}
-        z={faceTimeZ}
-      />
-      <Terminal
-        show={cmdShow}
-        setShow={setCmdShow}
-        active={openWindow}
-        z={cmdZ}
-      />
-      <Notepad
-        show={bioShow}
-        setShow={setBioShow}
-        active={openWindow}
-        z={bioZ}
-      />
-      <Safari
-        show={safariShow}
-        setShow={setSafariShow}
-        active={openWindow}
-        z={safariZ}
-      />
+  openApp = (id) => {
+    let showApps = this.state.showApps;
+    showApps[id] = true;
+    let appsZ = this.state.appsZ;
+    let maxZ = this.state.maxZ + 1;
+    appsZ[id] = maxZ;
 
-      {showLaunchpad && <Launchpad />}
+    this.setState({
+      showApps: showApps,
+      appsZ: appsZ,
+      maxZ: maxZ,
+      currentTitle: apps.find((app) => {
+        return app.id === id;
+      }).title
+    });
+  };
 
-      <Dock
-        openWindow={openWindow}
-        showLaunchpad={showLaunchpad}
-        setShowLaunchpad={setShowLaunchpad}
-      />
-    </div>
-  );
+  renderAppWindows = () => {
+    return apps.map((app) => {
+      if (this.state.showApps[app.id]) {
+        const props = {
+          title: app.title,
+          id: app.id,
+          width: app.width,
+          height: app.height,
+          z: this.state.appsZ[app.id],
+          max: this.state.maxApps[app.id],
+          close: this.closeApp,
+          setMax: this.setAppMax,
+          focus: this.openApp
+        };
+
+        return (
+          <Window key={`desktop-app-${app.id}`} {...props}>
+            {app.content}
+          </Window>
+        );
+      } else {
+        return <div key={`desktop-app-${app.id}`} />;
+      }
+    });
+  };
+
+  render() {
+    return (
+      <div
+        className="w-screen h-screen overflow-hidden bg-center bg-cover"
+        style={{ backgroundImage: "url(img/wallpaper.jpg)" }}
+      >
+        {/* Dark Model Toggler */}
+        <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
+
+        {/* Top Menu Bar */}
+        <MenuBar
+          title={this.state.currentTitle}
+          toggleControlCenter={this.toggleControlCenter}
+        />
+
+        {/* Control Center */}
+        {this.state.showControlCenter && <ControlCenterMenu />}
+
+        {/* Desktop Apps */}
+        {this.renderAppWindows()}
+
+        {/* Launchpad */}
+        {this.state.showLaunchpad && <Launchpad />}
+
+        {/* Dock */}
+        <Dock
+          open={this.openApp}
+          toggleLaunchpad={this.toggleLaunchpad}
+          hidde={this.state.hiddeDock}
+        />
+      </div>
+    );
+  }
 }

@@ -1,12 +1,11 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Webcam from "react-webcam";
-import Window from "../Window";
 
 const videoConstraints = {
   facingMode: "user"
 };
 
-class FaceTimeContent extends Component {
+export default class FaceTime extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,22 +67,4 @@ class FaceTimeContent extends Component {
         </div>
       );
   }
-}
-
-export default function FaceTime({ show, setShow, active, z }) {
-  const [faceTimeMax, setFaceTimeMax] = useState(false);
-  return (
-    <Window
-      title="FaceTime"
-      show={show}
-      setShow={setShow}
-      max={faceTimeMax}
-      setMax={setFaceTimeMax}
-      active={active}
-      z={z}
-      height={600}
-    >
-      <FaceTimeContent />
-    </Window>
-  );
 }

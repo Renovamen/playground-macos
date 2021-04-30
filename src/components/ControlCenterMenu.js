@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import nightwind from "nightwind/helper";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
@@ -10,7 +10,7 @@ import { IoCopyOutline, IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
 import { FaWifi } from "react-icons/fa";
 
 const SliderComponent = ({ icon }) => {
-  const [value, setValue] = React.useState(Math.floor(Math.random() * 100));
+  const [value, setValue] = useState(Math.floor(Math.random() * 100));
   return (
     <div className="slider flex flex-row w-full">
       <div className="h-8 p-2 bg-white rounded-l-full">{icon}</div>
@@ -26,7 +26,6 @@ const SliderComponent = ({ icon }) => {
   );
 };
 
-// export default function ControlCenterMenu()
 export default class ControlCenterMenu extends Component {
   constructor(props) {
     super(props);
