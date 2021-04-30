@@ -6,7 +6,7 @@ const videoConstraints = {
   facingMode: "user"
 };
 
-function FaceTimeContent() {
+const FaceTimeContent = () => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
   const [click, setClick] = useState(false);
@@ -14,6 +14,7 @@ function FaceTimeContent() {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
+
   if (click)
     return (
       <div
@@ -59,7 +60,7 @@ function FaceTimeContent() {
         <button
           style={{
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.5)",
+            borderColor: "rgba(0, 0, 0, 0.5)",
             alignItems: "center",
             justifyContent: "center",
             width: 50,
@@ -75,13 +76,12 @@ function FaceTimeContent() {
         />
       </div>
     );
-}
+};
 
 export default function FaceTime({ show, setShow, active, z }) {
   const [faceTimeMax, setFaceTimeMax] = useState(false);
   return (
     <Window
-      content={<FaceTimeContent />}
       title="FaceTime"
       show={show}
       setShow={setShow}
@@ -89,6 +89,8 @@ export default function FaceTime({ show, setShow, active, z }) {
       setMax={setFaceTimeMax}
       active={active}
       z={z}
-    />
+    >
+      <FaceTimeContent />
+    </Window>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Window from "../components/Window";
 
-function NotepadContent() {
+const NotepadContent = () => {
   return (
     <div className="w-full h-full bg-gray-100 text-gray-700 overflow-scroll px-8 py-6">
       <div className="charapter">
@@ -187,13 +187,12 @@ function NotepadContent() {
       </div>
     </div>
   );
-}
+};
 
 export default function Notepad({ show, setShow, active, z }) {
   const [textMax, setTextMax] = useState(false);
   return (
     <Window
-      content={<NotepadContent />}
       title="Notepad"
       show={show}
       setShow={setShow}
@@ -201,6 +200,8 @@ export default function Notepad({ show, setShow, active, z }) {
       setMax={setTextMax}
       active={active}
       z={z}
-    />
+    >
+      <NotepadContent />
+    </Window>
   );
 }

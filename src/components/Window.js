@@ -1,34 +1,32 @@
 import React, { Component } from "react";
 import { Rnd } from "react-rnd";
 
-class TrafficLights extends Component {
-  closeWindow = (e) => {
+const TrafficLights = ({ setShow, max, setMax }) => {
+  const closeWindow = (e) => {
     e.stopPropagation();
-    this.props.setShow(false);
+    setShow(false);
   };
 
-  render() {
-    return (
-      <div className="flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
-        <button
-          className="w-3 h-3 rounded-full bg-red-500 outline-none focus:outline-none"
-          onClick={this.closeWindow}
-          onTouchEnd={this.closeWindow}
-        />
-        <button
-          className="w-3 h-3 rounded-full bg-yellow-500 outline-none focus:outline-none"
-          onClick={() => this.props.setMax(false)}
-          onTouchEnd={() => this.props.setMax(false)}
-        />
-        <button
-          className="w-3 h-3 rounded-full bg-green-500 outline-none focus:outline-none"
-          onClick={() => this.props.setMax(!this.props.max)}
-          onTouchEnd={() => this.props.setMax(!this.props.max)}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
+      <button
+        className="w-3 h-3 rounded-full bg-red-500 outline-none focus:outline-none"
+        onClick={closeWindow}
+        onTouchEnd={closeWindow}
+      />
+      <button
+        className="w-3 h-3 rounded-full bg-yellow-500 outline-none focus:outline-none"
+        onClick={() => setMax(false)}
+        onTouchEnd={() => setMax(false)}
+      />
+      <button
+        className="w-3 h-3 rounded-full bg-green-500 outline-none focus:outline-none"
+        onClick={() => setMax(!max)}
+        onTouchEnd={() => setMax(!max)}
+      />
+    </div>
+  );
+};
 
 export default class Window extends Component {
   constructor(props) {
@@ -77,6 +75,8 @@ export default class Window extends Component {
       return <div />;
     }
 
+    console.log(this.props);
+
     return (
       <Rnd
         size={{
@@ -101,7 +101,7 @@ export default class Window extends Component {
         disableDragging={this.props.max}
         style={{ zIndex: this.props.z }}
         onMouseDown={() => this.props.active(this.props.title)}
-        className={`absolute transition-hw ${round} overflow-hidden bg-white w-full h-full shadow-md`}
+        className={`absolute transition-hw ${round} overflow-hidden bg-transparent w-full h-full shadow-md`}
       >
         <div
           className="window-bar relative h-6 text-center bg-gray-300"
@@ -117,7 +117,7 @@ export default class Window extends Component {
           </span>
         </div>
         <div className="innner-window w-full overflow-y-hidden">
-          {this.props.content}
+          {this.props.children}
         </div>
       </Rnd>
     );

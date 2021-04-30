@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import format from "date-fns/format";
+// ------- import icons -------
 import { BsBatteryFull } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { FaWifi } from "react-icons/fa";
 import { AiFillApple } from "react-icons/ai";
 
-function MenuItem({ children }) {
+const MenuItem = ({ children }) => {
   return (
-    <div className="inline-flex flex-row space-x-1 hover:bg-white hover:bg-opacity-50 rounded p-1">
+    <div className="inline-flex flex-row space-x-1 hover:bg-white hover:bg-opacity-30 rounded p-1">
       {children}
     </div>
   );
-}
+};
 
 export default function MenuBar({
   title,

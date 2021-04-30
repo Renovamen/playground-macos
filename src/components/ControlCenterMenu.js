@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
-
+// ------- import icons -------
 import { FiBluetooth, FiRss, FiMoon, FiSun, FiVolume2 } from "react-icons/fi";
 import { BsBrightnessAltHigh, BsPlayFill } from "react-icons/bs";
 import { IoCopyOutline } from "react-icons/io5";

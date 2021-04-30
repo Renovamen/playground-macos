@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Window from "../components/Window";
 
-function SafariContent() {
+const SafariContent = () => {
   const [goURL, setGoURL] = useState("https://renovamen.ink/");
   const [currentURL, setCurrentURL] = useState("https://renovamen.ink/");
 
@@ -14,7 +14,7 @@ function SafariContent() {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-white">
       <div className="h-8 flex justify-center items-center bg-white">
         <input
           type="text"
@@ -32,13 +32,12 @@ function SafariContent() {
       />
     </div>
   );
-}
+};
 
 export default function Safari({ show, setShow, active, z }) {
   const [safariMax, setSafariMax] = useState(false);
   return (
     <Window
-      content={<SafariContent />}
       title="Safari"
       show={show}
       setShow={setShow}
@@ -47,6 +46,8 @@ export default function Safari({ show, setShow, active, z }) {
       active={active}
       z={z}
       size={"h-3/4 w-3/5"}
-    />
+    >
+      <SafariContent />
+    </Window>
   );
 }

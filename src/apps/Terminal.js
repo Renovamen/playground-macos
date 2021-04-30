@@ -5,7 +5,6 @@ export default function Terminal({ show, setShow, active, z }) {
   const [cmdMax, setCmdMax] = useState(false);
   return (
     <Window
-      content={<div className="w-full h-full bg-black text-white"></div>}
       title="Terminal"
       show={show}
       setShow={setShow}
@@ -14,6 +13,8 @@ export default function Terminal({ show, setShow, active, z }) {
       active={active}
       z={z}
       size={"h-3/5 w-1/2"}
-    />
+    >
+      <div className="w-full h-full bg-black bg-opacity-80 text-white" />
+    </Window>
   );
 }
