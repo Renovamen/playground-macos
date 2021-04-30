@@ -13,14 +13,17 @@ class TrafficLights extends Component {
         <button
           className="w-3 h-3 rounded-full bg-red-500 outline-none focus:outline-none"
           onClick={this.closeWindow}
+          onTouchEnd={this.closeWindow}
         />
         <button
           className="w-3 h-3 rounded-full bg-yellow-500 outline-none focus:outline-none"
           onClick={() => this.props.setMax(false)}
+          onTouchEnd={() => this.props.setMax(false)}
         />
         <button
           className="w-3 h-3 rounded-full bg-green-500 outline-none focus:outline-none"
           onClick={() => this.props.setMax(!this.props.max)}
+          onTouchEnd={() => this.props.setMax(!this.props.max)}
         />
       </div>
     );
