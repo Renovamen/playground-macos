@@ -1,11 +1,11 @@
 module.exports = {
   purge: ['./src/**/*.js', './public/index.html'],
-  darkMode: false,
+  darkMode: "class",
   theme: {
     extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("nightwind")]
 }

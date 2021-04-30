@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Dock({ openWindow }) {
   return (
-    <div className="dock w-full pb-2 fixed bottom-0">
-      <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-25 blur rounded-2xl shadow-2xl">
+    <div className="dock w-full fixed bottom-0">
+      <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
         <li key="dock-text" onClick={() => openWindow("Notepad")}>
           <img
             className="w-12"

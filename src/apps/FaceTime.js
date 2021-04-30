@@ -19,23 +19,13 @@ const FaceTimeContent = () => {
     return (
       <div
         id="container"
-        className="border-8 bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
+        className="nightwind-prevent nightwind-prevent-block border-8 bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
       >
         {imgSrc && (
           <img className="max-h-60 md:max-h-96" src={imgSrc} alt="yourimage" />
         )}
         <button
-          style={{
-            borderWidth: 1,
-            borderColor: "rgba(0, 0, 0, 0.5)",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 75,
-            height: 25,
-            backgroundColor: "#fff",
-            borderRadius: 50
-          }}
-          className={`mx-auto`}
+          className="mx-auto outline-none focus:outline-none items-center justify-center bg-white h-6 w-20 border border-black border-opacity-50 rounded-full"
           onClick={() => {
             setClick(false);
           }}
@@ -48,7 +38,7 @@ const FaceTimeContent = () => {
     return (
       <div
         id="container"
-        className="bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
+        className="nightwind-prevent nightwind-prevent-block bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
       >
         <Webcam
           className="border-8 max-h-60 md:max-h-96"
@@ -58,17 +48,7 @@ const FaceTimeContent = () => {
           videoConstraints={videoConstraints}
         />
         <button
-          style={{
-            borderWidth: 1,
-            borderColor: "rgba(0, 0, 0, 0.5)",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 50,
-            height: 50,
-            backgroundColor: "#fff",
-            borderRadius: 50
-          }}
-          className={`mx-auto`}
+          className="mx-auto outline-none focus:outline-none items-center justify-center bg-white h-12 w-12 border border-black border-opacity-50 rounded-full"
           onClick={() => {
             setClick(true);
             capture();
@@ -89,6 +69,7 @@ export default function FaceTime({ show, setShow, active, z }) {
       setMax={setFaceTimeMax}
       active={active}
       z={z}
+      height={600}
     >
       <FaceTimeContent />
     </Window>

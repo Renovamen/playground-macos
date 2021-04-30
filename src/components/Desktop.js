@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import nightwind from "nightwind/helper";
 
 import MenuBar from "./MenuBar";
 import Dock from "./Dock";
@@ -56,6 +57,7 @@ export default function Desktop() {
       className="w-screen h-screen overflow-hidden bg-center bg-cover"
       style={{ backgroundImage: "url(img/wallpaper.jpg)" }}
     >
+      <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       <MenuBar
         title={currentTitle}
         showControlCenter={showControlCenter}

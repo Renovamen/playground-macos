@@ -27,7 +27,7 @@ export default function MenuBar({
   }, [date]);
 
   return (
-    <div className="w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
+    <div className="nightwind-prevent nightwind-prevent-block w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
       <div className="flex flex-row items-center space-x-4">
         <AiFillApple size={18} />
         <span className="font-semibold">{title}</span>

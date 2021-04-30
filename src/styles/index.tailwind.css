@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider .rangeslider {
+  @apply bg-gray-300;
+}
+
+.slider .rangeslider .rangeslider__fill {
+  @apply bg-white;
+}

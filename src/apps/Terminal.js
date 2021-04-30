@@ -14,7 +14,7 @@ export default function Terminal({ show, setShow, active, z }) {
       z={z}
       size={"h-3/5 w-1/2"}
     >
-      <div className="w-full h-full bg-black bg-opacity-80 text-white" />
+      <div className="nightwind-prevent w-full h-full bg-black bg-opacity-80 text-white" />
     </Window>
   );
 }
