@@ -4,8 +4,8 @@ export default class Safari extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      goURL: "https://renovamen.ink/",
-      currentURL: "https://renovamen.ink/"
+      goURL: "https://zxh.io",
+      currentURL: "https://zxh.io"
     };
   }
 

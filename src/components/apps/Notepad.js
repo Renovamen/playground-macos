@@ -147,11 +147,11 @@ export default function Notepad() {
               Blog:{" "}
               <a
                 className="text-blue-500"
-                href="https://renovamen.ink"
+                href="https://zxh.io"
                 target="_blank"
                 rel="noreferrer"
               >
-                renovamen.ink
+                zxh.io
               </a>
             </li>
             <li>
@@ -175,7 +175,7 @@ export default function Notepad() {
           My résumé can be found{" "}
           <a
             className="text-blue-500"
-            href="https://renovamen.ink/files/cv/brief/en.pdf"
+            href="https://zxh.io/files/cv/brief/en.pdf"
             target="_blank"
             rel="noreferrer"
           >

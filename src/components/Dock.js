@@ -1,7 +1,7 @@
 import React from "react";
 import apps from "../configs/apps";
 
-export default function Dock({ open, toggleLaunchpad, hidde }) {
+export default function Dock({ open, showApps, toggleLaunchpad, hidde }) {
   const openApp = (id) => {
     toggleLaunchpad(false);
     open(id);
@@ -14,7 +14,7 @@ export default function Dock({ open, toggleLaunchpad, hidde }) {
         zIndex: hidde ? 0 : 99999
       }}
     >
-      <ul className="mx-auto w-max p-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
+      <ul className="mx-auto w-max px-2 pt-2 pb-0.5 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
         <li key="dock-launchpad" onClick={() => toggleLaunchpad()}>
           <img
             className="w-12"
@@ -24,12 +24,22 @@ export default function Dock({ open, toggleLaunchpad, hidde }) {
           />
         </li>
         {apps.map((app) => (
-          <li key={`dock-${app.id}`} onClick={() => openApp(app.id)}>
+          <li
+            key={`dock-${app.id}`}
+            id={`dock-${app.id}`}
+            onClick={() => openApp(app.id)}
+            className="flex flex-col items-center"
+          >
             <img
               className="w-12"
               src={app.img}
               alt={app.title}
               title={app.title}
+            />
+            <div
+              className={`h-1 w-1 mt-0.5 rounded-full bg-gray-800 ${
+                showApps[app.id] ? "" : "invisible"
+              }`}
             />
           </li>
         ))}

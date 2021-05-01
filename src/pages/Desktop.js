@@ -15,6 +15,7 @@ export default class Desktop extends Component {
       showApps: {},
       appsZ: {},
       maxApps: {},
+      minApps: {},
       maxZ: 2,
       showLaunchpad: false,
       showControlCenter: false,
@@ -28,9 +29,10 @@ export default class Desktop extends Component {
   }
 
   getAppsData = () => {
-    let showApps = {};
-    let appsZ = {};
-    let maxApps = {};
+    let showApps = {},
+      appsZ = {},
+      maxApps = {},
+      minApps = {};
     apps.forEach((app) => {
       showApps = {
         ...showApps,
@@ -42,6 +44,10 @@ export default class Desktop extends Component {
       };
       maxApps = {
         ...maxApps,
+        [app.id]: false
+      };
+      minApps = {
+        ...minApps,
         [app.id]: false
       };
     });
@@ -57,25 +63,29 @@ export default class Desktop extends Component {
     else this.setState({ showLaunchpad: !this.state.showLaunchpad });
   };
 
+  setWinowsPosition = (id) => {
+    var r = document.querySelector(`#window-${id}`);
+    const rect = r.getBoundingClientRect();
+    r.style.setProperty(
+      "--window-transform-x",
+      rect.x.toFixed(1).toString() + "px"
+    );
+    r.style.setProperty(
+      "--window-transform-y",
+      rect.y.toFixed(1).toString() + "px"
+    );
+  };
+
   closeApp = (id) => {
     let showApps = this.state.showApps;
     showApps[id] = false;
     this.setState({ showApps });
   };
 
-  setAppMax = (id, target) => {
-    let maxApps = this.state.maxApps;
-    if (target === undefined) target = !maxApps[id];
-    maxApps[id] = target;
-    this.setState({
-      maxApps: maxApps,
-      hiddeDock: target
-    });
-  };
-
   openApp = (id) => {
     let showApps = this.state.showApps;
     showApps[id] = true;
+
     let appsZ = this.state.appsZ;
     let maxZ = this.state.maxZ + 1;
     appsZ[id] = maxZ;
@@ -88,6 +98,57 @@ export default class Desktop extends Component {
         return app.id === id;
       }).title
     });
+
+    let minApps = this.state.minApps;
+    if (minApps[id]) {
+      // set window"s last position
+      var r = document.querySelector(`#window-${id}`);
+      r.style.transform = `translate(${r.style.getPropertyValue(
+        "--window-transform-x"
+      )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+      r.style.transition = "ease-in 0.3s";
+
+      minApps[id] = false;
+      this.setState({ minApps });
+    }
+  };
+
+  setAppMax = (id, target) => {
+    let maxApps = this.state.maxApps;
+    if (target === undefined) target = !maxApps[id];
+    maxApps[id] = target;
+    this.setState({
+      maxApps: maxApps,
+      hiddeDock: target
+    });
+  };
+
+  setAppMin = (id, target) => {
+    let minApps = this.state.minApps;
+    if (target === undefined) target = !minApps[id];
+    minApps[id] = target;
+    this.setState({
+      minApps: minApps
+    });
+  };
+
+  minimizeApp = (id) => {
+    const posy = 380;
+
+    this.setWinowsPosition(id);
+
+    // get corrosponding dock icon"s position
+    var r = document.querySelector(`#dock-${id}`);
+    const dockApp = r.getBoundingClientRect();
+
+    r = document.querySelector(`#window-${id}`);
+    // translate window to that position
+    r.style.transform = `translate(${
+      dockApp.x.toFixed(1) - 290
+    }px, ${posy}px) scale(0.2)`;
+    r.style.transition = "ease-out 0.3s";
+
+    this.setAppMin(id, true);
   };
 
   renderAppWindows = () => {
@@ -100,8 +161,10 @@ export default class Desktop extends Component {
           height: app.height,
           z: this.state.appsZ[app.id],
           max: this.state.maxApps[app.id],
+          min: this.state.minApps[app.id],
           close: this.closeApp,
           setMax: this.setAppMax,
+          setMin: this.minimizeApp,
           focus: this.openApp
         };
 
@@ -143,6 +206,7 @@ export default class Desktop extends Component {
         {/* Dock */}
         <Dock
           open={this.openApp}
+          showApps={this.state.showApps}
           toggleLaunchpad={this.toggleLaunchpad}
           hidde={this.state.hiddeDock}
         />

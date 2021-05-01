@@ -27,7 +27,7 @@ const launchpadApps = [
   {
     title: "My Notebook",
     img: "icons/launchpad/notebook.png",
-    link: "https://vuepress-theme-gungnir.vercel.app/"
+    link: "https://note.zxh.io"
   },
   {
     title: "Fishmail",
@@ -37,7 +37,7 @@ const launchpadApps = [
   {
     title: "Resume?",
     img: "icons/launchpad/resume.png",
-    link: "https://midgard.renovamen.ink/"
+    link: "https://resume.zxh.io/"
   }
 ];
 
