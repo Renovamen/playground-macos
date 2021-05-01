@@ -6,10 +6,16 @@ import VSCode from "../components/apps/VSCode";
 
 const apps = [
   {
+    id: "launchpad",
+    title: "Launchpad",
+    desktop: false,
+    img: "icons/launchpad.png"
+  },
+  {
     id: "notepad",
     title: "Notepad",
     desktop: true,
-    show: true,
+    show: false,
     img: "icons/text.png",
     content: <Notepad />
   },
@@ -44,6 +50,20 @@ const apps = [
     show: false,
     img: "icons/terminal.png",
     content: <Terminal />
+  },
+  {
+    id: "email",
+    title: "Email",
+    desktop: false,
+    img: "icons/mail.png",
+    link: "mailto:renovamenzxh@gmail.com"
+  },
+  {
+    id: "github",
+    title: "Github",
+    desktop: false,
+    img: "icons/github.png",
+    link: "https://github.com/Renovamen"
   }
 ];
 

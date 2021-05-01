@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import nightwind from "nightwind/helper";
 
 import MenuBar from "../components/MenuBar";
-import Dock from "../components/Dock";
+import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
 import ControlCenterMenu from "../components/ControlCenterMenu";
 import Window from "../components/Window";
@@ -83,9 +83,11 @@ export default class Desktop extends Component {
   };
 
   openApp = (id) => {
+    // add it to the shown app list
     let showApps = this.state.showApps;
     showApps[id] = true;
 
+    // move to the top (use a maximum z-index)
     let appsZ = this.state.appsZ;
     let maxZ = this.state.maxZ + 1;
     appsZ[id] = maxZ;
@@ -100,14 +102,15 @@ export default class Desktop extends Component {
     });
 
     let minApps = this.state.minApps;
+    // if the app has already been shown but minimized
     if (minApps[id]) {
-      // set window"s last position
+      // move to window's last position
       var r = document.querySelector(`#window-${id}`);
       r.style.transform = `translate(${r.style.getPropertyValue(
         "--window-transform-x"
       )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
       r.style.transition = "ease-in 0.3s";
-
+      // remove it from the minimized app list
       minApps[id] = false;
       this.setState({ minApps });
     }
@@ -137,23 +140,24 @@ export default class Desktop extends Component {
 
     this.setWinowsPosition(id);
 
-    // get corrosponding dock icon"s position
+    // get the corrosponding dock icon's position
     var r = document.querySelector(`#dock-${id}`);
     const dockApp = r.getBoundingClientRect();
 
     r = document.querySelector(`#window-${id}`);
-    // translate window to that position
+    // translate the window to that position
     r.style.transform = `translate(${
       dockApp.x.toFixed(1) - 290
     }px, ${posy}px) scale(0.2)`;
     r.style.transition = "ease-out 0.3s";
 
+    // add it to the minimized app list
     this.setAppMin(id, true);
   };
 
   renderAppWindows = () => {
     return apps.map((app) => {
-      if (this.state.showApps[app.id]) {
+      if (app.desktop && this.state.showApps[app.id]) {
         const props = {
           title: app.title,
           id: app.id,
