@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
@@ -12,7 +12,7 @@ export default class FaceTime extends Component {
       img: null,
       click: false
     };
-    this.webcamRef = React.createRef();
+    this.webcamRef = createRef();
   }
 
   capture = () => {

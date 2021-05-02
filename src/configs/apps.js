@@ -41,6 +41,7 @@ const apps = [
     desktop: true,
     show: false,
     img: "icons/facetime.png",
+    height: 530,
     content: <FaceTime />
   },
   {

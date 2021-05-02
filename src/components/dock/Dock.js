@@ -16,14 +16,16 @@ export default function Dock({ open, showApps, toggleLaunchpad, hidde }) {
 
   return (
     <div
-      className="dock w-full fixed bottom-0"
+      className="dock w-full fixed bottom-0 overflow-x-scroll sm:overflow-x-visible"
       style={{
         zIndex: hidde ? 0 : 99999
       }}
-      onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
-      onMouseLeave={() => mouseX.set(null)}
     >
-      <ul className="mx-auto w-max px-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-t-lg shadow-2xl">
+      <ul
+        className="mx-auto w-max px-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-none sm:rounded-t-lg shadow-2xl"
+        onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
+        onMouseLeave={() => mouseX.set(null)}
+      >
         {apps.map((app) => (
           <DockItem
             key={`dock-${app.id}`}

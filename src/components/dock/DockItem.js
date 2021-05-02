@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import useRaf from "@rooks/use-raf";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
@@ -54,8 +54,24 @@ const useDockHoverAnimation = (mouseX, ref) => {
     distance.set(beyondTheDistanceLimit);
   }, true);
 
-  console.log(widthPX);
   return { width, widthPX };
+};
+
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(document.body.offsetWidth);
+
+  const onResize = useCallback(() => {
+    setWidth(document.body.offsetWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, [onResize]);
+
+  return width;
 };
 
 export default function DockItem({
@@ -70,6 +86,7 @@ export default function DockItem({
 }) {
   const imgRef = useRef();
   const { width } = useDockHoverAnimation(mouseX, imgRef);
+  const windowWidth = useWindowWidth();
 
   return (
     <li
@@ -88,7 +105,7 @@ export default function DockItem({
             alt={title}
             title={title}
             draggable={false}
-            style={{ width, willChange: "width" }}
+            style={windowWidth < 640 ? {} : { width, willChange: "width" }}
           />
         </a>
       ) : (
@@ -98,7 +115,7 @@ export default function DockItem({
           alt={title}
           title={title}
           draggable={false}
-          style={{ width, willChange: "width" }}
+          style={windowWidth < 640 ? {} : { width, willChange: "width" }}
         />
       )}
       <div

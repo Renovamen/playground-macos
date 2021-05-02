@@ -14,10 +14,12 @@ export default class Launchpad extends Component {
 
   search = () => {
     if (this.state.searchText === "") return launchpadApps;
+    const text = this.state.searchText.toLowerCase();
     const list = launchpadApps.filter((item) => {
-      return item.title
-        .toLowerCase()
-        .includes(this.state.searchText.toLowerCase());
+      return (
+        item.title.toLowerCase().includes(text) ||
+        item.id.toLowerCase().includes(text)
+      );
     });
     return list;
   };
@@ -51,26 +53,31 @@ export default class Launchpad extends Component {
         </div>
 
         <div
-          className="mx-auto mt-8 w-full px-10 grid grid-flow-col grid-cols-7"
+          className="mx-auto mt-8 w-full px-4 sm:px-10 grid grid-flow-row grid-cols-4 sm:grid-cols-7"
           style={{
             maxWidth: "1100px"
           }}
         >
           {this.search().map((app) => (
             <div
-              key={`launchpad-${app.title}`}
-              className="flex justify-center items-center"
+              key={`launchpad-${app.id}`}
+              className="h-32 sm:h-36 w-full flex justify-center items-center"
             >
-              <div className="w-full flex flex-col">
-                <a href={app.link} target="_blank" rel="noreferrer">
+              <div className="h-full w-full flex flex-col">
+                <a
+                  className="h-max"
+                  href={app.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <img
-                    className="w-20 mx-auto"
+                    className="w-14 sm:w-20 mx-auto"
                     src={app.img}
                     alt={app.title}
                     title={app.title}
                   />
                 </a>
-                <span className="mx-auto text-white">{app.title}</span>
+                <span className="mt-2 mx-auto text-white">{app.title}</span>
               </div>
             </div>
           ))}
