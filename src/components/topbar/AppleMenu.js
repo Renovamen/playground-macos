@@ -23,7 +23,7 @@ class MenuItemGroup extends Component {
 
 export default function AppleMenu({ setlogon }) {
   return (
-    <div className="fixed top-6 left-4 w-56 bg-gray bg-gray-200 bg-opacity-80 blur rounded-b-lg">
+    <div className="fixed top-6 left-4 w-56 bg-gray bg-gray-200 bg-opacity-90 blur rounded-b-lg">
       <MenuItemGroup>
         <MenuItem>About This Mac</MenuItem>
       </MenuItemGroup>

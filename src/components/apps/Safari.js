@@ -30,7 +30,7 @@ export default class Safari extends Component {
           title={"Safari clone browser"}
           src={this.state.goURL}
           frameBorder="0"
-          className="h-full w-full"
+          className="safari-content w-full"
         />
       </div>
     );

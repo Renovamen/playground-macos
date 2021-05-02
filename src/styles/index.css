@@ -40,6 +40,10 @@ html, body {
   height: calc(100% - 1.5rem);
 }
 
+.safari-content {
+  height: calc(100% - 2rem);
+}
+
 .traffic_lights svg {
   display: none;
 }

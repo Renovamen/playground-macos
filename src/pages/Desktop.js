@@ -141,19 +141,22 @@ export default class Desktop extends Component {
   };
 
   minimizeApp = (id) => {
-    const posy = 380;
-
     this.setWinowsPosition(id);
 
     // get the corrosponding dock icon's position
     var r = document.querySelector(`#dock-${id}`);
-    const dockApp = r.getBoundingClientRect();
+    const dockAppRect = r.getBoundingClientRect();
 
     r = document.querySelector(`#window-${id}`);
+    const appRect = r.getBoundingClientRect();
+    const posY =
+      document.body.offsetHeight -
+      appRect.y.toFixed(1) -
+      (r.offsetHeight / 2).toFixed(1);
+    const posX = dockAppRect.x.toFixed(1) - (r.offsetWidth / 2).toFixed(1) + 25;
+
     // translate the window to that position
-    r.style.transform = `translate(${
-      dockApp.x.toFixed(1) - 290
-    }px, ${posy}px) scale(0.2)`;
+    r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`;
     r.style.transition = "ease-out 0.3s";
 
     // add it to the minimized app list
