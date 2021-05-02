@@ -26,9 +26,14 @@ export default class Launchpad extends Component {
   };
 
   render() {
+    const close = this.props.show
+      ? ""
+      : "opacity-0 invisible transition-opacity duration-200";
+
     return (
       <div
-        className="nightwind-prevent-block w-screen h-screen fixed overflow-hidden bg-center bg-cover"
+        className={`nightwind-prevent-block ${close} transform scale-110 w-screen h-screen fixed overflow-hidden bg-center bg-cover`}
+        id="launchpad"
         style={{
           zIndex: 99998,
           backgroundImage: `url(${

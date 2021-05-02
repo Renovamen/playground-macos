@@ -100,6 +100,7 @@ export default function DockItem({
       {link ? (
         <a href={link} target="_blank" rel="noreferrer">
           <motion.img
+            className="w-12"
             ref={imgRef}
             src={img}
             alt={title}
@@ -110,6 +111,7 @@ export default function DockItem({
         </a>
       ) : (
         <motion.img
+          className="w-12"
           ref={imgRef}
           src={img}
           alt={title}

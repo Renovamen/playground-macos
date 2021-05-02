@@ -54,8 +54,18 @@ export default class Desktop extends Component {
   };
 
   toggleLaunchpad = (target) => {
-    if (target !== undefined) this.setState({ showLaunchpad: target });
-    else this.setState({ showLaunchpad: !this.state.showLaunchpad });
+    if (target === undefined) target = !this.state.showLaunchpad;
+
+    var r = document.querySelector(`#launchpad`);
+    if (target) {
+      r.style.transform = "scale(1)";
+      r.style.transition = "ease-in 0.2s";
+    } else {
+      r.style.transform = "scale(1.1)";
+      r.style.transition = "ease-out 0.2s";
+    }
+
+    this.setState({ showLaunchpad: target });
   };
 
   setWinowsPosition = (id) => {
@@ -203,7 +213,8 @@ export default class Desktop extends Component {
         {this.renderAppWindows()}
 
         {/* Launchpad */}
-        {this.state.showLaunchpad && <Launchpad dark={this.props.dark} />}
+        {/* {this.state.showLaunchpad && <Launchpad dark={this.props.dark} />} */}
+        <Launchpad dark={this.props.dark} show={this.state.showLaunchpad} />
 
         {/* Dock */}
         <Dock
