@@ -43,7 +43,7 @@ export default class ControlCenterMenu extends Component {
 
   render() {
     return (
-      <div className="fixed w-96 top-8 right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl">
+      <div className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl">
         <div className="row-span-2 col-span-2 bg-white bg-opacity-50 rounded-xl p-2 flex flex-col justify-around">
           <div className="flex flex-row items-center space-x-2 pr-6">
             <FaWifi

@@ -6,9 +6,12 @@ import { BiSearch } from "react-icons/bi";
 import { FaWifi } from "react-icons/fa";
 import { AiFillApple } from "react-icons/ai";
 
-const MenuItem = ({ children }) => {
+const MenuItem = ({ children, hiddeOnMobile = false }) => {
+  const hidde = hiddeOnMobile ? "hidden sm:inline-flex" : "inline-flex";
   return (
-    <div className="inline-flex flex-row space-x-1 hover:bg-white hover:bg-opacity-30 rounded p-1">
+    <div
+      className={`${hidde} flex-row space-x-1 hover:bg-white hover:bg-opacity-30 rounded p-1`}
+    >
       {children}
     </div>
   );
@@ -29,14 +32,14 @@ export default function MenuBar({ title, toggleControlCenter }) {
         <span className="font-semibold">{title}</span>
       </div>
       <div className="flex flex-row justify-end items-center space-x-2">
-        <MenuItem>
+        <MenuItem hiddeOnMobile={true}>
           <span className="text-xs mt-0.5 mr-1">100%</span>
           <BsBatteryFull size={20} />
         </MenuItem>
-        <MenuItem>
+        <MenuItem hiddeOnMobile={true}>
           <FaWifi size={17} />
         </MenuItem>
-        <MenuItem>
+        <MenuItem hiddeOnMobile={true}>
           <BiSearch size={17} />
         </MenuItem>
         <MenuItem>

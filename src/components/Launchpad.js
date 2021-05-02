@@ -77,7 +77,9 @@ export default class Launchpad extends Component {
                     title={app.title}
                   />
                 </a>
-                <span className="mt-2 mx-auto text-white">{app.title}</span>
+                <span className="mt-2 mx-auto text-white text-sm sm:text-base">
+                  {app.title}
+                </span>
               </div>
             </div>
           ))}
