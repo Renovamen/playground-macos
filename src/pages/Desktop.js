@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import nightwind from "nightwind/helper";
 
-import MenuBar from "../components/MenuBar";
+import MenuBar from "../components/topbar/MenuBar";
 import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
-import ControlCenterMenu from "../components/ControlCenterMenu";
 import Window from "../components/Window";
 import apps from "../configs/apps";
+import wallpapers from "../configs/wallpapers";
 
 export default class Desktop extends Component {
   constructor(props) {
@@ -18,7 +18,6 @@ export default class Desktop extends Component {
       minApps: {},
       maxZ: 2,
       showLaunchpad: false,
-      showControlCenter: false,
       currentTitle: "Finder",
       hiddeDock: false
     };
@@ -52,10 +51,6 @@ export default class Desktop extends Component {
       };
     });
     this.setState({ showApps });
-  };
-
-  toggleControlCenter = () => {
-    this.setState({ showControlCenter: !this.state.showControlCenter });
   };
 
   toggleLaunchpad = (target) => {
@@ -187,7 +182,11 @@ export default class Desktop extends Component {
     return (
       <div
         className="w-screen h-screen overflow-hidden bg-center bg-cover"
-        style={{ backgroundImage: "url(img/wallpaper.jpg)" }}
+        style={{
+          backgroundImage: `url(${
+            this.props.dark ? wallpapers.night : wallpapers.day
+          })`
+        }}
       >
         {/* Dark Model Toggler */}
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
@@ -195,17 +194,16 @@ export default class Desktop extends Component {
         {/* Top Menu Bar */}
         <MenuBar
           title={this.state.currentTitle}
-          toggleControlCenter={this.toggleControlCenter}
+          dark={this.props.dark}
+          setDark={this.props.setDark}
+          setlogon={this.props.setlogon}
         />
-
-        {/* Control Center */}
-        {this.state.showControlCenter && <ControlCenterMenu />}
 
         {/* Desktop Apps */}
         {this.renderAppWindows()}
 
         {/* Launchpad */}
-        {this.state.showLaunchpad && <Launchpad />}
+        {this.state.showLaunchpad && <Launchpad dark={this.props.dark} />}
 
         {/* Dock */}
         <Dock

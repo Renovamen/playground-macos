@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BiSearch } from "react-icons/bi";
 import launchpadApps from "../configs/launchpad";
+import wallpapers from "../configs/wallpapers";
 
 const placeholderText = "Search";
 
@@ -30,7 +31,9 @@ export default class Launchpad extends Component {
         className="nightwind-prevent-block w-screen h-screen fixed overflow-hidden bg-center bg-cover"
         style={{
           zIndex: 99998,
-          backgroundImage: "url(img/wallpaper.jpg)"
+          backgroundImage: `url(${
+            this.props.dark ? wallpapers.night : wallpapers.day
+          })`
         }}
       >
         <div
@@ -40,7 +43,7 @@ export default class Launchpad extends Component {
           }}
         />
 
-        <div className="block mx-auto grid grid-cols-11 w-64 mt-5 rounded-md bg-blue-500 bg-opacity-10 border border-blue-500 border-opacity-30">
+        <div className="block mx-auto grid grid-cols-11 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30">
           <div className="col-start-1 col-span-1 flex justify-center items-center">
             <BiSearch className="ml-1" color="white" />
           </div>

@@ -8,10 +8,11 @@ import Login from "./pages/Login";
 
 export default function App() {
   const [logon, setlogon] = useState(false);
+  const [dark, setDark] = useState(false);
   if (logon) {
-    return <Desktop />;
+    return <Desktop dark={dark} setDark={setDark} setlogon={setlogon} />;
   } else {
-    return <Login setlogon={setlogon} />;
+    return <Login setlogon={setlogon} dark={dark} />;
   }
 }
 

@@ -27,17 +27,8 @@ const SliderComponent = ({ icon }) => {
 };
 
 export default class ControlCenterMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dark: false
-    };
-  }
-
   toggleMode = () => {
-    this.setState({
-      dark: !this.state.dark
-    });
+    this.props.setDark(!this.props.dark);
     nightwind.toggle();
   };
 
@@ -80,22 +71,22 @@ export default class ControlCenterMenu extends Component {
           </div>
         </div>
         <div className="col-span-2 bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-row items-center space-x-2">
-          {this.state.dark ? (
+          {this.props.dark ? (
             <IoMoon
               size={34}
-              className="text-gray-700 bg-gray-400 bg-opacity-50 rounded-full p-2"
+              className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
               onClick={() => this.toggleMode()}
             />
           ) : (
             <IoSunny
               size={34}
-              className="text-gray-700 bg-gray-400 bg-opacity-50 rounded-full p-2"
+              className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
               onClick={() => this.toggleMode()}
             />
           )}
           <div className="flex flex-col">
             <span className="font-medium ml-1">
-              {this.state.dark ? "Dark Mode" : "Light Mode"}
+              {this.props.dark ? "Dark Mode" : "Light Mode"}
             </span>
           </div>
         </div>

@@ -28,11 +28,17 @@ html, body {
   filter: invert();
 }
 
-.innner-window {
-  height: calc(100% - 1.5rem);
+/* --------- login --------- */
+
+.login input::placeholder {
+  color: white;
 }
 
 /* --------- app window --------- */
+
+.innner-window {
+  height: calc(100% - 1.5rem);
+}
 
 .traffic_lights svg {
   display: none;
