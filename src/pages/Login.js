@@ -3,6 +3,7 @@ import { BsQuestionSquareFill } from "react-icons/bs";
 import { CgSleep } from "react-icons/cg";
 import { RiShutDownLine, RiRestartLine } from "react-icons/ri";
 import wallpapers from "../configs/wallpapers";
+import user from "../configs/user";
 
 export default function Login({ setlogon, dark }) {
   const keyPress = (e) => {
@@ -26,11 +27,11 @@ export default function Login({ setlogon, dark }) {
         {/* Avatar */}
         <img
           className="rounded-full w-24 h-24 my-0 mx-auto"
-          src="img/ui/avatar.jpg"
+          src={user.avatar}
           alt="img"
         />
         <div className="nightwind-prevent font-semibold text-xl mt-2 text-white">
-          Xiaohan Zou
+          {user.name}
         </div>
 
         {/* Password Input */}
