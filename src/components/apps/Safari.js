@@ -1,37 +1,230 @@
 import React, { Component } from "react";
+import websites from "../../configs/websites";
+import wallpapers from "../../configs/wallpapers";
+import { FaShieldAlt } from "react-icons/fa";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { BsLayoutSidebar } from "react-icons/bs";
+import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
+
+// https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+const checkURL = (str) => {
+  const pattern = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i" // fragment locator
+  );
+  return !!pattern.test(str);
+};
+
+class NavSection extends Component {
+  render() {
+    const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-9";
+    return (
+      <div className="mx-auto pt-8 w-full max-w-screen-md px-4">
+        <div className="text-xl sm:text-2xl font-medium ml-2 text-black">
+          {this.props.section.title}
+        </div>
+        <div className={`mt-3 grid grid-flow-row ${grid}`}>
+          {this.props.section.sites.map((site) => (
+            <div
+              key={`safari-nav-${site.id}`}
+              className="h-28 w-full flex justify-center items-center"
+            >
+              <div className="h-full w-full flex flex-col">
+                <div className="nightwind-prevent h-max w-max mx-auto bg-white rounded-md">
+                  {site.img ? (
+                    <img
+                      className="w-16 h-16 mx-auto rounded-md"
+                      src={site.img}
+                      alt={site.title}
+                      title={site.title}
+                      onClick={
+                        site.inner
+                          ? () => this.props.setGoURL(site.link)
+                          : () => window.open(site.link)
+                      }
+                    />
+                  ) : (
+                    <div
+                      className="w-16 h-16 mx-auto rounded-md flex justify-center items-center cursor-default"
+                      onClick={
+                        site.inner
+                          ? () => this.props.setGoURL(site.link)
+                          : () => window.open(site.link)
+                      }
+                    >
+                      <span className="text-lg text-center">{site.title}</span>
+                    </div>
+                  )}
+                </div>
+                <span className="mt-2 mx-auto text-black text-sm">
+                  {site.title}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+class NavPage extends Component {
+  render() {
+    const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-8";
+    const span = this.props.width < 640 ? "col-span-3" : "col-span-7";
+
+    return (
+      <div
+        className="w-full safari-content bg-blue-50 overflow-y-scroll bg-center bg-cover"
+        style={{
+          backgroundImage: `url(${
+            this.props.dark ? wallpapers.night : wallpapers.day
+          })`
+        }}
+      >
+        <div className="w-full pt-8 bg-gray-100 bg-opacity-80 blur">
+          {/* Favorites */}
+          <NavSection
+            section={websites.favorites}
+            setGoURL={this.props.setGoURL}
+            width={this.props.width}
+          />
+
+          {/* Frequently Visited */}
+          <NavSection
+            section={websites.freq}
+            setGoURL={this.props.setGoURL}
+            width={this.props.width}
+          />
+
+          {/* Privacy Report */}
+          <div className="z-100 mx-auto pt-8 pb-16 px-2 w-full max-w-screen-md px-4">
+            <div className="text-xl sm:text-2xl text-black font-medium">
+              Privacy Report
+            </div>
+            <div
+              className={`h-16 w-full mt-4 grid ${grid} bg-gray-50 bg-opacity-70 shadow-md rounded-xl text-sm`}
+            >
+              <div className="text-black col-start-1 col-span-1 flex flex-row items-center justify-center space-x-2">
+                <FaShieldAlt size={24} />
+                <span className="text-xl">1</span>
+              </div>
+              <div
+                className={`col-start-2 ${span} flex items-center text-black`}
+              >
+                In the last sever days, Safari has prevent 2 tracker from
+                profiling you.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default class Safari extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      goURL: "https://zxh.io",
-      currentURL: "https://zxh.io"
+      goURL: "",
+      currentURL: ""
     };
   }
 
-  setGoURL = (e) => {
+  setGoURL = (url) => {
+    const isValid = checkURL(url);
+
+    if (isValid) {
+      if (
+        url.substring(0, 7) !== "http://" &&
+        url.substring(0, 8) !== "https://"
+      )
+        url = `https://${url}`;
+    } else if (url !== "") {
+      url = `https://www.bing.com/search?q=${url}`;
+    }
+
+    this.setState({
+      goURL: url,
+      currentURL: url
+    });
+  };
+
+  pressURL = (e) => {
     const keyCode = e.which || e.keyCode;
-    if (keyCode === 13) this.setState({ goURL: e.target.value });
+    if (keyCode === 13) this.setGoURL(e.target.value);
   };
 
   render() {
+    const buttonColor =
+      this.state.goURL === "" ? "text-gray-400" : "text-gray-700";
+    const grid = this.props.width < 640 ? "grid-cols-2" : "grid-cols-3";
+    const hideLast = this.props.width < 640 ? "hidden" : "";
+
     return (
       <div className="w-full h-full bg-white">
-        <div className="h-8 flex justify-center items-center bg-white">
-          <input
-            type="text"
-            value={this.state.currentURL}
-            onChange={(e) => this.setState({ currentURL: e.target.value })}
-            onKeyPress={this.setGoURL}
-            className="h-6 w-4/5 p-2 rounded text-center font-normal text-gray-500 bg-gray-100"
-          />
+        {/* browser topbar */}
+        <div className={`h-10 grid ${grid} flex items-center bg-white`}>
+          <div className="flex flex-row px-2">
+            <button
+              className={`w-7 h-6 border border-gray-300 ${buttonColor} outline-none focus:outline-none rounded flex justify-center items-center`}
+              onClick={() => this.setGoURL("")}
+            >
+              <FiChevronLeft size={20} />
+            </button>
+            <button className="w-7 h-6 border border-gray-300 text-gray-400 outline-none focus:outline-none rounded flex justify-center items-center">
+              <FiChevronRight size={20} />
+            </button>
+            <button className="w-9 h-6 ml-3 border border-gray-300 text-gray-700 outline-none focus:outline-none rounded flex justify-center items-center">
+              <BsLayoutSidebar size={14} />
+            </button>
+          </div>
+          <div className="flex flex-row justify-center px-2">
+            <button className="w-9 h-6 mr-2 -ml-10 border border-gray-300 text-gray-400 outline-none focus:outline-none rounded flex justify-center items-center">
+              <FaShieldAlt size={14} />
+            </button>
+            <input
+              type="text"
+              value={this.state.currentURL}
+              onChange={(e) => this.setState({ currentURL: e.target.value })}
+              onKeyPress={this.pressURL}
+              className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-100 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400"
+              placeholder="Search or enter website name"
+            />
+          </div>
+          <div className={`flex flex-row justify-end px-2 ${hideLast}`}>
+            <button
+              className={`w-9 h-6 border border-gray-300 ${buttonColor} outline-none focus:outline-none rounded flex justify-center items-center`}
+            >
+              <IoShareOutline size={16} />
+            </button>
+            <button className="w-9 h-6 ml-2 border border-gray-300 text-gray-700 outline-none focus:outline-none rounded flex justify-center items-center">
+              <IoCopyOutline size={16} />
+            </button>
+          </div>
         </div>
-        <iframe
-          title={"Safari clone browser"}
-          src={this.state.goURL}
-          frameBorder="0"
-          className="safari-content w-full"
-        />
+
+        {/* browser content */}
+        {this.state.goURL === "" ? (
+          <NavPage
+            setGoURL={this.setGoURL}
+            width={this.props.width}
+            dark={this.props.dark}
+          />
+        ) : (
+          <iframe
+            title={"Safari clone browser"}
+            src={this.state.goURL}
+            frameBorder="0"
+            className="safari-content w-full"
+          />
+        )}
       </div>
     );
   }

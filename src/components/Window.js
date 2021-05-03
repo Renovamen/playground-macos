@@ -120,12 +120,19 @@ export default class Window extends Component {
     const minimized = this.props.min
       ? "opacity-0 invisible transition-opacity duration-300"
       : "";
+    const width = this.props.max ? this.state.maxW : this.state.width;
+    const height = this.props.max ? this.state.maxH : this.state.height;
+
+    let children = React.cloneElement(this.props.children, {
+      width: width,
+      dark: this.props.dark
+    });
 
     return (
       <Rnd
         size={{
-          width: this.props.max ? this.state.maxW : this.state.width,
-          height: this.props.max ? this.state.maxH : this.state.height
+          width: width,
+          height: height
         }}
         position={{
           x: this.props.max ? 0 : this.state.x,
@@ -136,11 +143,13 @@ export default class Window extends Component {
         }}
         onResizeStop={(e, direction, ref, delta, position) => {
           this.setState({
-            width: ref.style.width,
-            height: ref.style.height,
+            width: parseInt(ref.style.width),
+            height: parseInt(ref.style.height),
             ...position
           });
         }}
+        minWidth={this.props.minWidth ? this.props.minWidth : 200}
+        minHeight={this.props.minHeight ? this.props.minHeight : 150}
         dragHandleClassName="window-bar"
         disableDragging={this.props.max}
         style={{ zIndex: this.props.z }}
@@ -149,7 +158,7 @@ export default class Window extends Component {
         id={`window-${this.props.id}`}
       >
         <div
-          className="window-bar relative h-6 text-center bg-gray-300"
+          className="window-bar relative h-6 text-center bg-gray-200"
           onDoubleClick={() => this.props.setMax(this.props.id)}
         >
           <TrafficLights
@@ -163,9 +172,7 @@ export default class Window extends Component {
             {this.props.title}
           </span>
         </div>
-        <div className="innner-window w-full overflow-y-hidden">
-          {this.props.children}
-        </div>
+        <div className="innner-window w-full overflow-y-hidden">{children}</div>
       </Rnd>
     );
   }

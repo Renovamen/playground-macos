@@ -24,6 +24,9 @@ const apps = [
     title: "Safari",
     desktop: true,
     show: false,
+    width: 1024,
+    minWidth: 375,
+    minHeight: 200,
     img: "icons/safari.png",
     content: <Safari />
   },
