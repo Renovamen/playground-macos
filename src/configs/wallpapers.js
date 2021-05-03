@@ -1,6 +1,6 @@
 const wallpapers = {
-  day: "img/wallpaper-day.jpg",
-  night: "img/wallpaper-night.jpg"
+  day: "img/ui/wallpaper-day.jpg",
+  night: "img/ui/wallpaper-night.jpg"
 };
 
 export default wallpapers;

@@ -26,7 +26,7 @@ export default function Login({ setlogon, dark }) {
         {/* Avatar */}
         <img
           className="rounded-full w-24 h-24 my-0 mx-auto"
-          src="img/avatar.jpg"
+          src="img/ui/avatar.jpg"
           alt="img"
         />
         <div className="nightwind-prevent font-semibold text-xl mt-2 text-white">

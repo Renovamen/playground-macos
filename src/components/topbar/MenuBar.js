@@ -68,7 +68,7 @@ export default function MenuBar({ title, dark, setDark, setlogon }) {
         <MenuItem onClick={() => setShowControlCenter(!showControlCenter)}>
           <img
             className="w-4 h-4 filter-invert"
-            src="icons/menu/controlcenter.png"
+            src="img/icons/menu/controlcenter.png"
             alt="control center"
           />
         </MenuItem>

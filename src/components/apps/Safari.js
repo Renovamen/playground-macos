@@ -77,6 +77,7 @@ class NavPage extends Component {
   render() {
     const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-8";
     const span = this.props.width < 640 ? "col-span-3" : "col-span-7";
+    const numTracker = Math.floor(Math.random() * 99 + 1);
 
     return (
       <div
@@ -112,13 +113,13 @@ class NavPage extends Component {
             >
               <div className="text-black col-start-1 col-span-1 flex flex-row items-center justify-center space-x-2">
                 <FaShieldAlt size={24} />
-                <span className="text-xl">1</span>
+                <span className="text-xl">{numTracker}</span>
               </div>
               <div
                 className={`col-start-2 ${span} flex items-center text-black`}
               >
-                In the last sever days, Safari has prevent 2 tracker from
-                profiling you.
+                In the last sever days, Safari has prevent {numTracker} tracker
+                from profiling you.
               </div>
             </div>
           </div>

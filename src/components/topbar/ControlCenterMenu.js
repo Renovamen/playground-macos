@@ -1,16 +1,15 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import nightwind from "nightwind/helper";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
 
 // ------- import icons -------
 import { FiBluetooth, FiRss } from "react-icons/fi";
-import { BsBrightnessAltHigh, BsPlayFill } from "react-icons/bs";
+import { BsBrightnessAltHigh, BsPlayFill, BsPauseFill } from "react-icons/bs";
 import { IoCopyOutline, IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
 import { FaWifi } from "react-icons/fa";
 
-const SliderComponent = ({ icon }) => {
-  const [value, setValue] = useState(Math.floor(Math.random() * 100));
+const SliderComponent = ({ icon, value, setValue }) => {
   return (
     <div className="slider flex flex-row w-full">
       <div className="h-8 p-2 bg-white rounded-l-full">{icon}</div>
@@ -27,9 +26,48 @@ const SliderComponent = ({ icon }) => {
 };
 
 export default class ControlCenterMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playing: false,
+      volume: 100,
+      brightness: Math.floor(Math.random() * 100)
+    };
+    this.toggleAudio = this.toggleAudio.bind(this);
+  }
+
+  componentDidMount() {
+    this.audio = new Audio("music/sunflower.mp3");
+    this.audio.load();
+    this.audio.addEventListener("ended", () => this.audio.play());
+    this.audio.volume = 1;
+  }
+
+  componentWillUnmount() {
+    this.audio.removeEventListener("ended", () => this.audio.play());
+  }
+
+  toggleAudio = () => {
+    this.setState({ playing: !this.state.playing }, () => {
+      this.state.playing ? this.audio.play() : this.audio.pause();
+    });
+  };
+
   toggleMode = () => {
     this.props.setDark(!this.props.dark);
     nightwind.toggle();
+  };
+
+  setVolume = (value) => {
+    this.setState({ volume: value }, () => {
+      this.audio.volume = value / 100;
+    });
+  };
+
+  setBrightness = (value) => {
+    this.setState({
+      brightness: value
+    });
   };
 
   render() {
@@ -102,17 +140,21 @@ export default class ControlCenterMenu extends Component {
           <span className="font-medium">Display</span>
           <SliderComponent
             icon={<IoSunny size={16} className="text-gray-500" />}
+            value={this.state.brightness}
+            setValue={this.setBrightness}
           />
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
           <span className="font-medium">Sound</span>
           <SliderComponent
             icon={<IoVolumeHigh size={16} className="text-gray-500" />}
+            value={this.state.volume}
+            setValue={this.setVolume}
           />
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
           <img
-            src="http://p1.music.126.net/z0IO1vEsowL9mD_5yzUjeA==/109951163936068098.jpg"
+            src="//p1.music.126.net/z0IO1vEsowL9mD_5yzUjeA==/109951163936068098.jpg"
             alt="cover art"
             className="w-16 rounded-lg"
           />
@@ -120,7 +162,11 @@ export default class ControlCenterMenu extends Component {
             <span className="font-medium">Sunflower</span>
             <span className="font-extralight">Post Malone / Swae Lee</span>
           </div>
-          <BsPlayFill size={24} />
+          {this.state.playing ? (
+            <BsPauseFill onClick={this.toggleAudio} size={24} />
+          ) : (
+            <BsPlayFill onClick={this.toggleAudio} size={24} />
+          )}
         </div>
       </div>
     );

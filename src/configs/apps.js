@@ -9,14 +9,14 @@ const apps = [
     id: "launchpad",
     title: "Launchpad",
     desktop: false,
-    img: "icons/launchpad.png"
+    img: "img/icons/launchpad.png"
   },
   {
     id: "notepad",
     title: "Notepad",
     desktop: true,
     show: false,
-    img: "icons/text.png",
+    img: "img/icons/notepad.png",
     content: <Notepad />
   },
   {
@@ -27,7 +27,7 @@ const apps = [
     width: 1024,
     minWidth: 375,
     minHeight: 200,
-    img: "icons/safari.png",
+    img: "img/icons/safari.png",
     content: <Safari />
   },
   {
@@ -35,7 +35,7 @@ const apps = [
     title: "VSCode",
     desktop: true,
     show: false,
-    img: "icons/vscode.png",
+    img: "img/icons/vscode.png",
     content: <VSCode />
   },
   {
@@ -43,7 +43,7 @@ const apps = [
     title: "FaceTime",
     desktop: true,
     show: false,
-    img: "icons/facetime.png",
+    img: "img/icons/facetime.png",
     height: 530,
     content: <FaceTime />
   },
@@ -52,22 +52,22 @@ const apps = [
     title: "Terminal",
     desktop: true,
     show: false,
-    img: "icons/terminal.png",
+    img: "img/icons/terminal.png",
     content: <Terminal />
   },
   {
     id: "email",
     title: "Email",
     desktop: false,
-    img: "icons/mail.png",
+    img: "img/icons/mail.png",
     link: "mailto:renovamenzxh@gmail.com"
   },
   {
     id: "github",
     title: "Github",
     desktop: false,
-    img: "icons/github.png",
-    link: "https://github.com/Renovamen"
+    img: "img/icons/github.png",
+    link: "https://github.com/Renovamen/playground-macos"
   }
 ];
 
