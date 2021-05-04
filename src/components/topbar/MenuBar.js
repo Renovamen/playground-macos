@@ -121,12 +121,28 @@ export default class MenuBar extends Component {
     });
   };
 
-  logout = () => {
+  clearBeforeLogout = (foo, param) => {
     Promise.all([
       this.toggleFullScreen(false),
       this.toggleAudio(false),
       this.setVolume(100)
-    ]).then(() => this.props.setLogin(false));
+    ]).then(() => foo(param));
+  };
+
+  logout = () => {
+    this.clearBeforeLogout(this.props.setLogin, false);
+  };
+
+  shut = (e) => {
+    this.clearBeforeLogout(this.props.shutMac, e);
+  };
+
+  restart = (e) => {
+    this.clearBeforeLogout(this.props.restartMac, e);
+  };
+
+  sleep = (e) => {
+    this.clearBeforeLogout(this.props.sleepMac, e);
   };
 
   render() {
@@ -152,9 +168,9 @@ export default class MenuBar extends Component {
         {this.state.showAppleMenu && (
           <AppleMenu
             logout={this.logout}
-            shut={this.props.shutMac}
-            restart={this.props.restartMac}
-            sleep={this.props.sleepMac}
+            shut={this.shut}
+            restart={this.restart}
+            sleep={this.sleep}
           />
         )}
 
