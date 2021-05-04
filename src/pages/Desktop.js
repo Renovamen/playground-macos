@@ -19,7 +19,7 @@ export default class Desktop extends Component {
       maxZ: 2,
       showLaunchpad: false,
       currentTitle: "Finder",
-      hiddeDock: false
+      hideDock: false
     };
   }
 
@@ -84,7 +84,10 @@ export default class Desktop extends Component {
   closeApp = (id) => {
     let showApps = this.state.showApps;
     showApps[id] = false;
-    this.setState({ showApps });
+    this.setState({
+      showApps: showApps,
+      hideDock: false
+    });
   };
 
   openApp = (id) => {
@@ -127,7 +130,7 @@ export default class Desktop extends Component {
     maxApps[id] = target;
     this.setState({
       maxApps: maxApps,
-      hiddeDock: target
+      hideDock: target
     });
   };
 
@@ -227,7 +230,7 @@ export default class Desktop extends Component {
           open={this.openApp}
           showApps={this.state.showApps}
           toggleLaunchpad={this.toggleLaunchpad}
-          hidde={this.state.hiddeDock}
+          hide={this.state.hideDock}
         />
       </div>
     );

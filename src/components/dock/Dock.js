@@ -3,7 +3,7 @@ import { useMotionValue } from "framer-motion";
 import apps from "../../configs/apps";
 import DockItem from "./DockItem";
 
-export default function Dock({ open, showApps, toggleLaunchpad, hidde }) {
+export default function Dock({ open, showApps, toggleLaunchpad, hide }) {
   const openApp = (id) => {
     if (id === "launchpad") toggleLaunchpad();
     else {
@@ -18,7 +18,7 @@ export default function Dock({ open, showApps, toggleLaunchpad, hidde }) {
     <div
       className="dock w-full fixed bottom-0 overflow-x-scroll sm:overflow-x-visible"
       style={{
-        zIndex: hidde ? 0 : 99999
+        zIndex: hide ? 0 : 99999
       }}
     >
       <ul

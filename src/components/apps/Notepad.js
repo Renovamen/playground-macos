@@ -42,14 +42,23 @@ export default function Notepad() {
           About This Site
         </div>
         <div className="paragraph mt-4">
-          This site is inspired by{" "}
+          This site is inspired by macOS{" "}
           <a
             className="text-blue-500"
             href="https://www.apple.com/in/macos/big-sur/"
             target="_blank"
             rel="noreferrer"
           >
-            macOS Big Sur
+            Big Sur
+          </a>{" "}
+          and{" "}
+          <a
+            className="text-blue-500"
+            href="https://www.apple.com/bw/macos/catalina/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Catalina
           </a>
           , developed using{" "}
           <a

@@ -12,16 +12,16 @@ import { AiFillApple } from "react-icons/ai";
 const MenuItem = ({
   children,
   onClick,
-  hiddeOnMobile = false,
+  hideOnMobile = false,
   forceHover = false
 }) => {
-  const hidde = hiddeOnMobile ? "hidden sm:inline-flex" : "inline-flex";
+  const hide = hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
   const hover = forceHover
     ? "bg-white bg-opacity-30"
     : "hover:bg-white hover:bg-opacity-30 rounded";
   return (
     <div
-      className={`${hidde} cursor-default flex-row space-x-1 ${hover} p-1`}
+      className={`${hide} cursor-default flex-row space-x-1 ${hover} p-1`}
       onClick={onClick}
     >
       {children}
@@ -55,14 +55,14 @@ export default function MenuBar({ title, dark, setDark, setlogon }) {
       {showAppleMenu && <AppleMenu setlogon={setlogon} />}
 
       <div className="flex flex-row justify-end items-center space-x-2">
-        <MenuItem hiddeOnMobile={true}>
+        <MenuItem hideOnMobile={true}>
           <span className="text-xs mt-0.5 mr-1">100%</span>
           <BsBatteryFull size={20} />
         </MenuItem>
-        <MenuItem hiddeOnMobile={true}>
+        <MenuItem hideOnMobile={true}>
           <FaWifi size={17} />
         </MenuItem>
-        <MenuItem hiddeOnMobile={true}>
+        <MenuItem hideOnMobile={true}>
           <BiSearch size={17} />
         </MenuItem>
         <MenuItem onClick={() => setShowControlCenter(!showControlCenter)}>
