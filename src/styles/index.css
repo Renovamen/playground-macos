@@ -1,12 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace !important;
+* :not(pre) {
+  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 html, body {
@@ -70,15 +68,15 @@ html, body {
 /* --------- slider --------- */
 
 .slider .rangeslider {
+  @apply bg-gray-200;
   margin: 0 !important;
   width: 100%;
   height: 2rem;
-  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 9999px;
   box-shadow: none;
 }
 .slider .rangeslider .rangeslider__fill {
-  background-color: #fff;
+  @apply bg-white;
   box-shadow: none;
   border-radius: 0;
 }
@@ -91,4 +89,114 @@ html, body {
 }
 .slider .rangeslider .rangeslider__handle::after {
   display: none;
+}
+
+/* --------- bear markdown --------- */
+
+.bear a {
+  @apply text-red-500;
+}
+
+.bear h1, .bear h2, .bear h3, .bear h4 {
+  @apply font-medium relative text-gray-800;
+}
+
+.bear h1, .bear h2, .bear h3, .bear h4 {
+  @apply mt-7;
+}
+
+.bear h1::before,
+.bear h2::before,
+.bear h3::before,
+.bear h4::before {
+  @apply absolute text-sm text-gray-400 -left-7 bottom-1;
+}
+
+.bear h1 {
+  @apply text-3xl;
+}
+
+.bear h1::before {
+  content: 'H1';
+}
+
+.bear h2 {
+  @apply text-2xl;
+}
+
+.bear h2::before {
+  content: 'H2';
+}
+
+.bear h3 {
+  @apply text-xl;
+}
+
+.bear h3::before {
+  content: 'H3';
+}
+
+.bear h3 {
+  @apply text-xl;
+}
+
+.bear h4 {
+  @apply text-lg;
+}
+
+.bear h4::before {
+  content: 'H4';
+}
+
+.bear p {
+  @apply mt-6;
+}
+
+.bear h2 + p, .bear h3 + p, .bear h4 + p {
+  @apply mt-4;
+}
+
+.bear ul {
+  @apply mt-2 list-disc pl-5;
+}
+
+.bear ul > li::marker {
+  @apply text-red-500;
+}
+
+.bear li p {
+  @apply m-0 mb-2;
+}
+
+.bear code {
+  @apply text-sm border border-gray-300 rounded py-0.5 px-1 bg-gray-50;
+}
+
+.bear pre {
+  @apply mt-2;
+}
+
+.bear pre div {
+  @apply border border-gray-300 rounded;
+}
+
+.bear pre code, .dark .bear pre code {
+  font-size: 15px;
+  @apply bg-transparent border-none p-0;
+}
+
+.bear img {
+  @apply inline-block;
+}
+
+.bear table {
+  @apply mt-4 block w-full overflow-auto;
+}
+
+.bear table td, .bear table th {
+  @apply px-3 py-2 border border-gray-300;
+}
+
+.bear table tr {
+  @apply border-t border-gray-300 bg-transparent;
 }

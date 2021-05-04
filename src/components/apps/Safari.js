@@ -73,11 +73,12 @@ class NavSection extends Component {
   }
 }
 
+const numTracker = Math.floor(Math.random() * 99 + 1);
+
 class NavPage extends Component {
   render() {
     const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-8";
     const span = this.props.width < 640 ? "col-span-3" : "col-span-7";
-    const numTracker = Math.floor(Math.random() * 99 + 1);
 
     return (
       <div
@@ -116,7 +117,7 @@ class NavPage extends Component {
                 <span className="text-xl">{numTracker}</span>
               </div>
               <div
-                className={`col-start-2 ${span} flex items-center text-black`}
+                className={`col-start-2 ${span} flex items-center text-black px-2`}
               >
                 In the last sever days, Safari has prevent {numTracker} tracker
                 from profiling you.

@@ -1,7 +1,7 @@
 import FaceTime from "../components/apps/FaceTime";
 import Terminal from "../components/apps/Terminal";
 import Safari from "../components/apps/Safari";
-import Notepad from "../components/apps/Notepad";
+import Bear from "../components/apps/Bear";
 import VSCode from "../components/apps/VSCode";
 
 const apps = [
@@ -12,12 +12,14 @@ const apps = [
     img: "img/icons/launchpad.png"
   },
   {
-    id: "notepad",
-    title: "Notepad",
+    id: "bear",
+    title: "Bear",
     desktop: true,
     show: false,
-    img: "img/icons/notepad.png",
-    content: <Notepad />
+    width: 860,
+    height: 500,
+    img: "img/icons/bear.png",
+    content: <Bear />
   },
   {
     id: "safari",
@@ -57,7 +59,7 @@ const apps = [
   },
   {
     id: "email",
-    title: "Email",
+    title: "Mail",
     desktop: false,
     img: "img/icons/mail.png",
     link: "mailto:renovamenzxh@gmail.com"

@@ -69,10 +69,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-markdown": "^6.0.1",
     "react-rangeslider": "2.2.0",
     "react-rnd": "^10.2.4",
     "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "^15.4.3",
     "react-webcam": "5.2.2",
+    "remark-gfm": "^1.0.0",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {

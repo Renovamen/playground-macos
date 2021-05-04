@@ -6,5 +6,17 @@ module.exports = {
         require("autoprefixer")
       ]
     }
+  },
+  webpack: {
+    configure: {
+      module: {
+        rules: [
+          {
+            test: /\.md$/,
+            use: "asset/resource"
+          }
+        ]
+      }
+    }
   }
 }
