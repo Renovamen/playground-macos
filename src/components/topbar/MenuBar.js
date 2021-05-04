@@ -34,7 +34,6 @@ const MenuItem = ({
   );
 };
 
-// export default function MenuBar({ title, dark, setDark, setlogon }) {
 export default class MenuBar extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +49,8 @@ export default class MenuBar extends Component {
         bluetooth: true,
         airdrop: true
       },
-      fullscreen: false
+      fullscreen: false,
+      intervalId: null
     };
     this.toggleAudio = this.toggleAudio.bind(this);
     this.resize.bind(this);
@@ -58,11 +58,13 @@ export default class MenuBar extends Component {
 
   componentDidMount() {
     // current date and time
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       this.setState({
         data: new Date()
       });
     }, 60 * 1000);
+    // store intervalId in the state, so we can clear interval later
+    this.setState({ intervalId: intervalId });
 
     // listen to screen size change
     window.addEventListener("resize", this.resize);
@@ -75,13 +77,15 @@ export default class MenuBar extends Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.state.intervalId);
     window.removeEventListener("resize", this.resize);
     this.audio.removeEventListener("ended", () => this.audio.play());
   }
 
   resize = () => {
+    const isFull = isFullScreen();
     this.setState({
-      fullscreen: isFullScreen()
+      fullscreen: isFull
     });
   };
 
@@ -122,7 +126,7 @@ export default class MenuBar extends Component {
       this.toggleFullScreen(false),
       this.toggleAudio(false),
       this.setVolume(100)
-    ]).then(() => this.props.setlogon(false));
+    ]).then(() => this.props.setLogin(false));
   };
 
   render() {
@@ -145,7 +149,14 @@ export default class MenuBar extends Component {
         </div>
 
         {/* Open this when clicking on Apple logo */}
-        {this.state.showAppleMenu && <AppleMenu logout={this.logout} />}
+        {this.state.showAppleMenu && (
+          <AppleMenu
+            logout={this.logout}
+            shut={this.props.shutMac}
+            restart={this.props.restartMac}
+            sleep={this.props.sleepMac}
+          />
+        )}
 
         <div className="flex flex-row justify-end items-center space-x-2">
           <MenuItem hideOnMobile={true}>

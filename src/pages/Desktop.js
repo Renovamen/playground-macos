@@ -215,7 +215,10 @@ export default class Desktop extends Component {
           title={this.state.currentTitle}
           dark={this.props.dark}
           setDark={this.props.setDark}
-          setlogon={this.props.setlogon}
+          setLogin={this.props.setLogin}
+          shutMac={this.props.shutMac}
+          sleepMac={this.props.sleepMac}
+          restartMac={this.props.restartMac}
         />
 
         {/* Desktop Apps */}

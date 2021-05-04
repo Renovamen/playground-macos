@@ -164,12 +164,21 @@ html, body {
   @apply mt-4;
 }
 
+.bear .markdown ul,
+.bear .markdown ol {
+  @apply mt-2 pl-5;
+}
+
 .bear .markdown ul {
-  @apply mt-2 list-disc pl-5;
+  @apply list-disc;
 }
 
 .bear .markdown ul > li::marker {
   @apply text-red-500;
+}
+
+.bear .markdown ol {
+  @apply list-decimal;
 }
 
 .bear .markdown li p {

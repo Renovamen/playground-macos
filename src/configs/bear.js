@@ -13,6 +13,7 @@ import { HiFire } from "react-icons/hi";
 import { CgFormatText } from "react-icons/cg";
 import { BiCube } from "react-icons/bi";
 import { BsFillImageFill } from "react-icons/bs";
+import { AiFillAudio } from "react-icons/ai";
 
 const bear = [
   {
@@ -104,6 +105,15 @@ const bear = [
         icon: <CgFormatText />,
         excerpt: "PyTorch implementation of some text classificaiton models...",
         link: "https://github.com/Renovamen/Text-Classification"
+      },
+      {
+        id: "speech-emotion-recognition",
+        title: "Speech Emotion",
+        file:
+          "https://raw.githubusercontent.com/Renovamen/Speech-Emotion-Recognition/master/README.md",
+        icon: <AiFillAudio />,
+        excerpt: "Speech emotion recognition using Keras and sklearn...",
+        link: "https://github.com/Renovamen/Speech-Emotion-Recognition"
       },
       {
         id: "image-captioning",
