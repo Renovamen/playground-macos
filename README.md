@@ -1,6 +1,6 @@
 # playground-macos
 
-My portfolio website simulating macOS's GUI: https://zxh.vercel.app
+My portfolio website simulating macOS's GUI: https://portfolio.zxh.io
 
 Powered by [React](https://reactjs.org/) and [tailwindcss](https://tailwindcss.com/).
 

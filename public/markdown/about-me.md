@@ -27,4 +27,4 @@ Reach me at:
 
 ## Résumé
 
-My résumé can be found [here](https://zxh.io/files/cv/brief/en.pdf).
+My résumé can be found here: [English](https://zxh.io/files/cv/brief/en.pdf) / [中文](https://zxh.io/files/cv/brief/cn.pdf).

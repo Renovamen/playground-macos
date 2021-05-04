@@ -15,21 +15,6 @@ import {
 import { IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
 import { FaWifi } from "react-icons/fa";
 
-const enterFullScreen = () => {
-  const element = document.documentElement;
-  if (element.requestFullscreen) element.requestFullscreen();
-  else if (element.msRequestFullscreen) element.msRequestFullscreen();
-  else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
-  else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
-};
-
-const exitFullScreen = () => {
-  if (document.exitFullscreen) document.exitFullscreen();
-  else if (document.msExitFullscreen) document.msExitFullscreen();
-  else if (document.mozExitFullScreen) document.mozExitFullScreen();
-  else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-};
-
 const SliderComponent = ({ icon, value, setValue }) => {
   return (
     <div className="slider flex flex-row w-full">
@@ -47,83 +32,9 @@ const SliderComponent = ({ icon, value, setValue }) => {
 };
 
 export default class ControlCenterMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playing: false,
-      volume: 100,
-      brightness: Math.floor(Math.random() * 100),
-      btn: {
-        wifi: true,
-        bluetooth: true,
-        airdrop: true
-      },
-      fullscreen: false
-    };
-    this.toggleAudio = this.toggleAudio.bind(this);
-    this.resize.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.resize);
-    this.audio = new Audio("music/sunflower.mp3");
-    this.audio.load();
-    this.audio.addEventListener("ended", () => this.audio.play());
-    this.audio.volume = 1;
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resize);
-    this.audio.removeEventListener("ended", () => this.audio.play());
-  }
-
-  resize = () => {
-    const isFullScreen = !!(
-      document.webkitIsFullScreen ||
-      document.mozFullScreen ||
-      document.msFullscreenElement ||
-      document.fullscreenElement
-    );
-    this.setState({
-      fullscreen: isFullScreen
-    });
-  };
-
-  toggleAudio = () => {
-    this.setState({ playing: !this.state.playing }, () => {
-      this.state.playing ? this.audio.play() : this.audio.pause();
-    });
-  };
-
   toggleMode = () => {
     this.props.setDark(!this.props.dark);
     nightwind.toggle();
-  };
-
-  toggleBtn = (name) => {
-    let btn = this.state.btn;
-    btn[name] = !btn[name];
-    this.setState({
-      btn: btn
-    });
-  };
-
-  toggleFullScreen = () => {
-    this.setState({ fullscreen: !this.state.fullscreen }, () => {
-      this.state.fullscreen ? enterFullScreen() : exitFullScreen();
-    });
-  };
-
-  setVolume = (value) => {
-    this.setState({ volume: value }, () => {
-      this.audio.volume = value / 100;
-    });
-  };
-
-  setBrightness = (value) => {
-    this.setState({
-      brightness: value
-    });
   };
 
   render() {
@@ -134,16 +45,16 @@ export default class ControlCenterMenu extends Component {
             <FaWifi
               size={36}
               className={`${
-                this.state.btn.wifi
+                this.props.btn.wifi
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.toggleBtn("wifi")}
+              onClick={() => this.props.toggleBtn("wifi")}
             />
             <div className="flex flex-col">
               <span className="font-medium">Wifi</span>
               <span className="font-thin text-xs">
-                {this.state.btn.wifi ? "Home" : "Off"}
+                {this.props.btn.wifi ? "Home" : "Off"}
               </span>
             </div>
           </div>
@@ -151,16 +62,16 @@ export default class ControlCenterMenu extends Component {
             <FiBluetooth
               size={36}
               className={`${
-                this.state.btn.bluetooth
+                this.props.btn.bluetooth
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.toggleBtn("bluetooth")}
+              onClick={() => this.props.toggleBtn("bluetooth")}
             />
             <div className="flex flex-col">
               <span className="font-medium">Bluetooth</span>
               <span className="font-thin text-xs">
-                {this.state.btn.bluetooth ? "On" : "Off"}
+                {this.props.btn.bluetooth ? "On" : "Off"}
               </span>
             </div>
           </div>
@@ -168,16 +79,16 @@ export default class ControlCenterMenu extends Component {
             <FiRss
               size={36}
               className={`${
-                this.state.btn.airdrop
+                this.props.btn.airdrop
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.toggleBtn("airdrop")}
+              onClick={() => this.props.toggleBtn("airdrop")}
             />
             <div className="flex flex-col">
               <span className="font-medium">AirDrop</span>
               <span className="font-thin text-xs">
-                {this.state.btn.airdrop ? "Contacts Only" : "Off"}
+                {this.props.btn.airdrop ? "Contacts Only" : "Off"}
               </span>
             </div>
           </div>
@@ -207,29 +118,35 @@ export default class ControlCenterMenu extends Component {
           <span className="text-xs">Keyboard Brightness</span>
         </div>
         <div className="bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-col justify-center items-center text-center">
-          {this.state.fullscreen ? (
-            <BsFullscreenExit size={16} onClick={this.toggleFullScreen} />
+          {this.props.fullscreen ? (
+            <BsFullscreenExit
+              size={16}
+              onClick={() => this.props.toggleFullScreen(false)}
+            />
           ) : (
-            <BsFullscreen size={16} onClick={this.toggleFullScreen} />
+            <BsFullscreen
+              size={16}
+              onClick={() => this.props.toggleFullScreen(true)}
+            />
           )}
           <span className="text-xs mt-1.5">
-            {this.state.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+            {this.props.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
           </span>
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
           <span className="font-medium">Display</span>
           <SliderComponent
             icon={<IoSunny size={16} className="text-gray-500" />}
-            value={this.state.brightness}
-            setValue={this.setBrightness}
+            value={this.props.brightness}
+            setValue={this.props.setBrightness}
           />
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
           <span className="font-medium">Sound</span>
           <SliderComponent
             icon={<IoVolumeHigh size={16} className="text-gray-500" />}
-            value={this.state.volume}
-            setValue={this.setVolume}
+            value={this.props.volume}
+            setValue={this.props.setVolume}
           />
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
@@ -242,10 +159,16 @@ export default class ControlCenterMenu extends Component {
             <span className="font-medium">Sunflower</span>
             <span className="font-extralight">Post Malone / Swae Lee</span>
           </div>
-          {this.state.playing ? (
-            <BsPauseFill onClick={this.toggleAudio} size={24} />
+          {this.props.playing ? (
+            <BsPauseFill
+              onClick={() => this.props.toggleAudio(false)}
+              size={24}
+            />
           ) : (
-            <BsPlayFill onClick={this.toggleAudio} size={24} />
+            <BsPlayFill
+              onClick={() => this.props.toggleAudio(true)}
+              size={24}
+            />
           )}
         </div>
       </div>

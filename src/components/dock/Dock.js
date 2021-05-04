@@ -3,9 +3,15 @@ import { useMotionValue } from "framer-motion";
 import apps from "../../configs/apps";
 import DockItem from "./DockItem";
 
-export default function Dock({ open, showApps, toggleLaunchpad, hide }) {
+export default function Dock({
+  open,
+  showApps,
+  showLaunchpad,
+  toggleLaunchpad,
+  hide
+}) {
   const openApp = (id) => {
-    if (id === "launchpad") toggleLaunchpad();
+    if (id === "launchpad") toggleLaunchpad(!showLaunchpad);
     else {
       toggleLaunchpad(false);
       open(id);

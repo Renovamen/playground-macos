@@ -32,6 +32,7 @@ export default class Desktop extends Component {
       appsZ = {},
       maxApps = {},
       minApps = {};
+
     apps.forEach((app) => {
       showApps = {
         ...showApps,
@@ -50,13 +51,12 @@ export default class Desktop extends Component {
         [app.id]: false
       };
     });
+
     this.setState({ showApps });
   };
 
   toggleLaunchpad = (target) => {
-    if (target === undefined) target = !this.state.showLaunchpad;
-
-    var r = document.querySelector(`#launchpad`);
+    let r = document.querySelector(`#launchpad`);
     if (target) {
       r.style.transform = "scale(1)";
       r.style.transition = "ease-in 0.2s";
@@ -69,7 +69,7 @@ export default class Desktop extends Component {
   };
 
   setWinowsPosition = (id) => {
-    var r = document.querySelector(`#window-${id}`);
+    let r = document.querySelector(`#window-${id}`);
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
       "--window-transform-x",
@@ -229,6 +229,7 @@ export default class Desktop extends Component {
         <Dock
           open={this.openApp}
           showApps={this.state.showApps}
+          showLaunchpad={this.state.showLaunchpad}
           toggleLaunchpad={this.toggleLaunchpad}
           hide={this.state.hideDock}
         />

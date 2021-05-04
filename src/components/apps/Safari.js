@@ -5,20 +5,7 @@ import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
-
-// https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
-const checkURL = (str) => {
-  const pattern = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i" // fragment locator
-  );
-  return !!pattern.test(str);
-};
+import { checkURL } from "../../utils/url";
 
 class NavSection extends Component {
   render() {

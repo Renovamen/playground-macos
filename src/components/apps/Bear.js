@@ -29,7 +29,7 @@ const Highlighter = (dark) => {
 class Sidebar extends Component {
   render() {
     return (
-      <div className="nightwind-prevent w-full h-full bg-gray-700 text-white overflow-y-scroll">
+      <div className="sidebar w-full h-full bg-gray-700 text-white overflow-y-scroll">
         <div className="h-12 pr-3 flex flex-row justify-end items-center">
           <IoCloudOfflineOutline className="mr-3" size={20} />
           <GiSettingsKnobs size={20} />
@@ -56,7 +56,7 @@ class Sidebar extends Component {
 class Middlebar extends Component {
   render() {
     return (
-      <div className="w-full h-full bg-gray-50 border-r border-gray-300 overflow-y-scroll">
+      <div className="midbar w-full h-full bg-gray-50 border-r border-gray-300 overflow-y-scroll">
         <ul>
           {this.props.items.map((item, index) => (
             <li
@@ -120,7 +120,7 @@ class Content extends Component {
 
   render() {
     return (
-      <div className="bear w-full h-full bg-gray-50 text-gray-700 overflow-scroll py-6">
+      <div className="markdown w-full h-full bg-gray-50 text-gray-700 overflow-scroll py-6">
         <div className="w-2/3 px-2 mx-auto">
           <ReactMarkdown
             children={this.state.storeMd[this.props.id]}
@@ -166,7 +166,7 @@ export default class Bear extends Component {
 
   render() {
     return (
-      <div className="flex flex-row w-full h-full">
+      <div className="bear flex flex-row w-full h-full">
         <div className="flex-none w-44">
           <Sidebar cur={this.state.curSidebar} setMidBar={this.setMidBar} />
         </div>

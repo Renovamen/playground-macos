@@ -93,110 +93,140 @@ html, body {
 
 /* --------- bear markdown --------- */
 
-.bear a {
+.bear .markdown a {
   @apply text-red-500;
 }
 
-.bear h1, .bear h2, .bear h3, .bear h4 {
+.bear .markdown h1,
+.bear .markdown h2,
+.bear .markdown h3,
+.bear .markdown h4 {
   @apply font-medium relative text-gray-800;
 }
 
-.bear h1, .bear h2, .bear h3, .bear h4 {
+.bear .markdown h1,
+.bear .markdown h2,
+.bear .markdown h3,
+.bear .markdown h4 {
   @apply mt-7;
 }
 
-.bear h1::before,
-.bear h2::before,
-.bear h3::before,
-.bear h4::before {
+.bear .markdown h1::before,
+.bear .markdown h2::before,
+.bear .markdown h3::before,
+.bear .markdown h4::before {
   @apply absolute text-sm text-gray-400 -left-7 bottom-1;
 }
 
-.bear h1 {
+.bear .markdown h1 {
   @apply text-3xl;
 }
 
-.bear h1::before {
+.bear .markdown h1::before {
   content: 'H1';
 }
 
-.bear h2 {
+.bear .markdown h2 {
   @apply text-2xl;
 }
 
-.bear h2::before {
+.bear .markdown h2::before {
   content: 'H2';
 }
 
-.bear h3 {
+.bear .markdown h3 {
   @apply text-xl;
 }
 
-.bear h3::before {
+.bear .markdown h3::before {
   content: 'H3';
 }
 
-.bear h3 {
+.bear .markdown h3 {
   @apply text-xl;
 }
 
-.bear h4 {
+.bear .markdown h4 {
   @apply text-lg;
 }
 
-.bear h4::before {
+.bear .markdown h4::before {
   content: 'H4';
 }
 
-.bear p {
+.bear .markdown p {
   @apply mt-6;
 }
 
-.bear h2 + p, .bear h3 + p, .bear h4 + p {
+.bear .markdown h2 + p,
+.bear .markdown h3 + p,
+.bear .markdown h4 + p {
   @apply mt-4;
 }
 
-.bear ul {
+.bear .markdown ul {
   @apply mt-2 list-disc pl-5;
 }
 
-.bear ul > li::marker {
+.bear .markdown ul > li::marker {
   @apply text-red-500;
 }
 
-.bear li p {
+.bear .markdown li p {
   @apply m-0 mb-2;
 }
 
-.bear code {
+.bear .markdown code {
   @apply text-sm border border-gray-300 rounded py-0.5 px-1 bg-gray-50;
 }
 
-.bear pre {
+.bear .markdown pre {
   @apply mt-2;
 }
 
-.bear pre div {
+.bear .markdown pre div {
   @apply border border-gray-300 rounded;
 }
 
-.bear pre code, .dark .bear pre code {
-  font-size: 15px;
-  @apply bg-transparent border-none p-0;
+.bear .markdown pre code,
+.dark .bear .markdown pre code {
+  @apply text-base bg-transparent border-none p-0;
 }
 
-.bear img {
+.bear .markdown .token {
+	background: transparent !important;
+}
+
+.bear .markdown img {
   @apply inline-block;
 }
 
-.bear table {
+.bear .markdown table {
   @apply mt-4 block w-full overflow-auto;
 }
 
-.bear table td, .bear table th {
+.bear .markdown table td,
+.bear .markdown table th {
   @apply px-3 py-2 border border-gray-300;
 }
 
-.bear table tr {
+.bear .markdown table tr {
   @apply border-t border-gray-300 bg-transparent;
+}
+
+.dark .bear .markdown,
+.dark .bear .midbar {
+  @apply bg-gray-800;
+}
+
+.dark .bear .midbar li.bg-white {
+  @apply bg-gray-900;
+}
+
+.dark .bear .midbar li:hover {
+  @apply bg-gray-900;
+}
+
+.dark .bear .sidebar {
+  @apply bg-gray-700 text-white;
 }
