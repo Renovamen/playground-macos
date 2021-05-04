@@ -1,6 +1,6 @@
 # About Me
 
-## Bio graphy
+## Biography
 
 Hey there! I'm Xiaohan Zou, ~~a dragon lost in human world~~ now an intern at CETC and a research assistant at Peking University. Before that, I got my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/). I'm trying to find a balance between research and engineering.
 

@@ -47,7 +47,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
         icon: <RiGamepadLine />,
-        excerpt: "My portfolio website simulating macOS's GUI..."
+        excerpt: "My portfolio website simulating macOS's GUI...",
+        link: "https://github.com/Renovamen/playground-macos"
       },
       {
         id: "flint",
@@ -55,7 +56,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/flint/main/README.md",
         icon: <HiFire />,
-        excerpt: "A toy deep learning framework implemented in Numpy..."
+        excerpt: "A toy deep learning framework implemented in Numpy...",
+        link: "https://github.com/Renovamen/flint"
       },
       {
         id: "metallic",
@@ -63,7 +65,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
         icon: <GiJumpingDog />,
-        excerpt: "A meta-learning library base on PyTorch..."
+        excerpt: "A meta-learning library base on PyTorch...",
+        link: "https://github.com/Renovamen/metallic"
       },
       {
         id: "alkaid",
@@ -71,7 +74,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
         icon: <GiCat />,
-        excerpt: "A reinforcement-learning toolbox for PyTorch..."
+        excerpt: "A reinforcement-learning toolbox for PyTorch...",
+        link: "https://github.com/Renovamen/alkaid"
       },
       {
         id: "oh-vue-icons",
@@ -79,7 +83,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
         icon: <FaVuejs />,
-        excerpt: "Importing icons from different icon packs in Vue easily..."
+        excerpt: "Importing icons from different icon packs in Vue easily...",
+        link: "https://oh-vue-icons.netlify.app"
       },
       {
         id: "gungnir",
@@ -87,7 +92,9 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/vuepress-theme-gungnir/main/README.md",
         icon: <GiEnergySword />,
-        excerpt: "A blog theme for VuePress (there is also a Jekyll version)..."
+        excerpt:
+          "A blog theme for VuePress (there is also a Jekyll version)...",
+        link: "https://vuepress-theme-gungnir.vercel.app"
       },
       {
         id: "text-classification",
@@ -95,7 +102,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Text-Classification/master/README.md",
         icon: <CgFormatText />,
-        excerpt: "PyTorch implementation of some text classificaiton models..."
+        excerpt: "PyTorch implementation of some text classificaiton models...",
+        link: "https://github.com/Renovamen/Text-Classification"
       },
       {
         id: "image-captioning",
@@ -103,7 +111,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Image-Captioning/master/README.md",
         icon: <BsFillImageFill />,
-        excerpt: "PyTorch implementation of some papers on image captioning..."
+        excerpt: "PyTorch implementation of some papers on image captioning...",
+        link: "https://github.com/Renovamen/Image-Captioning"
       },
       {
         id: "cube-solver",
@@ -112,7 +121,8 @@ const bear = [
           "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
         icon: <BiCube />,
         excerpt:
-          "A rubik's cube solver (supports layer-by-layer and two-phase)..."
+          "A rubik's cube solver (supports layer-by-layer and two-phase)...",
+        link: "https://cube.zxh.io"
       },
       {
         id: "fishmail",
@@ -120,7 +130,8 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Fishmail/master/README.md",
         icon: <GiFishEscape />,
-        excerpt: "上班的时候装作在 Gmail 上查邮件的样子看知乎摸鱼..."
+        excerpt: "上班的时候装作在 Gmail 上查邮件的样子看知乎摸鱼...",
+        link: "https://fishmail.vercel.app"
       }
     ]
   }

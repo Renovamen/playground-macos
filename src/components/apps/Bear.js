@@ -6,6 +6,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { IoCloudOfflineOutline } from "react-icons/io5";
 import { GiSettingsKnobs } from "react-icons/gi";
+import { AiOutlineLink } from "react-icons/ai";
 
 const Highlighter = (dark) => {
   return {
@@ -72,8 +73,18 @@ class Middlebar extends Component {
                 <div className="w-10 text-gray-500 flex flex-none justify-center">
                   {item.icon}
                 </div>
-                <span className="text-gray-900 flex-grow font-medium">
+                <span className="relative text-gray-900 flex-grow font-medium">
                   {item.title}
+                  {item.link && (
+                    <a
+                      className="absolute top-1 right-4"
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <AiOutlineLink className="text-gray-500" />
+                    </a>
+                  )}
                 </span>
               </div>
               <div className="h-16 ml-10 pb-2 pr-1 border-b border-gray-300 text-sm text-gray-500">
