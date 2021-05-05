@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import nightwind from "nightwind/helper";
+import { connect } from "react-redux";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
+import {
+  toggleDark,
+  toggleWIFI,
+  toggleAirdrop,
+  toggleBleutooth,
+  toggleFullScreen
+} from "../../redux/action";
 
 // ------- import icons -------
 import { FiBluetooth, FiRss } from "react-icons/fi";
@@ -31,12 +38,7 @@ const SliderComponent = ({ icon, value, setValue }) => {
   );
 };
 
-export default class ControlCenterMenu extends Component {
-  toggleMode = () => {
-    this.props.setDark(!this.props.dark);
-    nightwind.toggle();
-  };
-
+class ControlCenterMenu extends Component {
   render() {
     return (
       <div className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl">
@@ -45,16 +47,16 @@ export default class ControlCenterMenu extends Component {
             <FaWifi
               size={36}
               className={`${
-                this.props.btn.wifi
+                this.props.wifi
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.props.toggleBtn("wifi")}
+              onClick={() => this.props.toggleWIFI(!this.props.wifi)}
             />
             <div className="flex flex-col">
               <span className="font-medium">Wifi</span>
               <span className="font-thin text-xs">
-                {this.props.btn.wifi ? "Home" : "Off"}
+                {this.props.wifi ? "Home" : "Off"}
               </span>
             </div>
           </div>
@@ -62,16 +64,16 @@ export default class ControlCenterMenu extends Component {
             <FiBluetooth
               size={36}
               className={`${
-                this.props.btn.bluetooth
+                this.props.bluetooth
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.props.toggleBtn("bluetooth")}
+              onClick={() => this.props.toggleBleutooth(!this.props.bluetooth)}
             />
             <div className="flex flex-col">
               <span className="font-medium">Bluetooth</span>
               <span className="font-thin text-xs">
-                {this.props.btn.bluetooth ? "On" : "Off"}
+                {this.props.bluetooth ? "On" : "Off"}
               </span>
             </div>
           </div>
@@ -79,16 +81,16 @@ export default class ControlCenterMenu extends Component {
             <FiRss
               size={36}
               className={`${
-                this.props.btn.airdrop
+                this.props.airdrop
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-gray-700"
               } rounded-full p-2`}
-              onClick={() => this.props.toggleBtn("airdrop")}
+              onClick={() => this.props.toggleAirdrop(!this.props.airdrop)}
             />
             <div className="flex flex-col">
               <span className="font-medium">AirDrop</span>
               <span className="font-thin text-xs">
-                {this.props.btn.airdrop ? "Contacts Only" : "Off"}
+                {this.props.airdrop ? "Contacts Only" : "Off"}
               </span>
             </div>
           </div>
@@ -98,13 +100,13 @@ export default class ControlCenterMenu extends Component {
             <IoMoon
               size={34}
               className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
-              onClick={() => this.toggleMode()}
+              onClick={() => this.props.toggleDark(false)}
             />
           ) : (
             <IoSunny
               size={34}
               className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
-              onClick={() => this.toggleMode()}
+              onClick={() => this.props.toggleDark(true)}
             />
           )}
           <div className="flex flex-col">
@@ -175,3 +177,22 @@ export default class ControlCenterMenu extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dark: state.dark,
+    wifi: state.wifi,
+    bluetooth: state.bluetooth,
+    airdrop: state.airdrop,
+    fullscreen: state.fullscreen,
+    volume: state.volume
+  };
+};
+
+export default connect(mapStateToProps, {
+  toggleDark,
+  toggleWIFI,
+  toggleAirdrop,
+  toggleBleutooth,
+  toggleFullScreen
+})(ControlCenterMenu);

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { BiSearch } from "react-icons/bi";
 import launchpadApps from "../configs/launchpad";
 import wallpapers from "../configs/wallpapers";
 
 const placeholderText = "Search";
 
-export default class Launchpad extends Component {
+class Launchpad extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,3 +92,11 @@ export default class Launchpad extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dark: state.dark
+  };
+};
+
+export default connect(mapStateToProps, null)(Launchpad);

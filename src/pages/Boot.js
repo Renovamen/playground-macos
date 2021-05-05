@@ -31,15 +31,13 @@ export default class Boot extends Component {
   }
 
   loading() {
-    const newPercent = this.state.percent + 0.1;
+    const newPercent = this.state.percent + 0.15;
     if (newPercent >= 100) {
       clearInterval(this.state.intervalId);
       setTimeout(() => {
         this.props.setBooting(false);
       }, 500);
-    } else {
-      this.setState({ percent: newPercent });
-    }
+    } else this.setState({ percent: newPercent });
   }
 
   render() {

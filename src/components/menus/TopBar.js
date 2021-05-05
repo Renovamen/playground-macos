@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import format from "date-fns/format";
+
 import AppleMenu from "./AppleMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
-import {
-  enterFullScreen,
-  exitFullScreen,
-  isFullScreen
-} from "../../utils/screen";
+import { isFullScreen } from "../../utils/screen";
+import { setVolume, toggleFullScreen } from "../../redux/action";
 
 // ------- import icons -------
 import { BsBatteryFull } from "react-icons/bs";
@@ -14,7 +13,7 @@ import { BiSearch } from "react-icons/bi";
 import { FaWifi } from "react-icons/fa";
 import { AiFillApple } from "react-icons/ai";
 
-const MenuItem = ({
+const TopBarItem = ({
   children,
   onClick,
   hideOnMobile = false,
@@ -34,22 +33,15 @@ const MenuItem = ({
   );
 };
 
-export default class MenuBar extends Component {
+class TopBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       date: new Date(),
       showControlCenter: false,
-      showAppleMen: false,
+      showAppleMenu: false,
       playing: false,
-      volume: 100,
       brightness: Math.floor(Math.random() * 100),
-      btn: {
-        wifi: true,
-        bluetooth: true,
-        airdrop: true
-      },
-      fullscreen: false,
       intervalId: null
     };
     this.toggleAudio = this.toggleAudio.bind(this);
@@ -72,6 +64,10 @@ export default class MenuBar extends Component {
     // load music
     this.audio = new Audio("music/sunflower.mp3");
     this.audio.load();
+
+    // set volume
+    this.audio.volume = this.props.volume / 100;
+
     // auto replay
     this.audio.addEventListener("ended", () => this.audio.play());
   }
@@ -84,72 +80,46 @@ export default class MenuBar extends Component {
 
   resize = () => {
     const isFull = isFullScreen();
-    this.setState({
-      fullscreen: isFull
-    });
-  };
-
-  setVolume = (value) => {
-    this.setState({ volume: value }, () => {
-      this.audio.volume = value / 100;
-    });
-  };
-
-  setBrightness = (value) => {
-    this.setState({
-      brightness: value
-    });
-  };
-
-  toggleBtn = (name) => {
-    let btn = this.state.btn;
-    btn[name] = !btn[name];
-    this.setState({
-      btn: btn
-    });
+    this.props.toggleFullScreen(isFull);
   };
 
   toggleAudio = (target) => {
-    this.setState({ playing: target }, () => {
-      this.state.playing ? this.audio.play() : this.audio.pause();
-    });
+    target ? this.audio.play() : this.audio.pause();
+    this.setState({ playing: target });
   };
 
-  toggleFullScreen = (target) => {
-    this.setState({ fullscreen: target }, () => {
-      this.state.fullscreen ? enterFullScreen() : exitFullScreen();
-    });
+  setVolume = (value) => {
+    this.props.setVolume(value);
+    this.audio.volume = value / 100;
   };
 
-  clearBeforeLogout = (foo, param) => {
-    Promise.all([
-      this.toggleFullScreen(false),
-      this.toggleAudio(false),
-      this.setVolume(100)
-    ]).then(() => foo(param));
-  };
+  setBrightness = (value) => this.setState({ brightness: value });
 
   logout = () => {
-    this.clearBeforeLogout(this.props.setLogin, false);
+    this.toggleAudio(false);
+    this.props.setLogin(false);
   };
 
   shut = (e) => {
-    this.clearBeforeLogout(this.props.shutMac, e);
+    this.toggleAudio(false);
+    this.props.shutMac(e);
   };
 
   restart = (e) => {
-    this.clearBeforeLogout(this.props.restartMac, e);
+    this.toggleAudio(false);
+    this.props.restartMac(e);
   };
 
   sleep = (e) => {
-    this.clearBeforeLogout(this.props.sleepMac, e);
+    this.toggleAudio(false);
+    this.props.sleepMac(e);
   };
 
   render() {
     return (
       <div className="nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
         <div className="flex flex-row items-center space-x-4">
-          <MenuItem
+          <TopBarItem
             forceHover={this.state.showAppleMenu}
             onClick={() =>
               this.setState({
@@ -158,7 +128,7 @@ export default class MenuBar extends Component {
             }
           >
             <AiFillApple size={18} />
-          </MenuItem>
+          </TopBarItem>
           <span className="cursor-default font-semibold">
             {this.props.title}
           </span>
@@ -175,17 +145,17 @@ export default class MenuBar extends Component {
         )}
 
         <div className="flex flex-row justify-end items-center space-x-2">
-          <MenuItem hideOnMobile={true}>
+          <TopBarItem hideOnMobile={true}>
             <span className="text-xs mt-0.5 mr-1">100%</span>
             <BsBatteryFull size={20} />
-          </MenuItem>
-          <MenuItem hideOnMobile={true}>
+          </TopBarItem>
+          <TopBarItem hideOnMobile={true}>
             <FaWifi size={17} />
-          </MenuItem>
-          <MenuItem hideOnMobile={true}>
+          </TopBarItem>
+          <TopBarItem hideOnMobile={true}>
             <BiSearch size={17} />
-          </MenuItem>
-          <MenuItem
+          </TopBarItem>
+          <TopBarItem
             onClick={() =>
               this.setState({
                 showControlCenter: !this.state.showControlCenter
@@ -197,24 +167,17 @@ export default class MenuBar extends Component {
               src="img/icons/menu/controlcenter.png"
               alt="control center"
             />
-          </MenuItem>
+          </TopBarItem>
 
           {/* Open this when clicking on Control Center button */}
           {this.state.showControlCenter && (
             <ControlCenterMenu
-              dark={this.props.dark}
               audio={this.audio}
               playing={this.state.playing}
-              volume={this.state.volume}
               brightness={this.state.brightness}
-              btn={this.state.btn}
-              fullscreen={this.state.fullscreen}
-              setDark={this.props.setDark}
               toggleAudio={this.toggleAudio}
               setVolume={this.setVolume}
               setBrightness={this.setBrightness}
-              toggleBtn={this.toggleBtn}
-              toggleFullScreen={this.toggleFullScreen}
             />
           )}
 
@@ -224,3 +187,14 @@ export default class MenuBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    volume: state.volume
+  };
+};
+
+export default connect(mapStateToProps, {
+  setVolume,
+  toggleFullScreen
+})(TopBar);

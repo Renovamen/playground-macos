@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuItem, MenuItemGroup } from "../menu/base";
+import { MenuItem, MenuItemGroup } from "./base";
 
 export default function AppleMenu({ logout, shut, restart, sleep }) {
   return (

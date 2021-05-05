@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import websites from "../../configs/websites";
 import wallpapers from "../../configs/wallpapers";
 import { FaShieldAlt } from "react-icons/fa";
@@ -117,7 +118,7 @@ class NavPage extends Component {
   }
 }
 
-export default class Safari extends Component {
+class Safari extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -218,3 +219,11 @@ export default class Safari extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dark: state.dark
+  };
+};
+
+export default connect(mapStateToProps, null)(Safari);

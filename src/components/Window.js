@@ -123,10 +123,7 @@ export default class Window extends Component {
     const width = this.props.max ? this.state.maxW : this.state.width;
     const height = this.props.max ? this.state.maxH : this.state.height;
 
-    let children = React.cloneElement(this.props.children, {
-      width: width,
-      dark: this.props.dark
-    });
+    let children = React.cloneElement(this.props.children, { width: width });
 
     return (
       <Rnd

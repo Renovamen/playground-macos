@@ -2,7 +2,7 @@
 
 My portfolio website simulating macOS's GUI: https://portfolio.zxh.io
 
-Powered by [React](https://reactjs.org/) and [tailwindcss](https://tailwindcss.com/).
+Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.org/) + [tailwindcss](https://tailwindcss.com/).
 
 
 &nbsp;

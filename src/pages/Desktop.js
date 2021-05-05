@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import nightwind from "nightwind/helper";
 
-import MenuBar from "../components/topbar/MenuBar";
+import TopBar from "../components/menus/TopBar";
 import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
 import Window from "../components/Window";
 import apps from "../configs/apps";
 import wallpapers from "../configs/wallpapers";
 
-export default class Desktop extends Component {
+class Desktop extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -179,7 +180,6 @@ export default class Desktop extends Component {
           z: this.state.appsZ[app.id],
           max: this.state.maxApps[app.id],
           min: this.state.minApps[app.id],
-          dark: this.props.dark,
           close: this.closeApp,
           setMax: this.setAppMax,
           setMin: this.minimizeApp,
@@ -211,10 +211,8 @@ export default class Desktop extends Component {
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
 
         {/* Top Menu Bar */}
-        <MenuBar
+        <TopBar
           title={this.state.currentTitle}
-          dark={this.props.dark}
-          setDark={this.props.setDark}
           setLogin={this.props.setLogin}
           shutMac={this.props.shutMac}
           sleepMac={this.props.sleepMac}
@@ -225,8 +223,7 @@ export default class Desktop extends Component {
         {this.renderAppWindows()}
 
         {/* Launchpad */}
-        {/* {this.state.showLaunchpad && <Launchpad dark={this.props.dark} />} */}
-        <Launchpad dark={this.props.dark} show={this.state.showLaunchpad} />
+        <Launchpad show={this.state.showLaunchpad} />
 
         {/* Dock */}
         <Dock
@@ -240,3 +237,11 @@ export default class Desktop extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dark: state.dark
+  };
+};
+
+export default connect(mapStateToProps, null)(Desktop);
