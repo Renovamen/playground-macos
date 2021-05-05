@@ -7,11 +7,11 @@ import {
   GiFishEscape
 } from "react-icons/gi";
 import { VscGithub } from "react-icons/vsc";
-import { GoRepo } from "react-icons/go";
+import { GoRepo, GoBrowser } from "react-icons/go";
 import { RiGamepadLine } from "react-icons/ri";
 import { HiFire } from "react-icons/hi";
 import { CgFormatText } from "react-icons/cg";
-import { BiCube } from "react-icons/bi";
+import { BiCube, BiGame } from "react-icons/bi";
 import { BsFillImageFill } from "react-icons/bs";
 import { AiFillAudio } from "react-icons/ai";
 
@@ -34,6 +34,13 @@ const bear = [
         file: "markdown/github-stats.md",
         icon: <VscGithub />,
         excerpt: "Here are some status about my github account..."
+      },
+      {
+        id: "about-site",
+        title: "About This Site",
+        file: "markdown/about-site.md",
+        icon: <GoBrowser />,
+        excerpt: "Something about this personal portfolio site..."
       }
     ]
   },
@@ -42,15 +49,6 @@ const bear = [
     title: "Projects",
     icon: <GoRepo />,
     md: [
-      {
-        id: "portfolio-macos",
-        title: "Portfolio macOS",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
-        icon: <RiGamepadLine />,
-        excerpt: "My portfolio website simulating macOS's GUI...",
-        link: "https://github.com/Renovamen/playground-macos"
-      },
       {
         id: "flint",
         title: "Flint",
@@ -77,6 +75,15 @@ const bear = [
         icon: <GiCat />,
         excerpt: "A reinforcement-learning toolbox for PyTorch...",
         link: "https://github.com/Renovamen/alkaid"
+      },
+      {
+        id: "portfolio-macos",
+        title: "Portfolio macOS",
+        file:
+          "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
+        icon: <RiGamepadLine />,
+        excerpt: "My portfolio website simulating macOS's GUI...",
+        link: "https://github.com/Renovamen/playground-macos"
       },
       {
         id: "oh-vue-icons",
@@ -133,6 +140,15 @@ const bear = [
         excerpt:
           "A rubik's cube solver (supports layer-by-layer and two-phase)...",
         link: "https://cube.zxh.io"
+      },
+      {
+        id: "midgard",
+        title: "Interactable Resume",
+        file:
+          "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
+        icon: <BiGame />,
+        excerpt: "An interactable version of my resume, powered by Vue...",
+        link: "https://resume.zxh.io/"
       },
       {
         id: "fishmail",

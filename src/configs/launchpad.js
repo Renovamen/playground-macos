@@ -36,16 +36,28 @@ const launchpadApps = [
     link: "https://note.zxh.io"
   },
   {
-    id: "fishmail",
-    title: "Fishmail",
-    img: "img/icons/launchpad/fishmail.png",
-    link: "https://fishmail.vercel.app/"
+    id: "cube",
+    title: "Cube Solver",
+    img: "img/icons/launchpad/cube.png",
+    link: "https://cube.zxh.io/"
   },
   {
     id: "resume",
     title: "Résumé",
     img: "img/icons/launchpad/resume.png",
     link: "https://resume.zxh.io/"
+  },
+  {
+    id: "zelda",
+    title: "Webpage for Zelda",
+    img: "img/icons/launchpad/zelda.png",
+    link: "https://zelda.zxh.io/"
+  },
+  {
+    id: "fishmail",
+    title: "Fishmail",
+    img: "img/icons/launchpad/fishmail.png",
+    link: "https://fishmail.vercel.app/"
   }
 ];
 

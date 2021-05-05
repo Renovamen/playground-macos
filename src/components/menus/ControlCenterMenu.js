@@ -119,17 +119,14 @@ class ControlCenterMenu extends Component {
           <BsBrightnessAltHigh size={20} />
           <span className="text-xs">Keyboard Brightness</span>
         </div>
-        <div className="bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-col justify-center items-center text-center">
+        <div
+          className="bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-col justify-center items-center text-center cursor-default"
+          onClick={() => this.props.toggleFullScreen(!this.props.fullscreen)}
+        >
           {this.props.fullscreen ? (
-            <BsFullscreenExit
-              size={16}
-              onClick={() => this.props.toggleFullScreen(false)}
-            />
+            <BsFullscreenExit size={16} />
           ) : (
-            <BsFullscreen
-              size={16}
-              onClick={() => this.props.toggleFullScreen(true)}
-            />
+            <BsFullscreen size={16} />
           )}
           <span className="text-xs mt-1.5">
             {this.props.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
