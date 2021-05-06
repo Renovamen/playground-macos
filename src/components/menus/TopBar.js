@@ -6,6 +6,7 @@ import AppleMenu from "./AppleMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "../../utils/screen";
 import { setVolume, toggleFullScreen } from "../../redux/action";
+import music from "../../configs/music";
 
 // ------- import icons -------
 import { BsBatteryFull } from "react-icons/bs";
@@ -62,7 +63,7 @@ class TopBar extends Component {
     window.addEventListener("resize", this.resize);
 
     // load music
-    this.audio = new Audio("music/sunflower.mp3");
+    this.audio = new Audio(music.audio);
     this.audio.load();
 
     // set volume

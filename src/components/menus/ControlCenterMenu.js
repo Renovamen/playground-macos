@@ -9,6 +9,7 @@ import {
   toggleBleutooth,
   toggleFullScreen
 } from "../../redux/action";
+import music from "../../configs/music";
 
 // ------- import icons -------
 import { FiBluetooth, FiRss } from "react-icons/fi";
@@ -149,14 +150,10 @@ class ControlCenterMenu extends Component {
           />
         </div>
         <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
-          <img
-            src="//p1.music.126.net/z0IO1vEsowL9mD_5yzUjeA==/109951163936068098.jpg"
-            alt="cover art"
-            className="w-16 rounded-lg"
-          />
+          <img src={music.cover} alt="cover art" className="w-16 rounded-lg" />
           <div className="flex flex-col flex-grow justify-start">
-            <span className="font-medium">Sunflower</span>
-            <span className="font-extralight">Post Malone / Swae Lee</span>
+            <span className="font-medium">{music.title}</span>
+            <span className="font-extralight">{music.artist}</span>
           </div>
           {this.props.playing ? (
             <BsPauseFill

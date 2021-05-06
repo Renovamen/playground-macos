@@ -53,7 +53,7 @@ const apps = [
     id: "terminal",
     title: "Terminal",
     desktop: true,
-    show: false,
+    show: true,
     img: "img/icons/terminal.png",
     content: <Terminal />
   },

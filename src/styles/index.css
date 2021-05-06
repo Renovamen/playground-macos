@@ -3,13 +3,17 @@
   padding: 0;
 }
 
-* :not(pre) {
-  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-
 html, body {
   height: 100%;
   overflow: hidden;
+}
+
+body:not(pre):not(.terminal) {
+  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.terminal {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 
 .blur {
@@ -123,7 +127,7 @@ html, body {
 }
 
 .bear .markdown h1::before {
-  content: 'H1';
+  content: "H1";
 }
 
 .bear .markdown h2 {
@@ -131,7 +135,7 @@ html, body {
 }
 
 .bear .markdown h2::before {
-  content: 'H2';
+  content: "H2";
 }
 
 .bear .markdown h3 {
@@ -139,7 +143,7 @@ html, body {
 }
 
 .bear .markdown h3::before {
-  content: 'H3';
+  content: "H3";
 }
 
 .bear .markdown h3 {
@@ -151,7 +155,7 @@ html, body {
 }
 
 .bear .markdown h4::before {
-  content: 'H4';
+  content: "H4";
 }
 
 .bear .markdown p {
