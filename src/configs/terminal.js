@@ -16,7 +16,8 @@ const terminal = [
             </div>
             <div className="mt-1">
               I got my bachelor's degree in Software Engineering at Tongji
-              University in 2020. I'm now waiting to start my graduate study.
+              University in 2020. I'm now waiting for starting my graduate
+              study.
             </div>
           </div>
         )
@@ -33,7 +34,7 @@ const terminal = [
         title: "who-cares.txt",
         type: "file",
         content:
-          "I'm open to research / algorithm engineer internships for summer 2021 (base in China) lol."
+          "I'm open to summer research / algorithm engineer internships for 2021 (base in China) lol."
       },
       {
         id: "about-contact",

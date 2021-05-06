@@ -1,11 +1,105 @@
 import React, { Component } from "react";
 import terminal from "../../configs/terminal";
 
+const emojis = [
+  "\\(o_o)/",
+  "(˚Δ˚)b",
+  "(^-^*)",
+  "(╯‵□′)╯",
+  "\\(°ˊДˋ°)/",
+  "╰(‵□′)╯"
+];
+
+const getEmoji = () => {
+  return emojis[Math.floor(Math.random() * emojis.length)];
+};
+
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789富强民主文明和谐自由平等公正法治爱国敬业诚信友善";
+
+// rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
+class HowDare extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      intervalId: null
+    };
+    this.font_size = 12;
+  }
+
+  componentDidMount() {
+    const $container = document.querySelector("#how-dare-container");
+    this.$canvas = document.querySelector("#how-dare");
+    this.$canvas.height = $container.offsetHeight;
+    this.$canvas.width = $container.offsetWidth;
+    this.ctx = this.$canvas.getContext("2d");
+
+    const columns = this.$canvas.width / this.font_size;
+    this.drops = [];
+    // x: x coordinate, 1: y-coordinate
+    for (let x = 0; x < columns; x++) this.drops[x] = 1;
+
+    const intervalId = setInterval(this.rain.bind(this), 33);
+    this.setState({ intervalId: intervalId });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+
+  rain() {
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    this.ctx.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
+
+    this.ctx.fillStyle = "#2e9244";
+    this.ctx.font = `${this.font_size}px arial`;
+
+    for (let i = 0; i < this.drops.length; i++) {
+      const text = characters[Math.floor(Math.random() * characters.length)];
+
+      this.ctx.fillText(
+        text,
+        i * this.font_size,
+        this.drops[i] * this.font_size
+      );
+
+      // sends the drop back to the top randomly after it has crossed the screen
+      // adding randomness to the reset to make the drops scattered on the Y axis
+      if (
+        this.drops[i] * this.font_size > this.$canvas.height &&
+        Math.random() > 0.975
+      )
+        this.drops[i] = 0;
+
+      // increments Y coordinate
+      this.drops[i]++;
+    }
+  }
+
+  render() {
+    return (
+      <div
+        id="how-dare-container"
+        className="fixed w-full h-full bg-black text-white"
+        onClick={() => this.props.setRMRF(false)}
+      >
+        <canvas id="how-dare"></canvas>
+        <div className="font-jost absolute text-center h-28 mx-auto -mt-20 bottom-0 left-0 right-0 top-1/2">
+          <div class="text-4xl">{getEmoji()}</div>
+          <div className="text-3xl mt-4">HOW DARE YOU!</div>
+          <div className="mt-4">Click to go back</div>
+        </div>
+      </div>
+    );
+  }
+}
+
 export default class Terminal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: []
+      content: [],
+      rmrf: false
     };
     this.history = [];
     this.curHistory = 0;
@@ -143,7 +237,7 @@ export default class Terminal extends Component {
           <span className="text-red-400">help</span> - Display this help menu
         </li>
         <li>
-          <span className="text-red-400">rm -rf /</span> - Just try :)
+          <span className="text-red-400">rm -rf /</span> - :)
         </li>
         <li>
           press <span className="text-red-400">up arrow / down arrow</span> -
@@ -201,7 +295,9 @@ export default class Terminal extends Component {
       // we can"t edit the past input
       $input.setAttribute("readonly", true);
 
-      if (cmd && Object.keys(this.commands).includes(cmd)) {
+      if (input_text === "rm -rf /" || input_text === "rm -rf /*") {
+        this.setState({ rmrf: true });
+      } else if (cmd && Object.keys(this.commands).includes(cmd)) {
         this.commands[cmd](args);
       } else {
         this.generateResultRow(
@@ -286,14 +382,17 @@ export default class Terminal extends Component {
   render() {
     return (
       <div
-        className="terminal nightwind-prevent nightwind-prevent-block w-full h-full bg-gray-800 bg-opacity-90 text-white text-sm font-normal py-2 px-1.5 overflow-y-scroll"
+        className="terminal font-terminal relative nightwind-prevent nightwind-prevent-block w-full h-full bg-gray-800 bg-opacity-90 text-white text-sm font-normal overflow-y-scroll"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
-        <div className="w-full h-max">
+        {this.state.rmrf && (
+          <HowDare setRMRF={(value) => this.setState({ rmrf: value })} />
+        )}
+        <div className="w-full h-max pt-2 px-1.5 ">
           <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the
           terminal! Type `help` to get started.
         </div>
-        <div id="terminal-content" className="mt-2">
+        <div id="terminal-content" className="mt-2 px-1.5 pb-2">
           {this.state.content}
         </div>
       </div>

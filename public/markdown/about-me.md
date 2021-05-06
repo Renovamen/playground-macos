@@ -2,7 +2,7 @@
 
 ## Biography
 
-Hey there! I'm ~~a dragon lost in human world~~ now an intern at CETC and a research assistant at Peking University. Before that, I got my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/) in 2020. I'm now waiting to start my graduate study.
+Hey there! I'm ~~a dragon lost in human world~~ now an intern at CETC and a research assistant at Peking University. Before that, I got my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/) in 2020. I'm now waiting for starting my graduate study.
 
 I'm trying to find a balance between research and engineering.
 

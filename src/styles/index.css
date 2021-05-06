@@ -8,11 +8,15 @@ html, body {
   overflow: hidden;
 }
 
-body:not(pre):not(.terminal) {
+body:not(pre) {
   font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.terminal {
+.font-jost {
+  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.font-terminal {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 
