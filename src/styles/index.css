@@ -34,10 +34,35 @@ body:not(pre) {
   filter: invert();
 }
 
-/* --------- login --------- */
+/* --------- input --------- */
 
 .login input::placeholder {
   color: white;
+}
+
+.spotlight input::placeholder {
+  color: black;
+  opacity: 0.4;
+}
+
+.dark .spotlight input::placeholder {
+  color: white;
+}
+
+/* --------- spotlight --------- */
+
+.spotlight {
+  width: 660px;
+  margin-left: -345px;
+  left: 50%;
+}
+
+@media (max-width: 639px) {
+  .spotlight {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+  }
 }
 
 /* --------- app window --------- */

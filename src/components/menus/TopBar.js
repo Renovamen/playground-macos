@@ -153,7 +153,7 @@ class TopBar extends Component {
           <TopBarItem hideOnMobile={true}>
             <FaWifi size={17} />
           </TopBarItem>
-          <TopBarItem hideOnMobile={true}>
+          <TopBarItem onClick={this.props.toggleSpotlight}>
             <BiSearch size={17} />
           </TopBarItem>
           <TopBarItem

@@ -25,6 +25,7 @@ class HowDare extends Component {
       intervalId: null
     };
     this.font_size = 12;
+    this.emoji = getEmoji();
   }
 
   componentDidMount() {
@@ -85,7 +86,7 @@ class HowDare extends Component {
       >
         <canvas id="how-dare"></canvas>
         <div className="font-jost absolute text-center h-28 mx-auto -mt-20 bottom-0 left-0 right-0 top-1/2">
-          <div class="text-4xl">{getEmoji()}</div>
+          <div className="text-4xl">{this.emoji}</div>
           <div className="text-3xl mt-4">HOW DARE YOU!</div>
           <div className="mt-4">Click to go back</div>
         </div>

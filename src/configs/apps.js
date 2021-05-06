@@ -15,7 +15,7 @@ const apps = [
     id: "bear",
     title: "Bear",
     desktop: true,
-    show: false,
+    show: true,
     width: 860,
     height: 500,
     img: "img/icons/bear.png",
@@ -53,7 +53,7 @@ const apps = [
     id: "terminal",
     title: "Terminal",
     desktop: true,
-    show: true,
+    show: false,
     img: "img/icons/terminal.png",
     content: <Terminal />
   },

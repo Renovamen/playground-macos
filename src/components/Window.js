@@ -88,7 +88,7 @@ export default class Window extends Component {
       maxW: maxW,
       maxH: maxH,
       x: Math.random() * (maxW - width),
-      y: Math.random() * (maxH - height - 100)
+      y: Math.random() * (maxH - height)
     };
     this.resize.bind(this);
   }

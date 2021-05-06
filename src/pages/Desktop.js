@@ -6,6 +6,7 @@ import TopBar from "../components/menus/TopBar";
 import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
 import Window from "../components/Window";
+import Spotlight from "../components/Spotlight";
 import apps from "../configs/apps";
 import wallpapers from "../configs/wallpapers";
 
@@ -20,7 +21,8 @@ class Desktop extends Component {
       maxZ: 2,
       showLaunchpad: false,
       currentTitle: "Finder",
-      hideDock: false
+      hideDock: false,
+      spotlight: false
     };
   }
 
@@ -67,6 +69,10 @@ class Desktop extends Component {
     }
 
     this.setState({ showLaunchpad: target });
+  };
+
+  toggleSpotlight = () => {
+    this.setState({ spotlight: !this.state.spotlight });
   };
 
   setWinowsPosition = (id) => {
@@ -217,10 +223,19 @@ class Desktop extends Component {
           shutMac={this.props.shutMac}
           sleepMac={this.props.sleepMac}
           restartMac={this.props.restartMac}
+          toggleSpotlight={this.toggleSpotlight}
         />
 
         {/* Desktop Apps */}
         {this.renderAppWindows()}
+
+        {/* Spotlight */}
+        {this.state.spotlight && (
+          <Spotlight
+            openApp={this.openApp}
+            toggleSpotlight={this.toggleSpotlight}
+          />
+        )}
 
         {/* Launchpad */}
         <Launchpad show={this.state.showLaunchpad} />

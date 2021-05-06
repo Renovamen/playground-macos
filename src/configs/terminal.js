@@ -34,7 +34,7 @@ const terminal = [
         title: "who-cares.txt",
         type: "file",
         content:
-          "I'm open to summer research / algorithm engineer internships for 2021 (base in China) lol."
+          "I'm open to research / algorithm engineer internships for summer 2021 (base in China) lol."
       },
       {
         id: "about-contact",
