@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { MenuItem, MenuItemGroup } from "./base";
 
-export default function AppleMenu({ logout, shut, restart, sleep }) {
+export default function AppleMenu({
+  logout,
+  shut,
+  restart,
+  sleep,
+  toggleAppleMenu,
+  btnRef
+}) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        ref.current &&
+        !ref.current.contains(e.target) &&
+        !btnRef.current.contains(e.target)
+      )
+        toggleAppleMenu();
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [ref, toggleAppleMenu, btnRef]);
+
   return (
-    <div className="fixed top-6 left-4 w-56 bg-gray bg-gray-200 bg-opacity-90 blur rounded-b-lg">
+    <div
+      className="fixed top-6 left-4 w-56 bg-gray bg-gray-200 bg-opacity-90 blur rounded-b-lg"
+      ref={ref}
+    >
       <MenuItemGroup>
         <MenuItem>About This Mac</MenuItem>
       </MenuItemGroup>

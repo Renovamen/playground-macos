@@ -22,7 +22,8 @@ class Desktop extends Component {
       showLaunchpad: false,
       currentTitle: "Finder",
       hideDock: false,
-      spotlight: false
+      spotlight: false,
+      spotlightBtnRef: null
     };
   }
 
@@ -224,6 +225,11 @@ class Desktop extends Component {
           sleepMac={this.props.sleepMac}
           restartMac={this.props.restartMac}
           toggleSpotlight={this.toggleSpotlight}
+          setSpotlightBtnRef={(value) => {
+            this.setState({
+              spotlightBtnRef: value
+            });
+          }}
         />
 
         {/* Desktop Apps */}
@@ -234,6 +240,7 @@ class Desktop extends Component {
           <Spotlight
             openApp={this.openApp}
             toggleSpotlight={this.toggleSpotlight}
+            btnRef={this.state.spotlightBtnRef}
           />
         )}
 

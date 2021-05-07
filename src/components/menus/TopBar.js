@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef, forwardRef } from "react";
 import { connect } from "react-redux";
 import format from "date-fns/format";
 
@@ -14,25 +14,21 @@ import { BiSearch } from "react-icons/bi";
 import { FaWifi } from "react-icons/fa";
 import { AiFillApple } from "react-icons/ai";
 
-const TopBarItem = ({
-  children,
-  onClick,
-  hideOnMobile = false,
-  forceHover = false
-}) => {
-  const hide = hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
-  const hover = forceHover
+const TopBarItem = forwardRef((props, ref) => {
+  const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
+  const hover = props.forceHover
     ? "bg-white bg-opacity-30"
     : "hover:bg-white hover:bg-opacity-30 rounded";
   return (
     <div
+      ref={ref}
       className={`${hide} cursor-default flex-row space-x-1 ${hover} p-1`}
-      onClick={onClick}
+      onClick={props.onClick}
     >
-      {children}
+      {props.children}
     </div>
   );
-};
+});
 
 class TopBar extends Component {
   constructor(props) {
@@ -42,22 +38,30 @@ class TopBar extends Component {
       showControlCenter: false,
       showAppleMenu: false,
       playing: false,
-      brightness: Math.floor(Math.random() * 100),
-      intervalId: null
+      brightness: Math.floor(Math.random() * 100)
     };
+    this.clickedOutside = {
+      apple: false,
+      control: false
+    };
+    this.intervalId = null;
     this.toggleAudio = this.toggleAudio.bind(this);
+    this.appleBtnRef = createRef();
+    this.controlCenterBtnRef = createRef();
+    this.spotlightBtnRef = createRef();
     this.resize.bind(this);
   }
 
   componentDidMount() {
+    this.props.setSpotlightBtnRef(this.spotlightBtnRef);
+
     // current date and time
-    const intervalId = setInterval(() => {
+    // store intervalId in the state, so we can clear interval later
+    this.intervalId = setInterval(() => {
       this.setState({
         data: new Date()
       });
     }, 60 * 1000);
-    // store intervalId in the state, so we can clear interval later
-    this.setState({ intervalId: intervalId });
 
     // listen to screen size change
     window.addEventListener("resize", this.resize);
@@ -74,7 +78,7 @@ class TopBar extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.intervalId);
+    clearInterval(this.intervalId);
     window.removeEventListener("resize", this.resize);
     this.audio.removeEventListener("ended", () => this.audio.play());
   }
@@ -96,6 +100,18 @@ class TopBar extends Component {
 
   setBrightness = (value) => this.setState({ brightness: value });
 
+  toggleControlCenter = () => {
+    this.setState({
+      showControlCenter: !this.state.showControlCenter
+    });
+  };
+
+  toggleAppleMenu = () => {
+    this.setState({
+      showAppleMenu: !this.state.showAppleMenu
+    });
+  };
+
   logout = () => {
     this.toggleAudio(false);
     this.props.setLogin(false);
@@ -116,17 +132,18 @@ class TopBar extends Component {
     this.props.sleepMac(e);
   };
 
+  test = () => {
+    console.log("hi");
+  };
+
   render() {
     return (
       <div className="nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
         <div className="flex flex-row items-center space-x-4">
           <TopBarItem
             forceHover={this.state.showAppleMenu}
-            onClick={() =>
-              this.setState({
-                showAppleMenu: !this.state.showAppleMenu
-              })
-            }
+            onClick={() => (this.showAppleMenu ? {} : this.toggleAppleMenu())}
+            ref={this.appleBtnRef}
           >
             <AiFillApple size={18} />
           </TopBarItem>
@@ -142,6 +159,8 @@ class TopBar extends Component {
             shut={this.shut}
             restart={this.restart}
             sleep={this.sleep}
+            toggleAppleMenu={this.toggleAppleMenu}
+            btnRef={this.appleBtnRef}
           />
         )}
 
@@ -153,15 +172,15 @@ class TopBar extends Component {
           <TopBarItem hideOnMobile={true}>
             <FaWifi size={17} />
           </TopBarItem>
-          <TopBarItem onClick={this.props.toggleSpotlight}>
+          <TopBarItem
+            ref={this.spotlightBtnRef}
+            onClick={this.props.toggleSpotlight}
+          >
             <BiSearch size={17} />
           </TopBarItem>
           <TopBarItem
-            onClick={() =>
-              this.setState({
-                showControlCenter: !this.state.showControlCenter
-              })
-            }
+            onClick={this.toggleControlCenter}
+            ref={this.controlCenterBtnRef}
           >
             <img
               className="w-4 h-4 filter-invert"
@@ -179,6 +198,8 @@ class TopBar extends Component {
               toggleAudio={this.toggleAudio}
               setVolume={this.setVolume}
               setBrightness={this.setBrightness}
+              toggleControlCenter={this.toggleControlCenter}
+              btnRef={this.controlCenterBtnRef}
             />
           )}
 

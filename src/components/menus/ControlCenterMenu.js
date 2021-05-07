@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
@@ -40,9 +40,35 @@ const SliderComponent = ({ icon, value, setValue }) => {
 };
 
 class ControlCenterMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.controlCenterRef = createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  handleClickOutside(e) {
+    if (
+      this.controlCenterRef &&
+      !this.controlCenterRef.current.contains(e.target) &&
+      !this.props.btnRef.current.contains(e.target)
+    )
+      this.props.toggleControlCenter();
+  }
+
   render() {
     return (
-      <div className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl">
+      <div
+        className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl"
+        ref={this.controlCenterRef}
+      >
         <div className="row-span-2 col-span-2 bg-white bg-opacity-50 rounded-xl p-2 flex flex-col justify-around">
           <div className="flex flex-row items-center space-x-2 pr-6">
             <FaWifi

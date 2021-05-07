@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import format from "date-fns/format";
 import { BiSearch } from "react-icons/bi";
 import apps from "../configs/apps";
@@ -32,13 +32,26 @@ export default class Spotlight extends Component {
       appIdList: []
     };
     this.curSelectIndex = 0;
+    this.spotlightRef = createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
   search = (type) => {
     if (this.state.searchText === "") return [];
     const text = this.state.searchText.toLowerCase();
     const list = allApps[type].filter((item) => {
-      return item.title.toLowerCase().substring(0, text.length) === text;
+      return (
+        item.title.toLowerCase().includes(text) ||
+        item.id.toLowerCase().includes(text)
+      );
     });
     return list;
   };
@@ -56,6 +69,15 @@ export default class Spotlight extends Component {
     this.handleClick(id);
     this.launchCurApp();
   };
+
+  handleClickOutside(e) {
+    if (
+      this.spotlightRef &&
+      !this.spotlightRef.current.contains(e.target) &&
+      !this.props.btnRef.current.contains(e.target)
+    )
+      this.props.toggleSpotlight();
+  }
 
   launchCurApp = () => {
     if (this.state.curDetails.type === "app" && !this.state.curDetails.link) {
@@ -113,6 +135,8 @@ export default class Spotlight extends Component {
     const portfolio = this.getTypeAppList("portfolio", app.appIdList.length);
 
     const appIdList = [...app.appIdList, ...portfolio.appIdList];
+    // don't show app details when there is no associating app
+    if (appIdList.length === 0) this.setState({ curDetails: null });
 
     const appList = (
       <div>
@@ -201,15 +225,15 @@ export default class Spotlight extends Component {
   handleInputChange = (e) => {
     // current selected id go back to 0
     this.curSelectIndex = 0;
-    // update search text and guess app list
+    // don"t show app details when there is no input
+    if (e.target.value === "") this.setState({ curDetails: null });
+    // update search text and associating app list
     this.setState(
       {
         searchText: e.target.value
       },
       () => this.updateAppList()
     );
-    // don't show app details when there is no input
-    if (e.target.value === "") this.setState({ curDetails: null });
   };
 
   focusOnInput = () => {
@@ -223,6 +247,7 @@ export default class Spotlight extends Component {
         style={{ zIndex: 99997 }}
         onKeyDown={this.handleKeyPress}
         onClick={this.focusOnInput}
+        ref={this.spotlightRef}
       >
         <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-md bg-transparent">
           <div className="col-start-1 col-span-1 flex justify-center items-center">

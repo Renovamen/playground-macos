@@ -21,11 +21,9 @@ const characters =
 class HowDare extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      intervalId: null
-    };
     this.font_size = 12;
     this.emoji = getEmoji();
+    this.intervalId = null;
   }
 
   componentDidMount() {
@@ -40,12 +38,11 @@ class HowDare extends Component {
     // x: x coordinate, 1: y-coordinate
     for (let x = 0; x < columns; x++) this.drops[x] = 1;
 
-    const intervalId = setInterval(this.rain.bind(this), 33);
-    this.setState({ intervalId: intervalId });
+    this.intervalId = setInterval(this.rain.bind(this), 33);
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.intervalId);
+    clearInterval(this.intervalId);
   }
 
   rain() {
