@@ -15,12 +15,12 @@ const getRandom = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-function getRandomDate() {
+const getRandomDate = () => {
   const timeStamp = new Date().getTime();
   const randomStamp = getRandom(0, timeStamp);
   const date = format(randomStamp, "MM/dd/yyyy");
   return date;
-}
+};
 
 export default class Spotlight extends Component {
   constructor(props) {
@@ -28,10 +28,10 @@ export default class Spotlight extends Component {
     this.state = {
       searchText: "",
       curDetails: null,
-      appList: null
+      appList: null,
+      appIdList: []
     };
-    this.appIndices = 0;
-    this.curSelection = 0;
+    this.curSelectIndex = 0;
   }
 
   search = (type) => {
@@ -43,28 +43,50 @@ export default class Spotlight extends Component {
     return list;
   };
 
-  renderAppList = (type, startId) => {
+  handleClick = (id) => {
+    const curSelectIndex = this.state.appIdList.findIndex((item) => {
+      return item === id;
+    });
+    this.updateHighlight(this.curSelectIndex, curSelectIndex);
+    this.curSelectIndex = curSelectIndex;
+    this.updateCurDetails();
+  };
+
+  handleDoubleClick = (id) => {
+    this.handleClick(id);
+    this.launchCurApp();
+  };
+
+  launchCurApp = () => {
+    if (this.state.curDetails.type === "app" && !this.state.curDetails.link) {
+      this.props.openApp(this.state.curDetails.id);
+      this.props.toggleSpotlight();
+    } else {
+      window.open(this.state.curDetails.link);
+      this.props.toggleSpotlight();
+    }
+  };
+
+  getTypeAppList = (type, startIndex) => {
     const result = this.search(type);
     let appList = [];
-    let curID = startId;
+    let appIdList = [];
 
     for (let app of result) {
-      const bg = curID === 0 ? "bg-blue-500" : "bg-transparent";
-      const text = curID === 0 ? "text-white" : "text-black";
+      const curIndex = startIndex + appIdList.length;
+      const bg = curIndex === 0 ? "bg-blue-500" : "bg-transparent";
+      const text = curIndex === 0 ? "text-white" : "text-black";
 
-      if (curID === 0) {
-        const curDetails = app;
-        curDetails.type = type;
-        this.setState({ curDetails });
-      }
+      if (curIndex === 0) this.setCurDetails(app, type);
 
       appList.push(
         <li
-          id={`spotlight-${curID}`}
-          key={`spotlight-${curID}`}
+          id={`spotlight-${app.id}`}
+          key={`spotlight-${app.id}`}
           className={`pl-4 h-7 w-full flex flex-row ${bg} ${text} cursor-default`}
-          data-app-id={app.id}
           data-app-type={type}
+          onClick={() => this.handleClick(app.id)}
+          onDoubleClick={() => this.handleDoubleClick(app.id)}
         >
           <div className="flex-none w-8 flex items-center">
             <img
@@ -77,102 +99,109 @@ export default class Spotlight extends Component {
           <div className="flex-grow flex items-center pl-3">{app.title}</div>
         </li>
       );
-
-      curID += 1;
+      appIdList.push(app.id);
     }
-    return appList;
+
+    return {
+      appList: appList,
+      appIdList: appIdList
+    };
   };
 
   updateAppList = () => {
-    const app = this.renderAppList("app", 0);
-    const portfolio = this.renderAppList("portfolio", app.length);
+    const app = this.getTypeAppList("app", 0);
+    const portfolio = this.getTypeAppList("portfolio", app.appIdList.length);
 
-    this.appIndices = app.length + portfolio.length;
+    const appIdList = [...app.appIdList, ...portfolio.appIdList];
 
     const appList = (
       <div>
-        {app.length !== 0 && (
+        {app.appList.length !== 0 && (
           <div>
             <div className="pl-6 h-4 text-xs bg-gray-400 bg-opacity-80 flex items-center text-black">
               Applications
             </div>
-            <ul className="w-full text-sm">{app}</ul>
+            <ul className="w-full text-sm">{app.appList}</ul>
           </div>
         )}
-        {portfolio.length !== 0 && (
+        {portfolio.appList.length !== 0 && (
           <div>
             <div className="pl-6 h-4 text-xs bg-gray-400 bg-opacity-80 flex items-center text-black">
               Portfolio
             </div>
-            <ul className="w-full text-sm">{portfolio}</ul>
+            <ul className="w-full text-sm">{portfolio.appList}</ul>
           </div>
         )}
       </div>
     );
-    this.setState({ appList });
+    this.setState({
+      appList: appList,
+      appIdList: appIdList
+    });
   };
 
-  getCurDetails = () => {
-    const elem = document.querySelector(`#spotlight-${this.curSelection}`);
-    const id = elem.dataset.appId;
-    const type = elem.dataset.appType;
-    let curDetails = allApps[type].find((item) => {
-      return item.id === id;
-    });
+  setCurDetails = (app, type) => {
+    const curDetails = app;
     curDetails.type = type;
     this.setState({ curDetails });
   };
 
-  handleHighlight = (cur) => {
-    // remove highlight
-    let classes = cur.className;
-    classes = classes.replace("text-white", "text-black");
-    classes = classes.replace("bg-blue-500", "bg-transparent");
-    cur.className = classes;
-
-    // add highlight
-    const next = document.querySelector(`#spotlight-${this.curSelection}`);
-    classes = next.className;
-    classes = classes.replace("text-black", "text-white");
-    classes = classes.replace("bg-transparent", "bg-blue-500");
-    next.className = classes;
-
-    // get details of the current selected app
-    this.getCurDetails();
+  updateCurDetails = () => {
+    const appId = this.state.appIdList[this.curSelectIndex];
+    const elem = document.querySelector(`#spotlight-${appId}`);
+    const id = appId;
+    const type = elem.dataset.appType;
+    const app = allApps[type].find((item) => {
+      return item.id === id;
+    });
+    this.setCurDetails(app, type);
   };
 
-  keyPress = (e) => {
+  updateHighlight = (prevIndex, curIndex) => {
+    // remove highlight
+    const prevAppId = this.state.appIdList[prevIndex];
+    const prev = document.querySelector(`#spotlight-${prevAppId}`);
+    let classes = prev.className;
+    classes = classes.replace("text-white", "text-black");
+    classes = classes.replace("bg-blue-500", "bg-transparent");
+    prev.className = classes;
+
+    // add highlight
+    const curAppId = this.state.appIdList[curIndex];
+    const cur = document.querySelector(`#spotlight-${curAppId}`);
+    classes = cur.className;
+    classes = classes.replace("text-black", "text-white");
+    classes = classes.replace("bg-transparent", "bg-blue-500");
+    cur.className = classes;
+  };
+
+  handleKeyPress = (e) => {
     const keyCode = e.key;
-    const $curApp = document.querySelector(`#spotlight-${this.curSelection}`);
+    const numApps = this.state.appIdList.length;
 
     // ----------- select next app -----------
-    if (keyCode === "ArrowDown" && this.curSelection < this.appIndices - 1) {
-      this.curSelection++;
-      this.handleHighlight($curApp);
+    if (keyCode === "ArrowDown" && this.curSelectIndex < numApps - 1) {
+      this.curSelectIndex++;
+      this.updateHighlight(this.curSelectIndex - 1, this.curSelectIndex);
+      this.updateCurDetails();
     }
     // ----------- select previous app -----------
-    else if (keyCode === "ArrowUp" && this.curSelection > 0) {
-      this.curSelection--;
-      this.handleHighlight($curApp);
+    else if (keyCode === "ArrowUp" && this.curSelectIndex > 0) {
+      this.curSelectIndex--;
+      this.updateHighlight(this.curSelectIndex + 1, this.curSelectIndex);
+      this.updateCurDetails();
     }
     // ----------- launch app -----------
     else if (keyCode === "Enter") {
       if (!this.state.curDetails) return;
-      if (this.state.curDetails.type === "app" && !this.state.curDetails.link) {
-        this.props.openApp(this.state.curDetails.id);
-        this.props.toggleSpotlight();
-      } else {
-        window.open(this.state.curDetails.link);
-        this.props.toggleSpotlight();
-      }
+      this.launchCurApp();
     }
   };
 
   handleInputChange = (e) => {
     // current selected id go back to 0
-    this.curSelection = 0;
+    this.curSelectIndex = 0;
     // update search text and guess app list
-    this.appIndices = 0;
     this.setState(
       {
         searchText: e.target.value
@@ -190,18 +219,18 @@ export default class Spotlight extends Component {
   render() {
     return (
       <div
-        className="spotlight fixed mt-32 h-max rounded-md bg-gray-50 bg-opacity-80 blur border border-gray-400 border-opacity-50 shadow-2xl"
+        className="spotlight fixed top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 blur border border-gray-400 border-opacity-50 shadow-2xl"
         style={{ zIndex: 99997 }}
-        onKeyDown={this.keyPress}
+        onKeyDown={this.handleKeyPress}
         onClick={this.focusOnInput}
       >
-        <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-14 rounded-md bg-transparent">
+        <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-md bg-transparent">
           <div className="col-start-1 col-span-1 flex justify-center items-center">
             <BiSearch className="ml-1 text-gray-600" size={28} />
           </div>
           <input
             id="spotlight-input"
-            className="col-start-2 col-span-7 sm:col-span-10 outline-none focus:outline-none bg-transparent px-1 text-black text-2xl"
+            className="col-start-2 col-span-7 sm:col-span-10 outline-none focus:outline-none bg-transparent px-1 text-black text-xl sm:text-2xl"
             placeholder="Spotlight Search"
             value={this.state.searchText}
             onChange={(e) => this.handleInputChange(e)}
