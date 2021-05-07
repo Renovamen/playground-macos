@@ -223,7 +223,15 @@ body:not(pre) {
 }
 
 .bear .markdown pre {
-  @apply mt-2;
+  @apply mt-2 text-sm;
+}
+
+.bear .markdown pre code {
+  @apply text-sm;
+}
+
+.dark .bear .markdown pre code {
+  font-size: 14px !important;
 }
 
 .bear .markdown pre div {

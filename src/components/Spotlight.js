@@ -81,7 +81,9 @@ export default class Spotlight extends Component {
 
   launchCurApp = () => {
     if (this.state.curDetails.type === "app" && !this.state.curDetails.link) {
-      this.props.openApp(this.state.curDetails.id);
+      const id = this.state.curDetails.id;
+      if (id === "launchpad") this.props.toggleLaunchpad(true);
+      else this.props.openApp(id);
       this.props.toggleSpotlight();
     } else {
       window.open(this.state.curDetails.link);

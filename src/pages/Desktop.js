@@ -239,6 +239,7 @@ class Desktop extends Component {
         {this.state.spotlight && (
           <Spotlight
             openApp={this.openApp}
+            toggleLaunchpad={this.toggleLaunchpad}
             toggleSpotlight={this.toggleSpotlight}
             btnRef={this.state.spotlightBtnRef}
           />

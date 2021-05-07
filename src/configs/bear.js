@@ -26,7 +26,7 @@ const bear = [
         title: "About Me",
         file: "markdown/about-me.md",
         icon: <GiNinjaHeroicStance />,
-        excerpt: "Hey there! I'm Xiaohan Zou, a dragon lost in human world..."
+        excerpt: "Hey there! I'm a dragon lost in human world..."
       },
       {
         id: "github-stats",
