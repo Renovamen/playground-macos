@@ -107,7 +107,7 @@ class NavPage extends Component {
               <div
                 className={`col-start-2 ${span} flex items-center text-black px-2`}
               >
-                In the last sever days, Safari has prevent {numTracker} tracker
+                In the last seven days, Safari has prevent {numTracker} tracker
                 from profiling you.
               </div>
             </div>
