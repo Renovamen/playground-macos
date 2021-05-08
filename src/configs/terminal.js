@@ -27,7 +27,7 @@ const terminal = [
         title: "interests.txt",
         type: "file",
         content:
-          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Reinforcement Learning / Neutral Language Processing"
+          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Reinforcement Learning / Natural Language Processing"
       },
       {
         id: "about-who-cares",

@@ -293,9 +293,8 @@ export default class Terminal extends Component {
       // we can"t edit the past input
       $input.setAttribute("readonly", true);
 
-      if (input_text === "rm -rf /" || input_text === "rm -rf /*") {
-        this.setState({ rmrf: true });
-      } else if (cmd && Object.keys(this.commands).includes(cmd)) {
+      if (input_text.substr(0, 6) === "rm -rf") this.setState({ rmrf: true });
+      else if (cmd && Object.keys(this.commands).includes(cmd)) {
         this.commands[cmd](args);
       } else {
         this.generateResultRow(
