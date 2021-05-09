@@ -74,7 +74,7 @@ class Middlebar extends Component {
                 <div className="w-10 text-gray-500 flex flex-none justify-center">
                   {item.icon}
                 </div>
-                <span className="relative text-gray-900 flex-grow font-medium">
+                <span className="relative text-gray-900 flex-grow font-bold">
                   {item.title}
                   {item.link && (
                     <a
@@ -178,7 +178,7 @@ class Bear extends Component {
 
   render() {
     return (
-      <div className="bear flex flex-row w-full h-full">
+      <div className="bear font-avenir flex flex-row w-full h-full">
         <div className="flex-none w-44">
           <Sidebar cur={this.state.curSidebar} setMidBar={this.setMidBar} />
         </div>

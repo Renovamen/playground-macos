@@ -55,7 +55,7 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/flint/main/README.md",
         icon: <HiFire />,
-        excerpt: "A toy deep learning framework implemented in Numpy...",
+        excerpt: "A deep learning framework implemented in Numpy...",
         link: "https://github.com/Renovamen/flint"
       },
       {
@@ -100,8 +100,7 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/vuepress-theme-gungnir/main/README.md",
         icon: <GiEnergySword />,
-        excerpt:
-          "A blog theme for VuePress (there is also a Jekyll version)...",
+        excerpt: "A simple and beautiful blog theme for VuePress...",
         link: "https://vuepress-theme-gungnir.vercel.app"
       },
       {
@@ -110,7 +109,7 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Text-Classification/master/README.md",
         icon: <CgFormatText />,
-        excerpt: "PyTorch implementation of some text classificaiton models...",
+        excerpt: "PyTorch implementation of text classificaiton models...",
         link: "https://github.com/Renovamen/Text-Classification"
       },
       {
@@ -128,7 +127,7 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Image-Captioning/master/README.md",
         icon: <BsFillImageFill />,
-        excerpt: "PyTorch implementation of some papers on image captioning...",
+        excerpt: "PyTorch implementation of image captioning models...",
         link: "https://github.com/Renovamen/Image-Captioning"
       },
       {
@@ -137,8 +136,7 @@ const bear = [
         file:
           "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
         icon: <BiCube />,
-        excerpt:
-          "A rubik's cube solver (supports layer-by-layer and two-phase)...",
+        excerpt: "A rubik's cube solver (layer-by-layer & two-phase)...",
         link: "https://cube.zxh.io"
       },
       {

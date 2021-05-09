@@ -26,7 +26,7 @@ import { FaWifi } from "react-icons/fa";
 const SliderComponent = ({ icon, value, setValue }) => {
   return (
     <div className="slider flex flex-row w-full">
-      <div className="h-8 p-2 bg-white rounded-l-full">{icon}</div>
+      <div className="h-8 p-2 bg-gray-100 rounded-l-full">{icon}</div>
       <Slider
         min={1}
         max={100}
@@ -66,10 +66,10 @@ class ControlCenterMenu extends Component {
   render() {
     return (
       <div
-        className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-25 blur rounded-2xl text-black shadow-2xl"
+        className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-40 blur rounded-2xl text-black shadow-2xl"
         ref={this.controlCenterRef}
       >
-        <div className="row-span-2 col-span-2 bg-white bg-opacity-50 rounded-xl p-2 flex flex-col justify-around">
+        <div className="row-span-2 col-span-2 bg-gray-200 bg-opacity-70 rounded-xl p-2 flex flex-col justify-around">
           <div className="flex flex-row items-center space-x-2 pr-6">
             <FaWifi
               size={36}
@@ -122,7 +122,7 @@ class ControlCenterMenu extends Component {
             </div>
           </div>
         </div>
-        <div className="col-span-2 bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-row items-center space-x-2">
+        <div className="col-span-2 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-row items-center space-x-2">
           {this.props.dark ? (
             <IoMoon
               size={34}
@@ -142,12 +142,12 @@ class ControlCenterMenu extends Component {
             </span>
           </div>
         </div>
-        <div className="bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-col justify-center items-center text-center">
+        <div className="bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-col justify-center items-center text-center">
           <BsBrightnessAltHigh size={20} />
           <span className="text-xs">Keyboard Brightness</span>
         </div>
         <div
-          className="bg-white bg-opacity-50 blur rounded-xl p-2 flex flex-col justify-center items-center text-center cursor-default"
+          className="bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-col justify-center items-center text-center cursor-default"
           onClick={() => this.props.toggleFullScreen(!this.props.fullscreen)}
         >
           {this.props.fullscreen ? (
@@ -159,7 +159,7 @@ class ControlCenterMenu extends Component {
             {this.props.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
           </span>
         </div>
-        <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
+        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
           <span className="font-medium">Display</span>
           <SliderComponent
             icon={<IoSunny size={16} className="text-gray-500" />}
@@ -167,7 +167,7 @@ class ControlCenterMenu extends Component {
             setValue={this.props.setBrightness}
           />
         </div>
-        <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
+        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
           <span className="font-medium">Sound</span>
           <SliderComponent
             icon={<IoVolumeHigh size={16} className="text-gray-500" />}
@@ -175,7 +175,7 @@ class ControlCenterMenu extends Component {
             setValue={this.props.setVolume}
           />
         </div>
-        <div className="col-span-4 bg-white bg-opacity-50 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
+        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
           <img src={music.cover} alt="cover art" className="w-16 rounded-lg" />
           <div className="flex flex-col flex-grow justify-start">
             <span className="font-medium">{music.title}</span>

@@ -184,7 +184,7 @@ class Safari extends Component {
               value={this.state.currentURL}
               onChange={(e) => this.setState({ currentURL: e.target.value })}
               onKeyPress={this.pressURL}
-              className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-100 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400"
+              className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-200 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400"
               placeholder="Search or enter website name"
             />
           </div>

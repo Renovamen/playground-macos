@@ -1,3 +1,31 @@
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Avenir Next LT Pro Regular"), url("./fonts/AvenirNextLTPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: italic;
+  font-weight: normal;
+  src: local("Avenir Next LT Pro It"), url("./fonts/AvenirNextLTPro-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: normal;
+  font-weight: bold;
+  src: local("Avenir Next LT Pro Demi"), url("./fonts/AvenirNextLTPro-Demi.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: italic;
+  font-weight: bold;
+  src: local("Avenir Next LT Pro DemiIt"), url("./fonts/AvenirNextLTPro-DemiItalic.woff") format("woff");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +37,11 @@ html, body {
 }
 
 body:not(pre) {
-  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
 }
 
-.font-jost {
-  font-family: Jost, SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+.font-avenir {
+  font-family: "Avenir Next LT Pro", "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
 }
 
 .font-terminal {
@@ -109,7 +137,7 @@ body:not(pre) {
   box-shadow: none;
 }
 .slider .rangeslider .rangeslider__fill {
-  @apply bg-white;
+  @apply bg-gray-100;
   box-shadow: none;
   border-radius: 0;
 }
@@ -134,7 +162,7 @@ body:not(pre) {
 .bear .markdown h2,
 .bear .markdown h3,
 .bear .markdown h4 {
-  @apply font-medium relative text-gray-800;
+  @apply font-bold relative text-gray-800;
 }
 
 .bear .markdown h1,

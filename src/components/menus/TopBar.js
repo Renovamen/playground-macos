@@ -199,7 +199,8 @@ class TopBar extends Component {
             />
           )}
 
-          <span>{format(this.state.date, "eee d MMM h:mm aa")}</span>
+          <span>{format(this.state.date, "eee MMM d")}</span>
+          <span>{format(this.state.date, "h:mm aa")}</span>
         </div>
       </div>
     );

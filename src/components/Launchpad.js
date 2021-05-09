@@ -43,12 +43,12 @@ class Launchpad extends Component {
         }}
       >
         <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 blur">
-          <div className="block mx-auto grid grid-cols-11 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30">
+          <div className="block mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30">
             <div className="col-start-1 col-span-1 flex justify-center items-center">
               <BiSearch className="ml-1" color="white" />
             </div>
             <input
-              className="col-start-2 col-span-10 outline-none focus:outline-none bg-transparent px-1 text-white"
+              className="col-start-2 col-span-10 outline-none focus:outline-none bg-transparent px-1 text-sm text-white"
               placeholder={placeholderText}
               value={this.state.searchText}
               onChange={(e) => this.setState({ searchText: e.target.value })}
@@ -80,7 +80,7 @@ class Launchpad extends Component {
                       title={app.title}
                     />
                   </a>
-                  <span className="mt-2 mx-auto text-white text-sm sm:text-base">
+                  <span className="mt-2 mx-auto text-white text-xs sm:text-sm">
                     {app.title}
                   </span>
                 </div>

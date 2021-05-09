@@ -37,7 +37,7 @@ class Login extends Component {
           {/* Password Input */}
           <div className="nightwind-prevent mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 blur bg-opacity-50">
             <input
-              className="nightwind-prevent col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
+              className="nightwind-prevent text-sm col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
               type="password"
               placeholder="Enter Password"
               onClick={(e) => e.stopPropagation()}
@@ -54,7 +54,7 @@ class Login extends Component {
         </div>
 
         {/* buttons */}
-        <div className="nightwind-prevent-block fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
+        <div className="nightwind-prevent-block text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
           <div
             className="flex flex-col items-center text-white w-24"
             onClick={this.props.sleepMac}
