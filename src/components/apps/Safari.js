@@ -93,7 +93,7 @@ class NavPage extends Component {
           />
 
           {/* Privacy Report */}
-          <div className="z-100 mx-auto pt-8 pb-16 px-2 w-full max-w-screen-md px-4">
+          <div className="z-100 mx-auto pt-8 pb-16 px-6 w-full max-w-screen-md px-4">
             <div className="text-xl sm:text-2xl text-black font-medium">
               Privacy Report
             </div>

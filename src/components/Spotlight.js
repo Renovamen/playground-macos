@@ -144,18 +144,18 @@ export default class Spotlight extends Component {
       <div>
         {app.appList.length !== 0 && (
           <div>
-            <div className="pl-6 h-4 text-xs bg-gray-400 bg-opacity-80 flex items-center text-black">
+            <div className="pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 flex items-center text-black">
               Applications
             </div>
-            <ul className="w-full text-sm">{app.appList}</ul>
+            <ul className="w-full text-xs">{app.appList}</ul>
           </div>
         )}
         {portfolio.appList.length !== 0 && (
           <div>
-            <div className="pl-6 h-4 text-xs bg-gray-400 bg-opacity-80 flex items-center text-black">
+            <div className="pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 flex items-center text-black">
               Portfolio
             </div>
-            <ul className="w-full text-sm">{portfolio.appList}</ul>
+            <ul className="w-full text-xs">{portfolio.appList}</ul>
           </div>
         )}
       </div>
@@ -267,9 +267,9 @@ export default class Spotlight extends Component {
         {this.state.searchText !== "" && (
           <div
             className="bg-transparent flex flex-row border-t border-gray-400 border-opacity-50"
-            style={{ height: "340px" }}
+            style={{ height: "341px" }}
           >
-            <div className="flex-none w-32 sm:w-72 border-r border-gray-400 border-opacity-50">
+            <div className="flex-none w-32 sm:w-72 border-r border-gray-400 border-opacity-50 overflow-y-scroll">
               {this.state.appList}
             </div>
             <div className="flex-grow">

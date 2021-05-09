@@ -71,7 +71,7 @@ class Middlebar extends Component {
               onClick={() => this.props.setContent(item.id, item.file, index)}
             >
               <div className="h-8 mt-3 flex flex-row flex-none items-center">
-                <div className="w-10 text-gray-500 flex flex-none justify-center">
+                <div className="-mt-1 w-10 text-gray-500 flex flex-none justify-center">
                   {item.icon}
                 </div>
                 <span className="relative text-gray-900 flex-grow font-bold">

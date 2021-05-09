@@ -125,7 +125,7 @@ export default class Window extends Component {
       : "";
     const border = this.props.max
       ? ""
-      : "border border-gray-500 border-opacity-40";
+      : "border border-gray-500 border-opacity-30";
     const width = this.props.max ? this.state.maxW : this.state.width;
     const height = this.props.max ? this.state.maxH : this.state.height;
 
