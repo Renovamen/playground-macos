@@ -59,7 +59,7 @@ class TopBar extends Component {
     // store intervalId in the state, so we can clear interval later
     this.intervalId = setInterval(() => {
       this.setState({
-        data: new Date()
+        date: new Date()
       });
     }, 60 * 1000);
 
