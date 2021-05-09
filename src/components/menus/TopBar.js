@@ -99,7 +99,6 @@ class TopBar extends Component {
 
   setBrightness = (value) => {
     this.props.setBrightness(value);
-    this.setState({ brightness: value });
   };
 
   toggleControlCenter = () => {
