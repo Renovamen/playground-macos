@@ -211,7 +211,8 @@ class Desktop extends Component {
         style={{
           backgroundImage: `url(${
             this.props.dark ? wallpapers.night : wallpapers.day
-          })`
+          })`,
+          filter: `brightness( ${this.props.brightness * 0.7 + 50}% )`
         }}
       >
         {/* Dark Model Toggler */}
@@ -263,7 +264,8 @@ class Desktop extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dark: state.dark
+    dark: state.dark,
+    brightness: state.brightness
   };
 };
 

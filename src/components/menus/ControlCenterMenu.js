@@ -202,6 +202,7 @@ const mapStateToProps = (state) => {
   return {
     dark: state.dark,
     wifi: state.wifi,
+    brightness: state.brightness,
     bluetooth: state.bluetooth,
     airdrop: state.airdrop,
     fullscreen: state.fullscreen,
