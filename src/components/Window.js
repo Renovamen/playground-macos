@@ -123,6 +123,9 @@ export default class Window extends Component {
     const minimized = this.props.min
       ? "opacity-0 invisible transition-opacity duration-300"
       : "";
+    const border = this.props.max
+      ? ""
+      : "border border-gray-500 border-opacity-40";
     const width = this.props.max ? this.state.maxW : this.state.width;
     const height = this.props.max ? this.state.maxH : this.state.height;
 
@@ -164,7 +167,7 @@ export default class Window extends Component {
         disableDragging={this.props.max}
         style={{ zIndex: this.props.z }}
         onMouseDown={() => this.props.focus(this.props.id)}
-        className={`absolute ${round} overflow-hidden bg-transparent w-full h-full shadow-md ${minimized}`}
+        className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-md ${minimized}`}
         id={`window-${this.props.id}`}
       >
         <div
