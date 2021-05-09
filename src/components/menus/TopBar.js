@@ -134,10 +134,6 @@ class TopBar extends Component {
     this.props.sleepMac(e);
   };
 
-  test = () => {
-    console.log("hi");
-  };
-
   render() {
     return (
       <div className="nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">

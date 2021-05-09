@@ -290,7 +290,7 @@ export default class Terminal extends Component {
       const cmd = input[0];
       const args = input[1];
 
-      // we can"t edit the past input
+      // we can't edit the past input
       $input.setAttribute("readonly", true);
 
       if (input_text.substr(0, 6) === "rm -rf") this.setState({ rmrf: true });

@@ -39,6 +39,9 @@ const ExitFullIcon = ({ size }) => {
   );
 };
 
+const minMarginY = 24;
+const minMarginX = 100;
+
 const TrafficLights = ({ id, close, max, setMax, setMin }) => {
   const closeWindow = (e) => {
     e.stopPropagation();
@@ -132,8 +135,18 @@ export default class Window extends Component {
           height: height
         }}
         position={{
-          x: this.props.max ? 0 : this.state.x,
-          y: this.props.max ? 0 : this.state.y
+          x: this.props.max
+            ? 0
+            : Math.min(
+                window.innerWidth - minMarginX,
+                Math.max(-this.state.width + minMarginX, this.state.x)
+              ),
+          y: this.props.max
+            ? 0
+            : Math.min(
+                window.innerHeight - minMarginY,
+                Math.max(minMarginY, this.state.y)
+              )
         }}
         onDragStop={(e, d) => {
           this.setState({ x: d.x, y: d.y });
