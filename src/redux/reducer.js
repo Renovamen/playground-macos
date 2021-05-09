@@ -3,6 +3,7 @@ import { type } from "./action";
 const initState = {
   dark: false,
   volume: 100,
+  brightness: 80,
   wifi: true,
   bluetooth: true,
   airdrop: true,
@@ -20,6 +21,11 @@ export const Reducer = (state = initState, action = {}) => {
       return {
         ...state,
         volume: action.volume
+      };
+    case type.SET_BRIGHTNESS:
+      return {
+        ...state,
+        brightness: action.brightness
       };
     case type.TOGGLE_FULLSCREEN:
       return {

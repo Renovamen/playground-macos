@@ -5,7 +5,7 @@ import format from "date-fns/format";
 import AppleMenu from "./AppleMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "../../utils/screen";
-import { setVolume, toggleFullScreen } from "../../redux/action";
+import { setVolume, setBrightness, toggleFullScreen } from "../../redux/action";
 import music from "../../configs/music";
 
 // ------- import icons -------
@@ -37,8 +37,7 @@ class TopBar extends Component {
       date: new Date(),
       showControlCenter: false,
       showAppleMenu: false,
-      playing: false,
-      brightness: Math.floor(Math.random() * 100)
+      playing: false
     };
     this.clickedOutside = {
       apple: false,
@@ -98,7 +97,9 @@ class TopBar extends Component {
     this.audio.volume = value / 100;
   };
 
-  setBrightness = (value) => this.setState({ brightness: value });
+  setBrightness = (value) => {
+    this.props.setBrightness(value);
+  };
 
   toggleControlCenter = () => {
     this.setState({
@@ -190,7 +191,6 @@ class TopBar extends Component {
             <ControlCenterMenu
               audio={this.audio}
               playing={this.state.playing}
-              brightness={this.state.brightness}
               toggleAudio={this.toggleAudio}
               setVolume={this.setVolume}
               setBrightness={this.setBrightness}
@@ -208,11 +208,13 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    volume: state.volume
+    volume: state.volume,
+    brightness: state.brightness
   };
 };
 
 export default connect(mapStateToProps, {
   setVolume,
+  setBrightness,
   toggleFullScreen
 })(TopBar);
