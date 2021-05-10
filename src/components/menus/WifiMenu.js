@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import "react-rangeslider/lib/index.css";
 import { toggleWIFI } from "../../redux/action";
 
-// ------- import icons -------
-import { FaWifi } from "react-icons/fa";
-
 class WifiMenu extends Component {
   constructor(props) {
     super(props);
