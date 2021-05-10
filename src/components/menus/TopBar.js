@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import format from "date-fns/format";
 
 import AppleMenu from "./AppleMenu";
+import WifiMenu from "./WifiMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "../../utils/screen";
 import { setVolume, setBrightness, toggleFullScreen } from "../../redux/action";
@@ -12,6 +13,7 @@ import music from "../../configs/music";
 import { BsBatteryFull } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { FaWifi } from "react-icons/fa";
+import { RiSignalWifiLine } from "react-icons/ri";
 import { AiFillApple } from "react-icons/ai";
 
 const TopBarItem = forwardRef((props, ref) => {
@@ -36,6 +38,7 @@ class TopBar extends Component {
     this.state = {
       date: new Date(),
       showControlCenter: false,
+      showWifiMenu: false,
       showAppleMenu: false,
       playing: false
     };
@@ -47,6 +50,7 @@ class TopBar extends Component {
     this.toggleAudio = this.toggleAudio.bind(this);
     this.appleBtnRef = createRef();
     this.controlCenterBtnRef = createRef();
+    this.wifiBtnRef = createRef();
     this.spotlightBtnRef = createRef();
     this.resize.bind(this);
   }
@@ -113,6 +117,12 @@ class TopBar extends Component {
     });
   };
 
+  toggleWifiMenu = () => {
+    this.setState({
+      showWifiMenu: !this.state.showWifiMenu
+    });
+  };
+
   logout = () => {
     this.toggleAudio(false);
     this.props.setLogin(false);
@@ -166,8 +176,16 @@ class TopBar extends Component {
             <span className="text-xs mt-0.5 mr-1">100%</span>
             <BsBatteryFull size={20} />
           </TopBarItem>
-          <TopBarItem hideOnMobile={true}>
-            <FaWifi size={17} />
+          <TopBarItem
+            hideOnMobile={true}
+            onClick={this.toggleWifiMenu}
+            ref={this.wifiBtnRef}
+          >
+            {this.props.wifi ? (
+              <FaWifi size={17} />
+            ) : (
+              <RiSignalWifiLine size={17} />
+            )}
           </TopBarItem>
           <TopBarItem
             ref={this.spotlightBtnRef}
@@ -185,6 +203,14 @@ class TopBar extends Component {
               alt="control center"
             />
           </TopBarItem>
+
+          {/* Open this when clicking on Wifi button */}
+          {this.state.showWifiMenu && (
+            <WifiMenu
+              toggleWifiMenu={this.toggleWifiMenu}
+              btnRef={this.wifiBtnRef}
+            />
+          )}
 
           {/* Open this when clicking on Control Center button */}
           {this.state.showControlCenter && (
@@ -210,7 +236,8 @@ class TopBar extends Component {
 const mapStateToProps = (state) => {
   return {
     volume: state.volume,
-    brightness: state.brightness
+    brightness: state.brightness,
+    wifi: state.wifi
   };
 };
 

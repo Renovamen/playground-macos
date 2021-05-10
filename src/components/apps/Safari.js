@@ -118,6 +118,37 @@ class NavPage extends Component {
   }
 }
 
+class NoInternetPage extends Component {
+  render() {
+    return (
+      <div
+        className="w-full safari-content bg-blue-50 overflow-y-scroll bg-center bg-cover"
+        style={{
+          backgroundImage: `url(${
+            this.props.dark ? wallpapers.night : wallpapers.day
+          })`
+        }}
+      >
+        <div className="w-full h-full bg-gray-100 bg-opacity-80 blur flex items-center justify-center">
+          <div
+            className={`pb-10 text-center ${
+              this.props.dark ? "text-gray-500" : "text-gray-600"
+            }`}
+          >
+            <div className="text-2xl font-bold">
+              You Are Not Connected to the Internet
+            </div>
+            <div className="pt-4 text-sm">
+              This page can't be displayed because your computer is currently
+              offline.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 class Safari extends Component {
   constructor(props) {
     super(props);
@@ -201,19 +232,23 @@ class Safari extends Component {
         </div>
 
         {/* browser content */}
-        {this.state.goURL === "" ? (
-          <NavPage
-            setGoURL={this.setGoURL}
-            width={this.props.width}
-            dark={this.props.dark}
-          />
+        {this.props.wifi ? (
+          this.state.goURL === "" ? (
+            <NavPage
+              setGoURL={this.setGoURL}
+              width={this.props.width}
+              dark={this.props.dark}
+            />
+          ) : (
+            <iframe
+              title={"Safari clone browser"}
+              src={this.state.goURL}
+              frameBorder="0"
+              className="safari-content w-full"
+            />
+          )
         ) : (
-          <iframe
-            title={"Safari clone browser"}
-            src={this.state.goURL}
-            frameBorder="0"
-            className="safari-content w-full"
-          />
+          <NoInternetPage />
         )}
       </div>
     );
@@ -222,7 +257,8 @@ class Safari extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dark: state.dark
+    dark: state.dark,
+    wifi: state.wifi
   };
 };
 

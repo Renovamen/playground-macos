@@ -308,3 +308,71 @@ body:not(pre) {
 .dark .bear .sidebar {
   @apply bg-gray-700 text-white;
 }
+
+
+/*
+  Credits: W3 Schools: https://www.w3schools.com/howto/howto_css_switch.asp
+*/
+
+/* The switch - the box around the slider */
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider-toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider-toggle:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider-toggle {
+  background-color: #2196F3;
+}
+
+input:focus + .slider-toggle {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider-toggle:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider-toggle.round {
+  border-radius: 17px;
+}
+
+.slider-toggle.round:before {
+  border-radius: 50%;
+}
