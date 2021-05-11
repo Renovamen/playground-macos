@@ -30,7 +30,7 @@ class WifiMenu extends Component {
   render() {
     return (
       <div
-        className="fixed w-80 max-w-full top-8 right-0 sm:right-2 z-50 p-2 flex gap-2 bg-white bg-opacity-40 blur rounded-2xl text-black shadow-2xl"
+        className="fixed w-80 max-w-full top-8 right-0 sm:right-2 px-2 py-0.5 flex gap-2 bg-gray-200 bg-opacity-90 blur rounded-lg text-black shadow-2xl"
         ref={this.wifiRef}
       >
         <div className="w-4/5 p-2 font-medium">Wi-Fi</div>
