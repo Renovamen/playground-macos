@@ -64,7 +64,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "framer-motion": "^4.1.16",
-    "ga-4-react": "^0.1.281",
     "nightwind": "^1.1.11",
     "prettier": "^2.2.1",
     "react": "^17.0.2",

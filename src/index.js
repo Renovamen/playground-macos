@@ -4,14 +4,10 @@ import "./styles/index.css";
 import "./styles/index.tailwind.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import GA4React from "ga-4-react";
 
 import Desktop from "./pages/Desktop";
 import Login from "./pages/Login";
 import Boot from "./pages/Boot";
-import keys from "./configs/keys";
-
-const ga4react = new GA4React(keys.ga);
 
 export default function App() {
   const [login, setLogin] = useState(false);
@@ -68,15 +64,11 @@ export default function App() {
 
 const rootElement = document.getElementById("root");
 
-(async (_) => {
-  await ga4react.initialize();
-
-  ReactDOM.render(
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>,
-    rootElement
-  );
-})();
+ReactDOM.render(
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
+  rootElement
+);
