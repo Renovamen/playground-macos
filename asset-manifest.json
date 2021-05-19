@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.75f71642.chunk.css",
-    "main.js": "/static/js/main.6349041b.chunk.js",
-    "main.js.map": "/static/js/main.6349041b.chunk.js.map",
+    "main.js": "/static/js/main.9371629d.chunk.js",
+    "main.js.map": "/static/js/main.9371629d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.38726495.js",
     "runtime-main.js.map": "/static/js/runtime-main.38726495.js.map",
     "static/css/2.7fef4f10.chunk.css": "/static/css/2.7fef4f10.chunk.css",
-    "static/js/2.6e19c351.chunk.js": "/static/js/2.6e19c351.chunk.js",
-    "static/js/2.6e19c351.chunk.js.map": "/static/js/2.6e19c351.chunk.js.map",
+    "static/js/2.3798622d.chunk.js": "/static/js/2.3798622d.chunk.js",
+    "static/js/2.3798622d.chunk.js.map": "/static/js/2.3798622d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.7fef4f10.chunk.css.map": "/static/css/2.7fef4f10.chunk.css.map",
     "static/css/main.75f71642.chunk.css.map": "/static/css/main.75f71642.chunk.css.map",
-    "static/js/2.6e19c351.chunk.js.LICENSE.txt": "/static/js/2.6e19c351.chunk.js.LICENSE.txt",
+    "static/js/2.3798622d.chunk.js.LICENSE.txt": "/static/js/2.3798622d.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/AvenirNextLTPro-Regular.a6f907b6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.38726495.js",
     "static/css/2.7fef4f10.chunk.css",
-    "static/js/2.6e19c351.chunk.js",
+    "static/js/2.3798622d.chunk.js",
     "static/css/main.75f71642.chunk.css",
-    "static/js/main.6349041b.chunk.js"
+    "static/js/main.9371629d.chunk.js"
   ]
 }
