@@ -26,7 +26,9 @@ import { FaWifi } from "react-icons/fa";
 const SliderComponent = ({ icon, value, setValue }) => {
   return (
     <div className="slider flex flex-row w-full">
-      <div className="h-8 p-2 bg-gray-100 rounded-l-full">{icon}</div>
+      <div className="h-8 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-400 border-opacity-60">
+        {icon}
+      </div>
       <Slider
         min={1}
         max={100}

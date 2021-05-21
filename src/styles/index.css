@@ -112,7 +112,7 @@ body:not(pre) {
 /* --------- slider --------- */
 
 .slider .rangeslider {
-  @apply bg-gray-200 w-full h-8 rounded-full shadow-none m-0;
+  @apply bg-gray-300 bg-opacity-90 w-full h-8 shadow-none m-0 rounded-r-full border-t border-r border-b border-gray-400 border-opacity-30;
 }
 
 .slider .rangeslider .rangeslider__fill {
@@ -120,7 +120,7 @@ body:not(pre) {
 }
 
 .slider .rangeslider .rangeslider__handle {
-  @apply border-none outline-none h-8 w-8;
+  @apply border border-gray-400 border-opacity-60 outline-none h-8 w-8;
   background-color: #fff;
   color: #fff;
   box-shadow: -5px 0px 10px 0px rgba(17, 17, 17, 0.2);
