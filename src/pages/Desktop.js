@@ -207,7 +207,7 @@ class Desktop extends Component {
   render() {
     return (
       <div
-        className="w-screen h-screen overflow-hidden bg-center bg-cover"
+        className="w-full h-full overflow-hidden bg-center bg-cover"
         style={{
           backgroundImage: `url(${
             this.props.dark ? wallpapers.night : wallpapers.day

@@ -30,18 +30,18 @@ class WifiMenu extends Component {
   render() {
     return (
       <div
-        className="fixed w-80 max-w-full top-8 right-0 sm:right-2 px-2 py-0.5 flex gap-2 bg-gray-200 bg-opacity-90 blur rounded-lg text-black shadow-2xl"
+        className="fixed h-10 w-80 max-w-full top-8 right-0 sm:right-2 px-2 py-0.5 flex gap-2 bg-gray-200 bg-opacity-90 blur rounded-lg text-black shadow-2xl"
         ref={this.wifiRef}
       >
         <div className="w-4/5 p-2 font-medium">Wi-Fi</div>
-        <div className="w-1/5 p-2">
-          <label class="switch-toggle">
+        <div className="w-1/5 px-3.5 py-2">
+          <label className="switch-toggle">
             <input
               type="checkbox"
               checked={this.props.wifi}
-              onClick={() => this.props.toggleWIFI(!this.props.wifi)}
+              onChange={() => this.props.toggleWIFI(!this.props.wifi)}
             />
-            <span class="slider-toggle round"></span>
+            <span className="slider-toggle"></span>
           </label>
         </div>
       </div>

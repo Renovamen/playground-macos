@@ -26,20 +26,6 @@
   src: local("Avenir Next LT Pro DemiIt"), url("./fonts/AvenirNextLTPro-DemiItalic.woff") format("woff");
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html, body, #root {
-  height: 100%;
-  overflow: hidden;
-}
-
-body:not(pre) {
-  font-family: "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
-}
-
 .font-avenir {
   font-family: "Avenir Next LT Pro", "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
 }
@@ -48,18 +34,20 @@ body:not(pre) {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 
+* {
+  @apply m-0 p-0;
+}
+
+html, body, #root {
+  @apply h-full overflow-hidden;
+}
+
+body:not(pre) {
+  font-family: "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
+}
+
 .blur {
   backdrop-filter: blur(40px);
-}
-
-.transition-hw {
-  transition-property: height, width;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.5s;
-}
-
-.filter-invert {
-  filter: invert();
 }
 
 /* --------- input --------- */
@@ -69,12 +57,7 @@ body:not(pre) {
 }
 
 .spotlight input::placeholder {
-  color: black;
-  opacity: 0.4;
-}
-
-.dark .spotlight input::placeholder {
-  color: white;
+  @apply text-black opacity-40;
 }
 
 /* --------- spotlight --------- */
@@ -104,11 +87,11 @@ body:not(pre) {
 }
 
 .traffic_lights svg {
-  display: none;
+  @apply hidden;
 }
 
 .traffic_lights:hover svg {
-  display: block;
+  @apply block;
 }
 
 /* --------- dock --------- */
@@ -118,38 +101,33 @@ body:not(pre) {
 }
 
 .dock li .tooltip {
-  display: none;
+  @apply hidden;
 }
 
 .dock li:hover .tooltip {
-  display: block;
+  @apply block;
   box-shadow: hsla(0deg, 0%, 0%, 20%) 0px 1px 5px 2px, 0 0 0 0 white;
 }
 
 /* --------- slider --------- */
 
 .slider .rangeslider {
-  @apply bg-gray-200;
-  margin: 0 !important;
-  width: 100%;
-  height: 2rem;
-  border-radius: 9999px;
-  box-shadow: none;
+  @apply bg-gray-200 w-full h-8 rounded-full shadow-none m-0;
 }
+
 .slider .rangeslider .rangeslider__fill {
-  @apply bg-gray-100;
-  box-shadow: none;
-  border-radius: 0;
+  @apply bg-gray-100 shadow-none rounded-none;
 }
+
 .slider .rangeslider .rangeslider__handle {
+  @apply border-none outline-none h-8 w-8;
   background-color: #fff;
   color: #fff;
   box-shadow: -5px 0px 10px 0px rgba(17, 17, 17, 0.2);
-  border: none;
-  outline: none;
 }
+
 .slider .rangeslider .rangeslider__handle::after {
-  display: none;
+  @apply hidden;
 }
 
 /* --------- bear markdown --------- */
@@ -316,42 +294,23 @@ body:not(pre) {
 
 /* The switch - the box around the slider */
 .switch-toggle {
-  position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 17px;
+  @apply relative inline-block w-full h-full;
 }
 
 /* Hide default HTML checkbox */
 .switch-toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  @apply w-0 h-0 opacity-0;
 }
 
 /* The slider */
 .slider-toggle {
-  @apply bg-gray-300;
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  -webkit-transition: .4s;
-  transition: .4s;
+  @apply absolute rounded-full bg-gray-300 top-0 left-0 right-0 bottom-0 cursor-pointer duration-300;
 }
 
 .slider-toggle:before {
-  position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
-  left: 2px;
-  bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  @apply absolute rounded-full h-4 w-4 left-0.5 bottom-0.5 duration-300;
 }
 
 input:checked + .slider-toggle {
@@ -363,16 +322,5 @@ input:focus + .slider-toggle {
 }
 
 input:checked + .slider-toggle:before {
-  -webkit-transform: translateX(13px);
-  -ms-transform: translateX(13px);
-  transform: translateX(13px);
-}
-
-/* Rounded sliders */
-.slider-toggle.round {
-  border-radius: 17px;
-}
-
-.slider-toggle.round:before {
-  border-radius: 50%;
+  @apply transform translate-x-3;
 }

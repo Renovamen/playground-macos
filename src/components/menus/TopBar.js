@@ -198,7 +198,7 @@ class TopBar extends Component {
             ref={this.controlCenterBtnRef}
           >
             <img
-              className="w-4 h-4 filter-invert"
+              className="w-4 h-4 filter invert"
               src="img/icons/menu/controlcenter.png"
               alt="control center"
             />

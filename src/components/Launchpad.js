@@ -33,7 +33,7 @@ class Launchpad extends Component {
 
     return (
       <div
-        className={`nightwind-prevent-block ${close} transform scale-110 w-screen h-screen fixed overflow-hidden bg-center bg-cover`}
+        className={`nightwind-prevent-block ${close} transform scale-110 w-full h-full fixed overflow-hidden bg-center bg-cover`}
         id="launchpad"
         style={{
           zIndex: 99998,
