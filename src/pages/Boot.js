@@ -42,12 +42,12 @@ export default class Boot extends Component {
   render() {
     return (
       <div
-        className="nightwind-prevent nightwind-prevent-block w-screen h-screen bg-black flex flex-col justify-center items-center"
+        className="nightwind-prevent nightwind-prevent-block w-full h-full bg-black flex flex-col justify-center items-center"
         onClick={this.handleClick.bind(this)}
       >
-        <FaApple className="text-white" size={100} />
+        <FaApple className="text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />
         {this.intervalId && (
-          <div className="absolute top-1/2 left-0 right-0 mx-auto mt-28 w-56 h-1.5 bg-gray-500 rounded overflow-hidden">
+          <div className="absolute top-1/2 mt-16 sm:mt-24 left-0 right-0 mx-auto w-56 h-1 sm:h-1.5 bg-gray-500 rounded overflow-hidden">
             <span
               className="absolute top-0 bg-white h-full rounded-sm"
               style={{
@@ -57,7 +57,7 @@ export default class Boot extends Component {
           </div>
         )}
         {!this.props.restart && !this.intervalId && (
-          <div className="text-sm text-gray-200 text-center absolute top-1/2 mt-24 left-0 right-0 mx-auto">
+          <div className="absolute top-1/2 mt-16 sm:mt-20 left-0 right-0 mx-auto text-sm text-gray-200 text-center">
             Click to {this.props.sleep ? "wake up" : "boot"}
           </div>
         )}
