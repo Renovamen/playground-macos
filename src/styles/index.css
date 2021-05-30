@@ -109,10 +109,18 @@ body:not(pre) {
   box-shadow: hsla(0deg, 0%, 0%, 20%) 0px 1px 5px 2px, 0 0 0 0 white;
 }
 
+/* --------- control center --------- */
+
+.control-grid {
+  @apply bg-gray-200 bg-opacity-60 blur rounded-xl;
+  backdrop-filter: blur(40px);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
 /* --------- slider --------- */
 
 .slider .rangeslider {
-  @apply bg-gray-300 bg-opacity-90 w-full h-8 shadow-none m-0 rounded-r-full border-t border-r border-b border-gray-400 border-opacity-30;
+  @apply bg-gray-300 w-full h-7 shadow-none m-0 rounded-r-full border-t border-r border-b border-transparent;
 }
 
 .slider .rangeslider .rangeslider__fill {
@@ -120,10 +128,10 @@ body:not(pre) {
 }
 
 .slider .rangeslider .rangeslider__handle {
-  @apply border border-gray-400 border-opacity-60 outline-none h-8 w-8;
+  @apply border border-gray-300 outline-none h-7 w-7;
   background-color: #fff;
   color: #fff;
-  box-shadow: -5px 0px 10px 0px rgba(17, 17, 17, 0.2);
+  box-shadow: -3px 0px 8px 0px rgba(17, 17, 17, 0.15);
 }
 
 .slider .rangeslider .rangeslider__handle::after {

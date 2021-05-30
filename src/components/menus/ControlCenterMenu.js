@@ -26,7 +26,7 @@ import { FaWifi } from "react-icons/fa";
 const SliderComponent = ({ icon, value, setValue }) => {
   return (
     <div className="slider flex flex-row w-full">
-      <div className="h-8 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-400 border-opacity-60">
+      <div className="h-7 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-300">
         {icon}
       </div>
       <Slider
@@ -68,73 +68,74 @@ class ControlCenterMenu extends Component {
   render() {
     return (
       <div
-        className="fixed w-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-40 blur rounded-2xl text-black shadow-2xl"
+        className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-white bg-opacity-40 blur rounded-2xl text-black"
+        style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
         ref={this.controlCenterRef}
       >
-        <div className="row-span-2 col-span-2 bg-gray-200 bg-opacity-70 rounded-xl p-2 flex flex-col justify-around">
-          <div className="flex flex-row items-center space-x-2 pr-6">
+        <div className="control-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
+          <div className="flex flex-row items-center space-x-2">
             <FaWifi
-              size={36}
+              size={32}
               className={`${
                 this.props.wifi
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-gray-700"
+                  : "bg-gray-400 bg-opacity-25 text-gray-700"
               } rounded-full p-2`}
               onClick={() => this.props.toggleWIFI(!this.props.wifi)}
             />
-            <div className="flex flex-col">
-              <span className="font-medium">Wifi</span>
-              <span className="font-thin text-xs">
+            <div className="flex flex-col pt-0.5">
+              <span className="font-medium leading-4">Wi-Fi</span>
+              <span className="text-xs text-gray-500">
                 {this.props.wifi ? "Home" : "Off"}
               </span>
             </div>
           </div>
-          <div className="flex flex-row items-center space-x-2 pr-6">
+          <div className="flex flex-row items-center space-x-2">
             <FiBluetooth
-              size={36}
+              size={32}
               className={`${
                 this.props.bluetooth
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-gray-700"
+                  : "bg-gray-400 bg-opacity-25 text-gray-700"
               } rounded-full p-2`}
               onClick={() => this.props.toggleBleutooth(!this.props.bluetooth)}
             />
-            <div className="flex flex-col">
-              <span className="font-medium">Bluetooth</span>
-              <span className="font-thin text-xs">
+            <div className="flex flex-col pt-0.5">
+              <span className="font-medium leading-4">Bluetooth</span>
+              <span className="text-xs text-gray-500">
                 {this.props.bluetooth ? "On" : "Off"}
               </span>
             </div>
           </div>
-          <div className="flex flex-row items-center space-x-2 pr-6">
+          <div className="flex flex-row items-center space-x-2">
             <FiRss
-              size={36}
+              size={32}
               className={`${
                 this.props.airdrop
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-300 text-gray-700"
+                  : "bg-gray-400 bg-opacity-25 text-gray-700"
               } rounded-full p-2`}
               onClick={() => this.props.toggleAirdrop(!this.props.airdrop)}
             />
-            <div className="flex flex-col">
-              <span className="font-medium">AirDrop</span>
-              <span className="font-thin text-xs">
+            <div className="flex flex-col pt-0.5">
+              <span className="font-medium leading-4">AirDrop</span>
+              <span className="text-xs text-gray-500">
                 {this.props.airdrop ? "Contacts Only" : "Off"}
               </span>
             </div>
           </div>
         </div>
-        <div className="col-span-2 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-row items-center space-x-2">
+        <div className="control-grid col-span-2 p-2 flex flex-row items-center space-x-2">
           {this.props.dark ? (
             <IoMoon
-              size={34}
-              className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
+              size={32}
+              className="text-gray-700 bg-gray-400 bg-opacity-25 rounded-full p-2"
               onClick={() => this.props.toggleDark(false)}
             />
           ) : (
             <IoSunny
-              size={34}
-              className="text-gray-700 bg-gray-300 bg-opacity-50 rounded-full p-2"
+              size={32}
+              className="text-gray-700 bg-gray-400 bg-opacity-25 rounded-full p-2"
               onClick={() => this.props.toggleDark(true)}
             />
           )}
@@ -144,12 +145,14 @@ class ControlCenterMenu extends Component {
             </span>
           </div>
         </div>
-        <div className="bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-col justify-center items-center text-center">
+        <div className="control-grid p-2 flex flex-col justify-center items-center text-center">
           <BsBrightnessAltHigh size={20} />
-          <span className="text-xs">Keyboard Brightness</span>
+          <span className="text-xs" style={{ lineHeight: "0.9rem" }}>
+            Keyboard Brightness
+          </span>
         </div>
         <div
-          className="bg-gray-200 bg-opacity-60 blur rounded-xl p-2 flex flex-col justify-center items-center text-center cursor-default"
+          className="control-grid p-2 flex flex-col justify-center items-center text-center cursor-default"
           onClick={() => this.props.toggleFullScreen(!this.props.fullscreen)}
         >
           {this.props.fullscreen ? (
@@ -157,31 +160,31 @@ class ControlCenterMenu extends Component {
           ) : (
             <BsFullscreen size={16} />
           )}
-          <span className="text-xs mt-1.5">
+          <span className="text-xs mt-1.5" style={{ lineHeight: "0.9rem" }}>
             {this.props.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
           </span>
         </div>
-        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
-          <span className="font-medium">Display</span>
+        <div className="control-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
+          <span className="font-medium ml-0.5">Display</span>
           <SliderComponent
-            icon={<IoSunny size={16} className="text-gray-500" />}
+            icon={<IoSunny size={12} className="text-gray-500" />}
             value={this.props.brightness}
             setValue={this.props.setBrightness}
           />
         </div>
-        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 space-y-2 flex flex-col justify-around">
-          <span className="font-medium">Sound</span>
+        <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl px-2.5 py-2 space-y-1 flex flex-col justify-around">
+          <span className="font-medium ml-0.5">Sound</span>
           <SliderComponent
-            icon={<IoVolumeHigh size={16} className="text-gray-500" />}
+            icon={<IoVolumeHigh size={12} className="text-gray-500" />}
             value={this.props.volume}
             setValue={this.props.setVolume}
           />
         </div>
-        <div className="col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-4">
-          <img src={music.cover} alt="cover art" className="w-16 rounded-lg" />
+        <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-2.5">
+          <img src={music.cover} alt="cover art" className="w-12 rounded-lg" />
           <div className="flex flex-col flex-grow justify-start">
             <span className="font-medium">{music.title}</span>
-            <span className="font-extralight">{music.artist}</span>
+            <span className="text-xs text-gray-500">{music.artist}</span>
           </div>
           {this.props.playing ? (
             <BsPauseFill

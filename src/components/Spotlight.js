@@ -107,7 +107,7 @@ export default class Spotlight extends Component {
         <li
           id={`spotlight-${app.id}`}
           key={`spotlight-${app.id}`}
-          className={`pl-4 h-7 w-full flex flex-row ${bg} ${text} cursor-default`}
+          className={`pl-4 h-7 w-full pr-1 flex flex-row ${bg} ${text} cursor-default`}
           data-app-type={type}
           onClick={() => this.handleClick(app.id)}
           onDoubleClick={() => this.handleDoubleClick(app.id)}
@@ -120,7 +120,9 @@ export default class Spotlight extends Component {
               title={app.title}
             />
           </div>
-          <div className="flex-grow flex items-center pl-3">{app.title}</div>
+          <div className="flex-grow flex items-center pl-3 overflow-hidden whitespace-nowrap">
+            {app.title}
+          </div>
         </li>
       );
       appIdList.push(app.id);
