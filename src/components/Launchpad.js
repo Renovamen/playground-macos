@@ -41,9 +41,13 @@ class Launchpad extends Component {
             this.props.dark ? wallpapers.night : wallpapers.day
           })`
         }}
+        onClick={() => this.props.toggleLaunchpad(false)}
       >
         <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 blur">
-          <div className="block mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30">
+          <div
+            className="block mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="col-start-1 col-span-1 flex justify-center items-center">
               <BiSearch className="ml-1" color="white" />
             </div>
@@ -72,6 +76,7 @@ class Launchpad extends Component {
                     href={app.link}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <img
                       className="w-14 sm:w-20 mx-auto"

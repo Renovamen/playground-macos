@@ -247,7 +247,10 @@ class Desktop extends Component {
         )}
 
         {/* Launchpad */}
-        <Launchpad show={this.state.showLaunchpad} />
+        <Launchpad
+          show={this.state.showLaunchpad}
+          toggleLaunchpad={this.toggleLaunchpad}
+        />
 
         {/* Dock */}
         <Dock
