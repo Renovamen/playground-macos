@@ -70,14 +70,14 @@ class NavPage extends Component {
 
     return (
       <div
-        className="w-full safari-content bg-blue-50 overflow-y-scroll bg-center bg-cover"
+        className="w-full safari-content overflow-y-scroll bg-center bg-cover"
         style={{
           backgroundImage: `url(${
             this.props.dark ? wallpapers.night : wallpapers.day
           })`
         }}
       >
-        <div className="w-full pt-8 bg-gray-100 bg-opacity-80 blur">
+        <div className="w-full min-h-full pt-8 bg-gray-100 bg-opacity-80 blur">
           {/* Favorites */}
           <NavSection
             section={websites.favorites}
@@ -93,7 +93,7 @@ class NavPage extends Component {
           />
 
           {/* Privacy Report */}
-          <div className="z-100 mx-auto pt-8 pb-16 px-6 w-full max-w-screen-md px-4">
+          <div className="mx-auto pt-8 pb-16 px-6 w-full max-w-screen-md px-4">
             <div className="text-xl sm:text-2xl text-black font-medium">
               Privacy Report
             </div>
