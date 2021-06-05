@@ -77,11 +77,11 @@ const terminal = [
               Linkedin:{" "}
               <a
                 className="text-blue-300"
-                href="https://www.linkedin.com/in/xiaohan-zou-55bba0160"
+                href="https://www.linkedin.com/in/xiaohan-zou"
                 target="_blank"
                 rel="noreferrer"
               >
-                https://www.linkedin.com/in/xiaohan-zou-55bba0160
+                https://www.linkedin.com/in/xiaohan-zou
               </a>
             </li>
             <li>

@@ -19,7 +19,7 @@ const websites = {
         id: "my-linkedin",
         title: "Linkedin",
         img: "img/sites/linkedin.svg",
-        link: "https://www.linkedin.com/in/xiaohan-zou-55bba0160"
+        link: "https://www.linkedin.com/in/xiaohan-zou"
       },
       {
         id: "my-zhihu",
