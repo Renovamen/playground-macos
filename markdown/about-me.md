@@ -19,7 +19,7 @@ Contact me by:
 
 - Email: [renovamenzxh@gmail.com](mailto:renovamenzxh@gmail.com) / [xiaohan.zou@foxmail.com](mailto:xiaohan.zou@foxmail.com)
 - Github: [@Renovamen](https://github.com/Renovamen)
-- [Linkedin](https://www.linkedin.com/in/xiaohan-zou-55bba0160)
+- [Linkedin](https://www.linkedin.com/in/xiaohan-zou)
 - 知乎: [@Renovamen](https://www.zhihu.com/people/chao-neng-gui-su)
 - Blog: [zxh.io](https://zxh.io)
 
