@@ -3,13 +3,21 @@ import { connect } from "react-redux";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { CgSleep } from "react-icons/cg";
 import { RiShutDownLine, RiRestartLine } from "react-icons/ri";
+
+import { macActions } from "../types";
 import wallpapers from "../configs/wallpapers";
 import user from "../configs/user";
 
-class Login extends Component {
-  keyPress = (e) => {
-    const keyCode = e.which || e.keyCode;
-    if (keyCode === 13) this.props.setLogin(true);
+type LoginRedux = {
+  dark?: boolean;
+};
+
+type LoginProps = LoginRedux & macActions;
+
+class Login extends Component<LoginProps, {}> {
+  keyPress = (e: React.KeyboardEvent) => {
+    const keyCode = e.key;
+    if (keyCode === "Enter") this.props.setLogin(true);
   };
 
   render() {
@@ -57,7 +65,7 @@ class Login extends Component {
         <div className="nightwind-prevent-block text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
           <div
             className="flex flex-col items-center text-white w-24"
-            onClick={this.props.sleepMac}
+            onClick={(e) => this.props.sleepMac(e)}
           >
             <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
               <CgSleep size={40} />
@@ -66,7 +74,7 @@ class Login extends Component {
           </div>
           <div
             className="flex flex-col items-center text-white w-24"
-            onClick={this.props.restartMac}
+            onClick={(e) => this.props.restartMac(e)}
           >
             <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
               <RiRestartLine size={36} />
@@ -75,7 +83,7 @@ class Login extends Component {
           </div>
           <div
             className="flex flex-col items-center text-white w-24"
-            onClick={this.props.shutMac}
+            onClick={(e) => this.props.shutMac(e)}
           >
             <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
               <RiShutDownLine size={36} />
@@ -88,7 +96,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: LoginRedux): LoginRedux => {
   return {
     dark: state.dark
   };

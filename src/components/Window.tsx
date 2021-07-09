@@ -3,7 +3,7 @@ import { Rnd } from "react-rnd";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
 
-const FullIcon = ({ size }) => {
+const FullIcon = ({ size }: { size: number }) => {
   return (
     <svg
       viewBox="0 0 13 13"
@@ -21,7 +21,7 @@ const FullIcon = ({ size }) => {
   );
 };
 
-const ExitFullIcon = ({ size }) => {
+const ExitFullIcon = ({ size }: { size: number }) => {
   return (
     <svg
       viewBox="0 0 19 19"
@@ -42,8 +42,36 @@ const ExitFullIcon = ({ size }) => {
 const minMarginY = 24;
 const minMarginX = 100;
 
-const TrafficLights = ({ id, close, max, setMax, setMin }) => {
-  const closeWindow = (e) => {
+interface TrafficProps {
+  id: string;
+  max: boolean;
+  setMax: (id: string, target?: boolean) => void;
+  setMin: (id: string) => void;
+  close: (id: string) => void;
+}
+
+interface WindowProps extends TrafficProps {
+  min: boolean;
+  width?: number;
+  height?: number;
+  minWidth?: number;
+  minHeight?: number;
+  title: string;
+  z: number;
+  focus: (id: string) => void;
+}
+
+interface WindowState {
+  width: number;
+  height: number;
+  maxW: number;
+  maxH: number;
+  x: number;
+  y: number;
+}
+
+const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
+  const closeWindow = (e: React.MouseEvent | React.TouchEvent): void => {
     e.stopPropagation();
     close(id);
   };
@@ -63,7 +91,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }) => {
         } outline-none focus:outline-none inline-flex justify-center items-center`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
-        disabled={max ? 1 : 0}
+        disabled={max}
       >
         <FiMinus size={11} className={max ? "invisible" : ""} />
       </button>
@@ -78,13 +106,13 @@ const TrafficLights = ({ id, close, max, setMax, setMin }) => {
   );
 };
 
-export default class Window extends Component {
-  constructor(props) {
+export default class Window extends Component<WindowProps, WindowState> {
+  constructor(props: WindowProps) {
     super(props);
     const maxW = document.body.offsetWidth;
     const maxH = document.body.offsetHeight;
-    const width = Math.min(maxW, props.width ? props.width : "640");
-    const height = Math.min(maxH, props.height ? props.height : "400");
+    const width = Math.min(maxW, props.width ? props.width : 640);
+    const height = Math.min(maxH, props.height ? props.height : 400);
     this.state = {
       width: width,
       height: height,
@@ -129,7 +157,10 @@ export default class Window extends Component {
     const width = this.props.max ? this.state.maxW : this.state.width;
     const height = this.props.max ? this.state.maxH : this.state.height;
 
-    let children = React.cloneElement(this.props.children, { width: width });
+    let children = React.cloneElement(
+      this.props.children as React.ReactElement<any>,
+      { width: width }
+    );
 
     return (
       <Rnd

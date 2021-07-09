@@ -1,6 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import { MenuItem, MenuItemGroup } from "./base";
 
+interface AppleMenuProps {
+  logout: () => void;
+  shut: (e: React.MouseEvent<HTMLLIElement>) => void;
+  restart: (e: React.MouseEvent<HTMLLIElement>) => void;
+  sleep: (e: React.MouseEvent<HTMLLIElement>) => void;
+  toggleAppleMenu: () => void;
+  btnRef: any;
+}
+
 export default function AppleMenu({
   logout,
   shut,
@@ -8,11 +17,11 @@ export default function AppleMenu({
   sleep,
   toggleAppleMenu,
   btnRef
-}) {
-  const ref = useRef(null);
+}: AppleMenuProps) {
+  const ref = useRef<any>(null);
 
   useEffect(() => {
-    function handleClickOutside(e) {
+    function handleClickOutside(e: MouseEvent): void {
       if (
         ref.current &&
         !ref.current.contains(e.target) &&

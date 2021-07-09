@@ -10,12 +10,12 @@ import Login from "./pages/Login";
 import Boot from "./pages/Boot";
 
 export default function App() {
-  const [login, setLogin] = useState(false);
-  const [booting, setBooting] = useState(false);
-  const [restart, setRestart] = useState(false);
-  const [sleep, setSleep] = useState(false);
+  const [login, setLogin] = useState<boolean>(false);
+  const [booting, setBooting] = useState<boolean>(false);
+  const [restart, setRestart] = useState<boolean>(false);
+  const [sleep, setSleep] = useState<boolean>(false);
 
-  const shutMac = (e) => {
+  const shutMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
     setRestart(false);
     setSleep(false);
@@ -23,7 +23,7 @@ export default function App() {
     setBooting(true);
   };
 
-  const restartMac = (e) => {
+  const restartMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
     setRestart(true);
     setSleep(false);
@@ -31,7 +31,7 @@ export default function App() {
     setBooting(true);
   };
 
-  const sleepMac = (e) => {
+  const sleepMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
     setRestart(false);
     setSleep(true);

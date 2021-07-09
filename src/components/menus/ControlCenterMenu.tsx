@@ -23,7 +23,13 @@ import {
 import { IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
 import { FaWifi } from "react-icons/fa";
 
-const SliderComponent = ({ icon, value, setValue }) => {
+interface SliderProps {
+  icon: any;
+  value: number;
+  setValue: (value: number) => void;
+}
+
+const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
     <div className="slider flex flex-row w-full">
       <div className="h-7 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-300">
@@ -35,14 +41,40 @@ const SliderComponent = ({ icon, value, setValue }) => {
         value={value}
         tooltip={false}
         orientation="horizontal"
-        onChange={(v) => setValue(v)}
+        onChange={(v: number) => setValue(v)}
       />
     </div>
   );
 };
 
-class ControlCenterMenu extends Component {
-  constructor(props) {
+interface CCMRedux {
+  dark: boolean;
+  wifi: boolean;
+  brightness: number;
+  bluetooth: boolean;
+  airdrop: boolean;
+  fullscreen: boolean;
+  volume: number;
+}
+
+interface CCMProps extends CCMRedux {
+  btnRef: any;
+  toggleControlCenter: () => void;
+  toggleDark: Function;
+  toggleWIFI: Function;
+  toggleAirdrop: Function;
+  toggleBleutooth: Function;
+  toggleFullScreen: Function;
+  setBrightness: (value: number) => void;
+  setVolume: (value: number) => void;
+  toggleAudio: (target: boolean) => void;
+  playing: boolean;
+}
+
+class ControlCenterMenu extends Component<CCMProps, {}> {
+  private controlCenterRef: any;
+
+  constructor(props: CCMProps) {
     super(props);
     this.controlCenterRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -56,7 +88,7 @@ class ControlCenterMenu extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  handleClickOutside(e) {
+  handleClickOutside(e: MouseEvent): void {
     if (
       this.controlCenterRef &&
       !this.controlCenterRef.current.contains(e.target) &&
@@ -203,7 +235,7 @@ class ControlCenterMenu extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: CCMRedux): CCMRedux => {
   return {
     dark: state.dark,
     wifi: state.wifi,

@@ -4,26 +4,46 @@ import { BiSearch } from "react-icons/bi";
 import apps from "../configs/apps";
 import launchpad from "../configs/launchpad";
 
-const allApps = {
+const allApps: { [key: string]: any } = {
   app: apps,
   portfolio: launchpad
 };
 
-const getRandom = (min, max) => {
+const getRandom = (min: number, max: number): number => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const getRandomDate = () => {
+const getRandomDate = (): string => {
   const timeStamp = new Date().getTime();
   const randomStamp = getRandom(0, timeStamp);
   const date = format(randomStamp, "MM/dd/yyyy");
   return date;
 };
 
-export default class Spotlight extends Component {
-  constructor(props) {
+interface SpotlightProps {
+  toggleSpotlight: () => void;
+  openApp: (id: string) => void;
+  toggleLaunchpad: (target: boolean) => void;
+  btnRef: any;
+}
+
+interface SpotlightState {
+  searchText: string;
+  appList: JSX.Element | null;
+  appIdList: string[];
+  curDetails: any;
+}
+
+export default class Spotlight extends Component<
+  SpotlightProps,
+  SpotlightState
+> {
+  private curSelectIndex: number;
+  private spotlightRef: any;
+
+  constructor(props: SpotlightProps) {
     super(props);
     this.state = {
       searchText: "",
@@ -44,10 +64,10 @@ export default class Spotlight extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  search = (type) => {
+  search = (type: string) => {
     if (this.state.searchText === "") return [];
     const text = this.state.searchText.toLowerCase();
-    const list = allApps[type].filter((item) => {
+    const list = allApps[type].filter((item: any) => {
       return (
         item.title.toLowerCase().includes(text) ||
         item.id.toLowerCase().includes(text)
@@ -56,7 +76,7 @@ export default class Spotlight extends Component {
     return list;
   };
 
-  handleClick = (id) => {
+  handleClick = (id: string): void => {
     const curSelectIndex = this.state.appIdList.findIndex((item) => {
       return item === id;
     });
@@ -65,12 +85,12 @@ export default class Spotlight extends Component {
     this.updateCurDetails();
   };
 
-  handleDoubleClick = (id) => {
+  handleDoubleClick = (id: string): void => {
     this.handleClick(id);
     this.launchCurApp();
   };
 
-  handleClickOutside(e) {
+  handleClickOutside(e: MouseEvent): void {
     if (
       this.spotlightRef &&
       !this.spotlightRef.current.contains(e.target) &&
@@ -79,7 +99,7 @@ export default class Spotlight extends Component {
       this.props.toggleSpotlight();
   }
 
-  launchCurApp = () => {
+  launchCurApp = (): void => {
     if (this.state.curDetails.type === "app" && !this.state.curDetails.link) {
       const id = this.state.curDetails.id;
       if (id === "launchpad") this.props.toggleLaunchpad(true);
@@ -91,7 +111,7 @@ export default class Spotlight extends Component {
     }
   };
 
-  getTypeAppList = (type, startIndex) => {
+  getTypeAppList = (type: string, startIndex: number) => {
     const result = this.search(type);
     let appList = [];
     let appIdList = [];
@@ -134,7 +154,7 @@ export default class Spotlight extends Component {
     };
   };
 
-  updateAppList = () => {
+  updateAppList = (): void => {
     const app = this.getTypeAppList("app", 0);
     const portfolio = this.getTypeAppList("portfolio", app.appIdList.length);
 
@@ -168,27 +188,29 @@ export default class Spotlight extends Component {
     });
   };
 
-  setCurDetails = (app, type) => {
+  setCurDetails = (app: any, type: string): void => {
     const curDetails = app;
     curDetails.type = type;
     this.setState({ curDetails });
   };
 
-  updateCurDetails = () => {
+  updateCurDetails = (): void => {
     const appId = this.state.appIdList[this.curSelectIndex];
-    const elem = document.querySelector(`#spotlight-${appId}`);
+    const elem = document.querySelector(`#spotlight-${appId}`) as HTMLElement;
     const id = appId;
-    const type = elem.dataset.appType;
-    const app = allApps[type].find((item) => {
+    const type = elem.dataset.appType as string;
+    const app = allApps[type].find((item: any) => {
       return item.id === id;
     });
     this.setCurDetails(app, type);
   };
 
-  updateHighlight = (prevIndex, curIndex) => {
+  updateHighlight = (prevIndex: number, curIndex: number): void => {
     // remove highlight
     const prevAppId = this.state.appIdList[prevIndex];
-    const prev = document.querySelector(`#spotlight-${prevAppId}`);
+    const prev = document.querySelector(
+      `#spotlight-${prevAppId}`
+    ) as HTMLElement;
     let classes = prev.className;
     classes = classes.replace("text-white", "text-black");
     classes = classes.replace("bg-blue-500", "bg-transparent");
@@ -196,14 +218,14 @@ export default class Spotlight extends Component {
 
     // add highlight
     const curAppId = this.state.appIdList[curIndex];
-    const cur = document.querySelector(`#spotlight-${curAppId}`);
+    const cur = document.querySelector(`#spotlight-${curAppId}`) as HTMLElement;
     classes = cur.className;
     classes = classes.replace("text-black", "text-white");
     classes = classes.replace("bg-transparent", "bg-blue-500");
     cur.className = classes;
   };
 
-  handleKeyPress = (e) => {
+  handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     const keyCode = e.key;
     const numApps = this.state.appIdList.length;
 
@@ -226,7 +248,7 @@ export default class Spotlight extends Component {
     }
   };
 
-  handleInputChange = (e) => {
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     // current selected id go back to 0
     this.curSelectIndex = 0;
     // don"t show app details when there is no input
@@ -240,8 +262,9 @@ export default class Spotlight extends Component {
     );
   };
 
-  focusOnInput = () => {
-    document.querySelector("#spotlight-input").focus();
+  focusOnInput = (): void => {
+    const input = document.querySelector("#spotlight-input") as HTMLElement;
+    input.focus();
   };
 
   render() {

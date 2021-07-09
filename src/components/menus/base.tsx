@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 
-export class MenuItem extends Component {
+interface MenuItemProps {
+  onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
+}
+
+interface MenuItemGroupProps {
+  border?: boolean;
+}
+
+export class MenuItem extends Component<MenuItemProps, {}> {
   render() {
     return (
       <li
@@ -13,7 +21,7 @@ export class MenuItem extends Component {
   }
 }
 
-export class MenuItemGroup extends Component {
+export class MenuItemGroup extends Component<MenuItemGroupProps, {}> {
   render() {
     const border =
       this.props.border === false ? "" : "border-b-2 border-gray-400";

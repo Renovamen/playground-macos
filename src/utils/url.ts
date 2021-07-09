@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
-export const checkURL = (str) => {
+export const checkURL = (str: string): boolean => {
   const pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
       "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name

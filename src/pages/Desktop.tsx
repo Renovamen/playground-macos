@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import nightwind from "nightwind/helper";
 
+import { macActions } from "../types";
 import TopBar from "../components/menus/TopBar";
 import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
@@ -10,8 +11,36 @@ import Spotlight from "../components/Spotlight";
 import apps from "../configs/apps";
 import wallpapers from "../configs/wallpapers";
 
-class Desktop extends Component {
-  constructor(props) {
+type DesktopRedux = {
+  dark?: boolean;
+  brightness?: any;
+};
+
+type DesktopProps = DesktopRedux & macActions;
+
+interface DesktopState {
+  showApps: {
+    [key: string]: boolean;
+  };
+  appsZ: {
+    [key: string]: number;
+  };
+  maxApps: {
+    [key: string]: boolean;
+  };
+  minApps: {
+    [key: string]: boolean;
+  };
+  maxZ: number;
+  showLaunchpad: boolean;
+  currentTitle: string;
+  hideDock: boolean;
+  spotlight: boolean;
+  spotlightBtnRef: any;
+}
+
+class Desktop extends Component<DesktopProps, DesktopState> {
+  constructor(props: DesktopProps) {
     super(props);
     this.state = {
       showApps: {},
@@ -31,7 +60,7 @@ class Desktop extends Component {
     this.getAppsData();
   }
 
-  getAppsData = () => {
+  getAppsData = (): void => {
     let showApps = {},
       appsZ = {},
       maxApps = {},
@@ -59,8 +88,8 @@ class Desktop extends Component {
     this.setState({ showApps });
   };
 
-  toggleLaunchpad = (target) => {
-    let r = document.querySelector(`#launchpad`);
+  toggleLaunchpad = (target: boolean): void => {
+    let r = document.querySelector(`#launchpad`) as HTMLElement;
     if (target) {
       r.style.transform = "scale(1)";
       r.style.transition = "ease-in 0.2s";
@@ -72,12 +101,12 @@ class Desktop extends Component {
     this.setState({ showLaunchpad: target });
   };
 
-  toggleSpotlight = () => {
+  toggleSpotlight = (): void => {
     this.setState({ spotlight: !this.state.spotlight });
   };
 
-  setWinowsPosition = (id) => {
-    let r = document.querySelector(`#window-${id}`);
+  setWinowsPosition = (id: string): void => {
+    let r = document.querySelector(`#window-${id}`) as HTMLElement;
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
       "--window-transform-x",
@@ -89,7 +118,7 @@ class Desktop extends Component {
     );
   };
 
-  closeApp = (id) => {
+  closeApp = (id: string): void => {
     let showApps = this.state.showApps;
     showApps[id] = false;
     this.setState({
@@ -98,7 +127,7 @@ class Desktop extends Component {
     });
   };
 
-  openApp = (id) => {
+  openApp = (id: string): void => {
     // add it to the shown app list
     let showApps = this.state.showApps;
     showApps[id] = true;
@@ -108,20 +137,26 @@ class Desktop extends Component {
     let maxZ = this.state.maxZ + 1;
     appsZ[id] = maxZ;
 
+    // get the title of the currently opened app
+    const currentApp = apps.find((app) => {
+      return app.id === id;
+    });
+    if (currentApp === undefined) {
+      throw new TypeError(`App ${id} is undefined.`);
+    }
+
     this.setState({
       showApps: showApps,
       appsZ: appsZ,
       maxZ: maxZ,
-      currentTitle: apps.find((app) => {
-        return app.id === id;
-      }).title
+      currentTitle: currentApp.title
     });
 
     let minApps = this.state.minApps;
     // if the app has already been shown but minimized
     if (minApps[id]) {
       // move to window's last position
-      var r = document.querySelector(`#window-${id}`);
+      let r = document.querySelector(`#window-${id}`) as HTMLElement;
       r.style.transform = `translate(${r.style.getPropertyValue(
         "--window-transform-x"
       )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
@@ -132,7 +167,7 @@ class Desktop extends Component {
     }
   };
 
-  setAppMax = (id, target) => {
+  setAppMax = (id: string, target?: boolean): void => {
     let maxApps = this.state.maxApps;
     if (target === undefined) target = !maxApps[id];
     maxApps[id] = target;
@@ -142,7 +177,7 @@ class Desktop extends Component {
     });
   };
 
-  setAppMin = (id, target) => {
+  setAppMin = (id: string, target?: boolean): void => {
     let minApps = this.state.minApps;
     if (target === undefined) target = !minApps[id];
     minApps[id] = target;
@@ -151,20 +186,17 @@ class Desktop extends Component {
     });
   };
 
-  minimizeApp = (id) => {
+  minimizeApp = (id: string): void => {
     this.setWinowsPosition(id);
 
     // get the corrosponding dock icon's position
-    var r = document.querySelector(`#dock-${id}`);
+    var r = document.querySelector(`#dock-${id}`) as HTMLElement;
     const dockAppRect = r.getBoundingClientRect();
 
-    r = document.querySelector(`#window-${id}`);
+    r = document.querySelector(`#window-${id}`) as HTMLElement;
     const appRect = r.getBoundingClientRect();
-    const posY =
-      document.body.offsetHeight -
-      appRect.y.toFixed(1) -
-      (r.offsetHeight / 2).toFixed(1);
-    const posX = dockAppRect.x.toFixed(1) - (r.offsetWidth / 2).toFixed(1) + 25;
+    const posY = document.body.offsetHeight - appRect.y - r.offsetHeight / 2;
+    const posX = dockAppRect.x - r.offsetWidth / 2 + 25;
 
     // translate the window to that position
     r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`;
@@ -226,7 +258,7 @@ class Desktop extends Component {
           sleepMac={this.props.sleepMac}
           restartMac={this.props.restartMac}
           toggleSpotlight={this.toggleSpotlight}
-          setSpotlightBtnRef={(value) => {
+          setSpotlightBtnRef={(value: React.RefObject<HTMLDivElement>) => {
             this.setState({
               spotlightBtnRef: value
             });
@@ -265,7 +297,7 @@ class Desktop extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: DesktopRedux): DesktopRedux => {
   return {
     dark: state.dark,
     brightness: state.brightness

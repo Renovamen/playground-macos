@@ -3,8 +3,20 @@ import { connect } from "react-redux";
 import "react-rangeslider/lib/index.css";
 import { toggleWIFI } from "../../redux/action";
 
-class WifiMenu extends Component {
-  constructor(props) {
+interface WifiMenuRedux {
+  wifi: boolean;
+}
+
+interface WifiMenuProps extends WifiMenuRedux {
+  toggleWifiMenu: () => void;
+  toggleWIFI: Function;
+  btnRef: any;
+}
+
+class WifiMenu extends Component<WifiMenuProps, {}> {
+  private wifiRef: any;
+
+  constructor(props: WifiMenuProps) {
     super(props);
     this.wifiRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -18,7 +30,7 @@ class WifiMenu extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  handleClickOutside(e) {
+  handleClickOutside(e: MouseEvent): void {
     if (
       this.wifiRef &&
       !this.wifiRef.current.contains(e.target) &&
@@ -49,9 +61,8 @@ class WifiMenu extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: WifiMenuRedux) => {
   return {
-    dark: state.dark,
     wifi: state.wifi
   };
 };

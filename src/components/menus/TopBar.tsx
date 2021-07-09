@@ -2,6 +2,7 @@ import React, { Component, createRef, forwardRef } from "react";
 import { connect } from "react-redux";
 import format from "date-fns/format";
 
+import { macActions } from "../../types";
 import AppleMenu from "./AppleMenu";
 import WifiMenu from "./WifiMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
@@ -16,7 +17,14 @@ import { FaWifi } from "react-icons/fa";
 import { RiSignalWifiLine } from "react-icons/ri";
 import { AiFillApple } from "react-icons/ai";
 
-const TopBarItem = forwardRef((props, ref) => {
+interface TopBarItemProps {
+  hideOnMobile?: boolean;
+  forceHover?: boolean;
+  onClick?: () => void;
+  children: React.ReactNode;
+}
+
+const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
   const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
   const hover = props.forceHover
     ? "bg-white bg-opacity-30"
@@ -32,8 +40,41 @@ const TopBarItem = forwardRef((props, ref) => {
   );
 });
 
-class TopBar extends Component {
-  constructor(props) {
+interface TopBarRedux {
+  volume: number;
+  brightness: number;
+  wifi: boolean;
+}
+
+interface TopBarProps extends macActions, TopBarRedux {
+  title: string;
+  setVolume: Function;
+  toggleFullScreen: Function;
+  setBrightness: Function;
+  setSpotlightBtnRef: (value: React.RefObject<HTMLDivElement>) => void;
+  toggleSpotlight: () => void;
+}
+
+interface TopBarState {
+  date: Date;
+  showControlCenter: boolean;
+  showWifiMenu: boolean;
+  showAppleMenu: boolean;
+  playing: boolean;
+}
+
+class TopBar extends Component<TopBarProps, TopBarState> {
+  private intervalId: any;
+  private appleBtnRef: any;
+  private controlCenterBtnRef: any;
+  private wifiBtnRef: any;
+  private spotlightBtnRef: any;
+  private clickedOutside: {
+    [key: string]: boolean;
+  };
+  private audio: HTMLAudioElement;
+
+  constructor(props: TopBarProps) {
     super(props);
     this.state = {
       date: new Date(),
@@ -47,6 +88,7 @@ class TopBar extends Component {
       control: false
     };
     this.intervalId = null;
+    this.audio = new Audio();
     this.toggleAudio = this.toggleAudio.bind(this);
     this.appleBtnRef = createRef();
     this.controlCenterBtnRef = createRef();
@@ -86,59 +128,59 @@ class TopBar extends Component {
     this.audio.removeEventListener("ended", () => this.audio.play());
   }
 
-  resize = () => {
+  resize = (): void => {
     const isFull = isFullScreen();
     this.props.toggleFullScreen(isFull);
   };
 
-  toggleAudio = (target) => {
+  toggleAudio = (target: boolean): void => {
     target ? this.audio.play() : this.audio.pause();
     this.setState({ playing: target });
   };
 
-  setVolume = (value) => {
+  setVolume = (value: number): void => {
     this.props.setVolume(value);
     this.audio.volume = value / 100;
   };
 
-  setBrightness = (value) => {
+  setBrightness = (value: number): void => {
     this.props.setBrightness(value);
   };
 
-  toggleControlCenter = () => {
+  toggleControlCenter = (): void => {
     this.setState({
       showControlCenter: !this.state.showControlCenter
     });
   };
 
-  toggleAppleMenu = () => {
+  toggleAppleMenu = (): void => {
     this.setState({
       showAppleMenu: !this.state.showAppleMenu
     });
   };
 
-  toggleWifiMenu = () => {
+  toggleWifiMenu = (): void => {
     this.setState({
       showWifiMenu: !this.state.showWifiMenu
     });
   };
 
-  logout = () => {
+  logout = (): void => {
     this.toggleAudio(false);
     this.props.setLogin(false);
   };
 
-  shut = (e) => {
+  shut = (e: React.MouseEvent<HTMLLIElement>): void => {
     this.toggleAudio(false);
     this.props.shutMac(e);
   };
 
-  restart = (e) => {
+  restart = (e: React.MouseEvent<HTMLLIElement>): void => {
     this.toggleAudio(false);
     this.props.restartMac(e);
   };
 
-  sleep = (e) => {
+  sleep = (e: React.MouseEvent<HTMLLIElement>): void => {
     this.toggleAudio(false);
     this.props.sleepMac(e);
   };
@@ -149,7 +191,7 @@ class TopBar extends Component {
         <div className="flex flex-row items-center space-x-4">
           <TopBarItem
             forceHover={this.state.showAppleMenu}
-            onClick={() => (this.showAppleMenu ? {} : this.toggleAppleMenu())}
+            onClick={() => this.toggleAppleMenu()}
             ref={this.appleBtnRef}
           >
             <AiFillApple size={18} />
@@ -215,7 +257,6 @@ class TopBar extends Component {
           {/* Open this when clicking on Control Center button */}
           {this.state.showControlCenter && (
             <ControlCenterMenu
-              audio={this.audio}
               playing={this.state.playing}
               toggleAudio={this.toggleAudio}
               setVolume={this.setVolume}
@@ -233,7 +274,7 @@ class TopBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: TopBarRedux): TopBarRedux => {
   return {
     volume: state.volume,
     brightness: state.brightness,

@@ -4,10 +4,23 @@ import { BiSearch } from "react-icons/bi";
 import launchpadApps from "../configs/launchpad";
 import wallpapers from "../configs/wallpapers";
 
+interface LaunchpadRedux {
+  dark?: boolean;
+}
+
+interface LaunchpadProps extends LaunchpadRedux {
+  show: boolean;
+  toggleLaunchpad: (target: boolean) => void;
+}
+
+type LaunchpadState = {
+  searchText: string;
+};
+
 const placeholderText = "Search";
 
-class Launchpad extends Component {
-  constructor(props) {
+class Launchpad extends Component<LaunchpadProps, LaunchpadState> {
+  constructor(props: LaunchpadProps) {
     super(props);
     this.state = {
       searchText: ""
@@ -98,7 +111,7 @@ class Launchpad extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: LaunchpadRedux): LaunchpadRedux => {
   return {
     dark: state.dark
   };

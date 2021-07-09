@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import { FaApple } from "react-icons/fa";
 
-export default class Boot extends Component {
-  constructor(props) {
+type BootProps = {
+  restart: boolean;
+  sleep: boolean;
+  setBooting: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+};
+
+type BootState = {
+  percent: number;
+};
+
+export default class Boot extends Component<BootProps, BootState> {
+  private intervalId: any;
+
+  constructor(props: BootProps) {
     super(props);
     this.state = {
       percent: 0
