@@ -2,7 +2,7 @@
 
 My portfolio website simulating macOS's GUI: https://portfolio.zxh.io
 
-Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.org/) + [tailwindcss](https://tailwindcss.com/) + [TypeScript](https://www.typescriptlang.org/).
+Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.org/) + [Tailwind CSS](https://tailwindcss.com/) + [TypeScript](https://www.typescriptlang.org/).
 
 ![day](./public/screenshots/day.png)
 ![night](./public/screenshots/night.png)

@@ -24,7 +24,7 @@ import { IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
 import { FaWifi } from "react-icons/fa";
 
 interface SliderProps {
-  icon: any;
+  icon: JSX.Element;
   value: number;
   setValue: (value: number) => void;
 }

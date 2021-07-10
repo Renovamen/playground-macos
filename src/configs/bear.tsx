@@ -15,7 +15,9 @@ import { BiCube, BiGame } from "react-icons/bi";
 import { BsFillImageFill } from "react-icons/bs";
 import { AiFillAudio } from "react-icons/ai";
 
-const bear = [
+import { BearData } from "../types";
+
+const bear: BearData[] = [
   {
     id: "profile",
     title: "Profile",

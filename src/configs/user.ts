@@ -1,4 +1,6 @@
-const user = {
+import { UserData } from "../types";
+
+const user: UserData = {
   name: "Xiaohan Zou",
   avatar: "img/ui/avatar.jpg"
 };

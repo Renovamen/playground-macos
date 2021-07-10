@@ -5,12 +5,13 @@ import gfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import bear from "../../configs/bear";
+import { BearMdData } from "../../types";
 import { IoCloudOfflineOutline } from "react-icons/io5";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { AiOutlineLink } from "react-icons/ai";
 
 interface BearRedux {
-  dark: boolean;
+  dark?: boolean;
 }
 
 interface BearState {
@@ -18,7 +19,7 @@ interface BearState {
   curMidbar: number;
   contentID: string;
   contentURL: string;
-  midbarList: any;
+  midbarList: BearMdData[];
 }
 
 interface ContentProps extends BearRedux {
@@ -33,14 +34,14 @@ interface ContentState {
 }
 
 interface MiddlebarProps {
-  items: any;
+  items: BearMdData[];
   cur: number;
   setContent: (id: string, url: string, index: number) => void;
 }
 
 interface SidebarProps {
   cur: number;
-  setMidBar: (items: any, index: number) => void;
+  setMidBar: (items: BearMdData[], index: number) => void;
 }
 
 const Highlighter = (dark: boolean): any => {
@@ -101,7 +102,7 @@ class Middlebar extends Component<MiddlebarProps> {
     return (
       <div className="midbar w-full h-full bg-gray-50 border-r border-gray-300 overflow-y-scroll">
         <ul>
-          {this.props.items.map((item: any, index: number) => (
+          {this.props.items.map((item: BearMdData, index: number) => (
             <li
               key={`bear-midbar-${item.id}`}
               className={`h-24 flex flex-col cursor-default border-l-2 ${
@@ -179,7 +180,7 @@ class Content extends Component<ContentProps, ContentState> {
             children={this.state.storeMd[this.props.id]}
             linkTarget="_blank"
             remarkPlugins={[gfm]}
-            components={Highlighter(this.props.dark)}
+            components={Highlighter(this.props.dark as boolean)}
           />
         </div>
       </div>
@@ -199,7 +200,7 @@ class Bear extends Component<BearRedux, BearState> {
     };
   }
 
-  setMidBar = (items: any, index: number) => {
+  setMidBar = (items: BearMdData[], index: number) => {
     this.setState({
       midbarList: items,
       curSidebar: index,

@@ -1,4 +1,6 @@
-const websites = {
+import { WebsitesData } from "../types";
+
+const websites: WebsitesData = {
   favorites: {
     title: "SNS Links",
     sites: [

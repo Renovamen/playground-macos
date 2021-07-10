@@ -1,4 +1,6 @@
-const terminal = [
+import { TerminalData } from "../types";
+
+const terminal: TerminalData[] = [
   {
     id: "about",
     title: "about",

@@ -4,7 +4,9 @@ import Safari from "../components/apps/Safari";
 import Bear from "../components/apps/Bear";
 import VSCode from "../components/apps/VSCode";
 
-const apps = [
+import { AppsData } from "../types";
+
+const apps: AppsData[] = [
   {
     id: "launchpad",
     title: "Launchpad",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import terminal from "../../configs/terminal";
+import { TerminalData } from "../../types";
 
 const emojis = [
   "\\(o_o)/",
@@ -151,7 +152,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   getCurChildren = () => {
     let children = terminal as any;
     for (let name of this.curDirPath) {
-      children = children.find((item: any) => {
+      children = children.find((item: TerminalData) => {
         return item.title === name && item.type === "folder";
       }).children;
     }
@@ -174,7 +175,7 @@ export default class Terminal extends Component<{}, TerminalState> {
       this.curChildren = this.getCurChildren();
     } else {
       // move to certain child folder
-      const target = this.curChildren.find((item: any) => {
+      const target = this.curChildren.find((item: TerminalData) => {
         return item.title === args && item.type === "folder";
       });
       if (target === undefined) {
@@ -212,7 +213,7 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   // display content of a specified file
   cat = (args?: string): void => {
-    const file = this.curChildren.find((item: any) => {
+    const file = this.curChildren.find((item: TerminalData) => {
       return item.title === args && item.type === "file";
     });
 
@@ -285,7 +286,7 @@ export default class Terminal extends Component<{}, TerminalState> {
       if (guess !== undefined) result = guess;
     } else if (cmd === "cd" || cmd === "cat") {
       const type = cmd === "cd" ? "folder" : "file";
-      const guess = this.curChildren.find((item: any) => {
+      const guess = this.curChildren.find((item: TerminalData) => {
         return (
           item.type === type && item.title.substring(0, args.length) === args
         );

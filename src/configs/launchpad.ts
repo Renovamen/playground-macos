@@ -1,4 +1,6 @@
-const launchpadApps = [
+import { LaunchpadData } from "../types";
+
+const launchpadApps: LaunchpadData[] = [
   {
     id: "flint",
     title: "Flint",

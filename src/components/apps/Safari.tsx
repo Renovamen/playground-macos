@@ -7,14 +7,15 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
 import { checkURL } from "../../utils/url";
+import { SiteSectionData, SiteData } from "../../types";
 
 interface SafariRedux {
-  dark: boolean;
-  wifi: boolean;
+  dark?: boolean;
+  wifi?: boolean;
 }
 
 interface SafariProps extends SafariRedux {
-  width: number;
+  width?: number;
 }
 
 interface SafariState {
@@ -32,7 +33,7 @@ interface Nav {
 }
 
 interface NavSectionProps extends Nav {
-  section: any;
+  section: SiteSectionData;
 }
 
 interface NavProps extends Nav {
@@ -48,7 +49,7 @@ class NavSection extends Component<NavSectionProps> {
           {this.props.section.title}
         </div>
         <div className={`mt-3 grid grid-flow-row ${grid}`}>
-          {this.props.section.sites.map((site: { [key: string]: string }) => (
+          {this.props.section.sites.map((site: SiteData) => (
             <div
               key={`safari-nav-${site.id}`}
               className="h-28 w-full flex justify-center items-center"
@@ -217,8 +218,9 @@ class Safari extends Component<SafariProps, SafariState> {
   render() {
     const buttonColor =
       this.state.goURL === "" ? "text-gray-400" : "text-gray-700";
-    const grid = this.props.width < 640 ? "grid-cols-2" : "grid-cols-3";
-    const hideLast = this.props.width < 640 ? "hidden" : "";
+    const grid =
+      (this.props.width as number) < 640 ? "grid-cols-2" : "grid-cols-3";
+    const hideLast = (this.props.width as number) < 640 ? "hidden" : "";
 
     return (
       <div className="w-full h-full bg-white">
@@ -268,8 +270,8 @@ class Safari extends Component<SafariProps, SafariState> {
           this.state.goURL === "" ? (
             <NavPage
               setGoURL={this.setGoURL}
-              width={this.props.width}
-              dark={this.props.dark}
+              width={this.props.width as number}
+              dark={this.props.dark as boolean}
             />
           ) : (
             <iframe
@@ -280,7 +282,7 @@ class Safari extends Component<SafariProps, SafariState> {
             />
           )
         ) : (
-          <NoInternetPage dark={this.props.dark} />
+          <NoInternetPage dark={this.props.dark as boolean} />
         )}
       </div>
     );

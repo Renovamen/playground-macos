@@ -13,7 +13,7 @@ import wallpapers from "../configs/wallpapers";
 
 type DesktopRedux = {
   dark?: boolean;
-  brightness?: any;
+  brightness?: number;
 };
 
 type DesktopProps = DesktopRedux & macActions;
@@ -244,7 +244,9 @@ class Desktop extends Component<DesktopProps, DesktopState> {
           backgroundImage: `url(${
             this.props.dark ? wallpapers.night : wallpapers.day
           })`,
-          filter: `brightness( ${this.props.brightness * 0.7 + 50}% )`
+          filter: `brightness( ${
+            (this.props.brightness as number) * 0.7 + 50
+          }% )`
         }}
       >
         {/* Dark Model Toggler */}

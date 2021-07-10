@@ -3,8 +3,9 @@ import format from "date-fns/format";
 import { BiSearch } from "react-icons/bi";
 import apps from "../configs/apps";
 import launchpad from "../configs/launchpad";
+import { LaunchpadData, AppsData } from "../types";
 
-const allApps: { [key: string]: any } = {
+const allApps: { [key: string]: (LaunchpadData | AppsData)[] } = {
   app: apps,
   portfolio: launchpad
 };
@@ -65,7 +66,7 @@ export default class Spotlight extends Component<
   search = (type: string) => {
     if (this.state.searchText === "") return [];
     const text = this.state.searchText.toLowerCase();
-    const list = allApps[type].filter((item: any) => {
+    const list = allApps[type].filter((item: LaunchpadData | AppsData) => {
       return (
         item.title.toLowerCase().includes(text) ||
         item.id.toLowerCase().includes(text)
@@ -197,7 +198,7 @@ export default class Spotlight extends Component<
     const elem = document.querySelector(`#spotlight-${appId}`) as HTMLElement;
     const id = appId;
     const type = elem.dataset.appType as string;
-    const app = allApps[type].find((item: any) => {
+    const app = allApps[type].find((item: LaunchpadData | AppsData) => {
       return item.id === id;
     });
     this.setCurDetails(app, type);
