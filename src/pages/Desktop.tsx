@@ -119,6 +119,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
   };
 
   closeApp = (id: string): void => {
+    this.setAppMax(id, false);
     let showApps = this.state.showApps;
     showApps[id] = false;
     this.setState({
