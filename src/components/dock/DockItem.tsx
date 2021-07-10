@@ -1,6 +1,12 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import useRaf from "@rooks/use-raf";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useSpring,
+  useTransform
+} from "framer-motion";
 
 // Hover effect is adopted from https://github.com/PuruVJ/macos-web/blob/main/src/components/dock/DockItem.tsx
 
@@ -26,7 +32,7 @@ const widthOutput = [
 ];
 const beyondTheDistanceLimit = distanceLimit + 1;
 
-const useDockHoverAnimation = (mouseX, ref) => {
+const useDockHoverAnimation = (mouseX: MotionValue, ref: any) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(
     useTransform(distance, distanceInput, widthOutput),
@@ -74,6 +80,17 @@ const useWindowWidth = () => {
   return width;
 };
 
+interface DockItemProps {
+  id: string;
+  title: string;
+  img: string;
+  mouseX: MotionValue;
+  desktop: boolean;
+  openApp: (id: string) => void;
+  isOpen: boolean;
+  link?: string;
+}
+
 export default function DockItem({
   id,
   title,
@@ -83,8 +100,8 @@ export default function DockItem({
   openApp,
   isOpen,
   link
-}) {
-  const imgRef = useRef();
+}: DockItemProps) {
+  const imgRef = useRef<HTMLImageElement>(null);
   const { width } = useDockHoverAnimation(mouseX, imgRef);
   const windowWidth = useWindowWidth();
 

@@ -72,11 +72,10 @@ interface CCMProps extends CCMRedux {
 }
 
 class ControlCenterMenu extends Component<CCMProps, {}> {
-  private controlCenterRef: any;
+  private controlCenterRef = createRef<any>();
 
   constructor(props: CCMProps) {
     super(props);
-    this.controlCenterRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 

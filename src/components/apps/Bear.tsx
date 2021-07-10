@@ -9,9 +9,50 @@ import { IoCloudOfflineOutline } from "react-icons/io5";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { AiOutlineLink } from "react-icons/ai";
 
-const Highlighter = (dark) => {
+interface BearRedux {
+  dark: boolean;
+}
+
+interface BearState {
+  curSidebar: number;
+  curMidbar: number;
+  contentID: string;
+  contentURL: string;
+  midbarList: any;
+}
+
+interface ContentProps extends BearRedux {
+  id: string;
+  url: string;
+}
+
+interface ContentState {
+  storeMd: {
+    [key: string]: string;
+  };
+}
+
+interface MiddlebarProps {
+  items: any;
+  cur: number;
+  setContent: (id: string, url: string, index: number) => void;
+}
+
+interface SidebarProps {
+  cur: number;
+  setMidBar: (items: any, index: number) => void;
+}
+
+const Highlighter = (dark: boolean): any => {
+  interface codeProps {
+    node: any;
+    inline: boolean;
+    className: string;
+    children: any;
+  }
+
   return {
-    code({ node, inline, className, children, ...props }) {
+    code({ node, inline, className, children, ...props }: codeProps) {
       const match = /language-(\w+)/.exec(className || "");
       return !inline && match ? (
         <SyntaxHighlighter
@@ -28,7 +69,7 @@ const Highlighter = (dark) => {
   };
 };
 
-class Sidebar extends Component {
+class Sidebar extends Component<SidebarProps> {
   render() {
     return (
       <div className="sidebar w-full h-full bg-gray-700 text-white overflow-y-scroll">
@@ -55,12 +96,12 @@ class Sidebar extends Component {
   }
 }
 
-class Middlebar extends Component {
+class Middlebar extends Component<MiddlebarProps> {
   render() {
     return (
       <div className="midbar w-full h-full bg-gray-50 border-r border-gray-300 overflow-y-scroll">
         <ul>
-          {this.props.items.map((item, index) => (
+          {this.props.items.map((item: any, index: number) => (
             <li
               key={`bear-midbar-${item.id}`}
               className={`h-24 flex flex-col cursor-default border-l-2 ${
@@ -99,8 +140,8 @@ class Middlebar extends Component {
   }
 }
 
-class Content extends Component {
-  constructor(props) {
+class Content extends Component<ContentProps, ContentState> {
+  constructor(props: ContentProps) {
     super(props);
     this.state = {
       storeMd: {}
@@ -111,13 +152,13 @@ class Content extends Component {
     this.fetchMarkdown(this.props.id, this.props.url);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: ContentProps) {
     if (prevProps.url !== this.props.url) {
       this.fetchMarkdown(this.props.id, this.props.url);
     }
   }
 
-  fetchMarkdown(id, url) {
+  fetchMarkdown(id: string, url: string) {
     let storeMd = this.state.storeMd;
     if (!storeMd[id]) {
       fetch(url)
@@ -146,8 +187,8 @@ class Content extends Component {
   }
 }
 
-class Bear extends Component {
-  constructor(props) {
+class Bear extends Component<BearRedux, BearState> {
+  constructor(props: BearRedux) {
     super(props);
     this.state = {
       curSidebar: 0,
@@ -158,7 +199,7 @@ class Bear extends Component {
     };
   }
 
-  setMidBar = (items, index) => {
+  setMidBar = (items: any, index: number) => {
     this.setState({
       midbarList: items,
       curSidebar: index,
@@ -168,7 +209,7 @@ class Bear extends Component {
     });
   };
 
-  setContent = (id, url, index) => {
+  setContent = (id: string, url: string, index: number) => {
     this.setState({
       contentID: id,
       contentURL: url,
@@ -201,7 +242,7 @@ class Bear extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: BearRedux): BearRedux => {
   return {
     dark: state.dark
   };

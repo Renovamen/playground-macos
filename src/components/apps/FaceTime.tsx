@@ -5,14 +5,20 @@ const videoConstraints = {
   facingMode: "user"
 };
 
-export default class FaceTime extends Component {
-  constructor(props) {
+interface FaceTimeState {
+  click: boolean;
+  img: string | null;
+}
+
+export default class FaceTime extends Component<{}, FaceTimeState> {
+  private webcamRef = createRef<any>();
+
+  constructor(props: {}) {
     super(props);
     this.state = {
       img: null,
       click: false
     };
-    this.webcamRef = createRef();
   }
 
   capture = () => {

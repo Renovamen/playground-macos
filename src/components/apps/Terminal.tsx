@@ -17,18 +17,29 @@ const getEmoji = () => {
 const characters =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789富强民主文明和谐自由平等公正法治爱国敬业诚信友善";
 
+interface HowDareProps {
+  setRMRF: (value: boolean) => void;
+}
+
+interface TerminalState {
+  rmrf: boolean;
+  content: JSX.Element[];
+}
+
 // rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
-class HowDare extends Component {
-  constructor(props) {
-    super(props);
-    this.font_size = 12;
-    this.emoji = getEmoji();
-    this.intervalId = null;
-  }
+class HowDare extends Component<HowDareProps> {
+  private $canvas = null as HTMLCanvasElement | null;
+  private ctx = null as CanvasRenderingContext2D | null;
+  private intervalId = null as any;
+  private emoji = getEmoji();
+  private font_size = 12;
+  private drops = [] as number[];
 
   componentDidMount() {
-    const $container = document.querySelector("#how-dare-container");
-    this.$canvas = document.querySelector("#how-dare");
+    const $container = document.querySelector(
+      "#how-dare-container"
+    ) as HTMLElement;
+    this.$canvas = document.querySelector("#how-dare") as HTMLCanvasElement;
     this.$canvas.height = $container.offsetHeight;
     this.$canvas.width = $container.offsetWidth;
     this.ctx = this.$canvas.getContext("2d");
@@ -46,6 +57,9 @@ class HowDare extends Component {
   }
 
   rain() {
+    this.ctx = this.ctx as CanvasRenderingContext2D;
+    this.$canvas = this.$canvas as HTMLCanvasElement;
+
     this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     this.ctx.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
 
@@ -92,18 +106,22 @@ class HowDare extends Component {
   }
 }
 
-export default class Terminal extends Component {
-  constructor(props) {
+export default class Terminal extends Component<{}, TerminalState> {
+  private history = [] as string[];
+  private curHistory = 0;
+  private curInputTimes = 0;
+  private curDirPath = [] as any;
+  private curChildren = terminal as any;
+  private commands: {
+    [key: string]: { (): void } | { (arg?: string): void };
+  };
+
+  constructor(props: {}) {
     super(props);
     this.state = {
       content: [],
       rmrf: false
     };
-    this.history = [];
-    this.curHistory = 0;
-    this.curInputTimes = 0;
-    this.curDirPath = [];
-    this.curChildren = terminal;
     this.commands = {
       cd: this.cd,
       ls: this.ls,
@@ -118,8 +136,10 @@ export default class Terminal extends Component {
     this.generateInputRow(this.curInputTimes);
   }
 
-  reset = () => {
-    const $terminal = document.querySelector("#terminal-content");
+  reset = (): void => {
+    const $terminal = document.querySelector(
+      "#terminal-content"
+    ) as HTMLElement;
     $terminal.innerHTML = "";
   };
 
@@ -129,17 +149,17 @@ export default class Terminal extends Component {
   };
 
   getCurChildren = () => {
-    let children = terminal;
+    let children = terminal as any;
     for (let name of this.curDirPath) {
-      children = children.find((item) => {
-        return (item.title === name) & (item.type === "folder");
+      children = children.find((item: any) => {
+        return item.title === name && item.type === "folder";
       }).children;
     }
     return children;
   };
 
   // move into a specified folder
-  cd = (args) => {
+  cd = (args?: string): void => {
     if (args === undefined || args === "~") {
       // move to root
       this.curDirPath = [];
@@ -154,8 +174,8 @@ export default class Terminal extends Component {
       this.curChildren = this.getCurChildren();
     } else {
       // move to certain child folder
-      const target = this.curChildren.find((item) => {
-        return (item.title === args) & (item.type === "folder");
+      const target = this.curChildren.find((item: any) => {
+        return item.title === args && item.type === "folder";
       });
       if (target === undefined) {
         this.generateResultRow(
@@ -170,7 +190,7 @@ export default class Terminal extends Component {
   };
 
   // display content of a specified folder
-  ls = () => {
+  ls = (): void => {
     let result = [];
     for (let item of this.curChildren) {
       result.push(
@@ -191,9 +211,9 @@ export default class Terminal extends Component {
   };
 
   // display content of a specified file
-  cat = (args) => {
-    const file = this.curChildren.find((item) => {
-      return (item.title === args) & (item.type === "file");
+  cat = (args?: string): void => {
+    const file = this.curChildren.find((item: any) => {
+      return item.title === args && item.type === "file";
     });
 
     if (file === undefined) {
@@ -207,12 +227,12 @@ export default class Terminal extends Component {
   };
 
   // clear terminal
-  clear = () => {
+  clear = (): void => {
     this.curInputTimes += 1;
     this.reset();
   };
 
-  help = () => {
+  help = (): void => {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
@@ -249,7 +269,7 @@ export default class Terminal extends Component {
     this.generateResultRow(this.curInputTimes, help);
   };
 
-  autoComplete = (text) => {
+  autoComplete = (text: string): string => {
     if (text === "") return text;
 
     const input = text.split(" ");
@@ -265,7 +285,7 @@ export default class Terminal extends Component {
       if (guess !== undefined) result = guess;
     } else if (cmd === "cd" || cmd === "cat") {
       const type = cmd === "cd" ? "folder" : "file";
-      const guess = this.curChildren.find((item) => {
+      const guess = this.curChildren.find((item: any) => {
         return (
           item.type === type && item.title.substring(0, args.length) === args
         );
@@ -275,11 +295,11 @@ export default class Terminal extends Component {
     return result;
   };
 
-  keyPress = (e) => {
+  keyPress = (e: React.KeyboardEvent): void => {
     const keyCode = e.key;
     const $input = document.querySelector(
       `#terminal-input-${this.curInputTimes}`
-    );
+    ) as HTMLInputElement;
     const input_text = $input.value.trim();
     const input = input_text.split(" ");
 
@@ -291,7 +311,7 @@ export default class Terminal extends Component {
       const args = input[1];
 
       // we can't edit the past input
-      $input.setAttribute("readonly", true);
+      $input.setAttribute("readonly", "true");
 
       if (input_text.substr(0, 6) === "rm -rf") this.setState({ rmrf: true });
       else if (cmd && Object.keys(this.commands).includes(cmd)) {
@@ -330,16 +350,18 @@ export default class Terminal extends Component {
       // ----------- auto complete -----------
       $input.value = this.autoComplete(input_text);
       // prevent tab outside the terminal
-      if (e.preventDefault) e.preventDefault();
-      else e.returnValue = false;
+      e.preventDefault();
     }
   };
 
-  focusOnInput = (id) => {
-    document.querySelector(`#terminal-input-${id}`).focus();
+  focusOnInput = (id: number): void => {
+    const input = document.querySelector(
+      `#terminal-input-${id}`
+    ) as HTMLInputElement;
+    input.focus();
   };
 
-  generateInputRow = (id) => {
+  generateInputRow = (id: number): void => {
     const newRow = (
       <div key={`terminal-input-row-${id}`} className="w-full h-6 flex">
         <div className="w-max flex items-center">
@@ -362,7 +384,7 @@ export default class Terminal extends Component {
     this.setState({ content });
   };
 
-  generateResultRow = (id, result) => {
+  generateResultRow = (id: number, result: JSX.Element) => {
     const newRow = (
       <div
         key={`terminal-result-row-${id}`}
@@ -383,7 +405,9 @@ export default class Terminal extends Component {
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
         {this.state.rmrf && (
-          <HowDare setRMRF={(value) => this.setState({ rmrf: value })} />
+          <HowDare
+            setRMRF={(value: boolean) => this.setState({ rmrf: value })}
+          />
         )}
         <div className="w-full h-max pt-2 px-1.5 ">
           <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the

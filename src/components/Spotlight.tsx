@@ -40,8 +40,8 @@ export default class Spotlight extends Component<
   SpotlightProps,
   SpotlightState
 > {
-  private curSelectIndex: number;
-  private spotlightRef: any;
+  private curSelectIndex = 0;
+  private spotlightRef = createRef<any>();
 
   constructor(props: SpotlightProps) {
     super(props);
@@ -51,8 +51,6 @@ export default class Spotlight extends Component<
       appList: null,
       appIdList: []
     };
-    this.curSelectIndex = 0;
-    this.spotlightRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 

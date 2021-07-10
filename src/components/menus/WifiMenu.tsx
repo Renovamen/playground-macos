@@ -14,11 +14,10 @@ interface WifiMenuProps extends WifiMenuRedux {
 }
 
 class WifiMenu extends Component<WifiMenuProps, {}> {
-  private wifiRef: any;
+  private wifiRef = createRef<any>();
 
   constructor(props: WifiMenuProps) {
     super(props);
-    this.wifiRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 

@@ -3,14 +3,24 @@ import { useMotionValue } from "framer-motion";
 import apps from "../../configs/apps";
 import DockItem from "./DockItem";
 
+interface DockProps {
+  open: (id: string) => void;
+  showApps: {
+    [key: string]: boolean;
+  };
+  showLaunchpad: boolean;
+  toggleLaunchpad: (target: boolean) => void;
+  hide: boolean;
+}
+
 export default function Dock({
   open,
   showApps,
   showLaunchpad,
   toggleLaunchpad,
   hide
-}) {
-  const openApp = (id) => {
+}: DockProps) {
+  const openApp = (id: string) => {
     if (id === "launchpad") toggleLaunchpad(!showLaunchpad);
     else {
       toggleLaunchpad(false);
@@ -18,7 +28,7 @@ export default function Dock({
     }
   };
 
-  const mouseX = useMotionValue(null);
+  const mouseX = useMotionValue<number | null>(null);
 
   return (
     <div

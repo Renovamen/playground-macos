@@ -64,15 +64,12 @@ interface TopBarState {
 }
 
 class TopBar extends Component<TopBarProps, TopBarState> {
-  private intervalId: any;
-  private appleBtnRef: any;
-  private controlCenterBtnRef: any;
-  private wifiBtnRef: any;
-  private spotlightBtnRef: any;
-  private clickedOutside: {
-    [key: string]: boolean;
-  };
-  private audio: HTMLAudioElement;
+  private intervalId = null as any;
+  private appleBtnRef = createRef<any>();
+  private controlCenterBtnRef = createRef<any>();
+  private wifiBtnRef = createRef<any>();
+  private spotlightBtnRef = createRef<any>();
+  private audio = new Audio();
 
   constructor(props: TopBarProps) {
     super(props);
@@ -83,17 +80,7 @@ class TopBar extends Component<TopBarProps, TopBarState> {
       showAppleMenu: false,
       playing: false
     };
-    this.clickedOutside = {
-      apple: false,
-      control: false
-    };
-    this.intervalId = null;
-    this.audio = new Audio();
     this.toggleAudio = this.toggleAudio.bind(this);
-    this.appleBtnRef = createRef();
-    this.controlCenterBtnRef = createRef();
-    this.wifiBtnRef = createRef();
-    this.spotlightBtnRef = createRef();
     this.resize.bind(this);
   }
 

@@ -10,7 +10,7 @@ const initState = {
   fullscreen: false
 };
 
-export const Reducer = (state = initState, action = {}) => {
+export const Reducer = (state = initState, action: any = {}) => {
   switch (action.type) {
     case type.TOGGLE_DARK:
       return {

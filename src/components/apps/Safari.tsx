@@ -8,7 +8,38 @@ import { BsLayoutSidebar } from "react-icons/bs";
 import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
 import { checkURL } from "../../utils/url";
 
-class NavSection extends Component {
+interface SafariRedux {
+  dark: boolean;
+  wifi: boolean;
+}
+
+interface SafariProps extends SafariRedux {
+  width: number;
+}
+
+interface SafariState {
+  goURL: string;
+  currentURL: string;
+}
+
+interface NoInternetProps {
+  dark: boolean;
+}
+
+interface Nav {
+  width: number;
+  setGoURL: (url: string) => void;
+}
+
+interface NavSectionProps extends Nav {
+  section: any;
+}
+
+interface NavProps extends Nav {
+  dark: boolean;
+}
+
+class NavSection extends Component<NavSectionProps> {
   render() {
     const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-9";
     return (
@@ -17,7 +48,7 @@ class NavSection extends Component {
           {this.props.section.title}
         </div>
         <div className={`mt-3 grid grid-flow-row ${grid}`}>
-          {this.props.section.sites.map((site) => (
+          {this.props.section.sites.map((site: { [key: string]: string }) => (
             <div
               key={`safari-nav-${site.id}`}
               className="h-28 w-full flex justify-center items-center"
@@ -63,7 +94,7 @@ class NavSection extends Component {
 
 const numTracker = Math.floor(Math.random() * 99 + 1);
 
-class NavPage extends Component {
+class NavPage extends Component<NavProps> {
   render() {
     const grid = this.props.width < 640 ? "grid-cols-4" : "grid-cols-8";
     const span = this.props.width < 640 ? "col-span-3" : "col-span-7";
@@ -118,7 +149,7 @@ class NavPage extends Component {
   }
 }
 
-class NoInternetPage extends Component {
+class NoInternetPage extends Component<NoInternetProps> {
   render() {
     return (
       <div
@@ -149,8 +180,8 @@ class NoInternetPage extends Component {
   }
 }
 
-class Safari extends Component {
-  constructor(props) {
+class Safari extends Component<SafariProps, SafariState> {
+  constructor(props: SafariProps) {
     super(props);
     this.state = {
       goURL: "",
@@ -158,7 +189,7 @@ class Safari extends Component {
     };
   }
 
-  setGoURL = (url) => {
+  setGoURL = (url: string) => {
     const isValid = checkURL(url);
 
     if (isValid) {
@@ -177,9 +208,10 @@ class Safari extends Component {
     });
   };
 
-  pressURL = (e) => {
-    const keyCode = e.which || e.keyCode;
-    if (keyCode === 13) this.setGoURL(e.target.value);
+  pressURL = (e: React.KeyboardEvent) => {
+    const keyCode = e.key;
+    if (keyCode === "Enter")
+      this.setGoURL((e.target as HTMLInputElement).value);
   };
 
   render() {
@@ -248,14 +280,14 @@ class Safari extends Component {
             />
           )
         ) : (
-          <NoInternetPage />
+          <NoInternetPage dark={this.props.dark} />
         )}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: SafariRedux): SafariRedux => {
   return {
     dark: state.dark,
     wifi: state.wifi
