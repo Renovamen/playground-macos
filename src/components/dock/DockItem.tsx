@@ -10,29 +10,33 @@ import {
 
 // Hover effect is adopted from https://github.com/PuruVJ/macos-web/blob/main/src/components/dock/DockItem.tsx
 
-const baseWidth = 50;
-const distanceLimit = baseWidth * 6;
-const distanceInput = [
-  -distanceLimit,
-  -distanceLimit / 1.25,
-  -distanceLimit / 2,
-  0,
-  distanceLimit / 2,
-  distanceLimit / 1.25,
-  distanceLimit
-];
-const widthOutput = [
-  baseWidth,
-  baseWidth * 1.1,
-  baseWidth * 1.5,
-  baseWidth * 2,
-  baseWidth * 1.5,
-  baseWidth * 1.1,
-  baseWidth
-];
-const beyondTheDistanceLimit = distanceLimit + 1;
+const useDockHoverAnimation = (
+  mouseX: MotionValue,
+  ref: any,
+  dockSize: number,
+  dockMag: number
+) => {
+  const distanceLimit = dockSize * 6;
+  const distanceInput = [
+    -distanceLimit,
+    -distanceLimit / (dockMag * 0.65),
+    -distanceLimit / (dockMag * 0.85),
+    0,
+    distanceLimit / (dockMag * 0.85),
+    distanceLimit / (dockMag * 0.65),
+    distanceLimit
+  ];
+  const widthOutput = [
+    dockSize,
+    dockSize * (dockMag * 0.55),
+    dockSize * (dockMag * 0.75),
+    dockSize * dockMag,
+    dockSize * (dockMag * 0.75),
+    dockSize * (dockMag * 0.55),
+    dockSize
+  ];
+  const beyondTheDistanceLimit = distanceLimit + 1;
 
-const useDockHoverAnimation = (mouseX: MotionValue, ref: any) => {
   const distance = useMotionValue(beyondTheDistanceLimit);
   const widthPX = useSpring(
     useTransform(distance, distanceInput, widthOutput),
@@ -89,6 +93,8 @@ interface DockItemProps {
   openApp: (id: string) => void;
   isOpen: boolean;
   link?: string;
+  dockSize: number;
+  dockMag: number;
 }
 
 export default function DockItem({
@@ -99,10 +105,12 @@ export default function DockItem({
   desktop,
   openApp,
   isOpen,
-  link
+  link,
+  dockSize,
+  dockMag
 }: DockItemProps) {
   const imgRef = useRef<HTMLImageElement>(null);
-  const { width } = useDockHoverAnimation(mouseX, imgRef);
+  const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag);
   const windowWidth = useWindowWidth();
 
   return (
@@ -111,7 +119,7 @@ export default function DockItem({
       onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
       className="flex flex-col items-center justify-end mb-1 transition duration-150 ease-in origin-bottom"
     >
-      <p className="tooltip text-black text-sm absolute -top-full px-3 py-1 bg-gray-300 bg-opacity-80 blur-sm rounded-md">
+      <p className="tooltip text-black text-sm absolute px-3 py-1 bg-gray-300 bg-opacity-80 blur-sm rounded-md">
         {title}
       </p>
       {link ? (

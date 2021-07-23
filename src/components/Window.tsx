@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Rnd } from "react-rnd";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
@@ -50,6 +51,10 @@ interface TrafficProps {
   close: (id: string) => void;
 }
 
+interface WindowRedux {
+  dockSize?: number;
+}
+
 interface WindowProps extends TrafficProps {
   min: boolean;
   width?: number;
@@ -59,6 +64,8 @@ interface WindowProps extends TrafficProps {
   title: string;
   z: number;
   focus: (id: string) => void;
+  dockSize?: number;
+  children: React.ReactNode;
 }
 
 interface WindowState {
@@ -106,7 +113,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
   );
 };
 
-export default class Window extends Component<WindowProps, WindowState> {
+class Window extends Component<WindowProps, WindowState> {
   constructor(props: WindowProps) {
     super(props);
     const maxW = document.body.offsetWidth;
@@ -178,7 +185,8 @@ export default class Window extends Component<WindowProps, WindowState> {
           y: this.props.max
             ? 0
             : Math.min(
-                window.innerHeight - minMarginY,
+                window.innerHeight -
+                  ((this.props.dockSize as number) + 15 + minMarginY),
                 Math.max(minMarginY, this.state.y)
               )
         }}
@@ -221,3 +229,11 @@ export default class Window extends Component<WindowProps, WindowState> {
     );
   }
 }
+
+const mapStateToProps = (state: WindowRedux): WindowRedux => {
+  return {
+    dockSize: state.dockSize
+  };
+};
+
+export default connect(mapStateToProps, null)(Window);

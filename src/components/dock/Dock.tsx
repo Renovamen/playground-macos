@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useMotionValue } from "framer-motion";
 import apps from "../../configs/apps";
 import DockItem from "./DockItem";
 
-interface DockProps {
+interface DockRedux {
+  dockSize?: number;
+  dockMag?: number;
+}
+
+interface DockProps extends DockRedux {
   open: (id: string) => void;
   showApps: {
     [key: string]: boolean;
@@ -13,12 +19,14 @@ interface DockProps {
   hide: boolean;
 }
 
-export default function Dock({
+function Dock({
   open,
   showApps,
   showLaunchpad,
   toggleLaunchpad,
-  hide
+  hide,
+  dockSize,
+  dockMag
 }: DockProps) {
   const openApp = (id: string) => {
     if (id === "launchpad") toggleLaunchpad(!showLaunchpad);
@@ -38,9 +46,12 @@ export default function Dock({
       }}
     >
       <ul
-        className="mx-auto w-max px-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 blur rounded-none sm:rounded-t-lg shadow-2xl"
+        className="mx-auto w-max px-2 space-x-2 flex flex-row justify-center justify-between bg-white bg-opacity-20 border-t border-l border-r border-gray-400 border-opacity-30 blur rounded-none sm:rounded-t-lg"
         onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
+        style={{
+          height: `${(dockSize as number) + 15}px`
+        }}
       >
         {apps.map((app) => (
           <DockItem
@@ -53,9 +64,20 @@ export default function Dock({
             openApp={openApp}
             isOpen={app.desktop && showApps[app.id]}
             link={app.link}
+            dockSize={dockSize as number}
+            dockMag={dockMag as number}
           />
         ))}
       </ul>
     </div>
   );
 }
+
+const mapStateToProps = (state: DockRedux): DockRedux => {
+  return {
+    dockSize: state.dockSize,
+    dockMag: state.dockMag
+  };
+};
+
+export default connect(mapStateToProps, null)(Dock);

@@ -7,7 +7,9 @@ const initState = {
   wifi: true,
   bluetooth: true,
   airdrop: true,
-  fullscreen: false
+  fullscreen: false,
+  dockSize: 50,
+  dockMag: 2
 };
 
 export const Reducer = (state = initState, action: any = {}) => {
@@ -46,6 +48,16 @@ export const Reducer = (state = initState, action: any = {}) => {
       return {
         ...state,
         airdrop: action.airdrop
+      };
+    case type.SET_DOCK_SIZE:
+      return {
+        ...state,
+        dockSize: action.dockSize
+      };
+    case type.SET_DOCK_MAG:
+      return {
+        ...state,
+        dockMag: action.dockMag
       };
     default:
       return state;

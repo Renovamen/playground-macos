@@ -97,11 +97,12 @@ body:not(pre) {
 /* --------- dock --------- */
 
 .dock ul {
-  height: 65px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.17);
 }
 
 .dock li .tooltip {
   @apply hidden;
+  top: calc(-100% - 5px);
 }
 
 .dock li:hover .tooltip {
