@@ -204,6 +204,7 @@ class Window extends Component<WindowProps, WindowState> {
         minHeight={this.props.minHeight ? this.props.minHeight : 150}
         dragHandleClassName="window-bar"
         disableDragging={this.props.max}
+        enableResizing={!this.props.max}
         style={{ zIndex: this.props.z }}
         onMouseDown={() => this.props.focus(this.props.id)}
         className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-md ${minimized}`}
