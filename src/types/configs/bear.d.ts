@@ -1,5 +1,3 @@
-import { IconType } from "react-icons/lib";
-
 export interface BearMdData {
   id: string;
   title: string;
