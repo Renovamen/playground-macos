@@ -13,13 +13,14 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi! This is Xiaohan Zou, now an intern at CETC and a research
-              assistant at Peking University.
+              Hi! This is Xiaohan Zou, now an incoming Computer Science master's
+              student at Boston University and an algorithm engineer intern at
+              Kuaishou (Kwai). I'm also working as a research assistant at
+              Peking University.
             </div>
             <div className="mt-1">
-              I got my bachelor's degree in Software Engineering at Tongji
-              University in 2020. I'm now waiting for starting my graduate
-              study.
+              Before that, I got my bachelor's degree in Software Engineering at
+              Tongji University.
             </div>
           </div>
         )
@@ -29,14 +30,14 @@ const terminal: TerminalData[] = [
         title: "interests.txt",
         type: "file",
         content:
-          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Reinforcement Learning / Natural Language Processing"
+          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Multi-modal Retrieval"
       },
       {
         id: "about-who-cares",
         title: "who-cares.txt",
         type: "file",
         content:
-          "I'm open to research / algorithm engineer internships for summer 2021 (base in China) lol."
+          "I'm open to summer research opportunities for summer 2022 lol."
       },
       {
         id: "about-contact",
