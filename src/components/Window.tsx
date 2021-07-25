@@ -116,8 +116,8 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
 class Window extends Component<WindowProps, WindowState> {
   constructor(props: WindowProps) {
     super(props);
-    const maxW = document.body.offsetWidth;
-    const maxH = document.body.offsetHeight;
+    const maxW = window.innerWidth;
+    const maxH = window.innerHeight;
     const width = Math.min(maxW, props.width ? props.width : 640);
     const height = Math.min(maxH, props.height ? props.height : 400);
     this.state = {
@@ -125,8 +125,10 @@ class Window extends Component<WindowProps, WindowState> {
       height: height,
       maxW: maxW,
       maxH: maxH,
-      x: Math.random() * (maxW - width),
-      y: Math.random() * (maxH - height)
+      // "+ maxW" because of the boundary for windows
+      x: maxW + Math.random() * (maxW - width),
+      // "- minMarginY" because of the boundary for windows
+      y: Math.random() * (maxH - height - minMarginY)
     };
     this.resize.bind(this);
   }
@@ -140,8 +142,8 @@ class Window extends Component<WindowProps, WindowState> {
   }
 
   resize = () => {
-    const maxW = document.body.offsetWidth;
-    const maxH = document.body.offsetHeight;
+    const maxW = window.innerWidth;
+    const maxH = window.innerHeight;
     const width = Math.min(maxW, this.state.width);
     const height = Math.min(maxH, this.state.height);
 
@@ -171,23 +173,30 @@ class Window extends Component<WindowProps, WindowState> {
 
     return (
       <Rnd
+        bounds="parent"
         size={{
           width: width,
           height: height
         }}
         position={{
           x: this.props.max
-            ? 0
+            ? this.state.maxW // because of boundary
             : Math.min(
-                window.innerWidth - minMarginX,
-                Math.max(-this.state.width + minMarginX, this.state.x)
+                // "maxW * 2" because of the boundary for windows
+                this.state.maxW * 2 - minMarginX,
+                Math.max(
+                  // "+ maxW" because we add a boundary for windows
+                  this.state.maxW - this.state.width + minMarginX,
+                  this.state.x
+                )
               ),
           y: this.props.max
-            ? 0
+            ? -minMarginY // because of boundary
             : Math.min(
-                window.innerHeight -
+                this.state.maxH -
+                  minMarginY - // "- minMarginY" because of the boundary for windows
                   ((this.props.dockSize as number) + 15 + minMarginY),
-                Math.max(minMarginY, this.state.y)
+                Math.max(0, this.state.y)
               )
         }}
         onDragStop={(e, d) => {

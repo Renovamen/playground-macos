@@ -34,10 +34,12 @@ interface DesktopState {
   maxZ: number;
   showLaunchpad: boolean;
   currentTitle: string;
-  hideDock: boolean;
+  hideDockAndTopbar: boolean;
   spotlight: boolean;
   spotlightBtnRef: any;
 }
+
+const minMarginY = 24;
 
 class Desktop extends Component<DesktopProps, DesktopState> {
   constructor(props: DesktopProps) {
@@ -50,7 +52,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
       maxZ: 2,
       showLaunchpad: false,
       currentTitle: "Finder",
-      hideDock: false,
+      hideDockAndTopbar: false,
       spotlight: false,
       spotlightBtnRef: null
     };
@@ -110,11 +112,13 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
       "--window-transform-x",
-      rect.x.toFixed(1).toString() + "px"
+      // "+ window.innerWidth" because of the boundary for windows
+      (window.innerWidth + rect.x).toFixed(1).toString() + "px"
     );
     r.style.setProperty(
       "--window-transform-y",
-      rect.y.toFixed(1).toString() + "px"
+      // "- minMarginY" because of the boundary for windows
+      (rect.y - minMarginY).toFixed(1).toString() + "px"
     );
   };
 
@@ -124,7 +128,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     showApps[id] = false;
     this.setState({
       showApps: showApps,
-      hideDock: false
+      hideDockAndTopbar: false
     });
   };
 
@@ -174,7 +178,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     maxApps[id] = target;
     this.setState({
       maxApps: maxApps,
-      hideDock: target
+      hideDockAndTopbar: target
     });
   };
 
@@ -195,9 +199,10 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     const dockAppRect = r.getBoundingClientRect();
 
     r = document.querySelector(`#window-${id}`) as HTMLElement;
-    const appRect = r.getBoundingClientRect();
-    const posY = document.body.offsetHeight - appRect.y - r.offsetHeight / 2;
-    const posX = dockAppRect.x - r.offsetWidth / 2 + 25;
+    // const appRect = r.getBoundingClientRect();
+    const posY = window.innerHeight - r.offsetHeight / 2 - minMarginY;
+    // "+ window.innerWidth" because of the boundary for windows
+    const posX = window.innerWidth + dockAppRect.x - r.offsetWidth / 2 + 25;
 
     // translate the window to that position
     r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`;
@@ -261,6 +266,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
           sleepMac={this.props.sleepMac}
           restartMac={this.props.restartMac}
           toggleSpotlight={this.toggleSpotlight}
+          hide={this.state.hideDockAndTopbar}
           setSpotlightBtnRef={(value: React.RefObject<HTMLDivElement>) => {
             this.setState({
               spotlightBtnRef: value
@@ -269,7 +275,9 @@ class Desktop extends Component<DesktopProps, DesktopState> {
         />
 
         {/* Desktop Apps */}
-        {this.renderAppWindows()}
+        <div className="window-bound z-10 absolute" style={{ top: minMarginY }}>
+          {this.renderAppWindows()}
+        </div>
 
         {/* Spotlight */}
         {this.state.spotlight && (
@@ -293,7 +301,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
           showApps={this.state.showApps}
           showLaunchpad={this.state.showLaunchpad}
           toggleLaunchpad={this.toggleLaunchpad}
-          hide={this.state.hideDock}
+          hide={this.state.hideDockAndTopbar}
         />
       </div>
     );

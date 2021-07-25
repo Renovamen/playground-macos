@@ -52,6 +52,7 @@ interface TopBarProps extends macActions, TopBarRedux {
   toggleFullScreen: Function;
   setBrightness: Function;
   setSpotlightBtnRef: (value: React.RefObject<HTMLDivElement>) => void;
+  hide: boolean;
   toggleSpotlight: () => void;
 }
 
@@ -174,7 +175,11 @@ class TopBar extends Component<TopBarProps, TopBarState> {
 
   render() {
     return (
-      <div className="nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition">
+      <div
+        className={`nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center ${
+          this.props.hide ? "z-0" : "z-20"
+        } text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition`}
+      >
         <div className="flex flex-row items-center space-x-4">
           <TopBarItem
             forceHover={this.state.showAppleMenu}

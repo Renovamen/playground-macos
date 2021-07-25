@@ -78,6 +78,12 @@ body:not(pre) {
 
 /* --------- app window --------- */
 
+.window-bound {
+  width: 300%;
+  height: 200%;
+  left: -100%;
+}
+
 .innner-window {
   height: calc(100% - 1.5rem);
 }

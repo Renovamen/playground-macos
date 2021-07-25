@@ -269,8 +269,7 @@ export default class Spotlight extends Component<
   render() {
     return (
       <div
-        className="spotlight fixed top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 blur border border-gray-400 border-opacity-50 shadow-2xl"
-        style={{ zIndex: 99997 }}
+        className="spotlight fixed z-20 top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 blur border border-gray-400 border-opacity-50 shadow-2xl"
         onKeyDown={this.handleKeyPress}
         onClick={this.focusOnInput}
         ref={this.spotlightRef}
