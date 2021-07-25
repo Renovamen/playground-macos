@@ -119,9 +119,9 @@ body:not(pre) {
 /* --------- control center --------- */
 
 .control-grid {
-  @apply bg-gray-200 bg-opacity-60 blur rounded-xl;
+  @apply bg-gray-200 bg-opacity-80 blur rounded-xl;
   backdrop-filter: blur(40px);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* --------- slider --------- */
