@@ -309,7 +309,8 @@ body:not(pre) {
 
 /* The switch - the box around the slider */
 .switch-toggle {
-  @apply relative inline-block w-full h-full;
+  width: 38px;
+  @apply relative inline-block h-full;
 }
 
 /* Hide default HTML checkbox */
@@ -325,7 +326,11 @@ body:not(pre) {
 .slider-toggle:before {
   content: "";
   background-color: white;
-  @apply absolute rounded-full h-4 w-4 left-0.5 bottom-0.5 duration-300;
+  height: 18px;
+  width: 18px;
+  bottom: 2px;
+  left: 2px;
+  @apply absolute rounded-full duration-300;
 }
 
 input:checked + .slider-toggle {
@@ -337,5 +342,5 @@ input:focus + .slider-toggle {
 }
 
 input:checked + .slider-toggle:before {
-  @apply transform translate-x-3;
+  @apply transform translate-x-4;
 }

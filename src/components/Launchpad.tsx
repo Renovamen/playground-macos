@@ -46,7 +46,7 @@ class Launchpad extends Component<LaunchpadProps, LaunchpadState> {
 
     return (
       <div
-        className={`nightwind-prevent-block ${close} z-50 transform scale-110 w-full h-full fixed overflow-hidden bg-center bg-cover`}
+        className={`nightwind-prevent-block ${close} z-30 transform scale-110 w-full h-full fixed overflow-hidden bg-center bg-cover`}
         id="launchpad"
         style={{
           backgroundImage: `url(${

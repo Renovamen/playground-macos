@@ -99,7 +99,7 @@ class ControlCenterMenu extends Component<CCMProps, {}> {
   render() {
     return (
       <div
-        className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 z-50 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 blur rounded-2xl text-black"
+        className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 blur rounded-2xl text-black border border-gray-400 border-opacity-50"
         style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
         ref={this.controlCenterRef}
       >
