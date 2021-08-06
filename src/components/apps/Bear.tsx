@@ -165,11 +165,38 @@ class Content extends Component<ContentProps, ContentState> {
       fetch(url)
         .then((response) => response.text())
         .then((text) => {
-          storeMd[id] = text.replace(/&nbsp;/g, "");
+          text = this.fixImageURL(text, url);
+          storeMd[id] = text;
           this.setState({ storeMd });
         })
         .catch((error) => console.error(error));
     }
+  }
+
+  getRepoURL(url: string) {
+    return url.slice(0, -10) + "/";
+  }
+
+  fixImageURL(text: string, mdURL: string): string {
+    text = text.replace(/&nbsp;/g, "");
+    if (mdURL.indexOf("raw.githubusercontent.com") !== -1) {
+      const repoURL = this.getRepoURL(mdURL);
+
+      const imgReg = /!\[(.*?)\]\((.*?)\)/;
+      const imgRegGlobal = /!\[(.*?)\]\((.*?)\)/g;
+
+      const imgList = text.match(imgRegGlobal);
+
+      if (imgList) {
+        for (let img of imgList) {
+          const imgURL = (img.match(imgReg) as Array<string>)[2];
+          if (imgURL.indexOf("http") !== -1) continue;
+          const newImgURL = repoURL + imgURL;
+          text = text.replace(imgURL, newImgURL);
+        }
+      }
+    }
+    return text;
   }
 
   render() {
