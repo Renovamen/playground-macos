@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.{js}": [
-      "eslint --fix --ext .js ./"
+      "eslint --ext .js,.ts,.tsx ./"
     ],
     "package.json": [
       "sort-package-json"

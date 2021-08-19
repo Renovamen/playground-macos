@@ -54,8 +54,7 @@ const bear: BearData[] = [
       {
         id: "flint",
         title: "Flint",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/flint/main/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/flint/main/README.md",
         icon: <HiFire />,
         excerpt: "A deep learning framework implemented in Numpy...",
         link: "https://github.com/Renovamen/flint"
@@ -63,8 +62,7 @@ const bear: BearData[] = [
       {
         id: "metallic",
         title: "Metallic",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
         icon: <GiJumpingDog />,
         excerpt: "A meta-learning library base on PyTorch...",
         link: "https://github.com/Renovamen/metallic"
@@ -72,8 +70,7 @@ const bear: BearData[] = [
       {
         id: "alkaid",
         title: "Alkaid",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
         icon: <GiCat />,
         excerpt: "A reinforcement-learning toolbox for PyTorch...",
         link: "https://github.com/Renovamen/alkaid"
@@ -81,8 +78,7 @@ const bear: BearData[] = [
       {
         id: "portfolio-macos",
         title: "Portfolio macOS",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
         icon: <RiGamepadLine />,
         excerpt: "My portfolio website simulating macOS's GUI...",
         link: "https://github.com/Renovamen/playground-macos"
@@ -90,8 +86,7 @@ const bear: BearData[] = [
       {
         id: "oh-vue-icons",
         title: "Oh, Vue Icons!",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
         icon: <FaVuejs />,
         excerpt: "Importing icons from different icon packs in Vue easily...",
         link: "https://oh-vue-icons.netlify.app"
@@ -99,8 +94,7 @@ const bear: BearData[] = [
       {
         id: "gungnir",
         title: "Gungnir",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/vuepress-theme-gungnir/main/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/vuepress-theme-gungnir/main/README.md",
         icon: <GiEnergySword />,
         excerpt: "A simple and beautiful blog theme for VuePress...",
         link: "https://vuepress-theme-gungnir.vercel.app"
@@ -108,8 +102,7 @@ const bear: BearData[] = [
       {
         id: "text-classification",
         title: "Text Classification",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/Text-Classification/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/Text-Classification/master/README.md",
         icon: <CgFormatText />,
         excerpt: "PyTorch implementation of text classificaiton models...",
         link: "https://github.com/Renovamen/Text-Classification"
@@ -117,8 +110,7 @@ const bear: BearData[] = [
       {
         id: "speech-emotion-recognition",
         title: "Speech Emotion",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/Speech-Emotion-Recognition/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/Speech-Emotion-Recognition/master/README.md",
         icon: <AiFillAudio />,
         excerpt: "Speech emotion recognition using Keras and sklearn...",
         link: "https://github.com/Renovamen/Speech-Emotion-Recognition"
@@ -126,8 +118,7 @@ const bear: BearData[] = [
       {
         id: "image-captioning",
         title: "Image Captioning",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/Image-Captioning/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/Image-Captioning/master/README.md",
         icon: <BsFillImageFill />,
         excerpt: "PyTorch implementation of image captioning models...",
         link: "https://github.com/Renovamen/Image-Captioning"
@@ -135,8 +126,7 @@ const bear: BearData[] = [
       {
         id: "cube-solver",
         title: "Cube Solver",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
         icon: <BiCube />,
         excerpt: "A rubik's cube solver (layer-by-layer & two-phase)...",
         link: "https://cube.zxh.io"
@@ -144,8 +134,7 @@ const bear: BearData[] = [
       {
         id: "midgard",
         title: "Interactable Resume",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
         icon: <BiGame />,
         excerpt: "An interactable version of my resume, powered by Vue...",
         link: "https://resume.zxh.io/"
@@ -153,8 +142,7 @@ const bear: BearData[] = [
       {
         id: "fishmail",
         title: "Fishmail",
-        file:
-          "https://raw.githubusercontent.com/Renovamen/Fishmail/master/README.md",
+        file: "https://raw.githubusercontent.com/Renovamen/Fishmail/master/README.md",
         icon: <GiFishEscape />,
         excerpt: "上班的时候装作在 Gmail 上查邮件的样子看知乎摸鱼...",
         link: "https://fishmail.vercel.app"
