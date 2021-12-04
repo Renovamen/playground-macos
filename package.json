@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "craco start",
+    "dev": "DISABLE_ESLINT_PLUGIN=true craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -32,25 +32,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:prettier/recommended"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "trailingComma": "none"
-        }
-      ]
-    },
-    "ignorePatterns": [
-      "node_modules/",
-      "build/"
     ]
   },
   "dependencies": {

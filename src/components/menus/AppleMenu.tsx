@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import type { RefObject } from "react";
 import { MenuItem, MenuItemGroup } from "./base";
+import { useClickOutside } from "../../hooks";
 
 interface AppleMenuProps {
   logout: () => void;
@@ -7,7 +9,7 @@ interface AppleMenuProps {
   restart: (e: React.MouseEvent<HTMLLIElement>) => void;
   sleep: (e: React.MouseEvent<HTMLLIElement>) => void;
   toggleAppleMenu: () => void;
-  btnRef: any;
+  btnRef: RefObject<HTMLDivElement>;
 }
 
 export default function AppleMenu({
@@ -18,20 +20,9 @@ export default function AppleMenu({
   toggleAppleMenu,
   btnRef
 }: AppleMenuProps) {
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent): void {
-      if (
-        ref.current &&
-        !ref.current.contains(e.target) &&
-        !btnRef.current.contains(e.target)
-      )
-        toggleAppleMenu();
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [ref, toggleAppleMenu, btnRef]);
+  useClickOutside(ref, toggleAppleMenu, [btnRef]);
 
   return (
     <div

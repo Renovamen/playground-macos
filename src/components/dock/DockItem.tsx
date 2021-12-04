@@ -1,4 +1,5 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef } from "react";
+import type { RefObject } from "react";
 import useRaf from "@rooks/use-raf";
 import {
   motion,
@@ -7,12 +8,13 @@ import {
   useSpring,
   useTransform
 } from "framer-motion";
+import { useWindowSize } from "../../hooks";
 
 // Hover effect is adopted from https://github.com/PuruVJ/macos-web/blob/main/src/components/dock/DockItem.tsx
 
 const useDockHoverAnimation = (
   mouseX: MotionValue,
-  ref: any,
+  ref: RefObject<HTMLImageElement>,
   dockSize: number,
   dockMag: number
 ) => {
@@ -67,23 +69,6 @@ const useDockHoverAnimation = (
   return { width, widthPX };
 };
 
-const useWindowWidth = () => {
-  const [width, setWidth] = useState(document.body.offsetWidth);
-
-  const onResize = useCallback(() => {
-    setWidth(document.body.offsetWidth);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, [onResize]);
-
-  return width;
-};
-
 interface DockItemProps {
   id: string;
   title: string;
@@ -111,7 +96,8 @@ export default function DockItem({
 }: DockItemProps) {
   const imgRef = useRef<HTMLImageElement>(null);
   const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag);
-  const windowWidth = useWindowWidth();
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const { winWidth, winHeight } = useWindowSize();
 
   return (
     <li
@@ -131,7 +117,7 @@ export default function DockItem({
             alt={title}
             title={title}
             draggable={false}
-            style={windowWidth < 640 ? {} : { width, willChange: "width" }}
+            style={winWidth < 640 ? {} : { width, willChange: "width" }}
           />
         </a>
       ) : (
@@ -142,7 +128,7 @@ export default function DockItem({
           alt={title}
           title={title}
           draggable={false}
-          style={windowWidth < 640 ? {} : { width, willChange: "width" }}
+          style={winWidth < 640 ? {} : { width, willChange: "width" }}
         />
       )}
       <div

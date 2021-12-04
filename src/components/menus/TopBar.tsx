@@ -1,14 +1,16 @@
-import React, { Component, createRef, forwardRef } from "react";
-import { connect } from "react-redux";
+import React, { createRef, forwardRef, useState, useEffect } from "react";
+import type { RefObject, ReactNode } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import format from "date-fns/format";
 
-import { macActions } from "../../types";
+import type { MacActions, RootReduxState } from "../../types";
 import AppleMenu from "./AppleMenu";
 import WifiMenu from "./WifiMenu";
 import ControlCenterMenu from "./ControlCenterMenu";
-import { isFullScreen } from "../../utils/screen";
+import { isFullScreen } from "../../utils";
 import { setVolume, setBrightness, toggleFullScreen } from "../../redux/action";
-import music from "../../configs/music";
+import { music } from "../../configs";
+import { useAudio, useWindowSize, useInterval } from "../../hooks";
 
 // ------- import icons -------
 import { BsBatteryFull } from "react-icons/bs";
@@ -21,7 +23,7 @@ interface TopBarItemProps {
   hideOnMobile?: boolean;
   forceHover?: boolean;
   onClick?: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
@@ -40,18 +42,9 @@ const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
   );
 });
 
-interface TopBarRedux {
-  volume: number;
-  brightness: number;
-  wifi: boolean;
-}
-
-interface TopBarProps extends macActions, TopBarRedux {
+interface TopBarProps extends MacActions {
   title: string;
-  setVolume: Function;
-  toggleFullScreen: Function;
-  setBrightness: Function;
-  setSpotlightBtnRef: (value: React.RefObject<HTMLDivElement>) => void;
+  setSpotlightBtnRef: (value: RefObject<HTMLDivElement>) => void;
   hide: boolean;
   toggleSpotlight: () => void;
 }
@@ -61,221 +54,175 @@ interface TopBarState {
   showControlCenter: boolean;
   showWifiMenu: boolean;
   showAppleMenu: boolean;
-  playing: boolean;
 }
 
-class TopBar extends Component<TopBarProps, TopBarState> {
-  private intervalId = null as any;
-  private appleBtnRef = createRef<any>();
-  private controlCenterBtnRef = createRef<any>();
-  private wifiBtnRef = createRef<any>();
-  private spotlightBtnRef = createRef<any>();
-  private audio = new Audio();
+const TopBar = (props: TopBarProps) => {
+  const appleBtnRef = createRef<HTMLDivElement>();
+  const controlCenterBtnRef = createRef<HTMLDivElement>();
+  const wifiBtnRef = createRef<HTMLDivElement>();
+  const spotlightBtnRef = createRef<HTMLDivElement>();
 
-  constructor(props: TopBarProps) {
-    super(props);
-    this.state = {
-      date: new Date(),
-      showControlCenter: false,
-      showWifiMenu: false,
-      showAppleMenu: false,
-      playing: false
-    };
-    this.toggleAudio = this.toggleAudio.bind(this);
-    this.resize.bind(this);
-  }
+  const [state, setState] = useState<TopBarState>({
+    date: new Date(),
+    showControlCenter: false,
+    showWifiMenu: false,
+    showAppleMenu: false
+  });
 
-  componentDidMount() {
-    this.props.setSpotlightBtnRef(this.spotlightBtnRef);
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const [audio, audioState, controls, audioRef] = useAudio({
+    src: music.audio,
+    autoReplay: true
+  });
+  const { winWidth, winHeight } = useWindowSize();
 
-    // current date and time
-    // store intervalId in the state, so we can clear interval later
-    this.intervalId = setInterval(() => {
-      this.setState({
-        date: new Date()
-      });
-    }, 60 * 1000);
+  const { volume, wifi } = useSelector((state: RootReduxState) => ({
+    volume: state.volume,
+    wifi: state.wifi
+  }));
+  const dispatch = useDispatch();
 
-    // listen to screen size change
-    window.addEventListener("resize", this.resize);
+  useInterval(() => {
+    setState({
+      ...state,
+      date: new Date()
+    });
+  }, 60 * 1000);
 
-    // load music
-    this.audio = new Audio(music.audio);
-    this.audio.load();
+  useEffect(() => {
+    props.setSpotlightBtnRef(spotlightBtnRef);
+    controls.volume(volume / 100);
+  }, []);
 
-    // set volume
-    this.audio.volume = this.props.volume / 100;
-
-    // auto replay
-    this.audio.addEventListener("ended", () => this.audio.play());
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-    window.removeEventListener("resize", this.resize);
-    this.audio.removeEventListener("ended", () => this.audio.play());
-  }
-
-  resize = (): void => {
+  useEffect(() => {
     const isFull = isFullScreen();
-    this.props.toggleFullScreen(isFull);
+    dispatch(toggleFullScreen(isFull));
+  }, [winWidth, winHeight]);
+
+  const setAudioVolume = (value: number): void => {
+    dispatch(setVolume(value));
+    controls.volume(value / 100);
   };
 
-  toggleAudio = (target: boolean): void => {
-    target ? this.audio.play() : this.audio.pause();
-    this.setState({ playing: target });
+  const setSiteBrightness = (value: number): void => {
+    dispatch(setBrightness(value));
   };
 
-  setVolume = (value: number): void => {
-    this.props.setVolume(value);
-    this.audio.volume = value / 100;
-  };
-
-  setBrightness = (value: number): void => {
-    this.props.setBrightness(value);
-  };
-
-  toggleControlCenter = (): void => {
-    this.setState({
-      showControlCenter: !this.state.showControlCenter
+  const toggleControlCenter = (): void => {
+    setState({
+      ...state,
+      showControlCenter: !state.showControlCenter
     });
   };
 
-  toggleAppleMenu = (): void => {
-    this.setState({
-      showAppleMenu: !this.state.showAppleMenu
+  const toggleAppleMenu = (): void => {
+    setState({
+      ...state,
+      showAppleMenu: !state.showAppleMenu
     });
   };
 
-  toggleWifiMenu = (): void => {
-    this.setState({
-      showWifiMenu: !this.state.showWifiMenu
+  const toggleWifiMenu = (): void => {
+    setState({
+      ...state,
+      showWifiMenu: !state.showWifiMenu
     });
   };
 
-  logout = (): void => {
-    this.toggleAudio(false);
-    this.props.setLogin(false);
+  const logout = (): void => {
+    controls.pause();
+    props.setLogin(false);
   };
 
-  shut = (e: React.MouseEvent<HTMLLIElement>): void => {
-    this.toggleAudio(false);
-    this.props.shutMac(e);
+  const shut = (e: React.MouseEvent<HTMLLIElement>): void => {
+    controls.pause();
+    props.shutMac(e);
   };
 
-  restart = (e: React.MouseEvent<HTMLLIElement>): void => {
-    this.toggleAudio(false);
-    this.props.restartMac(e);
+  const restart = (e: React.MouseEvent<HTMLLIElement>): void => {
+    controls.pause();
+    props.restartMac(e);
   };
 
-  sleep = (e: React.MouseEvent<HTMLLIElement>): void => {
-    this.toggleAudio(false);
-    this.props.sleepMac(e);
+  const sleep = (e: React.MouseEvent<HTMLLIElement>): void => {
+    controls.pause();
+    props.sleepMac(e);
   };
 
-  render() {
-    return (
-      <div
-        className={`nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center ${
-          this.props.hide ? "z-0" : "z-20"
-        } text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition`}
-      >
-        <div className="flex flex-row items-center space-x-4">
-          <TopBarItem
-            forceHover={this.state.showAppleMenu}
-            onClick={() => this.toggleAppleMenu()}
-            ref={this.appleBtnRef}
-          >
-            <AiFillApple size={18} />
-          </TopBarItem>
-          <span className="cursor-default font-semibold">
-            {this.props.title}
-          </span>
-        </div>
+  return (
+    <div
+      className={`nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center ${
+        props.hide ? "z-0" : "z-20"
+      } text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition`}
+    >
+      <div className="flex flex-row items-center space-x-4">
+        <TopBarItem
+          forceHover={state.showAppleMenu}
+          onClick={() => toggleAppleMenu()}
+          ref={appleBtnRef}
+        >
+          <AiFillApple size={18} />
+        </TopBarItem>
+        <span className="cursor-default font-semibold">{props.title}</span>
+      </div>
 
-        {/* Open this when clicking on Apple logo */}
-        {this.state.showAppleMenu && (
-          <AppleMenu
-            logout={this.logout}
-            shut={this.shut}
-            restart={this.restart}
-            sleep={this.sleep}
-            toggleAppleMenu={this.toggleAppleMenu}
-            btnRef={this.appleBtnRef}
+      {/* Open this when clicking on Apple logo */}
+      {state.showAppleMenu && (
+        <AppleMenu
+          logout={logout}
+          shut={shut}
+          restart={restart}
+          sleep={sleep}
+          toggleAppleMenu={toggleAppleMenu}
+          btnRef={appleBtnRef}
+        />
+      )}
+
+      <div className="flex flex-row justify-end items-center space-x-2">
+        <TopBarItem hideOnMobile={true}>
+          <span className="text-xs mt-0.5 mr-1">100%</span>
+          <BsBatteryFull size={20} />
+        </TopBarItem>
+        <TopBarItem
+          hideOnMobile={true}
+          onClick={toggleWifiMenu}
+          ref={wifiBtnRef}
+        >
+          {wifi ? <FaWifi size={17} /> : <RiSignalWifiLine size={17} />}
+        </TopBarItem>
+        <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
+          <BiSearch size={17} />
+        </TopBarItem>
+        <TopBarItem onClick={toggleControlCenter} ref={controlCenterBtnRef}>
+          <img
+            className="w-4 h-4 filter invert"
+            src="img/icons/menu/controlcenter.png"
+            alt="control center"
+          />
+        </TopBarItem>
+
+        {/* Open this when clicking on Wifi button */}
+        {state.showWifiMenu && (
+          <WifiMenu toggleWifiMenu={toggleWifiMenu} btnRef={wifiBtnRef} />
+        )}
+
+        {/* Open this when clicking on Control Center button */}
+        {state.showControlCenter && (
+          <ControlCenterMenu
+            playing={audioState.playing}
+            toggleAudio={controls.toggle}
+            setVolume={setAudioVolume}
+            setBrightness={setSiteBrightness}
+            toggleControlCenter={toggleControlCenter}
+            btnRef={controlCenterBtnRef}
           />
         )}
 
-        <div className="flex flex-row justify-end items-center space-x-2">
-          <TopBarItem hideOnMobile={true}>
-            <span className="text-xs mt-0.5 mr-1">100%</span>
-            <BsBatteryFull size={20} />
-          </TopBarItem>
-          <TopBarItem
-            hideOnMobile={true}
-            onClick={this.toggleWifiMenu}
-            ref={this.wifiBtnRef}
-          >
-            {this.props.wifi ? (
-              <FaWifi size={17} />
-            ) : (
-              <RiSignalWifiLine size={17} />
-            )}
-          </TopBarItem>
-          <TopBarItem
-            ref={this.spotlightBtnRef}
-            onClick={this.props.toggleSpotlight}
-          >
-            <BiSearch size={17} />
-          </TopBarItem>
-          <TopBarItem
-            onClick={this.toggleControlCenter}
-            ref={this.controlCenterBtnRef}
-          >
-            <img
-              className="w-4 h-4 filter invert"
-              src="img/icons/menu/controlcenter.png"
-              alt="control center"
-            />
-          </TopBarItem>
-
-          {/* Open this when clicking on Wifi button */}
-          {this.state.showWifiMenu && (
-            <WifiMenu
-              toggleWifiMenu={this.toggleWifiMenu}
-              btnRef={this.wifiBtnRef}
-            />
-          )}
-
-          {/* Open this when clicking on Control Center button */}
-          {this.state.showControlCenter && (
-            <ControlCenterMenu
-              playing={this.state.playing}
-              toggleAudio={this.toggleAudio}
-              setVolume={this.setVolume}
-              setBrightness={this.setBrightness}
-              toggleControlCenter={this.toggleControlCenter}
-              btnRef={this.controlCenterBtnRef}
-            />
-          )}
-
-          <span>{format(this.state.date, "eee MMM d")}</span>
-          <span>{format(this.state.date, "h:mm aa")}</span>
-        </div>
+        <span>{format(state.date, "eee MMM d")}</span>
+        <span>{format(state.date, "h:mm aa")}</span>
       </div>
-    );
-  }
-}
-
-const mapStateToProps = (state: TopBarRedux): TopBarRedux => {
-  return {
-    volume: state.volume,
-    brightness: state.brightness,
-    wifi: state.wifi
-  };
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, {
-  setVolume,
-  setBrightness,
-  toggleFullScreen
-})(TopBar);
+export default TopBar;

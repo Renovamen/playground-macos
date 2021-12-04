@@ -1,4 +1,4 @@
-import { WebsitesData } from "../types";
+import type { WebsitesData } from "../types";
 
 const websites: WebsitesData = {
   favorites: {

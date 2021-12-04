@@ -1,4 +1,4 @@
-import { TerminalData } from "../types";
+import type { TerminalData } from "../types";
 
 const terminal: TerminalData[] = [
   {
@@ -13,8 +13,8 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi! This is Xiaohan Zou, now an incoming Computer Science master's
-              student at Boston University and an algorithm engineer intern at
+              Hi! This is Xiaohan Zou, now a Computer Science master's student
+              at Boston University and a machine learning engineer intern at
               Kuaishou (Kwai). I'm also working as a research assistant at
               Peking University.
             </div>

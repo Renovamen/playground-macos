@@ -4,7 +4,7 @@ interface FsDocumentElement extends HTMLElement {
   webkitRequestFullscreen?: () => void;
 }
 
-interface FsDocument extends HTMLDocument {
+interface FsDocument extends Document {
   webkitIsFullScreen?: boolean;
   mozFullScreen?: boolean;
   msFullscreenElement?: Element;

@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Rnd } from "react-rnd";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
+import { useWindowSize } from "../hooks";
+import type { RootReduxState } from "../types";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
@@ -51,10 +53,6 @@ interface TrafficProps {
   close: (id: string) => void;
 }
 
-interface WindowRedux {
-  dockSize?: number;
-}
-
 interface WindowProps extends TrafficProps {
   min: boolean;
   width?: number;
@@ -64,15 +62,12 @@ interface WindowProps extends TrafficProps {
   title: string;
   z: number;
   focus: (id: string) => void;
-  dockSize?: number;
   children: React.ReactNode;
 }
 
 interface WindowState {
   width: number;
   height: number;
-  maxW: number;
-  maxH: number;
   x: number;
   y: number;
 }
@@ -113,137 +108,107 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
   );
 };
 
-class Window extends Component<WindowProps, WindowState> {
-  constructor(props: WindowProps) {
-    super(props);
-    const maxW = window.innerWidth;
-    const maxH = window.innerHeight;
-    const width = Math.min(maxW, props.width ? props.width : 640);
-    const height = Math.min(maxH, props.height ? props.height : 400);
-    this.state = {
-      width: width,
-      height: height,
-      maxW: maxW,
-      maxH: maxH,
-      // "+ maxW" because of the boundary for windows
-      x: maxW + Math.random() * (maxW - width),
-      // "- minMarginY" because of the boundary for windows
-      y: Math.random() * (maxH - height - minMarginY)
-    };
-    this.resize.bind(this);
-  }
+const Window = (props: WindowProps) => {
+  const dockSize = useSelector((state: RootReduxState) => state.dockSize);
+  const { winWidth, winHeight } = useWindowSize();
 
-  componentDidMount() {
-    window.addEventListener("resize", this.resize);
-  }
+  const initWidth = Math.min(winWidth, props.width ? props.width : 640);
+  const initHeight = Math.min(winHeight, props.height ? props.height : 400);
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resize);
-  }
+  const [state, setState] = useState<WindowState>({
+    width: initWidth,
+    height: initHeight,
+    // "+ winWidth" because of the boundary for windows
+    x: winWidth + Math.random() * (winWidth - initWidth),
+    // "- minMarginY" because of the boundary for windows
+    y: Math.random() * (winHeight - initHeight - minMarginY)
+  });
 
-  resize = () => {
-    const maxW = window.innerWidth;
-    const maxH = window.innerHeight;
-    const width = Math.min(maxW, this.state.width);
-    const height = Math.min(maxH, this.state.height);
-
-    this.setState({
-      maxW: maxW,
-      maxH: maxH,
-      width: width,
-      height: height
+  useEffect(() => {
+    setState({
+      ...state,
+      width: Math.min(winWidth, state.width),
+      height: Math.min(winHeight, state.height)
     });
-  };
+  }, [winWidth, winHeight]);
 
-  render() {
-    const round = this.props.max ? "rounded-none" : "rounded-lg";
-    const minimized = this.props.min
-      ? "opacity-0 invisible transition-opacity duration-300"
-      : "";
-    const border = this.props.max
-      ? ""
-      : "border border-gray-500 border-opacity-30";
-    const width = this.props.max ? this.state.maxW : this.state.width;
-    const height = this.props.max ? this.state.maxH : this.state.height;
+  const round = props.max ? "rounded-none" : "rounded-lg";
+  const minimized = props.min
+    ? "opacity-0 invisible transition-opacity duration-300"
+    : "";
+  const border = props.max ? "" : "border border-gray-500 border-opacity-30";
+  const width = props.max ? winWidth : state.width;
+  const height = props.max ? winHeight : state.height;
 
-    let children = React.cloneElement(
-      this.props.children as React.ReactElement<any>,
-      { width: width }
-    );
+  const children = React.cloneElement(
+    props.children as React.ReactElement<any>,
+    { width: width }
+  );
 
-    return (
-      <Rnd
-        bounds="parent"
-        size={{
-          width: width,
-          height: height
-        }}
-        position={{
-          x: this.props.max
-            ? this.state.maxW // because of boundary
-            : Math.min(
-                // "maxW * 2" because of the boundary for windows
-                this.state.maxW * 2 - minMarginX,
-                Math.max(
-                  // "+ maxW" because we add a boundary for windows
-                  this.state.maxW - this.state.width + minMarginX,
-                  this.state.x
-                )
-              ),
-          y: this.props.max
-            ? -minMarginY // because of boundary
-            : Math.min(
-                this.state.maxH -
-                  minMarginY - // "- minMarginY" because of the boundary for windows
-                  ((this.props.dockSize as number) + 15 + minMarginY),
-                Math.max(0, this.state.y)
+  return (
+    <Rnd
+      bounds="parent"
+      size={{
+        width: width,
+        height: height
+      }}
+      position={{
+        x: props.max
+          ? winWidth // because of boundary
+          : Math.min(
+              // "winWidth * 2" because of the boundary for windows
+              winWidth * 2 - minMarginX,
+              Math.max(
+                // "+ winWidth" because we add a boundary for windows
+                winWidth - state.width + minMarginX,
+                state.x
               )
-        }}
-        onDragStop={(e, d) => {
-          this.setState({ x: d.x, y: d.y });
-        }}
-        onResizeStop={(e, direction, ref, delta, position) => {
-          this.setState({
-            width: parseInt(ref.style.width),
-            height: parseInt(ref.style.height),
-            ...position
-          });
-        }}
-        minWidth={this.props.minWidth ? this.props.minWidth : 200}
-        minHeight={this.props.minHeight ? this.props.minHeight : 150}
-        dragHandleClassName="window-bar"
-        disableDragging={this.props.max}
-        enableResizing={!this.props.max}
-        style={{ zIndex: this.props.z }}
-        onMouseDown={() => this.props.focus(this.props.id)}
-        className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-md ${minimized}`}
-        id={`window-${this.props.id}`}
+            ),
+        y: props.max
+          ? -minMarginY // because of boundary
+          : Math.min(
+              // "- minMarginY" because of the boundary for windows
+              winHeight - minMarginY - (dockSize + 15 + minMarginY),
+              Math.max(0, state.y)
+            )
+      }}
+      onDragStop={(e, d) => {
+        setState({ ...state, x: d.x, y: d.y });
+      }}
+      onResizeStop={(e, direction, ref, delta, position) => {
+        setState({
+          ...state,
+          width: parseInt(ref.style.width),
+          height: parseInt(ref.style.height),
+          ...position
+        });
+      }}
+      minWidth={props.minWidth ? props.minWidth : 200}
+      minHeight={props.minHeight ? props.minHeight : 150}
+      dragHandleClassName="window-bar"
+      disableDragging={props.max}
+      enableResizing={!props.max}
+      style={{ zIndex: props.z }}
+      onMouseDown={() => props.focus(props.id)}
+      className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-md ${minimized}`}
+      id={`window-${props.id}`}
+    >
+      <div
+        className="window-bar relative h-6 text-center bg-gray-200"
+        onDoubleClick={() => props.setMax(props.id)}
       >
-        <div
-          className="window-bar relative h-6 text-center bg-gray-200"
-          onDoubleClick={() => this.props.setMax(this.props.id)}
-        >
-          <TrafficLights
-            id={this.props.id}
-            close={this.props.close}
-            max={this.props.max}
-            setMax={this.props.setMax}
-            setMin={this.props.setMin}
-          />
-          <span className="font-semibold text-gray-700">
-            {this.props.title}
-          </span>
-        </div>
-        <div className="innner-window w-full overflow-y-hidden">{children}</div>
-      </Rnd>
-    );
-  }
-}
-
-const mapStateToProps = (state: WindowRedux): WindowRedux => {
-  return {
-    dockSize: state.dockSize
-  };
+        <TrafficLights
+          id={props.id}
+          close={props.close}
+          max={props.max}
+          setMax={props.setMax}
+          setMin={props.setMin}
+        />
+        <span className="font-semibold text-gray-700">{props.title}</span>
+      </div>
+      <div className="innner-window w-full overflow-y-hidden">{children}</div>
+    </Rnd>
+  );
 };
 
-export default connect(mapStateToProps, null)(Window);
+export default Window;

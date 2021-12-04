@@ -1,4 +1,4 @@
-import { MusicData } from "../types";
+import type { MusicData } from "../types";
 
 const music: MusicData = {
   title: "Sunflower",

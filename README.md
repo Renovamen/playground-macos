@@ -7,6 +7,8 @@ Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.
 ![day](./public/screenshots/day.png)
 ![night](./public/screenshots/night.png)
 
+**Update 2021.12.05**: I refactored this project by using functional components and hooks to make the code cleaner. See [this branch](https://github.com/Renovamen/playground-macos/tree/class-component) for the previous version written using class components.
+
 
 &nbsp;
 

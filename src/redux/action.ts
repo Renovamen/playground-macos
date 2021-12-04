@@ -1,5 +1,5 @@
 import nightwind from "nightwind/helper";
-import { enterFullScreen, exitFullScreen } from "../utils/screen";
+import { enterFullScreen, exitFullScreen } from "../utils";
 
 export const type = {
   TOGGLE_DARK: "TOGGLE_DARK",

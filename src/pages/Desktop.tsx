@@ -1,22 +1,22 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import type { RefObject } from "react";
 import { connect } from "react-redux";
 import nightwind from "nightwind/helper";
 
-import { macActions } from "../types";
+import type { MacActions } from "../types";
 import TopBar from "../components/menus/TopBar";
 import Dock from "../components/dock/Dock";
 import Launchpad from "../components/Launchpad";
 import Window from "../components/Window";
 import Spotlight from "../components/Spotlight";
-import apps from "../configs/apps";
-import wallpapers from "../configs/wallpapers";
+import { apps, wallpapers } from "../configs";
 
 type DesktopRedux = {
   dark?: boolean;
   brightness?: number;
 };
 
-type DesktopProps = DesktopRedux & macActions;
+type DesktopProps = DesktopRedux & MacActions;
 
 interface DesktopState {
   showApps: {
@@ -267,7 +267,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
           restartMac={this.props.restartMac}
           toggleSpotlight={this.toggleSpotlight}
           hide={this.state.hideDockAndTopbar}
-          setSpotlightBtnRef={(value: React.RefObject<HTMLDivElement>) => {
+          setSpotlightBtnRef={(value: RefObject<HTMLDivElement>) => {
             this.setState({
               spotlightBtnRef: value
             });
