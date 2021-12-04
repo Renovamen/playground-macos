@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { useRef } from "react";
 import type { RefObject } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "react-rangeslider/lib/index.css";
@@ -14,7 +14,7 @@ interface WifiMenuProps {
 export default function WifiMenu({ toggleWifiMenu, btnRef }: WifiMenuProps) {
   const wifi = useSelector((state: RootReduxState) => state.wifi);
   const dispatch = useDispatch();
-  const wifiRef = createRef<HTMLDivElement>();
+  const wifiRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(wifiRef, toggleWifiMenu, [btnRef]);
 

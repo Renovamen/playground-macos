@@ -19,7 +19,7 @@ export function useClickOutside(
     const handler = (event: Event) => {
       for (const excludeRef of excludeRefs) {
         const { current: excludeEl } = excludeRef;
-        if (!excludeEl || excludeEl.contains(event.target as Node)) return;
+        if (excludeEl && excludeEl.contains(event.target as Node)) return;
       }
 
       const { current: el } = ref;

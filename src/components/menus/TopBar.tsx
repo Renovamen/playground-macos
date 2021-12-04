@@ -1,4 +1,4 @@
-import React, { createRef, forwardRef, useState, useEffect } from "react";
+import React, { forwardRef, useState, useEffect, useRef } from "react";
 import type { RefObject, ReactNode } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import format from "date-fns/format";
@@ -57,10 +57,10 @@ interface TopBarState {
 }
 
 const TopBar = (props: TopBarProps) => {
-  const appleBtnRef = createRef<HTMLDivElement>();
-  const controlCenterBtnRef = createRef<HTMLDivElement>();
-  const wifiBtnRef = createRef<HTMLDivElement>();
-  const spotlightBtnRef = createRef<HTMLDivElement>();
+  const appleBtnRef = useRef<HTMLDivElement>(null);
+  const controlCenterBtnRef = useRef<HTMLDivElement>(null);
+  const wifiBtnRef = useRef<HTMLDivElement>(null);
+  const spotlightBtnRef = useRef<HTMLDivElement>(null);
 
   const [state, setState] = useState<TopBarState>({
     date: new Date(),

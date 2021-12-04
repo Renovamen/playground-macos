@@ -1,4 +1,4 @@
-import { createRef, useState } from "react";
+import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
@@ -8,10 +8,11 @@ const videoConstraints = {
 const FaceTime = () => {
   const [click, setClick] = useState(false);
   const [img, setImg] = useState("");
-  const webcamRef = createRef<any>();
+  const webcamRef = useRef<Webcam>(null);
 
   const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
+    if (!webcamRef.current) return;
+    const imageSrc = webcamRef.current.getScreenshot() as string;
     setImg(imageSrc);
   };
 

@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { useRef } from "react";
 import type { RefObject } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-rangeslider";
@@ -67,7 +67,7 @@ export default function ControlCenterMenu({
   playing,
   btnRef
 }: CCMProps) {
-  const controlCenterRef = createRef<HTMLDivElement>();
+  const controlCenterRef = useRef<HTMLDivElement>(null);
   const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } =
     useSelector((state: RootReduxState) => ({
       dark: state.dark,
