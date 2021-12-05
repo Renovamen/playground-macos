@@ -139,7 +139,7 @@ input:checked + .slider-toggle:before {
 /* --------- battery --------- */
 
 .battery-level {
-  @apply absolute h-2 top-1/2 -m-1 left-0;
+  @apply absolute h-2 top-1/2 -mt-1 left-0;
   margin-left: 0.1rem;
   border-radius: 1px;
 }

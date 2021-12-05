@@ -16,7 +16,7 @@ import { useAudio, useWindowSize, useInterval } from "../../hooks";
 // ------- import icons -------
 import { BiSearch } from "react-icons/bi";
 import { MdWifi, MdWifiOff } from "react-icons/md";
-import { AiFillApple } from "react-icons/ai";
+import { RiAppleFill } from "react-icons/ri";
 
 interface TopBarItemProps {
   hideOnMobile?: boolean;
@@ -33,7 +33,7 @@ const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
   return (
     <div
       ref={ref}
-      className={`${hide} cursor-default flex-row space-x-1 ${hover} p-1`}
+      className={`${hide} h-6 cursor-default flex-row space-x-1 ${hover} p-1`}
       onClick={props.onClick}
     >
       {props.children}
@@ -174,7 +174,7 @@ const TopBar = (props: TopBarProps) => {
           onClick={() => toggleAppleMenu()}
           ref={appleBtnRef}
         >
-          <AiFillApple size={18} />
+          <RiAppleFill size={16} />
         </TopBarItem>
         <span className="cursor-default font-semibold">{props.title}</span>
       </div>
