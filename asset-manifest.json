@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.1f2b7e78.chunk.css",
-    "main.js": "/static/js/main.201553fe.chunk.js",
-    "main.js.map": "/static/js/main.201553fe.chunk.js.map",
+    "main.css": "/static/css/main.b9636f36.chunk.css",
+    "main.js": "/static/js/main.3d4a8afd.chunk.js",
+    "main.js.map": "/static/js/main.3d4a8afd.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7266daf7.js",
     "runtime-main.js.map": "/static/js/runtime-main.7266daf7.js.map",
     "static/css/2.8a61496e.chunk.css": "/static/css/2.8a61496e.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.94f99aea.chunk.js.map": "/static/js/2.94f99aea.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.8a61496e.chunk.css.map": "/static/css/2.8a61496e.chunk.css.map",
-    "static/css/main.1f2b7e78.chunk.css.map": "/static/css/main.1f2b7e78.chunk.css.map",
+    "static/css/main.b9636f36.chunk.css.map": "/static/css/main.b9636f36.chunk.css.map",
     "static/js/2.94f99aea.chunk.js.LICENSE.txt": "/static/js/2.94f99aea.chunk.js.LICENSE.txt",
     "static/media/font.css": "/static/media/AvenirNextLTPro-Regular.a6f907b6.woff"
   },
@@ -18,7 +18,7 @@
     "static/js/runtime-main.7266daf7.js",
     "static/css/2.8a61496e.chunk.css",
     "static/js/2.94f99aea.chunk.js",
-    "static/css/main.1f2b7e78.chunk.css",
-    "static/js/main.201553fe.chunk.js"
+    "static/css/main.b9636f36.chunk.css",
+    "static/js/main.3d4a8afd.chunk.js"
   ]
 }
