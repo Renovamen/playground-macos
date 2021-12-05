@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Avenir Next LT Pro Regular"), url("./fonts/AvenirNextLTPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: italic;
+  font-weight: normal;
+  src: local("Avenir Next LT Pro It"), url("./fonts/AvenirNextLTPro-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: normal;
+  font-weight: bold;
+  src: local("Avenir Next LT Pro Demi"), url("./fonts/AvenirNextLTPro-Demi.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir Next LT Pro";
+  font-style: italic;
+  font-weight: bold;
+  src: local("Avenir Next LT Pro DemiIt"), url("./fonts/AvenirNextLTPro-DemiItalic.woff") format("woff");
+}
+
+.font-avenir {
+  font-family: "Avenir Next LT Pro", "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
+}
+
+.font-terminal {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+body:not(pre) {
+  font-family: "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
+}

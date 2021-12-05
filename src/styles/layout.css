@@ -1,0 +1,11 @@
+* {
+  @apply m-0 p-0;
+}
+
+html, body, #root {
+  @apply h-full overflow-hidden;
+}
+
+.blur {
+  backdrop-filter: blur(40px);
+}

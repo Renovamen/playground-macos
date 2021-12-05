@@ -24,7 +24,7 @@ import {
   BsFullscreenExit
 } from "react-icons/bs";
 import { IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
-import { FaWifi } from "react-icons/fa";
+import { MdWifi } from "react-icons/md";
 
 interface SliderProps {
   icon: JSX.Element;
@@ -90,7 +90,7 @@ export default function ControlCenterMenu({
     >
       <div className="control-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
         <div className="flex flex-row items-center space-x-2">
-          <FaWifi
+          <MdWifi
             size={32}
             className={`${
               wifi

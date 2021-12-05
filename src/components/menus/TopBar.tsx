@@ -6,6 +6,7 @@ import format from "date-fns/format";
 import type { MacActions, RootReduxState } from "../../types";
 import AppleMenu from "./AppleMenu";
 import WifiMenu from "./WifiMenu";
+import Battery from "./Battery";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "../../utils";
 import { setVolume, setBrightness, toggleFullScreen } from "../../redux/action";
@@ -13,10 +14,8 @@ import { music } from "../../configs";
 import { useAudio, useWindowSize, useInterval } from "../../hooks";
 
 // ------- import icons -------
-import { BsBatteryFull } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
-import { FaWifi } from "react-icons/fa";
-import { RiSignalWifiLine } from "react-icons/ri";
+import { MdWifi, MdWifiOff } from "react-icons/md";
 import { AiFillApple } from "react-icons/ai";
 
 interface TopBarItemProps {
@@ -41,6 +40,20 @@ const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
     </div>
   );
 });
+
+const CCMIcon = ({ size }: { size: number }) => {
+  return (
+    <svg
+      viewBox="0 0 29 29"
+      width={size}
+      height={size}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+    >
+      <path d="M7.5,13h14a5.5,5.5,0,0,0,0-11H7.5a5.5,5.5,0,0,0,0,11Zm0-9h14a3.5,3.5,0,0,1,0,7H7.5a3.5,3.5,0,0,1,0-7Zm0,6A2.5,2.5,0,1,0,5,7.5,2.5,2.5,0,0,0,7.5,10Zm14,6H7.5a5.5,5.5,0,0,0,0,11h14a5.5,5.5,0,0,0,0-11Zm1.43439,8a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,22.93439,24Z" />
+    </svg>
+  );
+};
 
 interface TopBarProps extends MacActions {
   title: string;
@@ -180,25 +193,20 @@ const TopBar = (props: TopBarProps) => {
 
       <div className="flex flex-row justify-end items-center space-x-2">
         <TopBarItem hideOnMobile={true}>
-          <span className="text-xs mt-0.5 mr-1">100%</span>
-          <BsBatteryFull size={20} />
+          <Battery />
         </TopBarItem>
         <TopBarItem
           hideOnMobile={true}
           onClick={toggleWifiMenu}
           ref={wifiBtnRef}
         >
-          {wifi ? <FaWifi size={17} /> : <RiSignalWifiLine size={17} />}
+          {wifi ? <MdWifi size={18} /> : <MdWifiOff size={18} />}
         </TopBarItem>
         <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
           <BiSearch size={17} />
         </TopBarItem>
         <TopBarItem onClick={toggleControlCenter} ref={controlCenterBtnRef}>
-          <img
-            className="w-4 h-4 filter invert"
-            src="img/icons/menu/controlcenter.png"
-            alt="control center"
-          />
+          <CCMIcon size={16} />
         </TopBarItem>
 
         {/* Open this when clicking on Wifi button */}

@@ -18,7 +18,6 @@ const FullIcon = ({ size }: { size: number }) => {
       strokeLinejoin="round"
       strokeMiterlimit={2}
     >
-      <path fill="none" d="M0 0h12.038v12.038H0z" />
       <path d="M9.26 12.03L.006 2.73v9.3H9.26zM2.735.012l9.3 9.3v-9.3h-9.3z" />
     </svg>
   );
@@ -36,7 +35,6 @@ const ExitFullIcon = ({ size }: { size: number }) => {
       strokeLinejoin="round"
       strokeMiterlimit={2}
     >
-      <path fill="none" d="M0 0h18.972v18.973H0z" />
       <path d="M18.373 9.23L9.75.606V9.23h8.624zM.6 9.742l8.623 8.624V9.742H.599z" />
     </svg>
   );
