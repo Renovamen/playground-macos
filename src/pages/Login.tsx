@@ -50,7 +50,7 @@ export default function Login(props: MacActions) {
           </div>
         </div>
 
-        <div className="nightwind-prevent text-sm mt-2 text-gray-200">
+        <div className="nightwind-prevent text-sm mt-2 text-gray-200 cursor-pointer">
           Click to enter
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function Login(props: MacActions) {
       {/* buttons */}
       <div className="nightwind-prevent-block text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
@@ -67,7 +67,7 @@ export default function Login(props: MacActions) {
           <span>Sleep</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
@@ -76,7 +76,7 @@ export default function Login(props: MacActions) {
           <span>Restart</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
