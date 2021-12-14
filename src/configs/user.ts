@@ -3,7 +3,7 @@ import type { UserData } from "../types";
 const user: UserData = {
   name: "Xiaohan Zou",
   avatar: "img/ui/avatar.jpg",
-  password: ''
+  password: ""
 };
 
 export default user;

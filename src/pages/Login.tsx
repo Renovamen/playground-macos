@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { CgSleep } from "react-icons/cg";
@@ -9,12 +9,12 @@ import { wallpapers, user } from "../configs";
 
 export default function Login(props: MacActions) {
   const [password, setPassword] = useState("");
-  const [sign, setSign] = useState("Click to enter")
+  const [sign, setSign] = useState("Click to enter");
   const dark = useSelector((state: RootReduxState) => state.dark);
 
   const keyPress = (e: React.KeyboardEvent) => {
     const keyCode = e.key;
-    if (keyCode === "Enter") loginHandle()
+    if (keyCode === "Enter") loginHandle();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -22,15 +22,14 @@ export default function Login(props: MacActions) {
   };
 
   const loginHandle = () => {
-    if (user.password === '' || user.password === password) {
+    if (user.password === "" || user.password === password) {
       // not set password or password correct
-      props.setLogin(true)
-    } else if (password !== '') {
+      props.setLogin(true);
+    } else if (password !== "") {
       // password not null and incorrect
-      setSign('Incorrect password')
+      setSign("Incorrect password");
     }
-
-  }
+  };
 
   return (
     <div
