@@ -5,3 +5,4 @@ node_modules
 build
 .npmrc
 .yarnrc
+.idea

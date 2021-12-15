@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { CgSleep } from "react-icons/cg";
@@ -8,11 +8,27 @@ import type { MacActions, RootReduxState } from "../types";
 import { wallpapers, user } from "../configs";
 
 export default function Login(props: MacActions) {
+  const [password, setPassword] = useState("");
+  const [sign, setSign] = useState("Click to enter");
   const dark = useSelector((state: RootReduxState) => state.dark);
 
   const keyPress = (e: React.KeyboardEvent) => {
     const keyCode = e.key;
-    if (keyCode === "Enter") props.setLogin(true);
+    if (keyCode === "Enter") loginHandle();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
+  };
+
+  const loginHandle = () => {
+    if (user.password === "" || user.password === password) {
+      // not set password or password correct
+      props.setLogin(true);
+    } else if (password !== "") {
+      // password not null and incorrect
+      setSign("Incorrect password");
+    }
   };
 
   return (
@@ -23,7 +39,7 @@ export default function Login(props: MacActions) {
           dark ? wallpapers.night : wallpapers.day
         }) center/cover no-repeat`
       }}
-      onClick={() => props.setLogin(true)}
+      onClick={() => loginHandle()}
     >
       <div className="inline-block w-auto relative top-1/2 -mt-40">
         {/* Avatar */}
@@ -44,21 +60,23 @@ export default function Login(props: MacActions) {
             placeholder="Enter Password"
             onClick={(e) => e.stopPropagation()}
             onKeyPress={keyPress}
+            value={password}
+            onChange={handleInputChange}
           />
           <div className="col-start-5 col-span-1 flex justify-center items-center">
             <BsQuestionSquareFill className="ml-1" color="white" />
           </div>
         </div>
 
-        <div className="nightwind-prevent text-sm mt-2 text-gray-200">
-          Click to enter
+        <div className="nightwind-prevent text-sm mt-2 text-gray-200 cursor-pointer">
+          {sign}
         </div>
       </div>
 
       {/* buttons */}
       <div className="nightwind-prevent-block text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
@@ -67,7 +85,7 @@ export default function Login(props: MacActions) {
           <span>Sleep</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
@@ -76,7 +94,7 @@ export default function Login(props: MacActions) {
           <span>Restart</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24"
+          className="flex flex-col items-center text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
