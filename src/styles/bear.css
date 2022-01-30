@@ -136,19 +136,16 @@
   @apply border-t border-gray-300 bg-transparent;
 }
 
-.dark .bear .markdown,
-.dark .bear .midbar {
-  @apply bg-gray-800;
+/**
+ * To avoid circular dependency error (I don't know how it coms ), here I
+ * don't use tailwindcss's @apply.
+ */
+html.dark .bear .markdown,
+html.dark .bear .midbar {
+  background-color: rgb(31 41 55);
 }
 
-.dark .bear .midbar li.bg-white {
-  @apply bg-gray-900;
-}
-
-.dark .bear .midbar li:hover {
-  @apply bg-gray-900;
-}
-
-.dark .bear .sidebar {
-  @apply bg-gray-700 text-white;
+html.dark .bear .midbar li.bg-white,
+html.dark .bear .midbar li:hover {
+  background-color: rgb(17 24 39);
 }

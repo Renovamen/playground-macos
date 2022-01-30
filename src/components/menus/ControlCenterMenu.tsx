@@ -84,7 +84,7 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 blur rounded-2xl text-black border border-gray-400 border-opacity-50"
+      className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 rounded-2xl text-black border border-gray-400 border-opacity-50"
       style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
       ref={controlCenterRef}
     >
@@ -188,7 +188,7 @@ export default function ControlCenterMenu({
           setValue={setBrightness}
         />
       </div>
-      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl px-2.5 py-2 space-y-1 flex flex-col justify-around">
+      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 rounded-xl px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
         <SliderComponent
           icon={<IoVolumeHigh size={12} className="text-gray-500" />}
@@ -196,7 +196,7 @@ export default function ControlCenterMenu({
           setValue={setVolume}
         />
       </div>
-      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 blur rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-2.5">
+      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-2.5">
         <img src={music.cover} alt="cover art" className="w-12 rounded-lg" />
         <div className="flex flex-col flex-grow justify-start">
           <span className="font-medium">{music.title}</span>

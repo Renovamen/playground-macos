@@ -40,6 +40,7 @@ const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
     </div>
   );
 });
+TopBarItem.displayName = "TopBarItem";
 
 const CCMIcon = ({ size }: { size: number }) => {
   return (
@@ -166,7 +167,7 @@ const TopBar = (props: TopBarProps) => {
     <div
       className={`nightwind-prevent w-full h-6 px-4 fixed top-0 flex flex-row justify-between items-center ${
         props.hide ? "z-0" : "z-20"
-      } text-sm text-white bg-gray-500 bg-opacity-10 blur shadow transition`}
+      } text-sm text-white bg-gray-500 bg-opacity-10 backdrop-blur-2xl shadow transition`}
     >
       <div className="flex flex-row items-center space-x-4">
         <TopBarItem

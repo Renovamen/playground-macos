@@ -114,10 +114,10 @@ export default function Spotlight({
 
   const getTypeAppList = (type: string, startIndex: number) => {
     const result = search(type);
-    let typeAppList = [];
-    let typeAppIdList = [];
+    const typeAppList = [];
+    const typeAppIdList = [];
 
-    for (let app of result) {
+    for (const app of result) {
       const curIndex = startIndex + typeAppList.length;
       const bg = curIndex === 0 ? "bg-blue-500" : "bg-transparent";
       const text = curIndex === 0 ? "text-white" : "text-black";
@@ -265,7 +265,7 @@ export default function Spotlight({
 
   return (
     <div
-      className="spotlight fixed z-20 top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 blur border border-gray-400 border-opacity-50 shadow-2xl"
+      className="spotlight fixed z-20 top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 backdrop-blur-2xl border border-gray-400 border-opacity-50 shadow-2xl"
       onKeyDown={handleKeyPress}
       onClick={focusOnInput}
       ref={spotlightRef}

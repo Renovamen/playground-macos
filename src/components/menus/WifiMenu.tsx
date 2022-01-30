@@ -20,7 +20,7 @@ export default function WifiMenu({ toggleWifiMenu, btnRef }: WifiMenuProps) {
 
   return (
     <div
-      className="fixed h-11 w-80 max-w-full top-8 right-0 sm:right-2 px-2 py-0.5 flex gap-2 bg-gray-200 bg-opacity-90 blur border border-gray-400 border-opacity-50 rounded-lg text-black shadow-2xl"
+      className="fixed h-11 w-80 max-w-full top-8 right-0 sm:right-2 px-2 py-0.5 flex gap-2 bg-gray-200 bg-opacity-90 border border-gray-400 border-opacity-50 rounded-lg text-black shadow-2xl"
       style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
       ref={wifiRef}
     >

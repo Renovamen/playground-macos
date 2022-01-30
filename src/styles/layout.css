@@ -5,7 +5,3 @@
 html, body, #root {
   @apply h-full overflow-hidden;
 }
-
-.blur {
-  backdrop-filter: blur(40px);
-}

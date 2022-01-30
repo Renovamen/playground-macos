@@ -48,9 +48,10 @@ const Highlighter = (dark: boolean): any => {
           style={dark ? dracula : prism}
           language={match[1]}
           PreTag="div"
-          children={String(children).replace(/\n$/, "")}
           {...props}
-        />
+        >
+          {String(children).replace(/\n$/, "")}
+        </SyntaxHighlighter>
       ) : (
         <code className={className}>{children}</code>
       );
@@ -60,7 +61,7 @@ const Highlighter = (dark: boolean): any => {
 
 const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
   return (
-    <div className="sidebar w-full h-full bg-gray-700 text-white overflow-y-scroll">
+    <div className="nightwind-prevent nightwind-prevent-block sidebar w-full h-full bg-gray-700 text-white overflow-y-scroll">
       <div className="h-12 pr-3 flex flex-row justify-end items-center">
         <IoCloudOfflineOutline className="mr-3" size={20} />
         <GiSettingsKnobs size={20} />
@@ -140,7 +141,7 @@ const fixImageURL = (text: string, contentURL: string): string => {
     const imgList = text.match(imgRegGlobal);
 
     if (imgList) {
-      for (let img of imgList) {
+      for (const img of imgList) {
         const imgURL = (img.match(imgReg) as Array<string>)[2];
         if (imgURL.indexOf("http") !== -1) continue;
         const newImgURL = repoURL + imgURL;
@@ -178,11 +179,12 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
     <div className="markdown w-full h-full bg-gray-50 text-gray-700 overflow-scroll py-6">
       <div className="w-2/3 px-2 mx-auto">
         <ReactMarkdown
-          children={storeMd[contentID]}
           linkTarget="_blank"
           remarkPlugins={[gfm]}
           components={Highlighter(dark as boolean)}
-        />
+        >
+          {storeMd[contentID]}
+        </ReactMarkdown>
       </div>
     </div>
   );

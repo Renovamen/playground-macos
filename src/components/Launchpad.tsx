@@ -40,7 +40,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
       }}
       onClick={() => toggleLaunchpad(false)}
     >
-      <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 blur">
+      <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 backdrop-blur-2xl">
         <div
           className="block mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30"
           onClick={(e) => e.stopPropagation()}

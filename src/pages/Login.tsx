@@ -53,7 +53,7 @@ export default function Login(props: MacActions) {
         </div>
 
         {/* Password Input */}
-        <div className="nightwind-prevent mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 blur bg-opacity-50">
+        <div className="nightwind-prevent mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 backdrop-blur-2xl bg-opacity-50">
           <input
             className="nightwind-prevent text-sm col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
             type="password"

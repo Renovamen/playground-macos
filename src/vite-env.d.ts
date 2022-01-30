@@ -1,4 +1,4 @@
-/// <reference types="react-scripts" />
+/// <reference types="vite/client" />
 
 declare module "nightwind/*";
 declare module "react-rangeslider";

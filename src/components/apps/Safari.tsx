@@ -93,7 +93,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full min-h-full pt-8 bg-gray-100 bg-opacity-80 blur">
+      <div className="w-full min-h-full pt-8 bg-gray-100 bg-opacity-80 backdrop-blur-2xl">
         {/* Favorites */}
         <NavSection
           section={websites.favorites}
@@ -139,7 +139,7 @@ const NoInternetPage = () => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full h-full bg-gray-100 bg-opacity-80 blur flex items-center justify-center">
+      <div className="w-full h-full bg-gray-100 bg-opacity-80 backdrop-blur-2xl flex items-center justify-center">
         <div
           className={`pb-10 text-center ${
             dark ? "text-gray-500" : "text-gray-600"

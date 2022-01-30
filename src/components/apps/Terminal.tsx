@@ -151,7 +151,7 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   getCurChildren = () => {
     let children = terminal as any;
-    for (let name of this.curDirPath) {
+    for (const name of this.curDirPath) {
       children = children.find((item: TerminalData) => {
         return item.title === name && item.type === "folder";
       }).children;
@@ -192,8 +192,8 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   // display content of a specified folder
   ls = (): void => {
-    let result = [];
-    for (let item of this.curChildren) {
+    const result = [];
+    for (const item of this.curChildren) {
       result.push(
         <span
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
@@ -380,7 +380,7 @@ export default class Terminal extends Component<{}, TerminalState> {
         />
       </div>
     );
-    let content = this.state.content;
+    const content = this.state.content;
     content.push(newRow);
     this.setState({ content });
   };
@@ -394,7 +394,7 @@ export default class Terminal extends Component<{}, TerminalState> {
         {result}
       </div>
     );
-    let content = this.state.content;
+    const content = this.state.content;
     content.push(newRow);
     this.setState({ content });
   };

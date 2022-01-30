@@ -91,7 +91,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
   };
 
   toggleLaunchpad = (target: boolean): void => {
-    let r = document.querySelector(`#launchpad`) as HTMLElement;
+    const r = document.querySelector(`#launchpad`) as HTMLElement;
     if (target) {
       r.style.transform = "scale(1)";
       r.style.transition = "ease-in 0.2s";
@@ -108,7 +108,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
   };
 
   setWinowsPosition = (id: string): void => {
-    let r = document.querySelector(`#window-${id}`) as HTMLElement;
+    const r = document.querySelector(`#window-${id}`) as HTMLElement;
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
       "--window-transform-x",
@@ -124,7 +124,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
 
   closeApp = (id: string): void => {
     this.setAppMax(id, false);
-    let showApps = this.state.showApps;
+    const showApps = this.state.showApps;
     showApps[id] = false;
     this.setState({
       showApps: showApps,
@@ -134,12 +134,12 @@ class Desktop extends Component<DesktopProps, DesktopState> {
 
   openApp = (id: string): void => {
     // add it to the shown app list
-    let showApps = this.state.showApps;
+    const showApps = this.state.showApps;
     showApps[id] = true;
 
     // move to the top (use a maximum z-index)
-    let appsZ = this.state.appsZ;
-    let maxZ = this.state.maxZ + 1;
+    const appsZ = this.state.appsZ;
+    const maxZ = this.state.maxZ + 1;
     appsZ[id] = maxZ;
 
     // get the title of the currently opened app
@@ -157,11 +157,11 @@ class Desktop extends Component<DesktopProps, DesktopState> {
       currentTitle: currentApp.title
     });
 
-    let minApps = this.state.minApps;
+    const minApps = this.state.minApps;
     // if the app has already been shown but minimized
     if (minApps[id]) {
       // move to window's last position
-      let r = document.querySelector(`#window-${id}`) as HTMLElement;
+      const r = document.querySelector(`#window-${id}`) as HTMLElement;
       r.style.transform = `translate(${r.style.getPropertyValue(
         "--window-transform-x"
       )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
@@ -173,7 +173,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
   };
 
   setAppMax = (id: string, target?: boolean): void => {
-    let maxApps = this.state.maxApps;
+    const maxApps = this.state.maxApps;
     if (target === undefined) target = !maxApps[id];
     maxApps[id] = target;
     this.setState({
@@ -183,7 +183,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
   };
 
   setAppMin = (id: string, target?: boolean): void => {
-    let minApps = this.state.minApps;
+    const minApps = this.state.minApps;
     if (target === undefined) target = !minApps[id];
     minApps[id] = target;
     this.setState({
@@ -195,7 +195,7 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     this.setWinowsPosition(id);
 
     // get the corrosponding dock icon's position
-    var r = document.querySelector(`#dock-${id}`) as HTMLElement;
+    let r = document.querySelector(`#dock-${id}`) as HTMLElement;
     const dockAppRect = r.getBoundingClientRect();
 
     r = document.querySelector(`#window-${id}`) as HTMLElement;

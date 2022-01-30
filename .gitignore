@@ -2,7 +2,7 @@
 .DS_Store
 .cache/
 node_modules
-build
+dist
 .npmrc
 .yarnrc
 .idea
