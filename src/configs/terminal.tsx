@@ -30,7 +30,7 @@ const terminal: TerminalData[] = [
         title: "interests.txt",
         type: "file",
         content:
-          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Multi-modal Retrieval"
+          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Vision-Language Learning"
       },
       {
         id: "about-who-cares",

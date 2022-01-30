@@ -12,7 +12,7 @@ import { RiGamepadLine } from "react-icons/ri";
 import { HiFire } from "react-icons/hi";
 import { CgFormatText } from "react-icons/cg";
 import { BiCube, BiGame } from "react-icons/bi";
-import { BsFillImageFill } from "react-icons/bs";
+import { BsFillImageFill, BsGrid1X2 } from "react-icons/bs";
 import { AiFillAudio } from "react-icons/ai";
 
 import type { BearData } from "../types";
@@ -68,14 +68,6 @@ const bear: BearData[] = [
         link: "https://github.com/Renovamen/metallic"
       },
       {
-        id: "alkaid",
-        title: "Alkaid",
-        file: "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
-        icon: <GiCat />,
-        excerpt: "A reinforcement-learning toolbox for PyTorch...",
-        link: "https://github.com/Renovamen/alkaid"
-      },
-      {
         id: "portfolio-macos",
         title: "Portfolio macOS",
         file: "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
@@ -98,6 +90,14 @@ const bear: BearData[] = [
         icon: <GiEnergySword />,
         excerpt: "A simple and beautiful blog theme for VuePress...",
         link: "https://vuepress-theme-gungnir.vercel.app"
+      },
+      {
+        id: "midgard",
+        title: "Interactable Resume",
+        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
+        icon: <BiGame />,
+        excerpt: "An interactable version of my resume, powered by Vue...",
+        link: "https://resume.zxh.io/"
       },
       {
         id: "text-classification",
@@ -124,6 +124,14 @@ const bear: BearData[] = [
         link: "https://github.com/Renovamen/Image-Captioning"
       },
       {
+        id: "wordle-helper",
+        title: "Wordle Helper",
+        file: "https://raw.githubusercontent.com/Renovamen/wordle-helper/main/README.md",
+        icon: <BsGrid1X2 />,
+        excerpt: "Help you solve Wordle puzzles...",
+        link: "https://wordle.zxh.io"
+      },
+      {
         id: "cube-solver",
         title: "Cube Solver",
         file: "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
@@ -132,12 +140,12 @@ const bear: BearData[] = [
         link: "https://cube.zxh.io"
       },
       {
-        id: "midgard",
-        title: "Interactable Resume",
-        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
-        icon: <BiGame />,
-        excerpt: "An interactable version of my resume, powered by Vue...",
-        link: "https://resume.zxh.io/"
+        id: "alkaid",
+        title: "Alkaid",
+        file: "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
+        icon: <GiCat />,
+        excerpt: "Minimal reinforcement-learning toolbox for PyTorch...",
+        link: "https://github.com/Renovamen/alkaid"
       },
       {
         id: "fishmail",
