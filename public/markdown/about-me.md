@@ -24,5 +24,8 @@ Contact me by:
 
 ## Résumé
 
-- Normal version: [English](https://zxh.io/files/cv/brief/en.pdf) / [中文](https://zxh.io/files/cv/brief/cn.pdf)
+- Normal version: [English](https://zxh.io/files/cv/en/brief.pdf) / [中文](https://zxh.io/files/cv/cn/brief.pdf)
+
+  中文版的更新很可能不及时
+
 - Interesting version: [portfolio.zxh.io](https://portfolio.zxh.io) / [resume.zxh.io](https://resume.zxh.io)
