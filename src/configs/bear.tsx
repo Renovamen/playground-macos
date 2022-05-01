@@ -8,7 +8,7 @@ import {
 } from "react-icons/gi";
 import { VscGithub } from "react-icons/vsc";
 import { GoRepo, GoBrowser } from "react-icons/go";
-import { RiGamepadLine } from "react-icons/ri";
+import { RiGamepadLine, RiNewspaperFill } from "react-icons/ri";
 import { HiFire } from "react-icons/hi";
 import { CgFormatText } from "react-icons/cg";
 import { BiCube, BiGame } from "react-icons/bi";
@@ -60,14 +60,6 @@ const bear: BearData[] = [
         link: "https://github.com/Renovamen/flint"
       },
       {
-        id: "metallic",
-        title: "Metallic",
-        file: "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
-        icon: <GiJumpingDog />,
-        excerpt: "A meta-learning library base on PyTorch...",
-        link: "https://github.com/Renovamen/metallic"
-      },
-      {
         id: "portfolio-macos",
         title: "Portfolio macOS",
         file: "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
@@ -81,7 +73,7 @@ const bear: BearData[] = [
         file: "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
         icon: <FaVuejs />,
         excerpt: "Importing icons from different icon packs in Vue easily...",
-        link: "https://oh-vue-icons.netlify.app"
+        link: "https://oh-vue-icons.js.org"
       },
       {
         id: "gungnir",
@@ -92,12 +84,20 @@ const bear: BearData[] = [
         link: "https://vuepress-theme-gungnir.vercel.app"
       },
       {
-        id: "midgard",
-        title: "Interactable Resume",
-        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
-        icon: <BiGame />,
-        excerpt: "An interactable version of my resume, powered by Vue...",
-        link: "https://resume.zxh.io/"
+        id: "oh-resume",
+        title: "Oh, Resume!",
+        file: "https://raw.githubusercontent.com/Renovamen/oh-resume/main/README.md",
+        icon: <RiNewspaperFill />,
+        excerpt: "Write your resume in Markdown online...",
+        link: "https://oh-resume.zxh.io"
+      },
+      {
+        id: "metallic",
+        title: "Metallic",
+        file: "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
+        icon: <GiJumpingDog />,
+        excerpt: "A meta-learning library base on PyTorch...",
+        link: "https://github.com/Renovamen/metallic"
       },
       {
         id: "text-classification",
@@ -114,6 +114,14 @@ const bear: BearData[] = [
         icon: <AiFillAudio />,
         excerpt: "Speech emotion recognition using Keras and sklearn...",
         link: "https://github.com/Renovamen/Speech-Emotion-Recognition"
+      },
+      {
+        id: "midgard",
+        title: "Interactable Resume",
+        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
+        icon: <BiGame />,
+        excerpt: "An interactable version of my resume, powered by Vue...",
+        link: "https://resume.zxh.io/"
       },
       {
         id: "image-captioning",

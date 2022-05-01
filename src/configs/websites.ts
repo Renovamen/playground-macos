@@ -147,7 +147,7 @@ const websites: WebsitesData = {
         id: "oh-vue-icons",
         title: "Vue Icons!",
         img: "img/sites/oh-vue-icons.svg",
-        link: "https://oh-vue-icons.netlify.app/"
+        link: "https://oh-vue-icons.js.org"
       },
       {
         id: "tiny-png",

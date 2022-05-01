@@ -8,28 +8,28 @@ const launchpadApps: LaunchpadData[] = [
     link: "https://github.com/Renovamen/flint"
   },
   {
-    id: "metallic",
-    title: "Metallic",
-    img: "img/icons/launchpad/meta.png",
-    link: "https://github.com/Renovamen/metallic"
-  },
-  {
-    id: "alkaid",
-    title: "Alkaid",
-    img: "img/icons/launchpad/rl.png",
-    link: "https://github.com/Renovamen/alkaid"
-  },
-  {
     id: "oh-vue-icons",
     title: "Oh, Vue Icons!",
     img: "img/icons/launchpad/icon.png",
-    link: "https://oh-vue-icons.netlify.app/"
+    link: "https://oh-vue-icons.js.org"
   },
   {
     id: "gungnir",
     title: "Gungnir",
     img: "img/icons/launchpad/gungnir.png",
     link: "https://vuepress-theme-gungnir.vercel.app/"
+  },
+  {
+    id: "oh-resume",
+    title: "Oh, Resume!",
+    img: "img/icons/launchpad/oh-resume.png",
+    link: "https://oh-resume.zxh.io"
+  },
+  {
+    id: "metallic",
+    title: "Metallic",
+    img: "img/icons/launchpad/meta.png",
+    link: "https://github.com/Renovamen/metallic"
   },
   {
     id: "what-if",

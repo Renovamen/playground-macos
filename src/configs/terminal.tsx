@@ -14,13 +14,8 @@ const terminal: TerminalData[] = [
           <div className="py-1">
             <div>
               Hi! This is Xiaohan Zou, now a Computer Science master's student
-              at Boston University and a machine learning engineer intern at
-              Kuaishou (Kwai). I'm also working as a research assistant at
-              Peking University.
-            </div>
-            <div className="mt-1">
-              Before that, I got my bachelor's degree in Software Engineering at
-              Tongji University.
+              at Boston University. Before that, I got my bachelor's degree in
+              Software Engineering at Tongji University.
             </div>
           </div>
         )
@@ -30,15 +25,15 @@ const terminal: TerminalData[] = [
         title: "interests.txt",
         type: "file",
         content:
-          "Machine Learning / Deep Learning / Continual Learning / Meta-Learning / Vision-Language Learning"
+          "Theoretical Machine Learning / Computer Vision / Vision-Language Learning"
       },
-      {
-        id: "about-who-cares",
-        title: "who-cares.txt",
-        type: "file",
-        content:
-          "I'm open to summer research opportunities for summer 2022 lol."
-      },
+      // {
+      //   id: "about-who-cares",
+      //   title: "who-cares.txt",
+      //   type: "file",
+      //   content:
+      //     "I'm open to summer research opportunities for summer 2022 lol."
+      // },
       {
         id: "about-contact",
         title: "contact.txt",

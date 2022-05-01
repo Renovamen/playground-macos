@@ -2,7 +2,7 @@
 
 ## Biography
 
-Hey there! I'm ~~a dragon lost in human world~~ now a [Computer Science](https://www.bu.edu/cs/) master's student at [Boston University](https://www.bu.edu/) and machine learning engineer intern at Multimedia Understanding (MMU) department of [Kuaishou](https://www.kuaishou.com/) ([Kwai](https://www.kwai.com/)). I'm also working as a research assistant at Peking University. Before that, I got my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/).
+Hey there! I'm a ~~dragon lost in human world~~ [Computer Science](https://www.bu.edu/cs/) master's student at [Boston University](https://www.bu.edu/). Before that, I got my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/).
 
 I'm trying to find a balance between research and engineering.
 
