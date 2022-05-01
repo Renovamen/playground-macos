@@ -1,6 +1,5 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import type { RefObject } from "react";
-import { connect } from "react-redux";
 import nightwind from "nightwind/helper";
 
 import type { MacActions } from "../types";
@@ -10,13 +9,7 @@ import Launchpad from "../components/Launchpad";
 import Window from "../components/Window";
 import Spotlight from "../components/Spotlight";
 import { apps, wallpapers } from "../configs";
-
-type DesktopRedux = {
-  dark?: boolean;
-  brightness?: number;
-};
-
-type DesktopProps = DesktopRedux & MacActions;
+import { useAppSelector } from "../redux/hooks";
 
 interface DesktopState {
   showApps: {
@@ -36,33 +29,32 @@ interface DesktopState {
   currentTitle: string;
   hideDockAndTopbar: boolean;
   spotlight: boolean;
-  spotlightBtnRef: any;
 }
 
 const minMarginY = 24;
 
-class Desktop extends Component<DesktopProps, DesktopState> {
-  constructor(props: DesktopProps) {
-    super(props);
-    this.state = {
-      showApps: {},
-      appsZ: {},
-      maxApps: {},
-      minApps: {},
-      maxZ: 2,
-      showLaunchpad: false,
-      currentTitle: "Finder",
-      hideDockAndTopbar: false,
-      spotlight: false,
-      spotlightBtnRef: null
-    };
-  }
+export default function Desktop(props: MacActions) {
+  const [state, setState] = useState({
+    showApps: {},
+    appsZ: {},
+    maxApps: {},
+    minApps: {},
+    maxZ: 2,
+    showLaunchpad: false,
+    currentTitle: "Finder",
+    hideDockAndTopbar: false,
+    spotlight: false
+  } as DesktopState);
 
-  componentDidMount() {
-    this.getAppsData();
-  }
+  const [spotlightBtnRef, setSpotlightBtnRef] =
+    useState<RefObject<HTMLDivElement> | null>(null);
 
-  getAppsData = (): void => {
+  const { dark, brightness } = useAppSelector((state) => ({
+    dark: state.system.dark,
+    brightness: state.system.brightness
+  }));
+
+  const getAppsData = (): void => {
     let showApps = {},
       appsZ = {},
       maxApps = {},
@@ -87,10 +79,14 @@ class Desktop extends Component<DesktopProps, DesktopState> {
       };
     });
 
-    this.setState({ showApps });
+    setState({ ...state, showApps, appsZ, maxApps, minApps });
   };
 
-  toggleLaunchpad = (target: boolean): void => {
+  useEffect(() => {
+    getAppsData();
+  }, []);
+
+  const toggleLaunchpad = (target: boolean): void => {
     const r = document.querySelector(`#launchpad`) as HTMLElement;
     if (target) {
       r.style.transform = "scale(1)";
@@ -100,14 +96,14 @@ class Desktop extends Component<DesktopProps, DesktopState> {
       r.style.transition = "ease-out 0.2s";
     }
 
-    this.setState({ showLaunchpad: target });
+    setState({ ...state, showLaunchpad: target });
   };
 
-  toggleSpotlight = (): void => {
-    this.setState({ spotlight: !this.state.spotlight });
+  const toggleSpotlight = (): void => {
+    setState({ ...state, spotlight: !state.spotlight });
   };
 
-  setWinowsPosition = (id: string): void => {
+  const setWinowsPosition = (id: string): void => {
     const r = document.querySelector(`#window-${id}`) as HTMLElement;
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
@@ -122,77 +118,29 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     );
   };
 
-  closeApp = (id: string): void => {
-    this.setAppMax(id, false);
-    const showApps = this.state.showApps;
-    showApps[id] = false;
-    this.setState({
-      showApps: showApps,
-      hideDockAndTopbar: false
-    });
-  };
-
-  openApp = (id: string): void => {
-    // add it to the shown app list
-    const showApps = this.state.showApps;
-    showApps[id] = true;
-
-    // move to the top (use a maximum z-index)
-    const appsZ = this.state.appsZ;
-    const maxZ = this.state.maxZ + 1;
-    appsZ[id] = maxZ;
-
-    // get the title of the currently opened app
-    const currentApp = apps.find((app) => {
-      return app.id === id;
-    });
-    if (currentApp === undefined) {
-      throw new TypeError(`App ${id} is undefined.`);
-    }
-
-    this.setState({
-      showApps: showApps,
-      appsZ: appsZ,
-      maxZ: maxZ,
-      currentTitle: currentApp.title
-    });
-
-    const minApps = this.state.minApps;
-    // if the app has already been shown but minimized
-    if (minApps[id]) {
-      // move to window's last position
-      const r = document.querySelector(`#window-${id}`) as HTMLElement;
-      r.style.transform = `translate(${r.style.getPropertyValue(
-        "--window-transform-x"
-      )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
-      r.style.transition = "ease-in 0.3s";
-      // remove it from the minimized app list
-      minApps[id] = false;
-      this.setState({ minApps });
-    }
-  };
-
-  setAppMax = (id: string, target?: boolean): void => {
-    const maxApps = this.state.maxApps;
+  const setAppMax = (id: string, target?: boolean): void => {
+    const maxApps = state.maxApps;
     if (target === undefined) target = !maxApps[id];
     maxApps[id] = target;
-    this.setState({
+    setState({
+      ...state,
       maxApps: maxApps,
       hideDockAndTopbar: target
     });
   };
 
-  setAppMin = (id: string, target?: boolean): void => {
-    const minApps = this.state.minApps;
+  const setAppMin = (id: string, target?: boolean): void => {
+    const minApps = state.minApps;
     if (target === undefined) target = !minApps[id];
     minApps[id] = target;
-    this.setState({
+    setState({
+      ...state,
       minApps: minApps
     });
   };
 
-  minimizeApp = (id: string): void => {
-    this.setWinowsPosition(id);
+  const minimizeApp = (id: string): void => {
+    setWinowsPosition(id);
 
     // get the corrosponding dock icon's position
     let r = document.querySelector(`#dock-${id}`) as HTMLElement;
@@ -209,12 +157,64 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     r.style.transition = "ease-out 0.3s";
 
     // add it to the minimized app list
-    this.setAppMin(id, true);
+    setAppMin(id, true);
   };
 
-  renderAppWindows = () => {
+  const closeApp = (id: string): void => {
+    setAppMax(id, false);
+    const showApps = state.showApps;
+    showApps[id] = false;
+    setState({
+      ...state,
+      showApps: showApps,
+      hideDockAndTopbar: false
+    });
+  };
+
+  const openApp = (id: string): void => {
+    // add it to the shown app list
+    const showApps = state.showApps;
+    showApps[id] = true;
+
+    // move to the top (use a maximum z-index)
+    const appsZ = state.appsZ;
+    const maxZ = state.maxZ + 1;
+    appsZ[id] = maxZ;
+
+    // get the title of the currently opened app
+    const currentApp = apps.find((app) => {
+      return app.id === id;
+    });
+    if (currentApp === undefined) {
+      throw new TypeError(`App ${id} is undefined.`);
+    }
+
+    setState({
+      ...state,
+      showApps: showApps,
+      appsZ: appsZ,
+      maxZ: maxZ,
+      currentTitle: currentApp.title
+    });
+
+    const minApps = state.minApps;
+    // if the app has already been shown but minimized
+    if (minApps[id]) {
+      // move to window's last position
+      const r = document.querySelector(`#window-${id}`) as HTMLElement;
+      r.style.transform = `translate(${r.style.getPropertyValue(
+        "--window-transform-x"
+      )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+      r.style.transition = "ease-in 0.3s";
+      // remove it from the minimized app list
+      minApps[id] = false;
+      setState({ ...state, minApps });
+    }
+  };
+
+  const renderAppWindows = () => {
     return apps.map((app) => {
-      if (app.desktop && this.state.showApps[app.id]) {
+      if (app.desktop && state.showApps[app.id]) {
         const props = {
           title: app.title,
           id: app.id,
@@ -222,13 +222,13 @@ class Desktop extends Component<DesktopProps, DesktopState> {
           height: app.height,
           minWidth: app.minWidth,
           minHeight: app.minHeight,
-          z: this.state.appsZ[app.id],
-          max: this.state.maxApps[app.id],
-          min: this.state.minApps[app.id],
-          close: this.closeApp,
-          setMax: this.setAppMax,
-          setMin: this.minimizeApp,
-          focus: this.openApp
+          z: state.appsZ[app.id],
+          max: state.maxApps[app.id],
+          min: state.minApps[app.id],
+          close: closeApp,
+          setMax: setAppMax,
+          setMin: minimizeApp,
+          focus: openApp
         };
 
         return (
@@ -242,77 +242,55 @@ class Desktop extends Component<DesktopProps, DesktopState> {
     });
   };
 
-  render() {
-    return (
-      <div
-        className="w-full h-full overflow-hidden bg-center bg-cover"
-        style={{
-          backgroundImage: `url(${
-            this.props.dark ? wallpapers.night : wallpapers.day
-          })`,
-          filter: `brightness( ${
-            (this.props.brightness as number) * 0.7 + 50
-          }% )`
-        }}
-      >
-        {/* Dark Model Toggler */}
-        <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
+  return (
+    <div
+      className="w-full h-full overflow-hidden bg-center bg-cover"
+      style={{
+        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`,
+        filter: `brightness( ${(brightness as number) * 0.7 + 50}% )`
+      }}
+    >
+      {/* Dark Model Toggler */}
+      <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
 
-        {/* Top Menu Bar */}
-        <TopBar
-          title={this.state.currentTitle}
-          setLogin={this.props.setLogin}
-          shutMac={this.props.shutMac}
-          sleepMac={this.props.sleepMac}
-          restartMac={this.props.restartMac}
-          toggleSpotlight={this.toggleSpotlight}
-          hide={this.state.hideDockAndTopbar}
-          setSpotlightBtnRef={(value: RefObject<HTMLDivElement>) => {
-            this.setState({
-              spotlightBtnRef: value
-            });
-          }}
-        />
+      {/* Top Menu Bar */}
+      <TopBar
+        title={state.currentTitle}
+        setLogin={props.setLogin}
+        shutMac={props.shutMac}
+        sleepMac={props.sleepMac}
+        restartMac={props.restartMac}
+        toggleSpotlight={toggleSpotlight}
+        hide={state.hideDockAndTopbar}
+        setSpotlightBtnRef={setSpotlightBtnRef}
+      />
 
-        {/* Desktop Apps */}
-        <div className="window-bound z-10 absolute" style={{ top: minMarginY }}>
-          {this.renderAppWindows()}
-        </div>
-
-        {/* Spotlight */}
-        {this.state.spotlight && (
-          <Spotlight
-            openApp={this.openApp}
-            toggleLaunchpad={this.toggleLaunchpad}
-            toggleSpotlight={this.toggleSpotlight}
-            btnRef={this.state.spotlightBtnRef}
-          />
-        )}
-
-        {/* Launchpad */}
-        <Launchpad
-          show={this.state.showLaunchpad}
-          toggleLaunchpad={this.toggleLaunchpad}
-        />
-
-        {/* Dock */}
-        <Dock
-          open={this.openApp}
-          showApps={this.state.showApps}
-          showLaunchpad={this.state.showLaunchpad}
-          toggleLaunchpad={this.toggleLaunchpad}
-          hide={this.state.hideDockAndTopbar}
-        />
+      {/* Desktop Apps */}
+      <div className="window-bound z-10 absolute" style={{ top: minMarginY }}>
+        {renderAppWindows()}
       </div>
-    );
-  }
+
+      {/* Spotlight */}
+      {state.spotlight && (
+        <Spotlight
+          openApp={openApp}
+          toggleLaunchpad={toggleLaunchpad}
+          toggleSpotlight={toggleSpotlight}
+          btnRef={spotlightBtnRef as RefObject<HTMLDivElement>}
+        />
+      )}
+
+      {/* Launchpad */}
+      <Launchpad show={state.showLaunchpad} toggleLaunchpad={toggleLaunchpad} />
+
+      {/* Dock */}
+      <Dock
+        open={openApp}
+        showApps={state.showApps}
+        showLaunchpad={state.showLaunchpad}
+        toggleLaunchpad={toggleLaunchpad}
+        hide={state.hideDockAndTopbar}
+      />
+    </div>
+  );
 }
-
-const mapStateToProps = (state: DesktopRedux): DesktopRedux => {
-  return {
-    dark: state.dark,
-    brightness: state.brightness
-  };
-};
-
-export default connect(mapStateToProps, null)(Desktop);

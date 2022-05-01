@@ -13,14 +13,15 @@ Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.
 ## Usage
 
 ```bash
-yarn install
+pnpm install
 
 # serve with hot reload, open http://localhost:3000 to view it in the browser
-yarn dev
+pnpm dev
 
 # build for production with minification to the `dist` folder
-yarn build
+pnpm build
 ```
+
 
 &nbsp;
 

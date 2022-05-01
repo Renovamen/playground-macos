@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
 import { useMotionValue } from "framer-motion";
 import { apps } from "../../configs";
 import DockItem from "./DockItem";
-import type { RootReduxState } from "../../types";
+import { useAppSelector } from "../../redux/hooks";
 
 interface DockProps {
   open: (id: string) => void;
@@ -21,9 +20,9 @@ export default function Dock({
   toggleLaunchpad,
   hide
 }: DockProps) {
-  const { dockSize, dockMag } = useSelector((state: RootReduxState) => ({
-    dockSize: state.dockSize,
-    dockMag: state.dockMag
+  const { dockSize, dockMag } = useAppSelector((state) => ({
+    dockSize: state.dock.size,
+    dockMag: state.dock.mag
   }));
 
   const openApp = (id: string) => {

@@ -1,15 +1,15 @@
 import React, { forwardRef, useState, useEffect, useRef } from "react";
 import type { RefObject, ReactNode } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import format from "date-fns/format";
 
-import type { MacActions, RootReduxState } from "../../types";
+import type { MacActions } from "../../types";
 import AppleMenu from "./AppleMenu";
 import WifiMenu from "./WifiMenu";
 import Battery from "./Battery";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "../../utils";
-import { setVolume, setBrightness, toggleFullScreen } from "../../redux/action";
+import { setVolume, setBrightness, toggleFullScreen } from "../../redux/slices";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { music } from "../../configs";
 import { useAudio, useWindowSize, useInterval } from "../../hooks";
 
@@ -90,11 +90,11 @@ const TopBar = (props: TopBarProps) => {
   });
   const { winWidth, winHeight } = useWindowSize();
 
-  const { volume, wifi } = useSelector((state: RootReduxState) => ({
-    volume: state.volume,
-    wifi: state.wifi
+  const { volume, wifi } = useAppSelector((state) => ({
+    volume: state.system.volume,
+    wifi: state.system.wifi
   }));
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useInterval(() => {
     setState({

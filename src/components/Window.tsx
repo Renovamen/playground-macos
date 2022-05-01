@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Rnd } from "react-rnd";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
 import { useWindowSize } from "../hooks";
-import type { RootReduxState } from "../types";
+import { useAppSelector } from "../redux/hooks";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
@@ -107,7 +106,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
 };
 
 const Window = (props: WindowProps) => {
-  const dockSize = useSelector((state: RootReduxState) => state.dockSize);
+  const dockSize = useAppSelector((state) => state.dock.size);
   const { winWidth, winHeight } = useWindowSize();
 
   const initWidth = Math.min(winWidth, props.width ? props.width : 640);

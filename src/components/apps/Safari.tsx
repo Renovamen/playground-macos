@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { websites, wallpapers } from "../../configs";
 import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
 import { checkURL } from "../../utils";
-import type { SiteSectionData, SiteData, RootReduxState } from "../../types";
+import { useAppSelector } from "../../redux/hooks";
+import type { SiteSectionData, SiteData } from "../../types";
 
 interface SafariState {
   goURL: string;
@@ -81,7 +81,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
 const numTracker = Math.floor(Math.random() * 99 + 1);
 
 const NavPage = ({ width, setGoURL }: NavProps) => {
-  const dark = useSelector((state: RootReduxState) => state.dark);
+  const dark = useAppSelector((state) => state.system.dark);
 
   const grid = width < 640 ? "grid-cols-4" : "grid-cols-8";
   const span = width < 640 ? "col-span-3" : "col-span-7";
@@ -130,7 +130,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
 };
 
 const NoInternetPage = () => {
-  const dark = useSelector((state: RootReduxState) => state.dark);
+  const dark = useAppSelector((state) => state.system.dark);
 
   return (
     <div
@@ -159,7 +159,7 @@ const NoInternetPage = () => {
 };
 
 const Safari = ({ width }: SafariProps) => {
-  const wifi = useSelector((state: RootReduxState) => state.wifi);
+  const wifi = useAppSelector((state) => state.system.wifi);
   const [state, setState] = useState<SafariState>({
     goURL: "",
     currentURL: ""

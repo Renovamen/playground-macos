@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -8,7 +7,8 @@ import { GiSettingsKnobs } from "react-icons/gi";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoCloudOfflineOutline } from "react-icons/io5";
 import bear from "../../configs/bear";
-import type { BearMdData, RootReduxState } from "../../types";
+import { useAppSelector } from "../../redux/hooks";
+import type { BearMdData } from "../../types";
 
 interface ContentProps {
   contentID: string;
@@ -154,7 +154,7 @@ const fixImageURL = (text: string, contentURL: string): string => {
 
 const Content = ({ contentID, contentURL }: ContentProps) => {
   const [storeMd, setStoreMd] = useState<{ [key: string]: string }>({});
-  const dark = useSelector((state: RootReduxState) => state.dark);
+  const dark = useAppSelector((state) => state.system.dark);
 
   const fetchMarkdown = useCallback(
     (id: string, url: string) => {

@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import type { RefObject } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
 import {
@@ -9,10 +8,10 @@ import {
   toggleAirdrop,
   toggleBleutooth,
   toggleFullScreen
-} from "../../redux/action";
+} from "../../redux/slices";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { music } from "../../configs";
 import { useClickOutside } from "../../hooks";
-import type { RootReduxState } from "../../types";
 
 // ------- import icons -------
 import { FiBluetooth, FiRss } from "react-icons/fi";
@@ -69,16 +68,16 @@ export default function ControlCenterMenu({
 }: CCMProps) {
   const controlCenterRef = useRef<HTMLDivElement>(null);
   const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } =
-    useSelector((state: RootReduxState) => ({
-      dark: state.dark,
-      wifi: state.wifi,
-      brightness: state.brightness,
-      bluetooth: state.bluetooth,
-      airdrop: state.airdrop,
-      fullscreen: state.fullscreen,
-      volume: state.volume
+    useAppSelector((state) => ({
+      dark: state.system.dark,
+      wifi: state.system.wifi,
+      brightness: state.system.brightness,
+      bluetooth: state.system.bluetooth,
+      airdrop: state.system.airdrop,
+      fullscreen: state.system.fullscreen,
+      volume: state.system.volume
     }));
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useClickOutside(controlCenterRef, toggleControlCenter, [btnRef]);
 

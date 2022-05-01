@@ -29,23 +29,24 @@ interface TerminalState {
 
 // rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
 class HowDare extends Component<HowDareProps> {
-  private $canvas = null as HTMLCanvasElement | null;
+  private canvas = null as HTMLCanvasElement | null;
   private ctx = null as CanvasRenderingContext2D | null;
   private intervalId = null as any;
   private emoji = getEmoji();
-  private font_size = 12;
+  private fontSize = 12;
   private drops = [] as number[];
 
   componentDidMount() {
-    const $container = document.querySelector(
+    const container = document.querySelector(
       "#how-dare-container"
     ) as HTMLElement;
-    this.$canvas = document.querySelector("#how-dare") as HTMLCanvasElement;
-    this.$canvas.height = $container.offsetHeight;
-    this.$canvas.width = $container.offsetWidth;
-    this.ctx = this.$canvas.getContext("2d");
 
-    const columns = this.$canvas.width / this.font_size;
+    this.canvas = document.querySelector("#how-dare") as HTMLCanvasElement;
+    this.canvas.height = container.offsetHeight;
+    this.canvas.width = container.offsetWidth;
+    this.ctx = this.canvas.getContext("2d");
+
+    const columns = this.canvas.width / this.fontSize;
     this.drops = [];
     // x: x coordinate, 1: y-coordinate
     for (let x = 0; x < columns; x++) this.drops[x] = 1;
@@ -59,27 +60,23 @@ class HowDare extends Component<HowDareProps> {
 
   rain() {
     this.ctx = this.ctx as CanvasRenderingContext2D;
-    this.$canvas = this.$canvas as HTMLCanvasElement;
+    this.canvas = this.canvas as HTMLCanvasElement;
 
     this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    this.ctx.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.fillStyle = "#2e9244";
-    this.ctx.font = `${this.font_size}px arial`;
+    this.ctx.font = `${this.fontSize}px arial`;
 
     for (let i = 0; i < this.drops.length; i++) {
       const text = characters[Math.floor(Math.random() * characters.length)];
 
-      this.ctx.fillText(
-        text,
-        i * this.font_size,
-        this.drops[i] * this.font_size
-      );
+      this.ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
 
       // sends the drop back to the top randomly after it has crossed the screen
       // adding randomness to the reset to make the drops scattered on the Y axis
       if (
-        this.drops[i] * this.font_size > this.$canvas.height &&
+        this.drops[i] * this.fontSize > this.canvas.height &&
         Math.random() > 0.975
       )
         this.drops[i] = 0;
@@ -138,10 +135,16 @@ export default class Terminal extends Component<{}, TerminalState> {
   }
 
   reset = (): void => {
-    const $terminal = document.querySelector(
-      "#terminal-content"
-    ) as HTMLElement;
-    $terminal.innerHTML = "";
+    const terminal = document.querySelector("#terminal-content") as HTMLElement;
+    terminal.innerHTML = "";
+  };
+
+  addRow = (row: JSX.Element) => {
+    if (this.state.content.find((item) => item.key === row.key)) return;
+
+    const content = this.state.content;
+    content.push(row);
+    this.setState({ content });
   };
 
   getCurDirName = () => {
@@ -298,23 +301,23 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   keyPress = (e: React.KeyboardEvent): void => {
     const keyCode = e.key;
-    const $input = document.querySelector(
+    const inputElement = document.querySelector(
       `#terminal-input-${this.curInputTimes}`
     ) as HTMLInputElement;
-    const input_text = $input.value.trim();
-    const input = input_text.split(" ");
+    const inputText = inputElement.value.trim();
+    const input = inputText.split(" ");
 
     if (keyCode === "Enter") {
       // ----------- run command -----------
-      this.history.push(input_text);
+      this.history.push(inputText);
 
       const cmd = input[0];
       const args = input[1];
 
       // we can't edit the past input
-      $input.setAttribute("readonly", "true");
+      inputElement.setAttribute("readonly", "true");
 
-      if (input_text.substr(0, 6) === "rm -rf") this.setState({ rmrf: true });
+      if (inputText.substring(0, 6) === "rm -rf") this.setState({ rmrf: true });
       else if (cmd && Object.keys(this.commands).includes(cmd)) {
         this.commands[cmd](args);
       } else {
@@ -335,21 +338,21 @@ export default class Terminal extends Component<{}, TerminalState> {
       if (this.history.length > 0) {
         if (this.curHistory > 0) this.curHistory--;
         const historyCommand = this.history[this.curHistory];
-        $input.value = historyCommand;
+        inputElement.value = historyCommand;
       }
     } else if (keyCode === "ArrowDown") {
       // ----------- next history command -----------
       if (this.history.length > 0) {
         if (this.curHistory < this.history.length) this.curHistory++;
-        if (this.curHistory === this.history.length) $input.value = "";
+        if (this.curHistory === this.history.length) inputElement.value = "";
         else {
           const historyCommand = this.history[this.curHistory];
-          $input.value = historyCommand;
+          inputElement.value = historyCommand;
         }
       }
     } else if (keyCode === "Tab") {
       // ----------- auto complete -----------
-      $input.value = this.autoComplete(input_text);
+      inputElement.value = this.autoComplete(inputText);
       // prevent tab outside the terminal
       e.preventDefault();
     }
@@ -380,9 +383,7 @@ export default class Terminal extends Component<{}, TerminalState> {
         />
       </div>
     );
-    const content = this.state.content;
-    content.push(newRow);
-    this.setState({ content });
+    this.addRow(newRow);
   };
 
   generateResultRow = (id: number, result: JSX.Element) => {
@@ -394,9 +395,7 @@ export default class Terminal extends Component<{}, TerminalState> {
         {result}
       </div>
     );
-    const content = this.state.content;
-    content.push(newRow);
-    this.setState({ content });
+    this.addRow(newRow);
   };
 
   render() {

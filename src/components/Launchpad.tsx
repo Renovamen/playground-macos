@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { BiSearch } from "react-icons/bi";
 import { wallpapers, launchpadApps } from "../configs";
-import type { RootReduxState } from "../types";
+import { useAppSelector } from "../redux/hooks";
 
 interface LaunchpadProps {
   show: boolean;
@@ -12,7 +11,7 @@ interface LaunchpadProps {
 const placeholderText = "Search";
 
 export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
-  const dark = useSelector((state: RootReduxState) => state.dark);
+  const dark = useAppSelector((state) => state.system.dark);
   const [searchText, setSearchText] = useState("");
 
   const search = () => {
