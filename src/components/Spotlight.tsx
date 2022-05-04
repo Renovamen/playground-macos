@@ -57,8 +57,6 @@ export default function Spotlight({
 
   useEffect(() => {
     updateAppList();
-    // don't show app details when there is no input
-    if (searchText === "") setCurDetails(null);
   }, [searchText]);
 
   useEffect(() => {
@@ -171,13 +169,13 @@ export default function Spotlight({
       <div>
         {app.appList.length !== 0 && (
           <div>
-            <div className="spotlight-category">Applications</div>
+            <div className="spotlight-type">Applications</div>
             <ul className="w-full text-xs">{app.appList}</ul>
           </div>
         )}
         {portfolio.appList.length !== 0 && (
           <div>
-            <div className="spotlight-category">Portfolio</div>
+            <div className="spotlight-type">Portfolio</div>
             <ul className="w-full text-xs">{portfolio.appList}</ul>
           </div>
         )}
@@ -195,7 +193,11 @@ export default function Spotlight({
   };
 
   const updateCurrentDetails = (): void => {
-    if (appIdList.length === 0) return;
+    if (appIdList.length === 0 || searchText === "") {
+      setCurDetails(null);
+      return;
+    }
+
     const appId = appIdList[selectedIndex];
     const elem = document.querySelector(`#spotlight-${appId}`) as HTMLElement;
     const id = appId;

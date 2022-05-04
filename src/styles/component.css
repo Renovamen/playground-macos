@@ -17,7 +17,7 @@
   @apply text-black opacity-40;
 }
 
-.spotlight .spotlight-category {
+.spotlight .spotlight-type {
   @apply flex-center-v pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 text-black;
 }
 
@@ -29,7 +29,7 @@ html.dark .spotlight input::placeholder {
   @apply text-white opacity-40;
 }
 
-html.dark .spotlight .spotlight-category {
+html.dark .spotlight .spotlight-type {
   @apply bg-gray-500 bg-opacity-80 text-white;
 }
 
