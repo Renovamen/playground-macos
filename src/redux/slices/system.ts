@@ -1,4 +1,3 @@
-import nightwind from "nightwind/helper";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { enterFullScreen, exitFullScreen } from "../../utils";
 
@@ -15,8 +14,10 @@ export const systemSlice = createSlice({
   },
   reducers: {
     toggleDark: (state, action: PayloadAction<boolean>) => {
-      nightwind.toggle();
       state.dark = action.payload;
+
+      if (action.payload) document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
     },
     setVolume: (state, action: PayloadAction<number>) => {
       state.volume = action.payload;

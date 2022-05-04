@@ -26,8 +26,7 @@ export default function AppleMenu({
 
   return (
     <div
-      className="fixed top-6 left-4 w-56 bg-gray-200 bg-opacity-90 border-b border-l border-r border-gray-400 border-opacity-50 rounded-b-lg shadow-2xl"
-      style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
+      className="menu-box top-6 left-4 w-56 border-b border-l border-r rounded-b-lg"
       ref={ref}
     >
       <MenuItemGroup>

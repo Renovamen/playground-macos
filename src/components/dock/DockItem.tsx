@@ -96,16 +96,15 @@ export default function DockItem({
 }: DockItemProps) {
   const imgRef = useRef<HTMLImageElement>(null);
   const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag);
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const { winWidth, winHeight } = useWindowSize();
+  const { winWidth } = useWindowSize();
 
   return (
     <li
       id={`dock-${id}`}
       onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
-      className="flex flex-col items-center justify-end mb-1 transition duration-150 ease-in origin-bottom"
+      className="flex-center-v flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
     >
-      <p className="tooltip text-black text-sm absolute px-3 py-1 bg-gray-300 bg-opacity-80 rounded-md">
+      <p className="tooltip text-black text-sm absolute px-3 py-1 bg-gray-300 bg-opacity-80 rounded-md dark:(text-white bg-gray-600)">
         {title}
       </p>
       {link ? (
@@ -132,7 +131,7 @@ export default function DockItem({
         />
       )}
       <div
-        className={`h-1 w-1 m-0 rounded-full bg-gray-800 ${
+        className={`h-1 w-1 m-0 rounded-full bg-gray-800 dark:bg-gray-100 ${
           isOpen ? "" : "invisible"
         }`}
       />

@@ -32,7 +32,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
 
   return (
     <div
-      className={`nightwind-prevent-block ${close} z-30 transform scale-110 w-full h-full fixed overflow-hidden bg-center bg-cover`}
+      className={`${close} z-30 transform scale-110 w-full h-full fixed overflow-hidden bg-center bg-cover`}
       id="launchpad"
       style={{
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
@@ -41,10 +41,10 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     >
       <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 backdrop-blur-2xl">
         <div
-          className="block mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30"
+          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="col-start-1 col-span-1 flex justify-center items-center">
+          <div className="col-start-1 col-span-1 flex-center">
             <BiSearch className="ml-1" color="white" />
           </div>
           <input
@@ -64,7 +64,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
           {search().map((app) => (
             <div
               key={`launchpad-${app.id}`}
-              className="h-32 sm:h-36 w-full flex justify-center items-center"
+              className="h-32 sm:h-36 w-full flex-center"
             >
               <div className="h-full w-full flex flex-col">
                 <a

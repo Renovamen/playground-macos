@@ -76,18 +76,20 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
   };
 
   return (
-    <div className="traffic_lights flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
+    <div className="traffic-lights flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
       <button
-        className="w-3 h-3 rounded-full bg-red-500 outline-none focus:outline-none inline-flex justify-center items-center"
+        className="window-btn bg-red-500 dark:bg-red-400"
         onClick={closeWindow}
         onTouchEnd={closeWindow}
       >
         <IoCloseOutline size={11} />
       </button>
       <button
-        className={`w-3 h-3 rounded-full ${
-          max ? "bg-gray-400" : "bg-yellow-500"
-        } outline-none focus:outline-none inline-flex justify-center items-center`}
+        className={`window-btn ${
+          max
+            ? "bg-gray-400 dark:bg-gray-500"
+            : "bg-yellow-500 dark:bg-yellow-400"
+        }`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
         disabled={max}
@@ -95,7 +97,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
         <FiMinus size={11} className={max ? "invisible" : ""} />
       </button>
       <button
-        className="w-3 h-3 rounded-full bg-green-500 outline-none focus:outline-none  inline-flex justify-center items-center"
+        className="window-btn bg-green-500 dark:bg-green-400"
         onClick={() => setMax(id)}
         onTouchEnd={() => setMax(id)}
       >
@@ -191,7 +193,7 @@ const Window = (props: WindowProps) => {
       id={`window-${props.id}`}
     >
       <div
-        className="window-bar relative h-6 text-center bg-gray-200"
+        className="window-bar relative h-6 text-center bg-gray-200 dark:bg-gray-700"
         onDoubleClick={() => props.setMax(props.id)}
       >
         <TrafficLights
@@ -201,7 +203,9 @@ const Window = (props: WindowProps) => {
           setMax={props.setMax}
           setMin={props.setMin}
         />
-        <span className="font-semibold text-gray-700">{props.title}</span>
+        <span className="font-semibold text-gray-700 dark:text-gray-200">
+          {props.title}
+        </span>
       </div>
       <div className="innner-window w-full overflow-y-hidden">{children}</div>
     </Rnd>

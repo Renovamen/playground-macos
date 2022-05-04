@@ -1,19 +1,36 @@
-/* --------- input --------- */
+/* --------- Login --------- */
 
 .login input::placeholder {
-  color: white;
+  @apply text-white;
+}
+
+/* --------- spotlight --------- */
+
+.spotlight {
+  @apply fixed z-20 top-1/4 -mt-16 h-max rounded-md backdrop-blur-2xl shadow-2xl bg-gray-50 bg-opacity-80 border border-gray-400 border-opacity-50;
+  width: 660px;
+  margin-left: -330px;
+  left: 50%;
 }
 
 .spotlight input::placeholder {
   @apply text-black opacity-40;
 }
 
-/* --------- spotlight --------- */
+.spotlight .spotlight-category {
+  @apply flex-center-v pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 text-black;
+}
 
-.spotlight {
-  width: 660px;
-  margin-left: -330px;
-  left: 50%;
+html.dark .spotlight {
+  @apply bg-gray-900 bg-opacity-80 border-gray-500 border-opacity-50;
+}
+
+html.dark .spotlight input::placeholder {
+  @apply text-white opacity-40;
+}
+
+html.dark .spotlight .spotlight-category {
+  @apply bg-gray-500 bg-opacity-80 text-white;
 }
 
 @media (max-width: 639px) {
@@ -40,11 +57,11 @@
   height: calc(100% - 2rem);
 }
 
-.traffic_lights svg {
+.traffic-lights svg {
   @apply hidden;
 }
 
-.traffic_lights:hover svg {
+.traffic-lights:hover svg {
   @apply block;
 }
 
@@ -64,13 +81,6 @@
   box-shadow: hsla(0deg, 0%, 0%, 20%) 0px 1px 5px 2px, 0 0 0 0 white;
 }
 
-/* --------- control center --------- */
-
-.control-grid {
-  @apply bg-gray-200 bg-opacity-80 rounded-xl backdrop-blur-2xl;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
-}
-
 /* --------- slider --------- */
 
 .slider .rangeslider {
@@ -82,14 +92,24 @@
 }
 
 .slider .rangeslider .rangeslider__handle {
-  @apply border border-gray-300 outline-none h-7 w-7;
-  background-color: #fff;
-  color: #fff;
+  @apply border border-gray-300 outline-none h-7 w-7 text-white bg-white;
   box-shadow: -3px 0px 8px 0px rgba(17, 17, 17, 0.15);
 }
 
 .slider .rangeslider .rangeslider__handle::after {
   @apply hidden;
+}
+
+html.dark .slider .rangeslider {
+  @apply bg-gray-600;
+}
+
+html.dark .slider .rangeslider .rangeslider__fill {
+  @apply bg-gray-800;
+}
+
+html.dark .slider .rangeslider .rangeslider__handle {
+  @apply border-gray-600;
 }
 
 
@@ -114,13 +134,7 @@
 }
 
 .slider-toggle:before {
-  content: "";
-  background-color: white;
-  height: 18px;
-  width: 18px;
-  bottom: 2px;
-  left: 2px;
-  @apply absolute rounded-full duration-300;
+  @apply content-[""] absolute rounded-full bg-white bottom-0.5 left-0.5 w-4.5 h-4.5 duration-300;
 }
 
 input:checked + .slider-toggle {
@@ -132,7 +146,7 @@ input:focus + .slider-toggle {
 }
 
 input:checked + .slider-toggle:before {
-  @apply transform translate-x-4;
+  @apply translate-x-4;
 }
 
 /* --------- battery --------- */

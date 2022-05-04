@@ -17,7 +17,7 @@ export default function Battery() {
   };
 
   return (
-    <div className="nightwind-prevent-block flex flex-row items-center">
+    <div className="flex-center">
       <span className="text-xs mt-0.5 mr-2">
         {(batteryState.level * 100).toFixed()}%
       </span>

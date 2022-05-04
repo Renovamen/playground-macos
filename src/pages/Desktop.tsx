@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import type { RefObject } from "react";
-import nightwind from "nightwind/helper";
 
 import type { MacActions } from "../types";
 import TopBar from "../components/menus/TopBar";
@@ -250,9 +249,6 @@ export default function Desktop(props: MacActions) {
         filter: `brightness( ${(brightness as number) * 0.7 + 50}% )`
       }}
     >
-      {/* Dark Model Toggler */}
-      <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
-
       {/* Top Menu Bar */}
       <TopBar
         title={state.currentTitle}

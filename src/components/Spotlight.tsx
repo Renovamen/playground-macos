@@ -49,6 +49,10 @@ export default function Spotlight({
   const [appIdList, setAppIdList] = useState<string[]>([]);
   const [appList, setAppList] = useState<JSX.Element | null>(null);
 
+  const textWhite = "text-white dark:text-black";
+  const textBlack = "text-black dark:text-white";
+  const textSelected = "bg-blue-500 dark:bg-blue-400";
+
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
 
   useEffect(() => {
@@ -119,8 +123,8 @@ export default function Spotlight({
 
     for (const app of result) {
       const curIndex = startIndex + typeAppList.length;
-      const bg = curIndex === 0 ? "bg-blue-500" : "bg-transparent";
-      const text = curIndex === 0 ? "text-white" : "text-black";
+      const bg = curIndex === 0 ? textSelected : "bg-transparent";
+      const text = curIndex === 0 ? textWhite : textBlack;
 
       if (curIndex === 0) setCurrentDetailsWithType(app, type);
 
@@ -133,7 +137,7 @@ export default function Spotlight({
           onClick={() => handleClick(app.id)}
           onDoubleClick={() => handleDoubleClick(app.id)}
         >
-          <div className="flex-none w-8 flex items-center">
+          <div className="flex-none w-8 flex-center-v">
             <img
               className="w-5 mx-auto"
               src={app.img}
@@ -141,7 +145,7 @@ export default function Spotlight({
               title={app.title}
             />
           </div>
-          <div className="flex-grow flex items-center pl-3 overflow-hidden whitespace-nowrap">
+          <div className="flex-grow flex-center-v pl-3 overflow-hidden whitespace-nowrap">
             {app.title}
           </div>
         </li>
@@ -167,17 +171,13 @@ export default function Spotlight({
       <div>
         {app.appList.length !== 0 && (
           <div>
-            <div className="pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 flex items-center text-black">
-              Applications
-            </div>
+            <div className="spotlight-category">Applications</div>
             <ul className="w-full text-xs">{app.appList}</ul>
           </div>
         )}
         {portfolio.appList.length !== 0 && (
           <div>
-            <div className="pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 flex items-center text-black">
-              Portfolio
-            </div>
+            <div className="spotlight-category">Portfolio</div>
             <ul className="w-full text-xs">{portfolio.appList}</ul>
           </div>
         )}
@@ -215,16 +215,16 @@ export default function Spotlight({
       `#spotlight-${prevAppId}`
     ) as HTMLElement;
     let classes = prev.className;
-    classes = classes.replace("text-white", "text-black");
-    classes = classes.replace("bg-blue-500", "bg-transparent");
+    classes = classes.replace(textWhite, textBlack);
+    classes = classes.replace(textSelected, "bg-transparent");
     prev.className = classes;
 
     // add highlight
     const curAppId = appIdList[curIndex];
     const cur = document.querySelector(`#spotlight-${curAppId}`) as HTMLElement;
     classes = cur.className;
-    classes = classes.replace("text-black", "text-white");
-    classes = classes.replace("bg-transparent", "bg-blue-500");
+    classes = classes.replace(textBlack, textWhite);
+    classes = classes.replace("bg-transparent", textSelected);
     cur.className = classes;
   };
 
@@ -265,18 +265,21 @@ export default function Spotlight({
 
   return (
     <div
-      className="spotlight fixed z-20 top-1/4 -mt-16 h-max rounded-md bg-gray-50 bg-opacity-80 backdrop-blur-2xl border border-gray-400 border-opacity-50 shadow-2xl"
+      className="spotlight"
       onKeyDown={handleKeyPress}
       onClick={focusOnInput}
       ref={spotlightRef}
     >
       <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-md bg-transparent">
-        <div className="col-start-1 col-span-1 flex justify-center items-center">
-          <BiSearch className="ml-1 text-gray-600" size={28} />
+        <div className="col-start-1 col-span-1 flex-center">
+          <BiSearch
+            className="ml-1 text-gray-600 dark:text-gray-300"
+            size={28}
+          />
         </div>
         <input
           id="spotlight-input"
-          className="col-start-2 col-span-7 sm:col-span-10 outline-none focus:outline-none bg-transparent px-1 text-black text-xl sm:text-2xl"
+          className="col-start-2 col-span-7 sm:col-span-10 outline-none focus:outline-none bg-transparent px-1 text-black dark:text-white text-xl sm:text-2xl"
           placeholder="Spotlight Search"
           value={searchText}
           onChange={handleInputChange}
@@ -285,38 +288,38 @@ export default function Spotlight({
       </div>
       {searchText !== "" && (
         <div
-          className="bg-transparent flex flex-row border-t border-gray-400 border-opacity-50"
+          className="bg-transparent flex flex-row border-t menu-box-border"
           style={{ height: "341px" }}
         >
-          <div className="flex-none w-32 sm:w-72 border-r border-gray-400 border-opacity-50 overflow-y-scroll">
+          <div className="flex-none w-32 sm:w-72 border-r menu-box-border overflow-y-scroll">
             {appList}
           </div>
           <div className="flex-grow">
             {curDetails && (
               <div className="h-full w-full flex flex-col">
-                <div className="mx-auto w-4/5 flex-none flex flex-col items-center justify-center h-56 border-b border-gray-400 border-opacity-50">
+                <div className="mx-auto w-4/5 flex-none flex-center flex-col h-56 border-b menu-box-border">
                   <img
                     className="w-32 mx-auto"
                     src={curDetails.img}
                     alt={curDetails.title}
                     title={curDetails.title}
                   />
-                  <div className="mt-4 text-xl text-black">
+                  <div className="mt-4 text-xl text-black dark:text-white">
                     {curDetails.title}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
                     {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
                   </div>
                 </div>
-                <div className="flex-grow flex flex-row text-xs">
-                  <div className="flex-none w-1/2 flex flex-col items-end justify-center text-gray-500">
+                <div className="flex-grow flex text-xs">
+                  <div className="flex-none w-1/2 flex-center-h flex-col items-end text-gray-500 dark:text-gray-400">
                     <div>Kind</div>
                     <div>Size</div>
                     <div>Created</div>
                     <div>Modified</div>
                     <div>Last opened</div>
                   </div>
-                  <div className="pl-2 flex-grow flex flex-col items-start justify-center text-black">
+                  <div className="pl-2 flex-grow flex-center-h flex-col items-start text-black dark:text-white">
                     <div>
                       {curDetails.type === "app" ? "Application" : "Portfolio"}
                     </div>

@@ -14,7 +14,7 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <li
       onClick={props.onClick}
-      className="px-5 leading-6 text-black cursor-default hover:bg-blue-500 hover:text-white"
+      className="px-5 leading-6 text-black cursor-default hover:bg-blue-500 hover:text-white dark:(text-white hover:bg-blue-400 hover:text-black)"
     >
       {props.children}
     </li>
@@ -22,7 +22,10 @@ const MenuItem = (props: MenuItemProps) => {
 };
 
 const MenuItemGroup = (props: MenuItemGroupProps) => {
-  const border = props.border === false ? "" : "border-b-2 border-gray-400";
+  const border =
+    props.border === false
+      ? ""
+      : "border-b-2 border-gray-400 dark:border-gray-500";
   return <ul className={`py-1 ${border}`}>{props.children}</ul>;
 };
 

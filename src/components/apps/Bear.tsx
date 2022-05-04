@@ -61,8 +61,8 @@ const Highlighter = (dark: boolean): any => {
 
 const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
   return (
-    <div className="nightwind-prevent nightwind-prevent-block sidebar w-full h-full bg-gray-700 text-white overflow-y-scroll">
-      <div className="h-12 pr-3 flex flex-row justify-end items-center">
+    <div className="w-full h-full bg-gray-700 text-white overflow-y-scroll">
+      <div className="h-12 pr-3 flex-center-v justify-end">
         <IoCloudOfflineOutline className="mr-3" size={20} />
         <GiSettingsKnobs size={20} />
       </div>
@@ -70,7 +70,7 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
         {bear.map((item, index) => (
           <li
             key={`bear-sidebar-${item.id}`}
-            className={`pl-6 h-8 flex flex-row items-center cursor-default ${
+            className={`pl-6 h-8 flex-center-v cursor-default ${
               cur === index ? "bg-red-500" : "bg-transparent"
             } ${cur === index ? "" : "hover:bg-gray-600"}`}
             onClick={() => setMidBar(item.md, index)}
@@ -86,23 +86,23 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
 
 const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
   return (
-    <div className="midbar w-full h-full bg-gray-50 border-r border-gray-300 overflow-y-scroll">
+    <div className="w-full h-full overflow-y-scroll bg-gray-50 border-r border-gray-300 dark:(bg-gray-800 border-gray-600)">
       <ul>
         {items.map((item: BearMdData, index: number) => (
           <li
             key={`bear-midbar-${item.id}`}
             className={`h-24 flex flex-col cursor-default border-l-2 ${
               cur === index
-                ? "border-red-500 bg-white"
+                ? "border-red-500 bg-white dark:bg-gray-900"
                 : "border-transparent bg-transparent"
-            } hover:bg-white`}
+            } hover:(bg-white dark:bg-gray-900)`}
             onClick={() => setContent(item.id, item.file, index)}
           >
-            <div className="h-8 mt-3 flex flex-row flex-none items-center">
-              <div className="-mt-1 w-10 text-gray-500 flex flex-none justify-center">
+            <div className="h-8 mt-3 flex-center-v flex-none">
+              <div className="-mt-1 w-10 flex-center-h flex-none text-gray-500 dark:text-gray-400">
                 {item.icon}
               </div>
-              <span className="relative text-gray-900 flex-grow font-bold">
+              <span className="relative text-gray-900 dark:text-gray-100 flex-grow font-bold">
                 {item.title}
                 {item.link && (
                   <a
@@ -111,12 +111,12 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <AiOutlineLink className="text-gray-500" />
+                    <AiOutlineLink className="text-gray-500 dark:text-gray-400" />
                   </a>
                 )}
               </span>
             </div>
-            <div className="h-16 ml-10 pb-2 pr-1 border-b border-gray-300 text-sm text-gray-500">
+            <div className="h-16 ml-10 pb-2 pr-1 border-b border-gray-300 text-sm text-gray-500 dark:(border-gray-600 text-gray-400)">
               {item.excerpt}
             </div>
           </li>
@@ -176,7 +176,7 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
   }, [contentID, contentURL, fetchMarkdown]);
 
   return (
-    <div className="markdown w-full h-full bg-gray-50 text-gray-700 overflow-scroll py-6">
+    <div className="markdown w-full h-full bg-gray-50 text-gray-700 dark:(bg-gray-800 text-gray-200) overflow-scroll py-6">
       <div className="w-2/3 px-2 mx-auto">
         <ReactMarkdown
           linkTarget="_blank"
@@ -219,7 +219,7 @@ const Bear = () => {
   };
 
   return (
-    <div className="bear font-avenir flex flex-row w-full h-full">
+    <div className="bear font-avenir flex w-full h-full">
       <div className="flex-none w-44">
         <Sidebar cur={state.curSidebar} setMidBar={setMidBar} />
       </div>

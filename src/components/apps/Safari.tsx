@@ -31,17 +31,17 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
 
   return (
     <div className="mx-auto pt-8 w-full max-w-screen-md px-4">
-      <div className="text-xl sm:text-2xl font-medium ml-2 text-black">
+      <div className="text-xl sm:text-2xl font-medium ml-2 text-black dark:text-white">
         {section.title}
       </div>
       <div className={`mt-3 grid grid-flow-row ${grid}`}>
         {section.sites.map((site: SiteData) => (
           <div
             key={`safari-nav-${site.id}`}
-            className="h-28 w-full flex justify-center items-center"
+            className="h-28 w-full flex-center"
           >
             <div className="h-full w-full flex flex-col">
-              <div className="nightwind-prevent h-max w-max mx-auto bg-white rounded-md">
+              <div className="h-max w-max mx-auto bg-white rounded-md">
                 {site.img ? (
                   <img
                     className="w-16 h-16 mx-auto rounded-md"
@@ -56,7 +56,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
                   />
                 ) : (
                   <div
-                    className="w-16 h-16 mx-auto rounded-md flex justify-center items-center cursor-default"
+                    className="w-16 h-16 mx-auto rounded-md flex-center cursor-default text-black"
                     onClick={
                       site.inner
                         ? () => setGoURL(site.link)
@@ -67,7 +67,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
                   </div>
                 )}
               </div>
-              <span className="mt-2 mx-auto text-black text-sm">
+              <span className="mt-2 mx-auto text-black dark:text-white text-sm">
                 {site.title}
               </span>
             </div>
@@ -93,7 +93,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full min-h-full pt-8 bg-gray-100 bg-opacity-80 backdrop-blur-2xl">
+      <div className="w-full min-h-full pt-8 bg-gray-100 dark:bg-gray-800 bg-opacity-80 backdrop-blur-2xl">
         {/* Favorites */}
         <NavSection
           section={websites.favorites}
@@ -106,18 +106,18 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
 
         {/* Privacy Report */}
         <div className="mx-auto pt-8 pb-16 px-6 w-full max-w-screen-md px-4">
-          <div className="text-xl sm:text-2xl text-black font-medium">
+          <div className="text-xl sm:text-2xl text-black dark:text-white font-medium">
             Privacy Report
           </div>
           <div
-            className={`h-16 w-full mt-4 grid ${grid} bg-gray-50 bg-opacity-70 shadow-md rounded-xl text-sm`}
+            className={`h-16 w-full mt-4 grid ${grid} bg-gray-50 dark:bg-gray-900 bg-opacity-70 shadow-md rounded-xl text-sm`}
           >
-            <div className="text-black col-start-1 col-span-1 flex flex-row items-center justify-center space-x-2">
+            <div className="text-black dark:text-white col-start-1 col-span-1 flex-center space-x-2">
               <FaShieldAlt size={24} />
               <span className="text-xl">{numTracker}</span>
             </div>
             <div
-              className={`col-start-2 ${span} flex items-center text-black px-2`}
+              className={`col-start-2 ${span} flex-center-v text-black dark:text-white px-2`}
             >
               In the last seven days, Safari has prevent {numTracker} tracker
               from profiling you.
@@ -139,12 +139,8 @@ const NoInternetPage = () => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full h-full bg-gray-100 bg-opacity-80 backdrop-blur-2xl flex items-center justify-center">
-        <div
-          className={`pb-10 text-center ${
-            dark ? "text-gray-500" : "text-gray-600"
-          }`}
-        >
+      <div className="w-full h-full pb-10 text-center text-gray-600 bg-gray-100 dark:(bg-gray-800 text-gray-500) bg-opacity-80 backdrop-blur-2xl flex-center">
+        <div className="pb-10 text-center">
           <div className="text-2xl font-bold">
             You Are Not Connected to the Internet
           </div>
@@ -189,30 +185,33 @@ const Safari = ({ width }: SafariProps) => {
     if (keyCode === "Enter") setGoURL((e.target as HTMLInputElement).value);
   };
 
-  const buttonColor = state.goURL === "" ? "text-gray-400" : "text-gray-700";
+  const buttonColor =
+    state.goURL === ""
+      ? "text-gray-400 dark:text-gray-500"
+      : "text-gray-700 dark:text-gray-200";
   const grid = (width as number) < 640 ? "grid-cols-2" : "grid-cols-3";
-  const hideLast = (width as number) < 640 ? "hidden" : "";
+  const hideLast = (width as number) < 640 ? "hidden" : "flex";
 
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full h-full">
       {/* browser topbar */}
-      <div className={`h-10 grid ${grid} flex items-center bg-white`}>
-        <div className="flex flex-row px-2">
+      <div className={`h-10 grid ${grid} items-center bg-white dark:bg-black`}>
+        <div className="flex px-2">
           <button
-            className={`w-7 h-6 border border-gray-300 ${buttonColor} outline-none focus:outline-none rounded flex justify-center items-center`}
+            className={`safari-btn w-7 ${buttonColor}`}
             onClick={() => setGoURL("")}
           >
             <FiChevronLeft size={20} />
           </button>
-          <button className="w-7 h-6 border border-gray-300 text-gray-400 outline-none focus:outline-none rounded flex justify-center items-center">
+          <button className="safari-btn w-7 text-gray-400 dark:text-gray-500">
             <FiChevronRight size={20} />
           </button>
-          <button className="w-9 h-6 ml-3 border border-gray-300 text-gray-700 outline-none focus:outline-none rounded flex justify-center items-center">
+          <button className="safari-btn w-9 ml-3 text-gray-700 dark:text-gray-200">
             <BsLayoutSidebar size={14} />
           </button>
         </div>
-        <div className="flex flex-row justify-center px-2">
-          <button className="w-9 h-6 mr-2 -ml-10 border border-gray-300 text-gray-400 outline-none focus:outline-none rounded flex justify-center items-center">
+        <div className="flex-center-h space-x-2 px-2">
+          <button className="safari-btn w-9 -ml-10 text-gray-400 dark:text-gray-500">
             <FaShieldAlt size={14} />
           </button>
           <input
@@ -220,17 +219,15 @@ const Safari = ({ width }: SafariProps) => {
             value={state.currentURL}
             onChange={(e) => setState({ ...state, currentURL: e.target.value })}
             onKeyPress={pressURL}
-            className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-200 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400"
+            className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-200 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400 dark:(text-gray-400 bg-gray-700 focus:border-blue-500)"
             placeholder="Search or enter website name"
           />
         </div>
-        <div className={`flex flex-row justify-end px-2 ${hideLast}`}>
-          <button
-            className={`w-9 h-6 border border-gray-300 ${buttonColor} outline-none focus:outline-none rounded flex justify-center items-center`}
-          >
+        <div className={`${hideLast} justify-end space-x-2 px-2`}>
+          <button className={`safari-btn w-9 ${buttonColor}`}>
             <IoShareOutline size={16} />
           </button>
-          <button className="w-9 h-6 ml-2 border border-gray-300 text-gray-700 outline-none focus:outline-none rounded flex justify-center items-center">
+          <button className="safari-btn w-9 text-gray-700 dark:text-gray-200">
             <IoCopyOutline size={16} />
           </button>
         </div>

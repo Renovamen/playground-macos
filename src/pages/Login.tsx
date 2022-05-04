@@ -48,14 +48,12 @@ export default function Login(props: MacActions) {
           src={user.avatar}
           alt="img"
         />
-        <div className="nightwind-prevent font-semibold text-xl mt-2 text-white">
-          {user.name}
-        </div>
+        <div className="font-semibold text-xl mt-2 text-white">{user.name}</div>
 
         {/* Password Input */}
-        <div className="nightwind-prevent mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 backdrop-blur-2xl bg-opacity-50">
+        <div className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 backdrop-blur-2xl bg-opacity-50">
           <input
-            className="nightwind-prevent text-sm col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
+            className="text-sm col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
             type="password"
             placeholder="Enter Password"
             onClick={(e) => e.stopPropagation()}
@@ -63,41 +61,39 @@ export default function Login(props: MacActions) {
             value={password}
             onChange={handleInputChange}
           />
-          <div className="col-start-5 col-span-1 flex justify-center items-center">
+          <div className="col-start-5 col-span-1 flex-center">
             <BsQuestionSquareFill className="ml-1" color="white" />
           </div>
         </div>
 
-        <div className="nightwind-prevent text-sm mt-2 text-gray-200 cursor-pointer">
-          {sign}
-        </div>
+        <div className="text-sm mt-2 text-gray-200 cursor-pointer">{sign}</div>
       </div>
 
       {/* buttons */}
-      <div className="nightwind-prevent-block text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
+      <div className="text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
         <div
-          className="flex flex-col items-center text-white w-24 cursor-pointer"
+          className="flex-center-v flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
+          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
             <CgSleep size={40} />
           </div>
           <span>Sleep</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24 cursor-pointer"
+          className="flex-center-v flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
+          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
             <RiRestartLine size={36} />
           </div>
           <span>Restart</span>
         </div>
         <div
-          className="flex flex-col items-center text-white w-24 cursor-pointer"
+          className="flex-center-v flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex justify-center items-center">
+          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
             <RiShutDownLine size={36} />
           </div>
           <span>Shut Down</span>

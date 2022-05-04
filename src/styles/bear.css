@@ -99,20 +99,11 @@
 }
 
 .bear .markdown pre code {
-  @apply text-sm;
-}
-
-.dark .bear .markdown pre code {
-  font-size: 14px !important;
+  @apply text-sm text-base bg-transparent border-none p-0;
 }
 
 .bear .markdown pre div {
   @apply border border-gray-300 rounded;
-}
-
-.bear .markdown pre code,
-.dark .bear .markdown pre code {
-  @apply text-base bg-transparent border-none p-0;
 }
 
 .bear .markdown .token {
@@ -136,16 +127,44 @@
   @apply border-t border-gray-300 bg-transparent;
 }
 
-/**
- * To avoid circular dependency error (I don't know how it coms ), here I
- * don't use tailwindcss's @apply.
- */
-html.dark .bear .markdown,
-html.dark .bear .midbar {
-  background-color: rgb(31 41 55);
+/* Dark mode */
+
+html.dark .bear .markdown a {
+  @apply text-red-400;
 }
 
-html.dark .bear .midbar li.bg-white,
-html.dark .bear .midbar li:hover {
-  background-color: rgb(17 24 39);
+html.dark .bear .markdown h1,
+html.dark .bear .markdown h2,
+html.dark .bear .markdown h3,
+html.dark .bear .markdown h4 {
+  @apply text-gray-100;
+}
+
+html.dark .bear .markdown h1::before,
+html.dark .bear .markdown h2::before,
+html.dark .bear .markdown h3::before,
+html.dark .bear .markdown h4::before {
+  @apply text-gray-500;
+}
+
+html.dark .bear .markdown ul > li::marker {
+  @apply text-red-400;
+}
+
+html.dark .bear .markdown table td,
+html.dark .bear .markdown table th,
+html.dark .bear .markdown table tr {
+  @apply border-gray-600;
+}
+
+html.dark .bear .markdown code {
+  @apply border-gray-600 bg-gray-900;
+}
+
+html.dark .bear .markdown pre code {
+  font-size: 14px !important;
+}
+
+html.dark  .bear .markdown pre div {
+  @apply border-gray-600;
 }

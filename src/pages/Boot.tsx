@@ -40,7 +40,7 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
 
   return (
     <div
-      className="nightwind-prevent nightwind-prevent-block w-full h-full bg-black flex flex-col justify-center items-center"
+      className="w-full h-full bg-black flex-center flex-col"
       onClick={handleClick}
     >
       <FaApple className="text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />

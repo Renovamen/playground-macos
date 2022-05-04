@@ -33,8 +33,8 @@ interface SliderProps {
 
 const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
-    <div className="slider flex flex-row w-full">
-      <div className="h-7 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-300">
+    <div className="slider flex w-full">
+      <div className="h-7 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-300 dark:(bg-gray-800 border-gray-600)">
         {icon}
       </div>
       <Slider
@@ -83,74 +83,55 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 rounded-2xl text-black border border-gray-400 border-opacity-50"
-      style={{ boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }}
+      className="fixed base-shadow w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 rounded-2xl text-black border border-gray-400 border-opacity-50 dark:(text-white bg-gray-800 bg-opacity-70 border-gray-500 border-opacity-50)"
       ref={controlCenterRef}
     >
-      <div className="control-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
-        <div className="flex flex-row items-center space-x-2">
+      <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
+        <div className="flex-center-v space-x-2">
           <MdWifi
             size={32}
-            className={`${
-              wifi
-                ? "bg-blue-500 text-white"
-                : "bg-gray-400 bg-opacity-25 text-gray-700"
-            } rounded-full p-2`}
+            className={`${wifi ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleWIFI(!wifi))}
           />
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">Wi-Fi</span>
-            <span className="text-xs text-gray-500">
-              {wifi ? "Home" : "Off"}
-            </span>
+            <span className="cc-text">{wifi ? "Home" : "Off"}</span>
           </div>
         </div>
-        <div className="flex flex-row items-center space-x-2">
+        <div className="flex-center-v space-x-2">
           <FiBluetooth
             size={32}
-            className={`${
-              bluetooth
-                ? "bg-blue-500 text-white"
-                : "bg-gray-400 bg-opacity-25 text-gray-700"
-            } rounded-full p-2`}
+            className={`${bluetooth ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleBleutooth(!bluetooth))}
           />
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">Bluetooth</span>
-            <span className="text-xs text-gray-500">
-              {bluetooth ? "On" : "Off"}
-            </span>
+            <span className="cc-text">{bluetooth ? "On" : "Off"}</span>
           </div>
         </div>
-        <div className="flex flex-row items-center space-x-2">
+        <div className="flex-center-v space-x-2">
           <FiRss
             size={32}
-            className={`${
-              airdrop
-                ? "bg-blue-500 text-white"
-                : "bg-gray-400 bg-opacity-25 text-gray-700"
-            } rounded-full p-2`}
+            className={`${airdrop ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleAirdrop(!airdrop))}
           />
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">AirDrop</span>
-            <span className="text-xs text-gray-500">
-              {airdrop ? "Contacts Only" : "Off"}
-            </span>
+            <span className="cc-text">{airdrop ? "Contacts Only" : "Off"}</span>
           </div>
         </div>
       </div>
-      <div className="control-grid col-span-2 p-2 flex flex-row items-center space-x-2">
+      <div className="cc-grid col-span-2 p-2 flex-center-v space-x-2">
         {dark ? (
           <IoMoon
             size={32}
-            className="text-gray-700 bg-gray-400 bg-opacity-25 rounded-full p-2"
+            className="cc-mode"
             onClick={() => dispatch(toggleDark(false))}
           />
         ) : (
           <IoSunny
             size={32}
-            className="text-gray-700 bg-gray-400 bg-opacity-25 rounded-full p-2"
+            className="cc-mode"
             onClick={() => dispatch(toggleDark(true))}
           />
         )}
@@ -160,14 +141,14 @@ export default function ControlCenterMenu({
           </span>
         </div>
       </div>
-      <div className="control-grid p-2 flex flex-col justify-center items-center text-center">
+      <div className="cc-grid p-2 flex-center flex-col text-center">
         <BsBrightnessAltHigh size={20} />
         <span className="text-xs" style={{ lineHeight: "0.9rem" }}>
           Keyboard Brightness
         </span>
       </div>
       <div
-        className="control-grid p-2 flex flex-col justify-center items-center text-center cursor-default"
+        className="cc-grid p-2 flex-center flex-col text-center cursor-default"
         onClick={() => dispatch(toggleFullScreen(!fullscreen))}
       >
         {fullscreen ? (
@@ -179,27 +160,34 @@ export default function ControlCenterMenu({
           {fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
         </span>
       </div>
-      <div className="control-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
+      <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Display</span>
         <SliderComponent
-          icon={<IoSunny size={12} className="text-gray-500" />}
+          icon={
+            <IoSunny size={12} className="text-gray-500 dark:text-gray-400" />
+          }
           value={brightness}
           setValue={setBrightness}
         />
       </div>
-      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 rounded-xl px-2.5 py-2 space-y-1 flex flex-col justify-around">
+      <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
         <SliderComponent
-          icon={<IoVolumeHigh size={12} className="text-gray-500" />}
+          icon={
+            <IoVolumeHigh
+              size={12}
+              className="text-gray-500 dark:text-gray-400"
+            />
+          }
           value={volume}
           setValue={setVolume}
         />
       </div>
-      <div className="control-grid col-span-4 bg-gray-200 bg-opacity-60 rounded-xl p-2 pr-4 flex flex-row justify-between items-center space-x-2.5">
+      <div className="cc-grid col-span-4 p-2 pr-4 flex-center-v flex-row justify-between space-x-2.5">
         <img src={music.cover} alt="cover art" className="w-12 rounded-lg" />
         <div className="flex flex-col flex-grow justify-start">
           <span className="font-medium">{music.title}</span>
-          <span className="text-xs text-gray-500">{music.artist}</span>
+          <span className="cc-text">{music.artist}</span>
         </div>
         {playing ? (
           <BsPauseFill onClick={() => toggleAudio(false)} size={24} />

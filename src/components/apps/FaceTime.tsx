@@ -20,13 +20,17 @@ const FaceTime = () => {
     return (
       <div
         id="container"
-        className="nightwind-prevent nightwind-prevent-block border-8 bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
+        className="bg-gray-800 h-full flex-center flex-col space-y-6"
       >
         {img && (
-          <img className="max-h-60 md:max-h-96" src={img} alt="yourimage" />
+          <img
+            className="border-8 border-white max-h-60 md:max-h-96"
+            src={img}
+            alt="yourimage"
+          />
         )}
         <button
-          className="mx-auto outline-none focus:outline-none items-center justify-center bg-white h-6 w-20 border border-black border-opacity-50 rounded-full"
+          className="text-black mx-auto outline-none focus:outline-none bg-white h-6 w-20 border border-black border-opacity-50 rounded-full"
           onClick={() => setClick(false)}
         >
           <b>Retake</b>
@@ -37,17 +41,17 @@ const FaceTime = () => {
     return (
       <div
         id="container"
-        className="nightwind-prevent nightwind-prevent-block bg-gray-800 h-full flex space-y-6 flex-col justify-center items-center"
+        className="bg-gray-800 h-full flex-center flex-col space-y-6"
       >
         <Webcam
-          className="border-8 max-h-60 md:max-h-96"
+          className="border-8 border-white max-h-60 md:max-h-96"
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
         />
         <button
-          className="mx-auto outline-none focus:outline-none items-center justify-center bg-white h-12 w-12 border border-black border-opacity-50 rounded-full"
+          className="mx-auto outline-none focus:outline-none bg-white h-12 w-12 border border-black border-opacity-50 rounded-full"
           onClick={() => {
             setClick(true);
             capture();
