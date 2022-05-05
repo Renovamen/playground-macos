@@ -10,7 +10,6 @@ specifiers:
   '@types/react-syntax-highlighter': ^15.5.1
   '@typescript-eslint/eslint-plugin': ^5.21.0
   '@typescript-eslint/parser': ^5.21.0
-  '@unocss/preset-attributify': ^0.32.12
   '@unocss/reset': ^0.32.9
   '@vitejs/plugin-react': ^1.3.1
   date-fns: ^2.28.0
@@ -18,7 +17,7 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-react: ^7.29.4
-  framer-motion: ^4.1.17
+  framer-motion: ^6.3.3
   husky: ^7.0.4
   lint-staged: ^12.4.1
   prettier: ^2.6.2
@@ -43,7 +42,7 @@ dependencies:
   '@reduxjs/toolkit': 1.8.1_j24pcqpkbsj43woxscsovlj4au
   '@rooks/use-raf': 4.11.2
   date-fns: 2.28.0
-  framer-motion: 4.1.17_ef5jwxihqo6n7gxfmzogljlgcm
+  framer-motion: 6.3.3_ef5jwxihqo6n7gxfmzogljlgcm
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
   react-icons: 4.3.1_react@18.1.0
@@ -65,7 +64,6 @@ devDependencies:
   '@types/react-syntax-highlighter': 15.5.1
   '@typescript-eslint/eslint-plugin': 5.21.0_vxtfsxfxxyksjzzdyas4bgfolu
   '@typescript-eslint/parser': 5.21.0_t725usgvqspm5woeqpaxbfp2qu
-  '@unocss/preset-attributify': 0.32.12
   '@unocss/reset': 0.32.9
   '@vitejs/plugin-react': 1.3.1
   eslint: 8.14.0
@@ -752,10 +750,6 @@ packages:
       unconfig: 0.3.3
     dev: true
 
-  /@unocss/core/0.32.12:
-    resolution: {integrity: sha512-YT2xC/m9u5Il77keqQeNBSU/mU573CMamCalp+AaGAiEil0MDlScuaGMQikxLTkAP24m4eeok8hu4G9ebBskSg==}
-    dev: true
-
   /@unocss/core/0.32.9:
     resolution: {integrity: sha512-tnKMbe3hGFaMyVCiK5kw4rVEENNJ/XZHOy1SQ+WVobLv4K6zAxXdqeQ3DiNvzzHnEzAFX6ddp4zx975sTJ74ZQ==}
     dev: true
@@ -765,12 +759,6 @@ packages:
     dependencies:
       gzip-size: 6.0.0
       sirv: 2.0.2
-    dev: true
-
-  /@unocss/preset-attributify/0.32.12:
-    resolution: {integrity: sha512-D3eShp6+PrwgCfDmaRXZPou/YUKQasj2ckil0KZP3QxprdfNBhRGCMQuQYCzAUgtx29QbzUnzQCg4C3RDwM/Ww==}
-    dependencies:
-      '@unocss/core': 0.32.12
     dev: true
 
   /@unocss/preset-attributify/0.32.9:
@@ -1882,25 +1870,25 @@ packages:
       fetch-blob: 3.1.5
     dev: true
 
-  /framer-motion/4.1.17_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-thx1wvKzblzbs0XaK2X0G1JuwIdARcoNOW7VVwjO8BUltzXPyONGAElLu6CiCScsOQRI7FIk/45YTFtJw5Yozw==}
+  /framer-motion/6.3.3_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-wo0dCnoq5vn4L8YVOPO9W54dliH78vDaX0Lj+bSPUys6Nt5QaehrS3uaYa0q5eVeikUgtTjz070UhQ94thI5Sw==}
     peerDependencies:
-      react: '>=16.8 || ^17.0.0'
-      react-dom: '>=16.8 || ^17.0.0'
+      react: '>=16.8 || ^17.0.0 || ^18.0.0'
+      react-dom: '>=16.8 || ^17.0.0 || ^18.0.0'
     dependencies:
-      framesync: 5.3.0
+      framesync: 6.0.1
       hey-listen: 1.0.8
-      popmotion: 9.3.6
+      popmotion: 11.0.3
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      style-value-types: 4.1.4
+      style-value-types: 5.0.0
       tslib: 2.4.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
 
-  /framesync/5.3.0:
-    resolution: {integrity: sha512-oc5m68HDO/tuK2blj7ZcdEBRx3p1PjrgHazL8GYEpvULhrtGIFbQArN6cQS2QhW8mitffaB+VYzMjDqBxxQeoA==}
+  /framesync/6.0.1:
+    resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
     dependencies:
       tslib: 2.4.0
     dev: false
@@ -3125,12 +3113,12 @@ packages:
     hasBin: true
     dev: true
 
-  /popmotion/9.3.6:
-    resolution: {integrity: sha512-ZTbXiu6zIggXzIliMi8LGxXBF5ST+wkpXGEjeTUDUOCdSQ356hij/xjeUdv0F8zCQNeqB1+PR5/BB+gC+QLAPw==}
+  /popmotion/11.0.3:
+    resolution: {integrity: sha512-Y55FLdj3UxkR7Vl3s7Qr4e9m0onSnP8W7d/xQLsoJM40vs6UKHFdygs6SWryasTZYqugMjm3BepCF4CWXDiHgA==}
     dependencies:
-      framesync: 5.3.0
+      framesync: 6.0.1
       hey-listen: 1.0.8
-      style-value-types: 4.1.4
+      style-value-types: 5.0.0
       tslib: 2.4.0
     dev: false
 
@@ -3728,8 +3716,8 @@ packages:
       inline-style-parser: 0.1.1
     dev: false
 
-  /style-value-types/4.1.4:
-    resolution: {integrity: sha512-LCJL6tB+vPSUoxgUBt9juXIlNJHtBMy8jkXzUJSBzeHWdBu6lhzHqCvLVkXFGsFIlNa2ln1sQHya/gzaFmB2Lg==}
+  /style-value-types/5.0.0:
+    resolution: {integrity: sha512-08yq36Ikn4kx4YU6RD7jWEv27v4V+PUsOGa4n/as8Et3CuODMJQ00ENeAVXAeydX4Z2j1XHZF1K2sX4mGl18fA==}
     dependencies:
       hey-listen: 1.0.8
       tslib: 2.4.0
