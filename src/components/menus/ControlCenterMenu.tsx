@@ -34,7 +34,11 @@ interface SliderProps {
 const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
     <div className="slider flex w-full">
-      <div className="h-7 p-2 bg-gray-100 rounded-l-full border-t border-l border-b border-gray-300 dark:(bg-gray-800 border-gray-600)">
+      <div
+        className="h-7 p-2"
+        border="t l b rounded-l-full gray-300 dark:gray-600"
+        bg="gray-100 dark:gray-800"
+      >
         {icon}
       </div>
       <Slider
@@ -83,7 +87,12 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed base-shadow w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 grid grid-cols-4 grid-rows-5 gap-2 bg-gray-100 bg-opacity-70 rounded-2xl text-black border border-gray-400 border-opacity-50 dark:(text-white bg-gray-800 bg-opacity-70 border-gray-500 border-opacity-50)"
+      className="fixed shadow-base w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5"
+      text="black dark:white"
+      bg="gray-100 opacity-70 dark:(gray-800 opacity-70)"
+      border="1 rounded-2xl gray-400 opacity-50 dark:(gray-500 opacity-50)"
+      display="grid"
+      grid="cols-4 rows-5 gap-2"
       ref={controlCenterRef}
     >
       <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
@@ -143,9 +152,7 @@ export default function ControlCenterMenu({
       </div>
       <div className="cc-grid p-2 flex-center flex-col text-center">
         <BsBrightnessAltHigh size={20} />
-        <span className="text-xs" style={{ lineHeight: "0.9rem" }}>
-          Keyboard Brightness
-        </span>
+        <span className="text-xs leading-cc">Keyboard Brightness</span>
       </div>
       <div
         className="cc-grid p-2 flex-center flex-col text-center cursor-default"
@@ -156,7 +163,7 @@ export default function ControlCenterMenu({
         ) : (
           <BsFullscreen size={16} />
         )}
-        <span className="text-xs mt-1.5" style={{ lineHeight: "0.9rem" }}>
+        <span className="text-xs leading-cc mt-1.5">
           {fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
         </span>
       </div>

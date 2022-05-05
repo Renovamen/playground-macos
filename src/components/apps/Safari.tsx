@@ -31,7 +31,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
 
   return (
     <div className="mx-auto pt-8 w-full max-w-screen-md px-4">
-      <div className="text-xl sm:text-2xl font-medium ml-2 text-black dark:text-white">
+      <div className="font-medium ml-2" text="xl sm:2xl">
         {section.title}
       </div>
       <div className={`mt-3 grid grid-flow-row ${grid}`}>
@@ -63,11 +63,11 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
                         : () => window.open(site.link)
                     }
                   >
-                    <span className="text-lg text-center">{site.title}</span>
+                    <span text="lg center">{site.title}</span>
                   </div>
                 )}
               </div>
-              <span className="mt-2 mx-auto text-black dark:text-white text-sm">
+              <span m="t-2 x-auto" text="sm">
                 {site.title}
               </span>
             </div>
@@ -93,7 +93,10 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full min-h-full pt-8 bg-gray-100 dark:bg-gray-800 bg-opacity-80 backdrop-blur-2xl">
+      <div
+        className="w-full min-h-full pt-8 backdrop-blur-2xl"
+        bg="gray-100 dark:gray-800 opacity-80"
+      >
         {/* Favorites */}
         <NavSection
           section={websites.favorites}
@@ -105,20 +108,19 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         <NavSection section={websites.freq} setGoURL={setGoURL} width={width} />
 
         {/* Privacy Report */}
-        <div className="mx-auto pt-8 pb-16 px-6 w-full max-w-screen-md px-4">
-          <div className="text-xl sm:text-2xl text-black dark:text-white font-medium">
+        <div className="mx-auto w-full max-w-screen-md" p="t-8 b-16 x-6">
+          <div font="medium" text="xl sm:2xl">
             Privacy Report
           </div>
           <div
-            className={`h-16 w-full mt-4 grid ${grid} bg-gray-50 dark:bg-gray-900 bg-opacity-70 shadow-md rounded-xl text-sm`}
+            className={`h-16 w-full mt-4 grid ${grid} shadow-md rounded-xl text-sm`}
+            bg="opacity-70 gray-50 dark:gray-900"
           >
-            <div className="text-black dark:text-white col-start-1 col-span-1 flex-center space-x-2">
+            <div className="col-start-1 col-span-1 flex-center space-x-2">
               <FaShieldAlt size={24} />
               <span className="text-xl">{numTracker}</span>
             </div>
-            <div
-              className={`col-start-2 ${span} flex-center-v text-black dark:text-white px-2`}
-            >
+            <div className={`col-start-2 ${span} flex-center-v px-2`}>
               In the last seven days, Safari has prevent {numTracker} tracker
               from profiling you.
             </div>
@@ -139,7 +141,11 @@ const NoInternetPage = () => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full h-full pb-10 text-center text-gray-600 bg-gray-100 dark:(bg-gray-800 text-gray-500) bg-opacity-80 backdrop-blur-2xl flex-center">
+      <div
+        className="w-full h-full pb-10 bg-opacity-80 backdrop-blur-2xl flex-center"
+        text="center gray-600 dark:gray-500"
+        bg="gray-100 dark:gray-800"
+      >
         <div className="pb-10 text-center">
           <div className="text-2xl font-bold">
             You Are Not Connected to the Internet
@@ -203,15 +209,18 @@ const Safari = ({ width }: SafariProps) => {
           >
             <FiChevronLeft size={20} />
           </button>
-          <button className="safari-btn w-7 text-gray-400 dark:text-gray-500">
+          <button className="safari-btn w-7" text="gray-400 dark:gray-500">
             <FiChevronRight size={20} />
           </button>
-          <button className="safari-btn w-9 ml-3 text-gray-700 dark:text-gray-200">
+          <button className="safari-btn w-9 ml-3" text="gray-700 dark:gray-200">
             <BsLayoutSidebar size={14} />
           </button>
         </div>
         <div className="flex-center-h space-x-2 px-2">
-          <button className="safari-btn w-9 -ml-10 text-gray-400 dark:text-gray-500">
+          <button
+            className="safari-btn w-9 -ml-10"
+            text="gray-400 dark:gray-500"
+          >
             <FaShieldAlt size={14} />
           </button>
           <input
@@ -219,7 +228,10 @@ const Safari = ({ width }: SafariProps) => {
             value={state.currentURL}
             onChange={(e) => setState({ ...state, currentURL: e.target.value })}
             onKeyPress={pressURL}
-            className="h-6 w-full p-2 rounded text-sm text-center font-normal text-gray-500 bg-gray-200 outline-none focus:outline-none border-2 border-transparent focus:border-blue-400 dark:(text-gray-400 bg-gray-700 focus:border-blue-500)"
+            className="h-6 w-full p-2 rounded font-normal no-outline"
+            bg="gray-200 dark:gray-700"
+            text="sm center gray-500 dark:gray-400"
+            border="2 transparent focus:blue-400 dark:focus:blue-500"
             placeholder="Search or enter website name"
           />
         </div>
@@ -227,7 +239,7 @@ const Safari = ({ width }: SafariProps) => {
           <button className={`safari-btn w-9 ${buttonColor}`}>
             <IoShareOutline size={16} />
           </button>
-          <button className="safari-btn w-9 text-gray-700 dark:text-gray-200">
+          <button className="safari-btn w-9" text="gray-700 dark:gray-200">
             <IoCopyOutline size={16} />
           </button>
         </div>

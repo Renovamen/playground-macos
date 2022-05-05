@@ -12,9 +12,10 @@ export default defineConfig({
     ["flex-center-v", "flex items-center"],
     ["flex-center-h", "flex justify-center"],
     ["inline-flex-center", "inline-flex items-center justify-center"],
+    ["no-outline", "outline-none focus:outline-none"],
     [
       "window-btn",
-      "w-3 h-3 text-black rounded-full outline-none focus:outline-none inline-flex-center"
+      "w-3 h-3 text-black rounded-full inline-flex-center no-outline"
     ],
     [
       "menu-box-border",
@@ -22,7 +23,7 @@ export default defineConfig({
     ],
     [
       "menu-box",
-      "fixed base-shadow text-black bg-gray-200 bg-opacity-90 shadow-2xl menu-box-border dark:(text-white bg-gray-700 bg-opacity-90)"
+      "fixed shadow-base text-black bg-gray-200 bg-opacity-90 shadow-2xl menu-box-border dark:(text-white bg-gray-700 bg-opacity-90)"
     ],
     [
       "safari-btn",
@@ -43,11 +44,16 @@ export default defineConfig({
     ],
     [
       "cc-grid",
-      "base-shadow bg-gray-200 bg-opacity-80 rounded-xl backdrop-blur-2xl dark:(bg-gray-700 bg-opacity-80)"
-    ]
+      "shadow-base bg-gray-200 bg-opacity-80 rounded-xl backdrop-blur-2xl dark:(bg-gray-700 bg-opacity-80)"
+    ],
+    ["battery-level", "absolute rounded-xs h-2 top-1/2 -mt-1 ml-0.5 left-0"]
   ],
   rules: [
-    ["base-shadow", { "box-shadow": "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }]
+    ["shadow-base", { "box-shadow": "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" }],
+    ["max-w-launchpad", { "max-width": "1100px" }],
+    ["h-spotlight", { height: "341px" }],
+    ["rounded-xs", { "border-radius": "1px" }],
+    ["leading-cc", { "line-height": "0.9rem" }]
   ],
   presets: [presetUno(), presetAttributify()],
   transformers: [transformerDirectives(), transformerVariantGroup()]

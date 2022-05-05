@@ -48,12 +48,15 @@ export default function Login(props: MacActions) {
           src={user.avatar}
           alt="img"
         />
-        <div className="font-semibold text-xl mt-2 text-white">{user.name}</div>
+        <div className="font-semibold mt-2 text-xl text-white">{user.name}</div>
 
         {/* Password Input */}
-        <div className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md bg-gray-300 backdrop-blur-2xl bg-opacity-50">
+        <div
+          className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md backdrop-blur-2xl"
+          bg="gray-300 opacity-50"
+        >
           <input
-            className="text-sm col-start-1 col-span-4 outline-none focus:outline-none bg-transparent px-2 text-white"
+            className="text-sm text-white col-start-1 col-span-4 no-outline bg-transparent px-2"
             type="password"
             placeholder="Enter Password"
             onClick={(e) => e.stopPropagation()}

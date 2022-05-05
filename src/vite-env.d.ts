@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
-declare module "react-rangeslider";
-declare module "react-syntax-highlighter";
-declare module "react-syntax-highlighter/*";
+import type { AttributifyAttributes } from "@unocss/preset-attributify";
+
+declare module "react" {
+  interface HTMLAttributes<T> extends AttributifyAttributes {}
+}

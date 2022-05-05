@@ -41,14 +41,16 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     >
       <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 backdrop-blur-2xl">
         <div
-          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5 rounded-md bg-gray-200 bg-opacity-10 border border-gray-200 border-opacity-30"
+          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5"
+          bg="gray-200 opacity-10"
+          border="1 rounded-md gray-200 opacity-30"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="col-start-1 col-span-1 flex-center">
             <BiSearch className="ml-1" color="white" />
           </div>
           <input
-            className="col-start-2 col-span-10 outline-none focus:outline-none bg-transparent px-1 text-sm text-white"
+            className="col-start-2 col-span-10 no-outline bg-transparent px-1 text-sm text-white"
             placeholder={placeholderText}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -56,10 +58,9 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
         </div>
 
         <div
-          className="mx-auto mt-8 w-full px-4 sm:px-10 grid grid-flow-row grid-cols-4 sm:grid-cols-7"
-          style={{
-            maxWidth: "1100px"
-          }}
+          className="max-w-launchpad mx-auto mt-8 w-full px-4 sm:px-10"
+          display="grid"
+          grid="flow-row cols-4 sm:cols-7"
         >
           {search().map((app) => (
             <div

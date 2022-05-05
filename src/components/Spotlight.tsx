@@ -281,7 +281,8 @@ export default function Spotlight({
         </div>
         <input
           id="spotlight-input"
-          className="col-start-2 col-span-7 sm:col-span-10 outline-none focus:outline-none bg-transparent px-1 text-black dark:text-white text-xl sm:text-2xl"
+          className="col-start-2 col-span-7 sm:col-span-10 bg-transparent no-outline px-1"
+          text="xl sm:2xl black dark:white"
           placeholder="Spotlight Search"
           value={searchText}
           onChange={handleInputChange}
@@ -289,17 +290,17 @@ export default function Spotlight({
         />
       </div>
       {searchText !== "" && (
-        <div
-          className="bg-transparent flex flex-row border-t menu-box-border"
-          style={{ height: "341px" }}
-        >
+        <div className="h-spotlight bg-transparent flex flex-row border-t menu-box-border">
           <div className="flex-none w-32 sm:w-72 border-r menu-box-border overflow-y-scroll">
             {appList}
           </div>
           <div className="flex-grow">
             {curDetails && (
               <div className="h-full w-full flex flex-col">
-                <div className="mx-auto w-4/5 flex-none flex-center flex-col h-56 border-b menu-box-border">
+                <div
+                  className="mx-auto w-4/5 h-56 border-b menu-box-border"
+                  flex="none center col"
+                >
                   <img
                     className="w-32 mx-auto"
                     src={curDetails.img}
@@ -314,14 +315,21 @@ export default function Spotlight({
                   </div>
                 </div>
                 <div className="flex-grow flex text-xs">
-                  <div className="flex-none w-1/2 flex-center-h flex-col items-end text-gray-500 dark:text-gray-400">
+                  <div
+                    className="w-1/2 items-end"
+                    flex="none center-h col"
+                    text="gray-500 dark:gray-400"
+                  >
                     <div>Kind</div>
                     <div>Size</div>
                     <div>Created</div>
                     <div>Modified</div>
                     <div>Last opened</div>
                   </div>
-                  <div className="pl-2 flex-grow flex-center-h flex-col items-start text-black dark:text-white">
+                  <div
+                    className="pl-2 text-black dark:text-white"
+                    flex="grow center-h col"
+                  >
                     <div>
                       {curDetails.type === "app" ? "Application" : "Portfolio"}
                     </div>

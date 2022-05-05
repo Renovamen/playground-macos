@@ -119,8 +119,7 @@ html.dark .slider .rangeslider .rangeslider__handle {
 
 /* The switch - the box around the slider */
 .switch-toggle {
-  width: 38px;
-  @apply relative inline-block h-full;
+  @apply relative inline-block h-full w-9.5;
 }
 
 /* Hide default HTML checkbox */
@@ -147,12 +146,4 @@ input:focus + .slider-toggle {
 
 input:checked + .slider-toggle:before {
   @apply translate-x-4;
-}
-
-/* --------- battery --------- */
-
-.battery-level {
-  @apply absolute h-2 top-1/2 -mt-1 left-0;
-  margin-left: 0.1rem;
-  border-radius: 1px;
 }

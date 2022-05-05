@@ -26,7 +26,8 @@ export default function AppleMenu({
 
   return (
     <div
-      className="menu-box top-6 left-4 w-56 border-b border-l border-r rounded-b-lg"
+      className="menu-box top-6 left-4 w-56"
+      border="b l r rounded-b-lg"
       ref={ref}
     >
       <MenuItemGroup>

@@ -6,8 +6,11 @@ specifiers:
   '@types/node': ^17.0.30
   '@types/react': ^18.0.8
   '@types/react-dom': ^18.0.3
+  '@types/react-rangeslider': ^2.2.4
+  '@types/react-syntax-highlighter': ^15.5.1
   '@typescript-eslint/eslint-plugin': ^5.21.0
   '@typescript-eslint/parser': ^5.21.0
+  '@unocss/preset-attributify': ^0.32.12
   '@unocss/reset': ^0.32.9
   '@vitejs/plugin-react': ^1.3.1
   date-fns: ^2.28.0
@@ -58,8 +61,11 @@ devDependencies:
   '@types/node': 17.0.30
   '@types/react': 18.0.8
   '@types/react-dom': 18.0.3
+  '@types/react-rangeslider': 2.2.4
+  '@types/react-syntax-highlighter': 15.5.1
   '@typescript-eslint/eslint-plugin': 5.21.0_vxtfsxfxxyksjzzdyas4bgfolu
   '@typescript-eslint/parser': 5.21.0_t725usgvqspm5woeqpaxbfp2qu
+  '@unocss/preset-attributify': 0.32.12
   '@unocss/reset': 0.32.9
   '@vitejs/plugin-react': 1.3.1
   eslint: 8.14.0
@@ -565,6 +571,18 @@ packages:
       '@types/react': 18.0.8
     dev: true
 
+  /@types/react-rangeslider/2.2.4:
+    resolution: {integrity: sha512-WUgIfk7pCvat5QbTpJDh/0m3e8NZvqzVy3RXTaU8UaDliNM+SBz8hFsIfVXhwN/ruOvILOvCdh2+D6sKvzr+Ng==}
+    dependencies:
+      '@types/react': 18.0.8
+    dev: true
+
+  /@types/react-syntax-highlighter/15.5.1:
+    resolution: {integrity: sha512-+yD6D8y21JqLf89cRFEyRfptVMqo2ROHyAlysRvFwT28gT5gDo3KOiXHwGilHcq9y/OKTjlWK0f/hZUicrBFPQ==}
+    dependencies:
+      '@types/react': 18.0.8
+    dev: true
+
   /@types/react/18.0.8:
     resolution: {integrity: sha512-+j2hk9BzCOrrOSJASi5XiOyBbERk9jG5O73Ya4M0env5Ixi6vUNli4qy994AINcEF+1IEHISYFfIT4zwr++LKw==}
     dependencies:
@@ -734,6 +752,10 @@ packages:
       unconfig: 0.3.3
     dev: true
 
+  /@unocss/core/0.32.12:
+    resolution: {integrity: sha512-YT2xC/m9u5Il77keqQeNBSU/mU573CMamCalp+AaGAiEil0MDlScuaGMQikxLTkAP24m4eeok8hu4G9ebBskSg==}
+    dev: true
+
   /@unocss/core/0.32.9:
     resolution: {integrity: sha512-tnKMbe3hGFaMyVCiK5kw4rVEENNJ/XZHOy1SQ+WVobLv4K6zAxXdqeQ3DiNvzzHnEzAFX6ddp4zx975sTJ74ZQ==}
     dev: true
@@ -743,6 +765,12 @@ packages:
     dependencies:
       gzip-size: 6.0.0
       sirv: 2.0.2
+    dev: true
+
+  /@unocss/preset-attributify/0.32.12:
+    resolution: {integrity: sha512-D3eShp6+PrwgCfDmaRXZPou/YUKQasj2ckil0KZP3QxprdfNBhRGCMQuQYCzAUgtx29QbzUnzQCg4C3RDwM/Ww==}
+    dependencies:
+      '@unocss/core': 0.32.12
     dev: true
 
   /@unocss/preset-attributify/0.32.9:
