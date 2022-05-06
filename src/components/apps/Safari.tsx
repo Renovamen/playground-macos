@@ -95,7 +95,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
     >
       <div
         className="w-full min-h-full pt-8 backdrop-blur-2xl"
-        bg="gray-100 dark:gray-800 opacity-80"
+        bg="gray-100 opacity-80 dark:(gray-800 opacity-80)"
       >
         {/* Favorites */}
         <NavSection
@@ -114,7 +114,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
           </div>
           <div
             className={`h-16 w-full mt-4 grid ${grid} shadow-md rounded-xl text-sm`}
-            bg="opacity-70 gray-50 dark:gray-900"
+            bg="gray-50 opacity-70 dark:(gray-900 opacity-70)"
           >
             <div className="col-start-1 col-span-1 flex-center space-x-2">
               <FaShieldAlt size={24} />
