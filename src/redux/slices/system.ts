@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { enterFullScreen, exitFullScreen } from "../../utils";
+import { enterFullScreen, exitFullScreen } from "~/utils";
 
 export const systemSlice = createSlice({
   name: "system",

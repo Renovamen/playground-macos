@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import type { RefObject } from "react";
 import "react-rangeslider/lib/index.css";
-import { toggleWIFI } from "../../redux/slices";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useClickOutside } from "../../hooks";
+import { toggleWIFI } from "~/redux/slices";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { useClickOutside } from "~/hooks";
 
 interface WifiMenuProps {
   toggleWifiMenu: () => void;

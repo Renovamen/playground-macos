@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
-import { useWindowSize } from "../hooks";
-import { useAppSelector } from "../redux/hooks";
+import { useWindowSize } from "~/hooks";
+import { useAppSelector } from "~/redux/hooks";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (

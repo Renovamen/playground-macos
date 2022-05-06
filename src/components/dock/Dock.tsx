@@ -1,7 +1,7 @@
 import { useMotionValue } from "framer-motion";
-import { apps } from "../../configs";
+import { apps } from "~/configs";
+import { useAppSelector } from "~/redux/hooks";
 import DockItem from "./DockItem";
-import { useAppSelector } from "../../redux/hooks";
 
 interface DockProps {
   open: (id: string) => void;

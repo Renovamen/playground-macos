@@ -1,5 +1,5 @@
-import { useBattery } from "../../hooks";
 import { BsBattery, BsFillLightningChargeFill } from "react-icons/bs";
+import { useBattery } from "~/hooks";
 
 export default function Battery() {
   const batteryState = useBattery();

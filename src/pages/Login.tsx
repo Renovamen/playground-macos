@@ -3,9 +3,9 @@ import { BsQuestionSquareFill } from "react-icons/bs";
 import { CgSleep } from "react-icons/cg";
 import { RiShutDownLine, RiRestartLine } from "react-icons/ri";
 
-import { useAppSelector } from "../redux/hooks";
-import { wallpapers, user } from "../configs";
-import type { MacActions } from "../types";
+import { useAppSelector } from "~/redux/hooks";
+import { wallpapers, user } from "~/configs";
+import type { MacActions } from "~/types";
 
 export default function Login(props: MacActions) {
   const [password, setPassword] = useState("");

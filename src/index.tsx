@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
-import { store } from "./redux/store";
-import Desktop from "./pages/Desktop";
-import Login from "./pages/Login";
-import Boot from "./pages/Boot";
+import { store } from "~/redux/store";
+import Desktop from "~/pages/Desktop";
+import Login from "~/pages/Login";
+import Boot from "~/pages/Boot";
 
 import "@unocss/reset/tailwind.css";
 import "uno.css";
-import "./styles/index.css";
+import "~/styles/index.css";
 
 export default function App() {
   const [login, setLogin] = useState<boolean>(false);

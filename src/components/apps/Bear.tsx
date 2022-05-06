@@ -6,9 +6,9 @@ import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoCloudOfflineOutline } from "react-icons/io5";
-import bear from "../../configs/bear";
-import { useAppSelector } from "../../redux/hooks";
-import type { BearMdData } from "../../types";
+import bear from "~/configs/bear";
+import { useAppSelector } from "~/redux/hooks";
+import type { BearMdData } from "~/types";
 
 interface ContentProps {
   contentID: string;

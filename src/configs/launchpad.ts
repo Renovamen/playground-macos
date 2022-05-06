@@ -1,4 +1,4 @@
-import type { LaunchpadData } from "../types";
+import type { LaunchpadData } from "~/types";
 
 const launchpadApps: LaunchpadData[] = [
   {

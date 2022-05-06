@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import type { RefObject } from "react";
 
-import type { MacActions } from "../types";
-import TopBar from "../components/menus/TopBar";
-import Dock from "../components/dock/Dock";
-import Launchpad from "../components/Launchpad";
-import Window from "../components/Window";
-import Spotlight from "../components/Spotlight";
-import { apps, wallpapers } from "../configs";
-import { useAppSelector } from "../redux/hooks";
+import TopBar from "~/components/menus/TopBar";
+import Dock from "~/components/dock/Dock";
+import Launchpad from "~/components/Launchpad";
+import Window from "~/components/Window";
+import Spotlight from "~/components/Spotlight";
+import { apps, wallpapers } from "~/configs";
+import { useAppSelector } from "~/redux/hooks";
+import type { MacActions } from "~/types";
 
 interface DesktopState {
   showApps: {

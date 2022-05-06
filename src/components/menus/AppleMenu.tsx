@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import type { RefObject } from "react";
+import { useClickOutside } from "~/hooks";
 import { MenuItem, MenuItemGroup } from "./base";
-import { useClickOutside } from "../../hooks";
 
 interface AppleMenuProps {
   logout: () => void;

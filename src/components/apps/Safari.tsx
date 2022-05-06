@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { websites, wallpapers } from "../../configs";
 import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
-import { checkURL } from "../../utils";
-import { useAppSelector } from "../../redux/hooks";
-import type { SiteSectionData, SiteData } from "../../types";
+import { websites, wallpapers } from "~/configs";
+import { checkURL } from "~/utils";
+import { useAppSelector } from "~/redux/hooks";
+import type { SiteSectionData, SiteData } from "~/types";
 
 interface SafariState {
   goURL: string;

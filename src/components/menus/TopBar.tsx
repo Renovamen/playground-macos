@@ -2,16 +2,16 @@ import React, { forwardRef, useState, useEffect, useRef } from "react";
 import type { RefObject, ReactNode } from "react";
 import format from "date-fns/format";
 
-import type { MacActions } from "../../types";
 import AppleMenu from "./AppleMenu";
 import WifiMenu from "./WifiMenu";
 import Battery from "./Battery";
 import ControlCenterMenu from "./ControlCenterMenu";
-import { isFullScreen } from "../../utils";
-import { setVolume, setBrightness, toggleFullScreen } from "../../redux/slices";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { music } from "../../configs";
-import { useAudio, useWindowSize, useInterval } from "../../hooks";
+import { isFullScreen } from "~/utils";
+import { setVolume, setBrightness, toggleFullScreen } from "~/redux/slices";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { music } from "~/configs";
+import { useAudio, useWindowSize, useInterval } from "~/hooks";
+import type { MacActions } from "~/types";
 
 // ------- import icons -------
 import { BiSearch } from "react-icons/bi";

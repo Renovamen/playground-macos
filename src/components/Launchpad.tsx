@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { wallpapers, launchpadApps } from "../configs";
-import { useAppSelector } from "../redux/hooks";
+import { wallpapers, launchpadApps } from "~/configs";
+import { useAppSelector } from "~/redux/hooks";
 
 interface LaunchpadProps {
   show: boolean;

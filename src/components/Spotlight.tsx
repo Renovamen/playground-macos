@@ -2,9 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import type { RefObject } from "react";
 import format from "date-fns/format";
 import { BiSearch } from "react-icons/bi";
-import { apps, launchpadApps } from "../configs";
-import type { LaunchpadData, AppsData } from "../types";
-import { useClickOutside } from "../hooks";
+import { apps, launchpadApps } from "~/configs";
+import { useClickOutside } from "~/hooks";
+import type { LaunchpadData, AppsData } from "~/types";
 
 const allApps: { [key: string]: (LaunchpadData | AppsData)[] } = {
   app: apps,

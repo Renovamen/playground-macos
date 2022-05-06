@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaApple } from "react-icons/fa";
-import { useInterval } from "../hooks";
+import { useInterval } from "~/hooks";
 
 interface BootProps {
   restart: boolean;

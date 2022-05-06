@@ -8,10 +8,10 @@ import {
   toggleAirdrop,
   toggleBleutooth,
   toggleFullScreen
-} from "../../redux/slices";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { music } from "../../configs";
-import { useClickOutside } from "../../hooks";
+} from "~/redux/slices";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { music } from "~/configs";
+import { useClickOutside } from "~/hooks";
 
 // ------- import icons -------
 import { FiBluetooth, FiRss } from "react-icons/fi";
