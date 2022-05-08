@@ -20,10 +20,10 @@ const launchpadApps: LaunchpadData[] = [
     link: "https://vuepress-theme-gungnir.vercel.app/"
   },
   {
-    id: "oh-resume",
-    title: "Oh, Resume!",
-    img: "img/icons/launchpad/oh-resume.png",
-    link: "https://oh-resume.zxh.io"
+    id: "oh-cv",
+    title: "Oh, CV!",
+    img: "img/icons/launchpad/oh-cv.png",
+    link: "https://ohcv.zxh.io"
   },
   {
     id: "metallic",

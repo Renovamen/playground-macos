@@ -84,12 +84,12 @@ const bear: BearData[] = [
         link: "https://vuepress-theme-gungnir.vercel.app"
       },
       {
-        id: "oh-resume",
-        title: "Oh, Resume!",
-        file: "https://raw.githubusercontent.com/Renovamen/oh-resume/main/README.md",
+        id: "oh-cv",
+        title: "Oh, CV!",
+        file: "https://raw.githubusercontent.com/Renovamen/oh-cv/main/README.md",
         icon: <RiNewspaperFill />,
-        excerpt: "Write your resume in Markdown online...",
-        link: "https://oh-resume.zxh.io"
+        excerpt: "Write your curriculum vitae / resume in Markdown online...",
+        link: "https://ohcv.zxh.io"
       },
       {
         id: "metallic",
