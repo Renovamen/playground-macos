@@ -6,7 +6,7 @@ Hey there! I'm a ~~dragon lost in human world~~ [Computer Science](https://www.b
 
 I'm trying to find a balance between research and engineering.
 
-My research interests lie primarily in exploring the capability of machines to be continual and efficient, like meta-learning, few-shot learning and continual learning. I'm also working on multi-modal retrieval for my internship.
+My research interests lie primarily in exploring the capability of machines to be continual, generalizable and data-efficient, like continual learning, meta-learning and few-shot learning. I also have experience in vision-language learning and video understanding.
 
 I'm also learning to build machine learning softwares and systems. I'm also learning TypeScript, React and Vue.
 
@@ -19,12 +19,12 @@ Contact me by:
 - Github: [@Renovamen](https://github.com/Renovamen)
 - Linkedin: [xiaohan-zou](https://www.linkedin.com/in/xiaohan-zou)
 - 知乎: [@Renovamen](https://www.zhihu.com/people/chao-neng-gui-su)
-- Blog: [zxh.io](https://zxh.io)
+- Personal Website: [zxh.io](https://zxh.io)
 
 
 ## Résumé
 
-- Normal version: [English](https://zxh.io/files/cv/en/brief.pdf) / [中文](https://zxh.io/files/cv/cn/brief.pdf)
+- Normal version: [English](https://zxh.io/files/cv/en/full.pdf) / [中文](https://zxh.io/files/cv/cn/brief.pdf)
 
   中文版的更新很可能不及时
 
