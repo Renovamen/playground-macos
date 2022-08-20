@@ -83,7 +83,7 @@ const terminal: TerminalData[] = [
               </a>
             </li>
             <li>
-              Blog:{" "}
+              Personal Website:{" "}
               <a
                 className="text-blue-300"
                 href="https://zxh.io"

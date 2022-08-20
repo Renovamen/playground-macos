@@ -14,6 +14,7 @@ import { CgFormatText } from "react-icons/cg";
 import { BiCube, BiGame } from "react-icons/bi";
 import { BsFillImageFill, BsGrid1X2 } from "react-icons/bs";
 import { AiFillAudio } from "react-icons/ai";
+import { TbAtom2 } from "react-icons/tb";
 
 import type { BearData } from "~/types";
 
@@ -114,6 +115,14 @@ const bear: BearData[] = [
         icon: <AiFillAudio />,
         excerpt: "Speech emotion recognition using Keras and sklearn...",
         link: "https://github.com/Renovamen/Speech-Emotion-Recognition"
+      },
+      {
+        id: "pcalg-py",
+        title: "PC Algorithm",
+        file: "https://raw.githubusercontent.com/Renovamen/pcalg-py/master/README.md",
+        icon: <TbAtom2 />,
+        excerpt: "Implement PC algorithm in Python...",
+        link: "https://github.com/Renovamen/pcalg-py"
       },
       {
         id: "midgard",

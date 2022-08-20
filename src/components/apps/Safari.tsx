@@ -254,7 +254,7 @@ const Safari = ({ width }: SafariProps) => {
             title={"Safari clone browser"}
             src={state.goURL}
             frameBorder="0"
-            className="safari-content w-full"
+            className="safari-content w-full bg-white"
           />
         )
       ) : (

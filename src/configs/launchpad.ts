@@ -25,12 +25,12 @@ const launchpadApps: LaunchpadData[] = [
     img: "img/icons/launchpad/oh-cv.png",
     link: "https://ohcv.zxh.io"
   },
-  {
-    id: "metallic",
-    title: "Metallic",
-    img: "img/icons/launchpad/meta.png",
-    link: "https://github.com/Renovamen/metallic"
-  },
+  // {
+  //   id: "metallic",
+  //   title: "Metallic",
+  //   img: "img/icons/launchpad/meta.png",
+  //   link: "https://github.com/Renovamen/metallic"
+  // },
   {
     id: "what-if",
     title: "My Notebook",
