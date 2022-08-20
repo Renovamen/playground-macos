@@ -12,13 +12,21 @@ Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.
 
 ## Usage
 
+Clone the repo and install dependencies:
+
 ```bash
 pnpm install
+```
 
-# serve with hot reload, open http://localhost:3000 to view it in the browser
+Start dev server (with hot reloading):
+
+```bash
 pnpm dev
+```
 
-# build for production with minification to the `dist` folder
+Build for production with minification to the `dist` folder:
+
+```bash
 pnpm build
 ```
 
