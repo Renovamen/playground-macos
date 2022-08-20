@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { GiSettingsKnobs } from "react-icons/gi";
@@ -188,7 +190,8 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
       <div className="w-2/3 px-2 mx-auto">
         <ReactMarkdown
           linkTarget="_blank"
-          remarkPlugins={[gfm]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeKatex]}
           components={Highlighter(dark as boolean)}
         >
           {storeMd[contentID]}
