@@ -31,7 +31,7 @@ const FaceTime = () => {
         )}
         <button
           className="text-black mx-auto no-outline bg-white h-6 w-20"
-          border="1 black opacity-50 rounded-full"
+          border="1 black/50 rounded-full"
           onClick={() => setClick(false)}
         >
           <b>Retake</b>
@@ -53,7 +53,7 @@ const FaceTime = () => {
         />
         <button
           className="mx-auto no-outline bg-white h-12 w-12"
-          border="1 black opacity-50 rounded-full"
+          border="1 black/50 rounded-full"
           onClick={() => {
             setClick(true);
             capture();

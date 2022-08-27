@@ -51,10 +51,7 @@ export default function Login(props: MacActions) {
         <div className="font-semibold mt-2 text-xl text-white">{user.name}</div>
 
         {/* Password Input */}
-        <div
-          className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md backdrop-blur-2xl"
-          bg="gray-300 opacity-50"
-        >
+        <div className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md backdrop-blur-2xl bg-gray-300/50">
           <input
             className="text-sm text-white col-start-1 col-span-4 no-outline bg-transparent px-2"
             type="password"
@@ -75,7 +72,7 @@ export default function Login(props: MacActions) {
       {/* buttons */}
       <div className="text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
         <div
-          className="flex-center-v flex-col text-white w-24 cursor-pointer"
+          className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
@@ -84,7 +81,7 @@ export default function Login(props: MacActions) {
           <span>Sleep</span>
         </div>
         <div
-          className="flex-center-v flex-col text-white w-24 cursor-pointer"
+          className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
@@ -93,7 +90,7 @@ export default function Login(props: MacActions) {
           <span>Restart</span>
         </div>
         <div
-          className="flex-center-v flex-col text-white w-24 cursor-pointer"
+          className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
           <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">

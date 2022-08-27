@@ -7,37 +7,32 @@
 /* --------- spotlight --------- */
 
 .spotlight {
-  @apply fixed z-20 top-1/4 -mt-16 h-max rounded-md backdrop-blur-2xl shadow-2xl bg-gray-50 bg-opacity-80 border border-gray-400 border-opacity-50;
-  width: 660px;
-  margin-left: -330px;
-  left: 50%;
+  @apply fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-md backdrop-blur-2xl shadow-2xl bg-gray-50/80 border border-gray-400/50;
 }
 
 .spotlight input::placeholder {
-  @apply text-black opacity-40;
+  @apply text-black/40;
 }
 
 .spotlight .spotlight-type {
-  @apply flex-center-v pl-6 py-0.5 text-xs leading-none bg-gray-400 bg-opacity-80 text-black;
+  @apply hstack pl-6 py-0.5 text-xs leading-none bg-gray-400/80 text-black;
 }
 
 html.dark .spotlight {
-  @apply bg-gray-900 bg-opacity-80 border-gray-500 border-opacity-50;
+  @apply bg-gray-900/80 border-gray-500/50;
 }
 
 html.dark .spotlight input::placeholder {
-  @apply text-white opacity-40;
+  @apply text-white/40;
 }
 
 html.dark .spotlight .spotlight-type {
-  @apply bg-gray-500 bg-opacity-80 text-white;
+  @apply bg-gray-500/80 text-white;
 }
 
 @media (max-width: 639px) {
   .spotlight {
-    width: 100%;
-    margin-left: 0;
-    left: 0;
+    @apply w-full ml-0 left-0;
   }
 }
 

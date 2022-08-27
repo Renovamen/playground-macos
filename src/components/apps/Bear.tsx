@@ -64,7 +64,7 @@ const Highlighter = (dark: boolean): any => {
 const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
   return (
     <div className="w-full h-full bg-gray-700 text-white overflow-y-scroll">
-      <div className="h-12 pr-3 flex-center-v justify-end">
+      <div className="h-12 pr-3 hstack justify-end">
         <IoCloudOfflineOutline className="mr-3" size={20} />
         <GiSettingsKnobs size={20} />
       </div>
@@ -72,7 +72,7 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
         {bear.map((item, index) => (
           <li
             key={`bear-sidebar-${item.id}`}
-            className={`pl-6 h-8 flex-center-v cursor-default ${
+            className={`pl-6 h-8 hstack cursor-default ${
               cur === index ? "bg-red-500" : "bg-transparent"
             } ${cur === index ? "" : "hover:bg-gray-600"}`}
             onClick={() => setMidBar(item.md, index)}
@@ -89,9 +89,8 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
 const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
   return (
     <div
-      className="w-full h-full overflow-y-scroll"
+      className="w-full h-full overflow-y-scroll border-r c-border-300"
       bg="gray-50 dark:gray-800"
-      border="r gray-300 dark:(gray-600)"
     >
       <ul>
         {items.map((item: BearMdData, index: number) => (
@@ -104,8 +103,8 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
             } hover:(bg-white dark:bg-gray-900)`}
             onClick={() => setContent(item.id, item.file, index)}
           >
-            <div className="h-8 mt-3 flex-center-v flex-none">
-              <div className="-mt-1 w-10 flex-center-h flex-none text-gray-500 dark:text-gray-400">
+            <div className="h-8 mt-3 hstack flex-none">
+              <div className="-mt-1 w-10 vstack flex-none c-text-500">
                 {item.icon}
               </div>
               <span className="relative text-gray-900 dark:text-gray-100 flex-grow font-bold">
@@ -117,16 +116,12 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <AiOutlineLink className="text-gray-500 dark:text-gray-400" />
+                    <AiOutlineLink className="c-text-500" />
                   </a>
                 )}
               </span>
             </div>
-            <div
-              className="h-16 ml-10 pb-2 pr-1"
-              border="b gray-300 dark:gray-600"
-              text="sm gray-500 dark:gray-400"
-            >
+            <div className="h-16 ml-10 pb-2 pr-1 text-sm c-text-500 border-b c-border-300">
               {item.excerpt}
             </div>
           </li>
@@ -186,7 +181,7 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
   }, [contentID, contentURL, fetchMarkdown]);
 
   return (
-    <div className="markdown w-full h-full bg-gray-50 text-gray-700 dark:(bg-gray-800 text-gray-200) overflow-scroll py-6">
+    <div className="markdown w-full h-full c-text-700 bg-gray-50 dark:bg-gray-800 overflow-scroll py-6">
       <div className="w-2/3 px-2 mx-auto">
         <ReactMarkdown
           linkTarget="_blank"

@@ -368,7 +368,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   generateInputRow = (id: number): void => {
     const newRow = (
       <div key={`terminal-input-row-${id}`} className="w-full h-6 flex">
-        <div className="w-max flex-center-v">
+        <div className="w-max hstack">
           <span className="text-yellow-200">
             zou@macbook-pro{" "}
             <span className="text-green-300">{this.getCurDirName()}</span>
@@ -401,8 +401,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   render() {
     return (
       <div
-        className="terminal font-terminal font-normal relative w-full h-full overflow-y-scroll"
-        bg="gray-800 opacity-90"
+        className="terminal font-terminal font-normal relative w-full h-full bg-gray-800/90 overflow-y-scroll"
         text="white sm"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >

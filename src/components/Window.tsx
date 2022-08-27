@@ -86,9 +86,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
       </button>
       <button
         className={`window-btn ${
-          max
-            ? "bg-gray-400 dark:bg-gray-500"
-            : "bg-yellow-500 dark:bg-yellow-400"
+          max ? "c-bg-400" : "bg-yellow-500 dark:bg-yellow-400"
         }`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
@@ -135,7 +133,7 @@ const Window = (props: WindowProps) => {
   const minimized = props.min
     ? "opacity-0 invisible transition-opacity duration-300"
     : "";
-  const border = props.max ? "" : "border border-gray-500 border-opacity-30";
+  const border = props.max ? "" : "border border-gray-500/30";
   const width = props.max ? winWidth : state.width;
   const height = props.max ? winHeight : state.height;
 
@@ -193,7 +191,7 @@ const Window = (props: WindowProps) => {
       id={`window-${props.id}`}
     >
       <div
-        className="window-bar relative h-6 text-center bg-gray-200 dark:bg-gray-700"
+        className="window-bar relative h-6 text-center c-bg-200"
         onDoubleClick={() => props.setMax(props.id)}
       >
         <TrafficLights
@@ -203,9 +201,7 @@ const Window = (props: WindowProps) => {
           setMax={props.setMax}
           setMin={props.setMin}
         />
-        <span className="font-semibold text-gray-700 dark:text-gray-200">
-          {props.title}
-        </span>
+        <span className="font-semibold c-text-700">{props.title}</span>
       </div>
       <div className="innner-window w-full overflow-y-hidden">{children}</div>
     </Rnd>

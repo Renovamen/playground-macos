@@ -49,8 +49,8 @@ export default function Spotlight({
   const [appIdList, setAppIdList] = useState<string[]>([]);
   const [appList, setAppList] = useState<JSX.Element | null>(null);
 
-  const textWhite = "text-white dark:text-black";
-  const textBlack = "text-black dark:text-white";
+  const textWhite = "c-text-white";
+  const textBlack = "c-text-black";
   const textSelected = "bg-blue-500 dark:bg-blue-400";
 
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
@@ -135,7 +135,7 @@ export default function Spotlight({
           onClick={() => handleClick(app.id)}
           onDoubleClick={() => handleDoubleClick(app.id)}
         >
-          <div className="flex-none w-8 flex-center-v">
+          <div className="flex-none w-8 hstack">
             <img
               className="w-5 mx-auto"
               src={app.img}
@@ -143,7 +143,7 @@ export default function Spotlight({
               title={app.title}
             />
           </div>
-          <div className="flex-grow flex-center-v pl-3 overflow-hidden whitespace-nowrap">
+          <div className="flex-grow hstack pl-3 overflow-hidden whitespace-nowrap">
             {app.title}
           </div>
         </li>
@@ -274,10 +274,7 @@ export default function Spotlight({
     >
       <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-md bg-transparent">
         <div className="col-start-1 col-span-1 flex-center">
-          <BiSearch
-            className="ml-1 text-gray-600 dark:text-gray-300"
-            size={28}
-          />
+          <BiSearch className="ml-1 c-text-600" size={28} />
         </div>
         <input
           id="spotlight-input"
@@ -290,7 +287,7 @@ export default function Spotlight({
         />
       </div>
       {searchText !== "" && (
-        <div className="h-spotlight bg-transparent flex flex-row border-t menu-box-border">
+        <div className="h-85 bg-transparent flex flex-row border-t menu-box-border">
           <div className="flex-none w-32 sm:w-72 border-r menu-box-border overflow-y-scroll">
             {appList}
           </div>
@@ -307,19 +304,15 @@ export default function Spotlight({
                     alt={curDetails.title}
                     title={curDetails.title}
                   />
-                  <div className="mt-4 text-xl text-black dark:text-white">
+                  <div className="mt-4 text-xl c-text-black">
                     {curDetails.title}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs c-text-500">
                     {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
                   </div>
                 </div>
                 <div className="flex-grow flex text-xs">
-                  <div
-                    className="w-1/2 items-end"
-                    flex="none center-h col"
-                    text="gray-500 dark:gray-400"
-                  >
+                  <div className="flex-none flex-col vstack w-1/2 items-end c-text-500">
                     <div>Kind</div>
                     <div>Size</div>
                     <div>Created</div>
@@ -327,8 +320,8 @@ export default function Spotlight({
                     <div>Last opened</div>
                   </div>
                   <div
-                    className="pl-2 text-black dark:text-white"
-                    flex="grow center-h col"
+                    className="flex-grow flex-col vstack pl-2"
+                    text="black dark:white"
                   >
                     <div>
                       {curDetails.type === "app" ? "Application" : "Portfolio"}

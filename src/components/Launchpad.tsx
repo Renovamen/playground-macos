@@ -39,11 +39,10 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
       }}
       onClick={() => toggleLaunchpad(false)}
     >
-      <div className="w-full h-full absolute bg-gray-900 bg-opacity-20 backdrop-blur-2xl">
+      <div className="w-full h-full absolute bg-gray-900/20 backdrop-blur-2xl">
         <div
-          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5"
-          bg="gray-200 opacity-10"
-          border="1 rounded-md gray-200 opacity-30"
+          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5 bg-gray-200/10"
+          border="1 rounded-md gray-200/30"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="col-start-1 col-span-1 flex-center">
@@ -58,7 +57,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
         </div>
 
         <div
-          className="max-w-launchpad mx-auto mt-8 w-full px-4 sm:px-10"
+          className="max-w-[1100px] mx-auto mt-8 w-full px-4 sm:px-10"
           display="grid"
           grid="flow-row cols-4 sm:cols-7"
         >

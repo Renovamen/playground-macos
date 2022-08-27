@@ -30,7 +30,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
   const grid = width < 640 ? "grid-cols-4" : "grid-cols-9";
 
   return (
-    <div className="mx-auto pt-8 w-full max-w-screen-md px-4">
+    <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4">
       <div className="font-medium ml-2" text="xl sm:2xl">
         {section.title}
       </div>
@@ -89,14 +89,12 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
   return (
     <div
       className="w-full safari-content overflow-y-scroll bg-center bg-cover"
+      text="black dark:white"
       style={{
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div
-        className="w-full min-h-full pt-8 backdrop-blur-2xl"
-        bg="gray-100 opacity-80 dark:(gray-800 opacity-80)"
-      >
+      <div className="w-full min-h-full pt-8 c-bg-100/80 backdrop-blur-2xl">
         {/* Favorites */}
         <NavSection
           section={websites.favorites}
@@ -114,13 +112,13 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
           </div>
           <div
             className={`h-16 w-full mt-4 grid ${grid} shadow-md rounded-xl text-sm`}
-            bg="gray-50 opacity-70 dark:(gray-900 opacity-70)"
+            bg="gray-50/70 dark:gray-600/50"
           >
             <div className="col-start-1 col-span-1 flex-center space-x-2">
               <FaShieldAlt size={24} />
               <span className="text-xl">{numTracker}</span>
             </div>
-            <div className={`col-start-2 ${span} flex-center-v px-2`}>
+            <div className={`col-start-2 ${span} hstack px-2`}>
               In the last seven days, Safari has prevent {numTracker} tracker
               from profiling you.
             </div>
@@ -141,11 +139,7 @@ const NoInternetPage = () => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div
-        className="w-full h-full pb-10 bg-opacity-80 backdrop-blur-2xl flex-center"
-        text="center gray-600 dark:gray-500"
-        bg="gray-100 dark:gray-800"
-      >
+      <div className="w-full h-full pb-10 backdrop-blur-2xl flex-center text-center c-text-600 c-bg-100/80">
         <div className="pb-10 text-center">
           <div className="text-2xl font-bold">
             You Are Not Connected to the Internet
@@ -191,17 +185,14 @@ const Safari = ({ width }: SafariProps) => {
     if (keyCode === "Enter") setGoURL((e.target as HTMLInputElement).value);
   };
 
-  const buttonColor =
-    state.goURL === ""
-      ? "text-gray-400 dark:text-gray-500"
-      : "text-gray-700 dark:text-gray-200";
+  const buttonColor = state.goURL === "" ? "c-text-400" : "c-text-700";
   const grid = (width as number) < 640 ? "grid-cols-2" : "grid-cols-3";
   const hideLast = (width as number) < 640 ? "hidden" : "flex";
 
   return (
     <div className="w-full h-full">
       {/* browser topbar */}
-      <div className={`h-10 grid ${grid} items-center bg-white dark:bg-black`}>
+      <div className={`h-10 grid ${grid} items-center c-bg-white`}>
         <div className="flex px-2">
           <button
             className={`safari-btn w-7 ${buttonColor}`}
@@ -209,18 +200,15 @@ const Safari = ({ width }: SafariProps) => {
           >
             <FiChevronLeft size={20} />
           </button>
-          <button className="safari-btn w-7" text="gray-400 dark:gray-500">
+          <button className="safari-btn w-7 c-text-400">
             <FiChevronRight size={20} />
           </button>
-          <button className="safari-btn w-9 ml-3" text="gray-700 dark:gray-200">
+          <button className="safari-btn w-9 ml-3 c-text-700">
             <BsLayoutSidebar size={14} />
           </button>
         </div>
-        <div className="flex-center-h space-x-2 px-2">
-          <button
-            className="safari-btn w-9 -ml-10"
-            text="gray-400 dark:gray-500"
-          >
+        <div className="vstack space-x-2 px-2">
+          <button className="safari-btn w-9 -ml-10 c-text-400">
             <FaShieldAlt size={14} />
           </button>
           <input
@@ -228,9 +216,7 @@ const Safari = ({ width }: SafariProps) => {
             value={state.currentURL}
             onChange={(e) => setState({ ...state, currentURL: e.target.value })}
             onKeyPress={pressURL}
-            className="h-6 w-full p-2 rounded font-normal no-outline"
-            bg="gray-200 dark:gray-700"
-            text="sm center gray-500 dark:gray-400"
+            className="h-6 w-full p-2 rounded font-normal no-outline text-sm text-center c-text-500 c-bg-200"
             border="2 transparent focus:blue-400 dark:focus:blue-500"
             placeholder="Search or enter website name"
           />
@@ -239,7 +225,7 @@ const Safari = ({ width }: SafariProps) => {
           <button className={`safari-btn w-9 ${buttonColor}`}>
             <IoShareOutline size={16} />
           </button>
-          <button className="safari-btn w-9" text="gray-700 dark:gray-200">
+          <button className="safari-btn w-9 c-text-700">
             <IoCopyOutline size={16} />
           </button>
         </div>

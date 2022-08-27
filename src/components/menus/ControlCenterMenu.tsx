@@ -35,9 +35,8 @@ const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
     <div className="slider flex w-full">
       <div
-        className="h-7 p-2"
-        border="t l b rounded-l-full gray-300 dark:gray-600"
-        bg="gray-100 dark:gray-800"
+        className="h-7 p-2 c-bg-100 c-border-300"
+        border="t l b rounded-l-full"
       >
         {icon}
       </div>
@@ -87,16 +86,12 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed shadow-base w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5"
-      text="black dark:white"
-      bg="gray-100 opacity-70 dark:(gray-800 opacity-70)"
-      border="1 rounded-2xl gray-400 opacity-50 dark:(gray-500 opacity-50)"
-      display="grid"
+      className="fixed grid shadow-base w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 c-text-black c-bg-100/70 border rounded-2xl menu-box-border"
       grid="cols-4 rows-5 gap-2"
       ref={controlCenterRef}
     >
       <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
-        <div className="flex-center-v space-x-2">
+        <div className="hstack space-x-2">
           <MdWifi
             size={32}
             className={`${wifi ? "cc-btn" : "cc-btn-active"}`}
@@ -107,7 +102,7 @@ export default function ControlCenterMenu({
             <span className="cc-text">{wifi ? "Home" : "Off"}</span>
           </div>
         </div>
-        <div className="flex-center-v space-x-2">
+        <div className="hstack space-x-2">
           <FiBluetooth
             size={32}
             className={`${bluetooth ? "cc-btn" : "cc-btn-active"}`}
@@ -118,7 +113,7 @@ export default function ControlCenterMenu({
             <span className="cc-text">{bluetooth ? "On" : "Off"}</span>
           </div>
         </div>
-        <div className="flex-center-v space-x-2">
+        <div className="hstack space-x-2">
           <FiRss
             size={32}
             className={`${airdrop ? "cc-btn" : "cc-btn-active"}`}
@@ -130,17 +125,17 @@ export default function ControlCenterMenu({
           </div>
         </div>
       </div>
-      <div className="cc-grid col-span-2 p-2 flex-center-v space-x-2">
+      <div className="cc-grid col-span-2 p-2 hstack space-x-2">
         {dark ? (
           <IoMoon
             size={32}
-            className="cc-mode"
+            className="cc-btn-active"
             onClick={() => dispatch(toggleDark(false))}
           />
         ) : (
           <IoSunny
             size={32}
-            className="cc-mode"
+            className="cc-btn-active"
             onClick={() => dispatch(toggleDark(true))}
           />
         )}
@@ -152,7 +147,7 @@ export default function ControlCenterMenu({
       </div>
       <div className="cc-grid p-2 flex-center flex-col text-center">
         <BsBrightnessAltHigh size={20} />
-        <span className="text-xs leading-cc">Keyboard Brightness</span>
+        <span className="text-xs leading-3.5">Keyboard Brightness</span>
       </div>
       <div
         className="cc-grid p-2 flex-center flex-col text-center cursor-default"
@@ -163,16 +158,14 @@ export default function ControlCenterMenu({
         ) : (
           <BsFullscreen size={16} />
         )}
-        <span className="text-xs leading-cc mt-1.5">
+        <span className="text-xs leading-3.5 mt-1.5">
           {fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
         </span>
       </div>
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Display</span>
         <SliderComponent
-          icon={
-            <IoSunny size={12} className="text-gray-500 dark:text-gray-400" />
-          }
+          icon={<IoSunny size={12} className="c-text-500" />}
           value={brightness}
           setValue={setBrightness}
         />
@@ -180,17 +173,12 @@ export default function ControlCenterMenu({
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
         <SliderComponent
-          icon={
-            <IoVolumeHigh
-              size={12}
-              className="text-gray-500 dark:text-gray-400"
-            />
-          }
+          icon={<IoVolumeHigh size={12} className="c-text-500" />}
           value={volume}
           setValue={setVolume}
         />
       </div>
-      <div className="cc-grid col-span-4 p-2 pr-4 flex-center-v flex-row justify-between space-x-2.5">
+      <div className="cc-grid col-span-4 p-2 pr-4 hstack flex-row justify-between space-x-2.5">
         <img src={music.cover} alt="cover art" className="w-12 rounded-lg" />
         <div className="flex flex-col flex-grow justify-start">
           <span className="font-medium">{music.title}</span>

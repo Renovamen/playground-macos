@@ -28,8 +28,8 @@ interface TopBarItemProps {
 const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
   const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
   const hover = props.forceHover
-    ? "bg-white bg-opacity-30 dark:(bg-black bg-opacity-30)"
-    : "rounded hover:bg-white hover:bg-opacity-30 dark:(hover:bg-black hover:bg-opacity-30)";
+    ? "c-bg-white/30"
+    : "rounded hover:c-bg-white/30";
   return (
     <div
       ref={ref}
@@ -165,11 +165,11 @@ const TopBar = (props: TopBarProps) => {
 
   return (
     <div
-      className={`w-full h-6 px-4 fixed top-0 flex-center-v justify-between ${
+      className={`w-full h-6 px-4 fixed top-0 hstack justify-between ${
         props.hide ? "z-0" : "z-20"
-      } text-sm text-white bg-gray-500 bg-opacity-10 backdrop-blur-2xl shadow transition`}
+      } text-sm text-white bg-gray-500/10 backdrop-blur-2xl shadow transition`}
     >
-      <div className="flex-center-v space-x-4">
+      <div className="hstack space-x-4">
         <TopBarItem
           forceHover={state.showAppleMenu}
           onClick={() => toggleAppleMenu()}
@@ -192,7 +192,7 @@ const TopBar = (props: TopBarProps) => {
         />
       )}
 
-      <div className="flex-center-v flex-row justify-end space-x-2">
+      <div className="hstack flex-row justify-end space-x-2">
         <TopBarItem hideOnMobile={true}>
           <Battery />
         </TopBarItem>
