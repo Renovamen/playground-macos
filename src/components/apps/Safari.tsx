@@ -88,8 +88,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
 
   return (
     <div
-      className="w-full safari-content overflow-y-scroll bg-center bg-cover"
-      text="black dark:white"
+      className="w-full safari-content overflow-y-scroll bg-center bg-cover c-text-black"
       style={{
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
@@ -139,8 +138,8 @@ const NoInternetPage = () => {
         backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
       }}
     >
-      <div className="w-full h-full pb-10 backdrop-blur-2xl flex-center text-center c-text-600 c-bg-100/80">
-        <div className="pb-10 text-center">
+      <div className="w-full h-full pb-10 backdrop-blur-2xl flex-center c-text-600 c-bg-100/80">
+        <div className="text-center">
           <div className="text-2xl font-bold">
             You Are Not Connected to the Internet
           </div>

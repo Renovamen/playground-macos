@@ -1,12 +1,12 @@
 .bear .markdown a {
-  @apply text-red-500;
+  @apply text-red-500 dark:text-red-400;
 }
 
 .bear .markdown h1,
 .bear .markdown h2,
 .bear .markdown h3,
 .bear .markdown h4 {
-  @apply font-bold relative text-gray-800;
+  @apply font-bold relative c-text-800;
 }
 
 .bear .markdown h1,
@@ -20,7 +20,7 @@
 .bear .markdown h2::before,
 .bear .markdown h3::before,
 .bear .markdown h4::before {
-  @apply absolute text-sm text-gray-400 -left-7 bottom-1;
+  @apply absolute text-sm c-text-400 -left-7 bottom-1;
 }
 
 .bear .markdown h1 {
@@ -79,7 +79,7 @@
 }
 
 .bear .markdown ul > li::marker {
-  @apply text-red-500;
+  @apply text-red-500 dark:text-red-400;
 }
 
 .bear .markdown ol {
@@ -91,7 +91,7 @@
 }
 
 .bear .markdown code {
-  @apply text-sm border border-gray-300 rounded py-0.5 px-1 bg-gray-50;
+  @apply text-sm border c-border-300 rounded py-0.5 px-1 c-bg-50;
 }
 
 .bear .markdown pre {
@@ -99,11 +99,11 @@
 }
 
 .bear .markdown pre code {
-  @apply text-sm text-base bg-transparent border-none p-0;
+  @apply text-sm bg-transparent border-none p-0;
 }
 
 .bear .markdown pre div {
-  @apply border border-gray-300 rounded;
+  @apply border c-border-300 rounded;
 }
 
 .bear .markdown .token {
@@ -120,51 +120,9 @@
 
 .bear .markdown table td,
 .bear .markdown table th {
-  @apply px-3 py-2 border border-gray-300;
+  @apply px-3 py-2 border c-border-300;
 }
 
 .bear .markdown table tr {
   @apply border-t border-gray-300 bg-transparent;
-}
-
-/* Dark mode */
-
-html.dark .bear .markdown a {
-  @apply text-red-400;
-}
-
-html.dark .bear .markdown h1,
-html.dark .bear .markdown h2,
-html.dark .bear .markdown h3,
-html.dark .bear .markdown h4 {
-  @apply text-gray-100;
-}
-
-html.dark .bear .markdown h1::before,
-html.dark .bear .markdown h2::before,
-html.dark .bear .markdown h3::before,
-html.dark .bear .markdown h4::before {
-  @apply text-gray-500;
-}
-
-html.dark .bear .markdown ul > li::marker {
-  @apply text-red-400;
-}
-
-html.dark .bear .markdown table td,
-html.dark .bear .markdown table th,
-html.dark .bear .markdown table tr {
-  @apply border-gray-600;
-}
-
-html.dark .bear .markdown code {
-  @apply border-gray-600 bg-gray-900;
-}
-
-html.dark .bear .markdown pre code {
-  font-size: 14px !important;
-}
-
-html.dark  .bear .markdown pre div {
-  @apply border-gray-600;
 }

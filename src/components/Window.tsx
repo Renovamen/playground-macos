@@ -39,7 +39,7 @@ const ExitFullIcon = ({ size }: { size: number }) => {
   );
 };
 
-const minMarginY = 24;
+const minMarginY = 32;
 const minMarginX = 100;
 
 interface TrafficProps {
@@ -187,7 +187,7 @@ const Window = (props: WindowProps) => {
       enableResizing={!props.max}
       style={{ zIndex: props.z }}
       onMouseDown={() => props.focus(props.id)}
-      className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-md ${minimized}`}
+      className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-lg shadow-black/30 ${minimized}`}
       id={`window-${props.id}`}
     >
       <div

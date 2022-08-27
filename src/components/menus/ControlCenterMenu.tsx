@@ -86,7 +86,7 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed grid shadow-base w-80 h-96 max-w-full top-8 right-0 sm:right-2 p-2.5 c-text-black c-bg-100/70 border rounded-2xl menu-box-border"
+      className="fixed grid shadow-menu w-80 h-96 max-w-full top-9.5 right-0 sm:right-1.5 p-2.5 c-text-black c-bg-100/70 border rounded-2xl menu-border"
       grid="cols-4 rows-5 gap-2"
       ref={controlCenterRef}
     >

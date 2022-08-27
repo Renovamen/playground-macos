@@ -7,27 +7,15 @@
 /* --------- spotlight --------- */
 
 .spotlight {
-  @apply fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-md backdrop-blur-2xl shadow-2xl bg-gray-50/80 border border-gray-400/50;
+  @apply fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-lg backdrop-blur-2xl shadow-2xl shadow-black/40 c-bg-100/80 border menu-border;
 }
 
 .spotlight input::placeholder {
-  @apply text-black/40;
+  @apply c-text-black/40;
 }
 
 .spotlight .spotlight-type {
-  @apply hstack pl-6 py-0.5 text-xs leading-none bg-gray-400/80 text-black;
-}
-
-html.dark .spotlight {
-  @apply bg-gray-900/80 border-gray-500/50;
-}
-
-html.dark .spotlight input::placeholder {
-  @apply text-white/40;
-}
-
-html.dark .spotlight .spotlight-type {
-  @apply bg-gray-500/80 text-white;
+  @apply relative hstack pl-2.5 py-2 text-xs leading-none c-text-500 font-medium;
 }
 
 @media (max-width: 639px) {
@@ -79,32 +67,20 @@ html.dark .spotlight .spotlight-type {
 /* --------- slider --------- */
 
 .slider .rangeslider {
-  @apply bg-gray-300 w-full h-7 shadow-none m-0 rounded-r-full border-t border-r border-b border-transparent;
+  @apply c-bg-300 w-full h-7 shadow-none m-0 rounded-r-full border-t border-r border-b border-transparent;
 }
 
 .slider .rangeslider .rangeslider__fill {
-  @apply bg-gray-100 shadow-none rounded-none;
+  @apply c-bg-100 shadow-none rounded-none;
 }
 
 .slider .rangeslider .rangeslider__handle {
-  @apply border border-gray-300 outline-none h-7 w-7 text-white bg-white;
+  @apply border c-border-300 outline-none h-7 w-7 text-white bg-white;
   box-shadow: -3px 0px 8px 0px rgba(17, 17, 17, 0.15);
 }
 
 .slider .rangeslider .rangeslider__handle::after {
   @apply hidden;
-}
-
-html.dark .slider .rangeslider {
-  @apply bg-gray-600;
-}
-
-html.dark .slider .rangeslider .rangeslider__fill {
-  @apply bg-gray-800;
-}
-
-html.dark .slider .rangeslider .rangeslider__handle {
-  @apply border-gray-600;
 }
 
 
@@ -124,7 +100,7 @@ html.dark .slider .rangeslider .rangeslider__handle {
 
 /* The slider */
 .slider-toggle {
-  @apply absolute rounded-full bg-gray-300 top-0 left-0 right-0 bottom-0 cursor-pointer duration-300;
+  @apply absolute rounded-full bg-gray-400/50 top-0 left-0 right-0 bottom-0 cursor-pointer duration-300;
 }
 
 .slider-toggle:before {
@@ -132,13 +108,13 @@ html.dark .slider .rangeslider .rangeslider__handle {
 }
 
 input:checked + .slider-toggle {
-  background-color: #2196F3;
-}
-
-input:focus + .slider-toggle {
-  box-shadow: 0 0 1px #2196F3;
+  @apply bg-blue-500;
 }
 
 input:checked + .slider-toggle:before {
   @apply translate-x-4;
+}
+
+input:focus + .slider-toggle {
+  box-shadow: 0 0 1px #3b82f6;
 }

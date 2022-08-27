@@ -37,14 +37,13 @@ export default function Dock({
 
   return (
     <div
-      className={`dock w-full sm:w-max fixed left-0 right-0 mx-auto bottom-0 ${
+      className={`dock w-full sm:w-max fixed left-0 right-0 mx-auto bottom-1 ${
         hide ? "z-0" : "z-50"
       } overflow-x-scroll sm:overflow-x-visible`}
     >
       <ul
-        className="mx-auto w-max px-2 space-x-2 flex backdrop-blur-2xl c-border-400/30"
-        bg="white/20 dark:black/20"
-        border="t l r rounded-none sm:rounded-t-lg"
+        className="mx-auto w-max px-2 space-x-2 flex backdrop-blur-2xl c-border-400/40 c-bg-white/20"
+        border="1 rounded-none sm:rounded-xl"
         onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
         style={{

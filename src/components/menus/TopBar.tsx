@@ -21,20 +21,25 @@ import { RiAppleFill } from "react-icons/ri";
 interface TopBarItemProps {
   hideOnMobile?: boolean;
   forceHover?: boolean;
-  onClick?: () => void;
   children: ReactNode;
+  className?: string;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
 }
 
 const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
   const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
   const hover = props.forceHover
-    ? "c-bg-white/30"
-    : "rounded hover:c-bg-white/30";
+    ? "bg-gray-100/30 dark:bg-gray-400/40"
+    : "hover:(bg-gray-100/30 dark:bg-gray-400/40)";
   return (
     <div
       ref={ref}
-      className={`${hide} h-6 cursor-default flex-row space-x-1 ${hover} p-1`}
+      className={`hstack space-x-1 h-6 px-1 cursor-default rounded ${hide} ${hover} ${
+        props.className || ""
+      }`}
       onClick={props.onClick}
+      onMouseEnter={props.onMouseEnter}
     >
       {props.children}
     </div>
@@ -165,19 +170,27 @@ const TopBar = (props: TopBarProps) => {
 
   return (
     <div
-      className={`w-full h-6 px-4 fixed top-0 hstack justify-between ${
+      className={`w-full h-8 px-2 fixed top-0 hstack justify-between ${
         props.hide ? "z-0" : "z-20"
-      } text-sm text-white bg-gray-500/10 backdrop-blur-2xl shadow transition`}
+      } text-sm text-white bg-gray-700/10 backdrop-blur-2xl shadow transition`}
     >
-      <div className="hstack space-x-4">
+      <div className="hstack space-x-1">
         <TopBarItem
+          className="px-2"
           forceHover={state.showAppleMenu}
-          onClick={() => toggleAppleMenu()}
+          onClick={toggleAppleMenu}
           ref={appleBtnRef}
         >
           <RiAppleFill size={16} />
         </TopBarItem>
-        <span className="cursor-default font-semibold">{props.title}</span>
+        <TopBarItem
+          className="font-semibold px-2"
+          onMouseEnter={() => {
+            if (state.showAppleMenu) toggleAppleMenu();
+          }}
+        >
+          {props.title}
+        </TopBarItem>
       </div>
 
       {/* Open this when clicking on Apple logo */}
@@ -198,6 +211,7 @@ const TopBar = (props: TopBarProps) => {
         </TopBarItem>
         <TopBarItem
           hideOnMobile={true}
+          forceHover={state.showWifiMenu}
           onClick={toggleWifiMenu}
           ref={wifiBtnRef}
         >
@@ -206,7 +220,11 @@ const TopBar = (props: TopBarProps) => {
         <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
           <BiSearch size={17} />
         </TopBarItem>
-        <TopBarItem onClick={toggleControlCenter} ref={controlCenterBtnRef}>
+        <TopBarItem
+          forceHover={state.showControlCenter}
+          onClick={toggleControlCenter}
+          ref={controlCenterBtnRef}
+        >
           <CCMIcon size={16} />
         </TopBarItem>
 
@@ -227,8 +245,10 @@ const TopBar = (props: TopBarProps) => {
           />
         )}
 
-        <span>{format(state.date, "eee MMM d")}</span>
-        <span>{format(state.date, "h:mm aa")}</span>
+        <TopBarItem>
+          <span>{format(state.date, "eee MMM d")}</span>
+          <span>{format(state.date, "h:mm aa")}</span>
+        </TopBarItem>
       </div>
     </div>
   );

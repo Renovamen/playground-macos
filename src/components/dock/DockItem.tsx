@@ -99,7 +99,7 @@ export default function DockItem({
       onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
       className="hstack flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
     >
-      <p className="tooltip absolute px-3 py-1 rounded-md text-sm c-bg-300/80">
+      <p className="tooltip absolute px-3 py-1 rounded-md text-sm c-text-black c-bg-300/80">
         {title}
       </p>
       {link ? (

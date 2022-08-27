@@ -30,7 +30,7 @@ interface DesktopState {
   spotlight: boolean;
 }
 
-const minMarginY = 24;
+const minMarginY = 32;
 
 export default function Desktop(props: MacActions) {
   const [state, setState] = useState({

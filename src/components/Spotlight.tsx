@@ -49,9 +49,9 @@ export default function Spotlight({
   const [appIdList, setAppIdList] = useState<string[]>([]);
   const [appList, setAppList] = useState<JSX.Element | null>(null);
 
-  const textWhite = "c-text-white";
+  const textWhite = "text-white";
   const textBlack = "c-text-black";
-  const textSelected = "bg-blue-500 dark:bg-blue-400";
+  const textSelected = "bg-blue-500";
 
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
 
@@ -130,7 +130,7 @@ export default function Spotlight({
         <li
           id={`spotlight-${app.id}`}
           key={`spotlight-${app.id}`}
-          className={`pl-4 h-7 w-full pr-1 flex flex-row ${bg} ${text} cursor-default`}
+          className={`pr-1 h-7 w-full flex flex-row rounded ${bg} ${text} cursor-default`}
           data-app-type={type}
           onClick={() => handleClick(app.id)}
           onDoubleClick={() => handleDoubleClick(app.id)}
@@ -143,7 +143,7 @@ export default function Spotlight({
               title={app.title}
             />
           </div>
-          <div className="flex-grow hstack pl-3 overflow-hidden whitespace-nowrap">
+          <div className="flex-grow hstack overflow-hidden whitespace-nowrap">
             {app.title}
           </div>
         </li>
@@ -175,7 +175,9 @@ export default function Spotlight({
         )}
         {portfolio.appList.length !== 0 && (
           <div>
-            <div className="spotlight-type">Portfolio</div>
+            <div className="spotlight-type mt-1.5 before:(content-empty absolute left-0 top-0 ml-2 w-63.5 border-t menu-border)">
+              Portfolio
+            </div>
             <ul className="w-full text-xs">{portfolio.appList}</ul>
           </div>
         )}
@@ -272,30 +274,42 @@ export default function Spotlight({
       onClick={focusOnInput}
       ref={spotlightRef}
     >
-      <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-md bg-transparent">
+      <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-lg bg-transparent">
         <div className="col-start-1 col-span-1 flex-center">
           <BiSearch className="ml-1 c-text-600" size={28} />
         </div>
         <input
           id="spotlight-input"
-          className="col-start-2 col-span-7 sm:col-span-10 bg-transparent no-outline px-1"
-          text="xl sm:2xl black dark:white"
+          className={`col-start-2 col-span-7 ${
+            curDetails ? "sm:col-span-9" : "sm:col-span-10"
+          } c-text-black bg-transparent no-outline px-1`}
+          text="xl sm:2xl"
           placeholder="Spotlight Search"
           value={searchText}
           onChange={handleInputChange}
           autoFocus={true}
         />
+        {curDetails && (
+          <div className="hidden sm:flex col-start-11 col-span-1 flex-center">
+            <img
+              className="w-8"
+              src={curDetails.img}
+              alt={curDetails.title}
+              title={curDetails.title}
+            />
+          </div>
+        )}
       </div>
       {searchText !== "" && (
-        <div className="h-85 bg-transparent flex flex-row border-t menu-box-border">
-          <div className="flex-none w-32 sm:w-72 border-r menu-box-border overflow-y-scroll">
+        <div className="h-85 bg-transparent flex flex-row border-t menu-border">
+          <div className="flex-none w-32 sm:w-72 px-2.5 border-r menu-border overflow-y-scroll">
             {appList}
           </div>
           <div className="flex-grow">
             {curDetails && (
               <div className="h-full w-full flex flex-col">
                 <div
-                  className="mx-auto w-4/5 h-56 border-b menu-box-border"
+                  className="mx-auto w-4/5 h-56 border-b menu-border"
                   flex="none center col"
                 >
                   <img
@@ -319,10 +333,7 @@ export default function Spotlight({
                     <div>Modified</div>
                     <div>Last opened</div>
                   </div>
-                  <div
-                    className="flex-grow flex-col vstack pl-2"
-                    text="black dark:white"
-                  >
+                  <div className="flex-grow flex-col vstack pl-2 c-text-black">
                     <div>
                       {curDetails.type === "app" ? "Application" : "Portfolio"}
                     </div>
