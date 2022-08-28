@@ -4,8 +4,8 @@ My portfolio website simulating macOS's GUI: https://portfolio.zxh.io
 
 Powered by [React](https://reactjs.org/) + [React Redux](https://react-redux.js.org/) + [UnoCSS](https://uno.antfu.me/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/).
 
-![day](./public/screenshots/day.png)
-![night](./public/screenshots/night.png)
+![light mode](./public/screenshots/light.png)
+![dark mode](./public/screenshots/dark.png)
 
 
 &nbsp;
