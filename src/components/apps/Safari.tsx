@@ -206,7 +206,7 @@ const Safari = ({ width }: SafariProps) => {
             <BsLayoutSidebar size={14} />
           </button>
         </div>
-        <div className="vstack space-x-2 px-2">
+        <div className="hstack space-x-2 px-2">
           <button className="safari-btn w-9 -ml-10 c-text-400">
             <FaShieldAlt size={14} />
           </button>

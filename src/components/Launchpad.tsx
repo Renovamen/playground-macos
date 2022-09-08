@@ -12,7 +12,9 @@ const placeholderText = "Search";
 
 export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
   const dark = useAppSelector((state) => state.system.dark);
+
   const [searchText, setSearchText] = useState("");
+  const [focus, setFocus] = useState(false);
 
   const search = () => {
     if (searchText === "") return launchpadApps;
@@ -41,15 +43,21 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     >
       <div className="w-full h-full absolute bg-gray-900/20 backdrop-blur-2xl">
         <div
-          className="mx-auto grid grid-cols-11 h-7 w-64 mt-5 bg-gray-200/10"
+          className="mx-auto flex h-7 w-64 mt-5 bg-gray-200/10"
           border="1 rounded-md gray-200/30"
           onClick={(e) => e.stopPropagation()}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         >
-          <div className="col-start-1 col-span-1 flex-center">
+          <div
+            className={`${
+              focus ? "w-6 duration-200" : "w-26 delay-250"
+            } hstack justify-end`}
+          >
             <BiSearch className="ml-1" color="white" />
           </div>
           <input
-            className="col-start-2 col-span-10 no-outline bg-transparent px-1 text-sm text-white"
+            className="flex-1 min-w-0 no-outline bg-transparent px-1 text-sm text-white"
             placeholder={placeholderText}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
