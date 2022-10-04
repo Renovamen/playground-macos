@@ -5,9 +5,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { GiSettingsKnobs } from "react-icons/gi";
-import { AiOutlineLink } from "react-icons/ai";
-import { IoCloudOfflineOutline } from "react-icons/io5";
 import bear from "~/configs/bear";
 import { useAppSelector } from "~/redux/hooks";
 import type { BearMdData } from "~/types";
@@ -64,9 +61,9 @@ const Highlighter = (dark: boolean): any => {
 const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
   return (
     <div className="w-full h-full bg-gray-700 text-white overflow-y-scroll">
-      <div className="h-12 pr-3 hstack justify-end">
-        <IoCloudOfflineOutline className="mr-3" size={20} />
-        <GiSettingsKnobs size={20} />
+      <div className="h-12 pr-3 hstack space-x-3 justify-end">
+        <span className="i-ic:baseline-cloud-off text-xl" />
+        <span className="i-akar-icons:settings-vertical text-xl" />
       </div>
       <ul>
         {bear.map((item, index) => (
@@ -77,7 +74,7 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
             } ${cur === index ? "" : "hover:bg-gray-600"}`}
             onClick={() => setMidBar(item.md, index)}
           >
-            {item.icon}
+            <span className={item.icon} />
             <span className="ml-2">{item.title}</span>
           </li>
         ))}
@@ -105,7 +102,7 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
           >
             <div className="h-8 mt-3 hstack flex-none">
               <div className="-mt-1 w-10 vstack flex-none c-text-500">
-                {item.icon}
+                <span className={item.icon} />
               </div>
               <span className="relative text-gray-900 dark:text-gray-100 flex-grow font-bold">
                 {item.title}
@@ -116,7 +113,7 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <AiOutlineLink className="c-text-500" />
+                    <span className="i-ant-design:link-outlined c-text-500" />
                   </a>
                 )}
               </span>

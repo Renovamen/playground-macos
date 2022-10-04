@@ -2,7 +2,7 @@ export interface BearMdData {
   id: string;
   title: string;
   file: string;
-  icon: JSX.Element;
+  icon: string;
   excerpt: string;
   link?: string;
 }
@@ -10,6 +10,6 @@ export interface BearMdData {
 export interface BearData {
   id: string;
   title: string;
-  icon: JSX.Element;
+  icon: string;
   md: BearMdData[];
 }

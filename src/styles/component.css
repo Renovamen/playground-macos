@@ -40,11 +40,11 @@
   height: calc(100% - 2rem);
 }
 
-.traffic-lights svg {
+.traffic-lights .icon {
   @apply hidden;
 }
 
-.traffic-lights:hover svg {
+.traffic-lights:hover .icon {
   @apply block;
 }
 

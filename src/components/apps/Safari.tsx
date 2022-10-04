@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { FaShieldAlt } from "react-icons/fa";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { BsLayoutSidebar } from "react-icons/bs";
-import { IoShareOutline, IoCopyOutline } from "react-icons/io5";
 import { websites, wallpapers } from "~/configs";
 import { checkURL } from "~/utils";
 import { useAppSelector } from "~/redux/hooks";
@@ -114,7 +110,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
             bg="gray-50/70 dark:gray-600/50"
           >
             <div className="col-start-1 col-span-1 flex-center space-x-2">
-              <FaShieldAlt size={24} />
+              <span className="i-fa-solid:shield-alt text-2xl" />
               <span className="text-xl">{numTracker}</span>
             </div>
             <div className={`col-start-2 ${span} hstack px-2`}>
@@ -197,18 +193,18 @@ const Safari = ({ width }: SafariProps) => {
             className={`safari-btn w-7 ${buttonColor}`}
             onClick={() => setGoURL("")}
           >
-            <FiChevronLeft size={20} />
+            <span className="i-jam:chevron-left text-xl" />
           </button>
           <button className="safari-btn w-7 c-text-400">
-            <FiChevronRight size={20} />
+            <span className="i-jam:chevron-right text-xl" />
           </button>
           <button className="safari-btn w-9 ml-3 c-text-700">
-            <BsLayoutSidebar size={14} />
+            <span className="i-bi:layout-sidebar text-sm" />
           </button>
         </div>
         <div className="hstack space-x-2 px-2">
           <button className="safari-btn w-9 -ml-10 c-text-400">
-            <FaShieldAlt size={14} />
+            <span className="i-fa-solid:shield-alt text-sm" />
           </button>
           <input
             type="text"
@@ -222,10 +218,10 @@ const Safari = ({ width }: SafariProps) => {
         </div>
         <div className={`${hideLast} justify-end space-x-2 px-2`}>
           <button className={`safari-btn w-9 ${buttonColor}`}>
-            <IoShareOutline size={16} />
+            <span className="i-ion:share-outline" />
           </button>
           <button className="safari-btn w-9 c-text-700">
-            <IoCopyOutline size={16} />
+            <span className="i-ion:copy-outline" />
           </button>
         </div>
       </div>

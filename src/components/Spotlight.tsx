@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import type { RefObject } from "react";
 import format from "date-fns/format";
-import { BiSearch } from "react-icons/bi";
 import { apps, launchpadApps } from "~/configs";
 import { useClickOutside } from "~/hooks";
 import type { LaunchpadData, AppsData } from "~/types";
@@ -276,7 +275,7 @@ export default function Spotlight({
     >
       <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-lg bg-transparent">
         <div className="col-start-1 col-span-1 flex-center">
-          <BiSearch className="ml-1 c-text-600" size={28} />
+          <span className="i-bx:search ml-1 c-text-600 text-[28px]" />
         </div>
         <input
           id="spotlight-input"

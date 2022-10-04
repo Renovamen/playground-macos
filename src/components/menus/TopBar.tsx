@@ -14,10 +14,6 @@ import { useAudio, useWindowSize, useInterval } from "~/hooks";
 import type { MacActions } from "~/types";
 
 // ------- import icons -------
-import { BiSearch } from "react-icons/bi";
-import { MdWifi, MdWifiOff } from "react-icons/md";
-import { RiAppleFill } from "react-icons/ri";
-
 interface TopBarItemProps {
   hideOnMobile?: boolean;
   forceHover?: boolean;
@@ -181,7 +177,7 @@ const TopBar = (props: TopBarProps) => {
           onClick={toggleAppleMenu}
           ref={appleBtnRef}
         >
-          <RiAppleFill size={16} />
+          <span className="i-ri:apple-fill text-base" />
         </TopBarItem>
         <TopBarItem
           className="font-semibold px-2"
@@ -215,10 +211,14 @@ const TopBar = (props: TopBarProps) => {
           onClick={toggleWifiMenu}
           ref={wifiBtnRef}
         >
-          {wifi ? <MdWifi size={18} /> : <MdWifiOff size={18} />}
+          {wifi ? (
+            <span className="i-material-symbols:wifi text-lg" />
+          ) : (
+            <span className="i-material-symbols:wifi-off text-lg" />
+          )}
         </TopBarItem>
         <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
-          <BiSearch size={17} />
+          <span className="i-bx:search text-[17px]" />
         </TopBarItem>
         <TopBarItem
           forceHover={state.showControlCenter}

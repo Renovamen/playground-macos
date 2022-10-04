@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { BsQuestionSquareFill } from "react-icons/bs";
-import { CgSleep } from "react-icons/cg";
-import { RiShutDownLine, RiRestartLine } from "react-icons/ri";
-
 import { useAppSelector } from "~/redux/hooks";
 import { wallpapers, user } from "~/configs";
 import type { MacActions } from "~/types";
@@ -62,7 +58,7 @@ export default function Login(props: MacActions) {
             onChange={handleInputChange}
           />
           <div className="col-start-5 col-span-1 flex-center">
-            <BsQuestionSquareFill className="ml-1" color="white" />
+            <span className="i-bi:question-square-fill text-white ml-1" />
           </div>
         </div>
 
@@ -75,8 +71,8 @@ export default function Login(props: MacActions) {
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
-            <CgSleep size={40} />
+          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+            <span className="i-gg:sleep text-[40px]" />
           </div>
           <span>Sleep</span>
         </div>
@@ -84,8 +80,8 @@ export default function Login(props: MacActions) {
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
-            <RiRestartLine size={36} />
+          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+            <span className="i-ri:restart-line text-4xl" />
           </div>
           <span>Restart</span>
         </div>
@@ -93,8 +89,8 @@ export default function Login(props: MacActions) {
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
-          <div className="h-10 w-10 bg-gray-700 rounded-full inline-flex-center">
-            <RiShutDownLine size={36} />
+          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+            <span className="i-ri:shut-down-line text-4xl" />
           </div>
           <span>Shut Down</span>
         </div>

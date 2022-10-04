@@ -13,20 +13,8 @@ import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { music } from "~/configs";
 import { useClickOutside } from "~/hooks";
 
-// ------- import icons -------
-import { FiBluetooth, FiRss } from "react-icons/fi";
-import {
-  BsBrightnessAltHigh,
-  BsPlayFill,
-  BsPauseFill,
-  BsFullscreen,
-  BsFullscreenExit
-} from "react-icons/bs";
-import { IoSunny, IoMoon, IoVolumeHigh } from "react-icons/io5";
-import { MdWifi } from "react-icons/md";
-
 interface SliderProps {
-  icon: JSX.Element;
+  icon: string;
   value: number;
   setValue: (value: number) => void;
 }
@@ -35,10 +23,10 @@ const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
     <div className="slider flex w-full">
       <div
-        className="h-7 p-2 c-bg-100 c-border-300"
+        className="w-7 h-7 flex-center c-bg-100 c-border-300"
         border="t l b rounded-l-full"
       >
-        {icon}
+        <span className={`${icon} c-text-500 text-xs`} />
       </div>
       <Slider
         min={1}
@@ -92,33 +80,36 @@ export default function ControlCenterMenu({
     >
       <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
         <div className="hstack space-x-2">
-          <MdWifi
-            size={32}
+          <div
             className={`${wifi ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleWIFI(!wifi))}
-          />
+          >
+            <span className="i-material-symbols:wifi text-base" />
+          </div>
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">Wi-Fi</span>
             <span className="cc-text">{wifi ? "Home" : "Off"}</span>
           </div>
         </div>
         <div className="hstack space-x-2">
-          <FiBluetooth
-            size={32}
+          <div
             className={`${bluetooth ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleBleutooth(!bluetooth))}
-          />
+          >
+            <span className="i-charm:bluetooth text-base" />
+          </div>
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">Bluetooth</span>
             <span className="cc-text">{bluetooth ? "On" : "Off"}</span>
           </div>
         </div>
         <div className="hstack space-x-2">
-          <FiRss
-            size={32}
+          <div
             className={`${airdrop ? "cc-btn" : "cc-btn-active"}`}
             onClick={() => dispatch(toggleAirdrop(!airdrop))}
-          />
+          >
+            <span className="i-material-symbols:rss-feed-rounded text-base" />
+          </div>
           <div className="flex flex-col pt-0.5">
             <span className="font-medium leading-4">AirDrop</span>
             <span className="cc-text">{airdrop ? "Contacts Only" : "Off"}</span>
@@ -126,19 +117,16 @@ export default function ControlCenterMenu({
         </div>
       </div>
       <div className="cc-grid col-span-2 p-2 hstack space-x-2">
-        {dark ? (
-          <IoMoon
-            size={32}
-            className="cc-btn-active"
-            onClick={() => dispatch(toggleDark(false))}
-          />
-        ) : (
-          <IoSunny
-            size={32}
-            className="cc-btn-active"
-            onClick={() => dispatch(toggleDark(true))}
-          />
-        )}
+        <div
+          className={`${dark ? "cc-btn" : "cc-btn-active"}`}
+          onClick={() => dispatch(toggleDark(!dark))}
+        >
+          {dark ? (
+            <span className="i-ion:moon text-base" />
+          ) : (
+            <span className="i-ion:sunny text-base" />
+          )}
+        </div>
         <div className="flex flex-col">
           <span className="font-medium ml-1">
             {dark ? "Dark Mode" : "Light Mode"}
@@ -146,7 +134,7 @@ export default function ControlCenterMenu({
         </div>
       </div>
       <div className="cc-grid p-2 flex-center flex-col text-center">
-        <BsBrightnessAltHigh size={20} />
+        <span className="i-bi:brightness-alt-high text-xl" />
         <span className="text-xs leading-3.5">Keyboard Brightness</span>
       </div>
       <div
@@ -154,9 +142,9 @@ export default function ControlCenterMenu({
         onClick={() => dispatch(toggleFullScreen(!fullscreen))}
       >
         {fullscreen ? (
-          <BsFullscreenExit size={16} />
+          <span className="i-bi:fullscreen-exit text-base" />
         ) : (
-          <BsFullscreen size={16} />
+          <span className="i-bi:fullscreen text-base" />
         )}
         <span className="text-xs leading-3.5 mt-1.5">
           {fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
@@ -165,7 +153,7 @@ export default function ControlCenterMenu({
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Display</span>
         <SliderComponent
-          icon={<IoSunny size={12} className="c-text-500" />}
+          icon="i-ion:sunny"
           value={brightness}
           setValue={setBrightness}
         />
@@ -173,7 +161,7 @@ export default function ControlCenterMenu({
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
         <SliderComponent
-          icon={<IoVolumeHigh size={12} className="c-text-500" />}
+          icon="i-ion:volume-high"
           value={volume}
           setValue={setVolume}
         />
@@ -185,9 +173,15 @@ export default function ControlCenterMenu({
           <span className="cc-text">{music.artist}</span>
         </div>
         {playing ? (
-          <BsPauseFill onClick={() => toggleAudio(false)} size={24} />
+          <span
+            className="i-bi:pause-fill text-2xl"
+            onClick={() => toggleAudio(false)}
+          />
         ) : (
-          <BsPlayFill onClick={() => toggleAudio(true)} size={24} />
+          <span
+            className="i-bi:play-fill text-2xl"
+            onClick={() => toggleAudio(true)}
+          />
         )}
       </div>
     </div>

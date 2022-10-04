@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BiSearch } from "react-icons/bi";
 import { wallpapers, launchpadApps } from "~/configs";
 import { useAppSelector } from "~/redux/hooks";
 
@@ -54,7 +53,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
               focus ? "w-6 duration-200" : "w-26 delay-250"
             } hstack justify-end`}
           >
-            <BiSearch className="ml-1" color="white" />
+            <span className="i-bx:search ml-1 text-white" />
           </div>
           <input
             className="flex-1 min-w-0 no-outline bg-transparent px-1 text-sm text-white"

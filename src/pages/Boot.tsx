@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FaApple } from "react-icons/fa";
 import { useInterval } from "~/hooks";
 
 interface BootProps {
@@ -43,7 +42,7 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
       className="w-full h-full bg-black flex-center flex-col"
       onClick={handleClick}
     >
-      <FaApple className="text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />
+      <span className="i-fa-brands:apple text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />
       {loading && (
         <div
           className="absolute top-1/2 left-0 right-0 w-56 h-1 sm:h-1.5 bg-gray-500 rounded overflow-hidden"

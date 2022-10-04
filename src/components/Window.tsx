@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
-import { IoCloseOutline } from "react-icons/io5";
-import { FiMinus } from "react-icons/fi";
 import { useWindowSize } from "~/hooks";
 import { useAppSelector } from "~/redux/hooks";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
     <svg
+      className="icon"
       viewBox="0 0 13 13"
       width={size}
       height={size}
@@ -25,6 +24,7 @@ const FullIcon = ({ size }: { size: number }) => {
 const ExitFullIcon = ({ size }: { size: number }) => {
   return (
     <svg
+      className="icon"
       viewBox="0 0 19 19"
       width={size}
       height={size}
@@ -82,7 +82,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
         onClick={closeWindow}
         onTouchEnd={closeWindow}
       >
-        <IoCloseOutline size={11} />
+        <span className="icon i-gg:close text-[9px]" />
       </button>
       <button
         className={`window-btn ${
@@ -92,14 +92,16 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
         onTouchEnd={() => setMin(id)}
         disabled={max}
       >
-        <FiMinus size={11} className={max ? "invisible" : ""} />
+        <span
+          className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`}
+        />
       </button>
       <button
         className="window-btn bg-green-500 dark:bg-green-400"
         onClick={() => setMax(id)}
         onTouchEnd={() => setMax(id)}
       >
-        {max ? <ExitFullIcon size={10} /> : <FullIcon size={6.5} />}
+        {max ? <ExitFullIcon size={9} /> : <FullIcon size={6} />}
       </button>
     </div>
   );

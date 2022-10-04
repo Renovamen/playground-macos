@@ -1,6 +1,7 @@
 import {
   defineConfig,
   presetAttributify,
+  presetIcons,
   presetUno,
   transformerDirectives,
   transformerVariantGroup
@@ -32,7 +33,6 @@ const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
 export default defineConfig({
   shortcuts: [
     ["flex-center", "flex items-center justify-center"],
-    ["inline-flex-center", "inline-flex items-center justify-center"],
     ["hstack", "flex items-center"],
     ["vstack", "flex justify-center"],
     ["no-outline", "outline-none focus:outline-none"],
@@ -40,10 +40,7 @@ export default defineConfig({
     [colorReg("c-border"), (v) => colorAttr("border", v)],
     [colorReg("c-bg"), (v) => colorAttr("bg", v)],
     ["shadow-menu", "shadow-md shadow-black/25 dark:shadow-black/50"],
-    [
-      "window-btn",
-      "w-3 h-3 text-black rounded-full inline-flex-center no-outline"
-    ],
+    ["window-btn", "w-3 h-3 text-black rounded-full flex-center no-outline"],
     ["menu-border", "border-gray-500/50"],
     [
       "menu-box",
@@ -53,10 +50,10 @@ export default defineConfig({
       "safari-btn",
       "h-6 outline-none focus:outline-none rounded flex-center border c-border-300"
     ],
-    ["cc-btn", "rounded-full p-2 text-white bg-blue-500"],
+    ["cc-btn", "flex-center rounded-full w-8 h-8 text-white bg-blue-500"],
     [
       "cc-btn-active",
-      "rounded-full p-2 c-text-700 bg-gray-400/25 dark:bg-gray-300/25"
+      "flex-center rounded-full w-8 h-8 c-text-700 bg-gray-400/25 dark:bg-gray-300/25"
     ],
     ["cc-text", "text-xs c-text-500"],
     ["cc-grid", "c-bg-200/80 rounded-xl cc-grid-shadow backdrop-blur-2xl"],
@@ -65,6 +62,15 @@ export default defineConfig({
   rules: [
     ["cc-grid-shadow", { "box-shadow": "0px 1px 5px 0px rgba(0, 0, 0, 0.3)" }]
   ],
-  presets: [presetUno(), presetAttributify()],
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons({
+      warn: true,
+      extraProperties: {
+        display: "inline-block"
+      }
+    })
+  ],
   transformers: [transformerDirectives(), transformerVariantGroup()]
 });
