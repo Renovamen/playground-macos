@@ -32,10 +32,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
       </div>
       <div className={`mt-3 grid grid-flow-row ${grid}`}>
         {section.sites.map((site: SiteData) => (
-          <div
-            key={`safari-nav-${site.id}`}
-            className="h-28 w-full flex-center"
-          >
+          <div key={`safari-nav-${site.id}`} className="h-28 w-full flex-center">
             <div className="h-full w-full flex flex-col">
               <div className="h-max w-max mx-auto bg-white rounded-md">
                 {site.img ? (
@@ -91,11 +88,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
     >
       <div className="w-full min-h-full pt-8 c-bg-100/80 backdrop-blur-2xl">
         {/* Favorites */}
-        <NavSection
-          section={websites.favorites}
-          setGoURL={setGoURL}
-          width={width}
-        />
+        <NavSection section={websites.favorites} setGoURL={setGoURL} width={width} />
 
         {/* Frequently Visited */}
         <NavSection section={websites.freq} setGoURL={setGoURL} width={width} />
@@ -114,8 +107,8 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
               <span className="text-xl">{numTracker}</span>
             </div>
             <div className={`col-start-2 ${span} hstack px-2`}>
-              In the last seven days, Safari has prevent {numTracker} tracker
-              from profiling you.
+              In the last seven days, Safari has prevent {numTracker} tracker from
+              profiling you.
             </div>
           </div>
         </div>
@@ -136,12 +129,9 @@ const NoInternetPage = () => {
     >
       <div className="w-full h-full pb-10 backdrop-blur-2xl flex-center c-text-600 c-bg-100/80">
         <div className="text-center">
-          <div className="text-2xl font-bold">
-            You Are Not Connected to the Internet
-          </div>
+          <div className="text-2xl font-bold">You Are Not Connected to the Internet</div>
           <div className="pt-4 text-sm">
-            This page can't be displayed because your computer is currently
-            offline.
+            This page can't be displayed because your computer is currently offline.
           </div>
         </div>
       </div>
@@ -160,10 +150,7 @@ const Safari = ({ width }: SafariProps) => {
     const isValid = checkURL(url);
 
     if (isValid) {
-      if (
-        url.substring(0, 7) !== "http://" &&
-        url.substring(0, 8) !== "https://"
-      )
+      if (url.substring(0, 7) !== "http://" && url.substring(0, 8) !== "https://")
         url = `https://${url}`;
     } else if (url !== "") {
       url = `https://www.bing.com/search?q=${url}`;

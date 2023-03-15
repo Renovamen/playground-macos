@@ -18,10 +18,7 @@ const FaceTime = () => {
 
   if (click)
     return (
-      <div
-        id="container"
-        className="bg-gray-800 h-full flex-center flex-col space-y-6"
-      >
+      <div id="container" className="bg-gray-800 h-full flex-center flex-col space-y-6">
         {img && (
           <img
             className="border-8 border-white max-h-60 md:max-h-96"
@@ -40,10 +37,7 @@ const FaceTime = () => {
     );
   else
     return (
-      <div
-        id="container"
-        className="bg-gray-800 h-full flex-center flex-col space-y-6"
-      >
+      <div id="container" className="bg-gray-800 h-full flex-center flex-col space-y-6">
         <Webcam
           className="border-8 border-white max-h-60 md:max-h-96"
           audio={false}

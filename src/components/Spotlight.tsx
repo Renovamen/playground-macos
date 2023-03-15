@@ -85,8 +85,7 @@ export default function Spotlight({
     const text = searchText.toLowerCase();
     const list = allApps[type].filter((item: LaunchpadData | AppsData) => {
       return (
-        item.title.toLowerCase().includes(text) ||
-        item.id.toLowerCase().includes(text)
+        item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
       );
     });
     return list;
@@ -214,9 +213,7 @@ export default function Spotlight({
 
     // remove highlight
     const prevAppId = appIdList[prevIndex];
-    const prev = document.querySelector(
-      `#spotlight-${prevAppId}`
-    ) as HTMLElement;
+    const prev = document.querySelector(`#spotlight-${prevAppId}`) as HTMLElement;
     let classes = prev.className;
     classes = classes.replace(textWhite, textBlack);
     classes = classes.replace(textSelected, "bg-transparent");
@@ -317,9 +314,7 @@ export default function Spotlight({
                     alt={curDetails.title}
                     title={curDetails.title}
                   />
-                  <div className="mt-4 text-xl c-text-black">
-                    {curDetails.title}
-                  </div>
+                  <div className="mt-4 text-xl c-text-black">{curDetails.title}</div>
                   <div className="text-xs c-text-500">
                     {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
                   </div>
@@ -333,9 +328,7 @@ export default function Spotlight({
                     <div>Last opened</div>
                   </div>
                   <div className="flex-grow flex-col vstack pl-2 c-text-black">
-                    <div>
-                      {curDetails.type === "app" ? "Application" : "Portfolio"}
-                    </div>
+                    <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
                     <div>{`${getRandom(0, 999)} G`}</div>
                     <div>{getRandomDate()}</div>
                     <div>{getRandomDate()}</div>

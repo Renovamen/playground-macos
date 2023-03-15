@@ -51,8 +51,8 @@ export default function ControlCenterMenu({
   btnRef
 }: CCMProps) {
   const controlCenterRef = useRef<HTMLDivElement>(null);
-  const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } =
-    useStore((state) => ({
+  const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } = useStore(
+    (state) => ({
       dark: state.dark,
       wifi: state.wifi,
       brightness: state.brightness,
@@ -60,20 +60,16 @@ export default function ControlCenterMenu({
       airdrop: state.airdrop,
       fullscreen: state.fullscreen,
       volume: state.volume
+    })
+  );
+  const { toggleWIFI, toggleBluetooth, toggleAirdrop, toggleDark, toggleFullScreen } =
+    useStore((state) => ({
+      toggleWIFI: state.toggleWIFI,
+      toggleBluetooth: state.toggleBluetooth,
+      toggleAirdrop: state.toggleAirdrop,
+      toggleDark: state.toggleDark,
+      toggleFullScreen: state.toggleFullScreen
     }));
-  const {
-    toggleWIFI,
-    toggleBluetooth,
-    toggleAirdrop,
-    toggleDark,
-    toggleFullScreen
-  } = useStore((state) => ({
-    toggleWIFI: state.toggleWIFI,
-    toggleBluetooth: state.toggleBluetooth,
-    toggleAirdrop: state.toggleAirdrop,
-    toggleDark: state.toggleDark,
-    toggleFullScreen: state.toggleFullScreen
-  }));
 
   useClickOutside(controlCenterRef, toggleControlCenter, [btnRef]);
 
@@ -85,10 +81,7 @@ export default function ControlCenterMenu({
     >
       <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
         <div className="hstack space-x-2">
-          <div
-            className={`${wifi ? "cc-btn" : "cc-btn-active"}`}
-            onClick={toggleWIFI}
-          >
+          <div className={`${wifi ? "cc-btn" : "cc-btn-active"}`} onClick={toggleWIFI}>
             <span className="i-material-symbols:wifi text-base" />
           </div>
           <div className="flex flex-col pt-0.5">
@@ -122,10 +115,7 @@ export default function ControlCenterMenu({
         </div>
       </div>
       <div className="cc-grid col-span-2 p-2 hstack space-x-2">
-        <div
-          className={`${dark ? "cc-btn" : "cc-btn-active"}`}
-          onClick={toggleDark}
-        >
+        <div className={`${dark ? "cc-btn" : "cc-btn-active"}`} onClick={toggleDark}>
           {dark ? (
             <span className="i-ion:moon text-base" />
           ) : (
@@ -133,9 +123,7 @@ export default function ControlCenterMenu({
           )}
         </div>
         <div className="flex flex-col">
-          <span className="font-medium ml-1">
-            {dark ? "Dark Mode" : "Light Mode"}
-          </span>
+          <span className="font-medium ml-1">{dark ? "Dark Mode" : "Light Mode"}</span>
         </div>
       </div>
       <div className="cc-grid p-2 flex-center flex-col text-center">
@@ -157,19 +145,11 @@ export default function ControlCenterMenu({
       </div>
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Display</span>
-        <SliderComponent
-          icon="i-ion:sunny"
-          value={brightness}
-          setValue={setBrightness}
-        />
+        <SliderComponent icon="i-ion:sunny" value={brightness} setValue={setBrightness} />
       </div>
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
-        <SliderComponent
-          icon="i-ion:volume-high"
-          value={volume}
-          setValue={setVolume}
-        />
+        <SliderComponent icon="i-ion:volume-high" value={volume} setValue={setVolume} />
       </div>
       <div className="cc-grid col-span-4 p-2 pr-4 hstack flex-row justify-between space-x-2.5">
         <img src={music.cover} alt="cover art" className="w-12 rounded-lg" />
@@ -178,15 +158,9 @@ export default function ControlCenterMenu({
           <span className="cc-text">{music.artist}</span>
         </div>
         {playing ? (
-          <span
-            className="i-bi:pause-fill text-2xl"
-            onClick={() => toggleAudio(false)}
-          />
+          <span className="i-bi:pause-fill text-2xl" onClick={() => toggleAudio(false)} />
         ) : (
-          <span
-            className="i-bi:play-fill text-2xl"
-            onClick={() => toggleAudio(true)}
-          />
+          <span className="i-bi:play-fill text-2xl" onClick={() => toggleAudio(true)} />
         )}
       </div>
     </div>

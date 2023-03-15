@@ -7,8 +7,7 @@ import {
   transformerVariantGroup
 } from "unocss";
 
-const colorReg = (prefix: string) =>
-  new RegExp("^" + prefix + "-([0-9a-z]+)(/(\\d+))?$");
+const colorReg = (prefix: string) => new RegExp("^" + prefix + "-([0-9a-z]+)(/(\\d+))?$");
 
 const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
   let lightColor = "",
@@ -59,9 +58,7 @@ export default defineConfig({
     ["cc-grid", "c-bg-200/80 rounded-xl cc-grid-shadow backdrop-blur-2xl"],
     ["battery-level", "absolute rounded-[1px] h-2 top-1/2 -mt-1 ml-0.5 left-0"]
   ],
-  rules: [
-    ["cc-grid-shadow", { "box-shadow": "0px 1px 5px 0px rgba(0, 0, 0, 0.3)" }]
-  ],
+  rules: [["cc-grid-shadow", { "box-shadow": "0px 1px 5px 0px rgba(0, 0, 0, 0.3)" }]],
   presets: [
     presetUno(),
     presetAttributify(),

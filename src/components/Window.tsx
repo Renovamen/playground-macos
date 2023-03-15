@@ -85,16 +85,12 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
         <span className="icon i-gg:close text-[9px]" />
       </button>
       <button
-        className={`window-btn ${
-          max ? "c-bg-400" : "bg-yellow-500 dark:bg-yellow-400"
-        }`}
+        className={`window-btn ${max ? "c-bg-400" : "bg-yellow-500 dark:bg-yellow-400"}`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
         disabled={max}
       >
-        <span
-          className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`}
-        />
+        <span className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`} />
       </button>
       <button
         className="window-btn bg-green-500 dark:bg-green-400"
@@ -139,12 +135,9 @@ const Window = (props: WindowProps) => {
   const width = props.max ? winWidth : state.width;
   const height = props.max ? winHeight : state.height;
 
-  const children = React.cloneElement(
-    props.children as React.ReactElement<any>,
-    {
-      width: width
-    }
-  );
+  const children = React.cloneElement(props.children as React.ReactElement<any>, {
+    width: width
+  });
 
   return (
     <Rnd

@@ -38,10 +38,7 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
   };
 
   return (
-    <div
-      className="w-full h-full bg-black flex-center flex-col"
-      onClick={handleClick}
-    >
+    <div className="w-full h-full bg-black flex-center flex-col" onClick={handleClick}>
       <span className="i-fa-brands:apple text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />
       {loading && (
         <div

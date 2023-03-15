@@ -35,13 +35,10 @@ const useDockHoverAnimation = (
   const beyondTheDistanceLimit = distanceLimit + 1;
 
   const distance = useMotionValue(beyondTheDistanceLimit);
-  const widthPX = useSpring(
-    useTransform(distance, distanceInput, widthOutput),
-    {
-      stiffness: 1700,
-      damping: 90
-    }
-  );
+  const widthPX = useSpring(useTransform(distance, distanceInput, widthOutput), {
+    stiffness: 1700,
+    damping: 90
+  });
 
   const width = useTransform(widthPX, (width) => `${width / 16}rem`);
 
@@ -125,11 +122,7 @@ export default function DockItem({
           style={winWidth < 640 ? {} : { width, willChange: "width" }}
         />
       )}
-      <div
-        className={`h-1 w-1 m-0 rounded-full c-bg-800 ${
-          isOpen ? "" : "invisible"
-        }`}
-      />
+      <div className={`h-1 w-1 m-0 rounded-full c-bg-800 ${isOpen ? "" : "invisible"}`} />
     </li>
   );
 }

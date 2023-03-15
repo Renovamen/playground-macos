@@ -20,16 +20,13 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     const text = searchText.toLowerCase();
     const list = launchpadApps.filter((item) => {
       return (
-        item.title.toLowerCase().includes(text) ||
-        item.id.toLowerCase().includes(text)
+        item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
       );
     });
     return list;
   };
 
-  const close = show
-    ? ""
-    : "opacity-0 invisible transition-opacity duration-200";
+  const close = show ? "" : "opacity-0 invisible transition-opacity duration-200";
 
   return (
     <div
@@ -69,10 +66,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
           grid="flow-row cols-4 sm:cols-7"
         >
           {search().map((app) => (
-            <div
-              key={`launchpad-${app.id}`}
-              className="h-32 sm:h-36 w-full flex-center"
-            >
+            <div key={`launchpad-${app.id}`} className="h-32 sm:h-36 w-full flex-center">
               <div className="h-full w-full flex flex-col">
                 <a
                   className="h-max"

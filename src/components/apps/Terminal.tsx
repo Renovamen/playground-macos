@@ -2,14 +2,7 @@ import React, { Component } from "react";
 import { terminal } from "~/configs";
 import type { TerminalData } from "~/types";
 
-const emojis = [
-  "\\(o_o)/",
-  "(˚Δ˚)b",
-  "(^-^*)",
-  "(╯‵□′)╯",
-  "\\(°ˊДˋ°)/",
-  "╰(‵□′)╯"
-];
+const emojis = ["\\(o_o)/", "(˚Δ˚)b", "(^-^*)", "(╯‵□′)╯", "\\(°ˊДˋ°)/", "╰(‵□′)╯"];
 
 const getEmoji = () => {
   return emojis[Math.floor(Math.random() * emojis.length)];
@@ -37,9 +30,7 @@ class HowDare extends Component<HowDareProps> {
   private drops = [] as number[];
 
   componentDidMount() {
-    const container = document.querySelector(
-      "#how-dare-container"
-    ) as HTMLElement;
+    const container = document.querySelector("#how-dare-container") as HTMLElement;
 
     this.canvas = document.querySelector("#how-dare") as HTMLCanvasElement;
     this.canvas.height = container.offsetHeight;
@@ -75,10 +66,7 @@ class HowDare extends Component<HowDareProps> {
 
       // sends the drop back to the top randomly after it has crossed the screen
       // adding randomness to the reset to make the drops scattered on the Y axis
-      if (
-        this.drops[i] * this.fontSize > this.canvas.height &&
-        Math.random() > 0.975
-      )
+      if (this.drops[i] * this.fontSize > this.canvas.height && Math.random() > 0.975)
         this.drops[i] = 0;
 
       // increments Y coordinate
@@ -200,9 +188,7 @@ export default class Terminal extends Component<{}, TerminalState> {
       result.push(
         <span
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
-          className={`${
-            item.type === "file" ? "text-white" : "text-purple-300"
-          }`}
+          className={`${item.type === "file" ? "text-white" : "text-purple-300"}`}
         >
           {item.title}
         </span>
@@ -240,17 +226,17 @@ export default class Terminal extends Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span className="text-red-400">cat {"<file>"}</span> - See the content
-          of {"<file>"}
+          <span className="text-red-400">cat {"<file>"}</span> - See the content of{" "}
+          {"<file>"}
         </li>
         <li>
           <span className="text-red-400">cd {"<dir>"}</span> - Move into
-          {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to
-          return to root
+          {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
+          root
         </li>
         <li>
-          <span className="text-red-400">ls</span> - See files and directories
-          in the current directory
+          <span className="text-red-400">ls</span> - See files and directories in the
+          current directory
         </li>
         <li>
           <span className="text-red-400">clear</span> - Clear the screen
@@ -262,8 +248,8 @@ export default class Terminal extends Component<{}, TerminalState> {
           <span className="text-red-400">rm -rf /</span> - :)
         </li>
         <li>
-          press <span className="text-red-400">up arrow / down arrow</span> -
-          Select history commands
+          press <span className="text-red-400">up arrow / down arrow</span> - Select
+          history commands
         </li>
         <li>
           press <span className="text-red-400">tab</span> - Auto complete
@@ -290,9 +276,7 @@ export default class Terminal extends Component<{}, TerminalState> {
     } else if (cmd === "cd" || cmd === "cat") {
       const type = cmd === "cd" ? "folder" : "file";
       const guess = this.curChildren.find((item: TerminalData) => {
-        return (
-          item.type === type && item.title.substring(0, args.length) === args
-        );
+        return item.type === type && item.title.substring(0, args.length) === args;
       });
       if (guess !== undefined) result = cmd + " " + guess.title;
     }
@@ -359,9 +343,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   };
 
   focusOnInput = (id: number): void => {
-    const input = document.querySelector(
-      `#terminal-input-${id}`
-    ) as HTMLInputElement;
+    const input = document.querySelector(`#terminal-input-${id}`) as HTMLInputElement;
     input.focus();
   };
 
@@ -370,8 +352,7 @@ export default class Terminal extends Component<{}, TerminalState> {
       <div key={`terminal-input-row-${id}`} className="w-full h-6 flex">
         <div className="w-max hstack">
           <span className="text-yellow-200">
-            zou@macbook-pro{" "}
-            <span className="text-green-300">{this.getCurDirName()}</span>
+            zou@macbook-pro <span className="text-green-300">{this.getCurDirName()}</span>
           </span>
           <span className="ml-1.5 text-red-400">{">"}</span>
         </div>
@@ -388,10 +369,7 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   generateResultRow = (id: number, result: JSX.Element) => {
     const newRow = (
-      <div
-        key={`terminal-result-row-${id}`}
-        className="w-full h-max leading-5 flex"
-      >
+      <div key={`terminal-result-row-${id}`} className="w-full h-max leading-5 flex">
         {result}
       </div>
     );
@@ -406,13 +384,11 @@ export default class Terminal extends Component<{}, TerminalState> {
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
         {this.state.rmrf && (
-          <HowDare
-            setRMRF={(value: boolean) => this.setState({ rmrf: value })}
-          />
+          <HowDare setRMRF={(value: boolean) => this.setState({ rmrf: value })} />
         )}
         <div className="w-full h-max pt-2 px-1.5 ">
-          <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the
-          terminal! Type `help` to get started.
+          <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the terminal!
+          Type `help` to get started.
         </div>
         <div id="terminal-content" className="mt-2 px-1.5 pb-2">
           {this.state.content}

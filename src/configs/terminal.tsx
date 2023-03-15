@@ -13,9 +13,9 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi! This is Xiaohan Zou, now a Computer Science master's student
-              at Boston University. Previously, I received my bachelor's degree
-              in Software Engineering at Tongji University.
+              Hi! This is Xiaohan Zou, now a Computer Science master's student at Boston
+              University. Previously, I received my bachelor's degree in Software
+              Engineering at Tongji University.
             </div>
           </div>
         )

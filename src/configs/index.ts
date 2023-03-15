@@ -7,13 +7,4 @@ import user from "./user";
 import wallpapers from "./wallpapers";
 import websites from "./websites";
 
-export {
-  apps,
-  bear,
-  launchpadApps,
-  music,
-  terminal,
-  user,
-  wallpapers,
-  websites
-};
+export { apps, bear, launchpadApps, music, terminal, user, wallpapers, websites };
