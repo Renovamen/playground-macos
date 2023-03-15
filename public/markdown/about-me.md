@@ -2,13 +2,13 @@
 
 ## Biography
 
-Hey there! I'm a ~~dragon lost in human world~~ [Computer Science](https://www.bu.edu/cs/) master's student at [Boston University](https://www.bu.edu/). Previously, I received my bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/).
+Hey there! I received my master's degree in [Computer Science](https://www.bu.edu/cs/) at [Boston University](https://www.bu.edu/) and bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/).
 
 I'm trying to find a balance between research and engineering.
 
-My current research interests lie primarily in exploring the capability of machine learning systems to be continuous, generalizable, and efficient, like continual learning, meta-learning, and parameter sharing. I'm also interested in efficiency of vision-language and video models.
+My current research interests lie primarily in understanding and improving continuity, generalizability, efficiency and other key properties of machine learning. I'm also interested in vision-language and video models.
 
-I'm also learning to build machine learning softwares and systems. I'm also learning TypeScript, React and Vue.
+I'm also learning web development and building machine learning softwares and systems.
 
 
 ## Contact

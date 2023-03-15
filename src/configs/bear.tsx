@@ -51,6 +51,14 @@ const bear: BearData[] = [
         link: "https://github.com/Renovamen/playground-macos"
       },
       {
+        id: "oh-my-cv",
+        title: "Oh, My CV!",
+        file: "https://raw.githubusercontent.com/Renovamen/oh-my-cv/main/README.md",
+        icon: "i-ri:newspaper-fill",
+        excerpt: "Write your curriculum vitae / resume in Markdown online...",
+        link: "https://ohmycv.app"
+      },
+      {
         id: "oh-vue-icons",
         title: "Oh, Vue Icons!",
         file: "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
@@ -65,14 +73,6 @@ const bear: BearData[] = [
         icon: "i-akar-icons:sword",
         excerpt: "A simple and beautiful blog theme for VuePress...",
         link: "https://vuepress-theme-gungnir.vercel.app"
-      },
-      {
-        id: "oh-cv",
-        title: "Oh, CV!",
-        file: "https://raw.githubusercontent.com/Renovamen/oh-cv/main/README.md",
-        icon: "i-ri:newspaper-fill",
-        excerpt: "Write your curriculum vitae / resume in Markdown online...",
-        link: "https://ohcv.zxh.io"
       },
       {
         id: "metallic",
@@ -150,7 +150,7 @@ const bear: BearData[] = [
         id: "fishmail",
         title: "Fishmail",
         file: "https://raw.githubusercontent.com/Renovamen/Fishmail/master/README.md",
-        icon: "i-mdi:fishbowl-outline",
+        icon: "i-game-icons:fish-escape",
         excerpt: "上班的时候装作在 Gmail 上查邮件的样子看知乎摸鱼...",
         link: "https://fishmail.vercel.app"
       }

@@ -8,9 +8,15 @@ const launchpadApps: LaunchpadData[] = [
     link: "https://github.com/Renovamen/flint"
   },
   {
+    id: "oh-my-cv",
+    title: "Oh, My CV!",
+    img: "https://ohmycv.app/pwa-512x512.png",
+    link: "https://ohmycv.app"
+  },
+  {
     id: "oh-vue-icons",
     title: "Oh, Vue Icons!",
-    img: "img/icons/launchpad/icon.png",
+    img: "img/icons/launchpad/oh-vue-icons.png",
     link: "https://oh-vue-icons.js.org"
   },
   {
@@ -18,12 +24,6 @@ const launchpadApps: LaunchpadData[] = [
     title: "Gungnir",
     img: "img/icons/launchpad/gungnir.png",
     link: "https://vuepress-theme-gungnir.vercel.app/"
-  },
-  {
-    id: "oh-cv",
-    title: "Oh, CV!",
-    img: "img/icons/launchpad/oh-cv.png",
-    link: "https://ohcv.zxh.io"
   },
   // {
   //   id: "metallic",

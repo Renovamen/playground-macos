@@ -13,9 +13,9 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi! This is Xiaohan Zou, now a Computer Science master's student at Boston
-              University. Previously, I received my bachelor's degree in Software
-              Engineering at Tongji University.
+              Hi, this is Xiaohan Zou. I received my master's degree in Computer Science
+              at Boston University and bachelor's degree in Software Engineering at Tongji
+              University.
             </div>
           </div>
         )
@@ -30,7 +30,7 @@ const terminal: TerminalData[] = [
         id: "about-who-cares",
         title: "who-cares.txt",
         type: "file",
-        content: "I'm applying for a Ph.D. starting from Fall 2023 lol."
+        content: "I'm a incoming Ph.D. student lol."
       },
       {
         id: "about-contact",

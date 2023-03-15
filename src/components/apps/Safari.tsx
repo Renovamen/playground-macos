@@ -94,7 +94,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         <NavSection section={websites.freq} setGoURL={setGoURL} width={width} />
 
         {/* Privacy Report */}
-        <div className="mx-auto w-full max-w-screen-md" p="t-8 b-16 x-6">
+        <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4 b-16">
           <div font="medium" text="xl sm:2xl">
             Privacy Report
           </div>
