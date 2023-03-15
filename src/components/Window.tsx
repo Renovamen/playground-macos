@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 import { useWindowSize } from "~/hooks";
-import { useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
@@ -108,7 +108,7 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
 };
 
 const Window = (props: WindowProps) => {
-  const dockSize = useAppSelector((state) => state.dock.size);
+  const dockSize = useStore((state) => state.dockSize);
   const { winWidth, winHeight } = useWindowSize();
 
   const initWidth = Math.min(winWidth, props.width ? props.width : 640);
@@ -141,7 +141,9 @@ const Window = (props: WindowProps) => {
 
   const children = React.cloneElement(
     props.children as React.ReactElement<any>,
-    { width: width }
+    {
+      width: width
+    }
   );
 
   return (

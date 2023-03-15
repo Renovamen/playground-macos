@@ -7,8 +7,7 @@ import WifiMenu from "./WifiMenu";
 import Battery from "./Battery";
 import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "~/utils";
-import { setVolume, setBrightness, toggleFullScreen } from "~/redux/slices";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import { music } from "~/configs";
 import { useAudio, useWindowSize, useInterval } from "~/hooks";
 import type { MacActions } from "~/types";
@@ -91,11 +90,15 @@ const TopBar = (props: TopBarProps) => {
   });
   const { winWidth, winHeight } = useWindowSize();
 
-  const { volume, wifi } = useAppSelector((state) => ({
-    volume: state.system.volume,
-    wifi: state.system.wifi
+  const { volume, wifi } = useStore((state) => ({
+    volume: state.volume,
+    wifi: state.wifi
   }));
-  const dispatch = useAppDispatch();
+  const { toggleFullScreen, setVolume, setBrightness } = useStore((state) => ({
+    toggleFullScreen: state.toggleFullScreen,
+    setVolume: state.setVolume,
+    setBrightness: state.setBrightness
+  }));
 
   useInterval(() => {
     setState({
@@ -111,16 +114,16 @@ const TopBar = (props: TopBarProps) => {
 
   useEffect(() => {
     const isFull = isFullScreen();
-    dispatch(toggleFullScreen(isFull));
+    toggleFullScreen(isFull);
   }, [winWidth, winHeight]);
 
   const setAudioVolume = (value: number): void => {
-    dispatch(setVolume(value));
+    setVolume(value);
     controls.volume(value / 100);
   };
 
   const setSiteBrightness = (value: number): void => {
-    dispatch(setBrightness(value));
+    setBrightness(value);
   };
 
   const toggleControlCenter = (): void => {

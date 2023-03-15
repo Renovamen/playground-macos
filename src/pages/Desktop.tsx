@@ -7,7 +7,7 @@ import Launchpad from "~/components/Launchpad";
 import Window from "~/components/Window";
 import Spotlight from "~/components/Spotlight";
 import { apps, wallpapers } from "~/configs";
-import { useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import type { MacActions } from "~/types";
 
 interface DesktopState {
@@ -48,9 +48,9 @@ export default function Desktop(props: MacActions) {
   const [spotlightBtnRef, setSpotlightBtnRef] =
     useState<RefObject<HTMLDivElement> | null>(null);
 
-  const { dark, brightness } = useAppSelector((state) => ({
-    dark: state.system.dark,
-    brightness: state.system.brightness
+  const { dark, brightness } = useStore((state) => ({
+    dark: state.dark,
+    brightness: state.brightness
   }));
 
   const getAppsData = (): void => {

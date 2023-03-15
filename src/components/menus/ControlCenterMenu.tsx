@@ -2,14 +2,7 @@ import { useRef } from "react";
 import type { RefObject } from "react";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
-import {
-  toggleDark,
-  toggleWIFI,
-  toggleAirdrop,
-  toggleBleutooth,
-  toggleFullScreen
-} from "~/redux/slices";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import { music } from "~/configs";
 import { useClickOutside } from "~/hooks";
 
@@ -59,16 +52,28 @@ export default function ControlCenterMenu({
 }: CCMProps) {
   const controlCenterRef = useRef<HTMLDivElement>(null);
   const { dark, wifi, brightness, bluetooth, airdrop, fullscreen, volume } =
-    useAppSelector((state) => ({
-      dark: state.system.dark,
-      wifi: state.system.wifi,
-      brightness: state.system.brightness,
-      bluetooth: state.system.bluetooth,
-      airdrop: state.system.airdrop,
-      fullscreen: state.system.fullscreen,
-      volume: state.system.volume
+    useStore((state) => ({
+      dark: state.dark,
+      wifi: state.wifi,
+      brightness: state.brightness,
+      bluetooth: state.bluetooth,
+      airdrop: state.airdrop,
+      fullscreen: state.fullscreen,
+      volume: state.volume
     }));
-  const dispatch = useAppDispatch();
+  const {
+    toggleWIFI,
+    toggleBluetooth,
+    toggleAirdrop,
+    toggleDark,
+    toggleFullScreen
+  } = useStore((state) => ({
+    toggleWIFI: state.toggleWIFI,
+    toggleBluetooth: state.toggleBluetooth,
+    toggleAirdrop: state.toggleAirdrop,
+    toggleDark: state.toggleDark,
+    toggleFullScreen: state.toggleFullScreen
+  }));
 
   useClickOutside(controlCenterRef, toggleControlCenter, [btnRef]);
 
@@ -82,7 +87,7 @@ export default function ControlCenterMenu({
         <div className="hstack space-x-2">
           <div
             className={`${wifi ? "cc-btn" : "cc-btn-active"}`}
-            onClick={() => dispatch(toggleWIFI(!wifi))}
+            onClick={toggleWIFI}
           >
             <span className="i-material-symbols:wifi text-base" />
           </div>
@@ -94,7 +99,7 @@ export default function ControlCenterMenu({
         <div className="hstack space-x-2">
           <div
             className={`${bluetooth ? "cc-btn" : "cc-btn-active"}`}
-            onClick={() => dispatch(toggleBleutooth(!bluetooth))}
+            onClick={toggleBluetooth}
           >
             <span className="i-charm:bluetooth text-base" />
           </div>
@@ -106,7 +111,7 @@ export default function ControlCenterMenu({
         <div className="hstack space-x-2">
           <div
             className={`${airdrop ? "cc-btn" : "cc-btn-active"}`}
-            onClick={() => dispatch(toggleAirdrop(!airdrop))}
+            onClick={toggleAirdrop}
           >
             <span className="i-material-symbols:rss-feed-rounded text-base" />
           </div>
@@ -119,7 +124,7 @@ export default function ControlCenterMenu({
       <div className="cc-grid col-span-2 p-2 hstack space-x-2">
         <div
           className={`${dark ? "cc-btn" : "cc-btn-active"}`}
-          onClick={() => dispatch(toggleDark(!dark))}
+          onClick={toggleDark}
         >
           {dark ? (
             <span className="i-ion:moon text-base" />
@@ -139,7 +144,7 @@ export default function ControlCenterMenu({
       </div>
       <div
         className="cc-grid p-2 flex-center flex-col text-center cursor-default"
-        onClick={() => dispatch(toggleFullScreen(!fullscreen))}
+        onClick={() => toggleFullScreen(!fullscreen)}
       >
         {fullscreen ? (
           <span className="i-bi:fullscreen-exit text-base" />

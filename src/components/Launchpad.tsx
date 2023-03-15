@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { wallpapers, launchpadApps } from "~/configs";
-import { useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 
 interface LaunchpadProps {
   show: boolean;
@@ -10,7 +10,7 @@ interface LaunchpadProps {
 const placeholderText = "Search";
 
 export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
-  const dark = useAppSelector((state) => state.system.dark);
+  const dark = useStore((state) => state.dark);
 
   const [searchText, setSearchText] = useState("");
   const [focus, setFocus] = useState(false);

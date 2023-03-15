@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "build": "vite build",
-    "dev": "vite",
+    "dev": "vite --host",
     "lint": "eslint --ext .js,.ts,.tsx ./",
     "prepare": "husky install",
-    "serve": "vite preview",
+    "serve": "vite preview --host",
     "up": "taze major -I"
   },
   "lint-staged": {
@@ -14,7 +14,6 @@
     "package.json": "sort-package-json"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.3",
     "@rooks/use-raf": "^4.11.2",
     "date-fns": "^2.29.3",
     "framer-motion": "^10.3.0",
@@ -23,12 +22,11 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.5",
     "react-rangeslider": "2.2.0",
-    "react-redux": "^8.0.5",
     "react-rnd": "^10.4.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-webcam": "7.0.1",
-    "redux": "^4.2.1",
-    "web-vitals": "^3.3.0"
+    "web-vitals": "^3.3.0",
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.34",

@@ -5,8 +5,8 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useStore } from "~/stores";
 import bear from "~/configs/bear";
-import { useAppSelector } from "~/redux/hooks";
 import type { BearMdData } from "~/types";
 
 interface ContentProps {
@@ -156,7 +156,7 @@ const fixImageURL = (text: string, contentURL: string): string => {
 
 const Content = ({ contentID, contentURL }: ContentProps) => {
   const [storeMd, setStoreMd] = useState<{ [key: string]: string }>({});
-  const dark = useAppSelector((state) => state.system.dark);
+  const dark = useStore((state) => state.dark);
 
   const fetchMarkdown = useCallback(
     (id: string, url: string) => {

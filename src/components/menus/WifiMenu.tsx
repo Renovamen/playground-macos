@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import type { RefObject } from "react";
 import "react-rangeslider/lib/index.css";
-import { toggleWIFI } from "~/redux/slices";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import { useClickOutside } from "~/hooks";
 
 interface WifiMenuProps {
@@ -11,9 +10,11 @@ interface WifiMenuProps {
 }
 
 export default function WifiMenu({ toggleWifiMenu, btnRef }: WifiMenuProps) {
-  const wifi = useAppSelector((state) => state.system.wifi);
-  const dispatch = useAppDispatch();
   const wifiRef = useRef<HTMLDivElement>(null);
+  const { wifi, toggleWIFI } = useStore((state) => ({
+    wifi: state.wifi,
+    toggleWIFI: state.toggleWIFI
+  }));
 
   useClickOutside(wifiRef, toggleWifiMenu, [btnRef]);
 
@@ -25,11 +26,7 @@ export default function WifiMenu({ toggleWifiMenu, btnRef }: WifiMenuProps) {
       <div className="w-4/5 p-2.5 font-medium">Wi-Fi</div>
       <div className="w-1/5 py-2 text-center">
         <label className="switch-toggle">
-          <input
-            type="checkbox"
-            checked={wifi}
-            onChange={() => dispatch(toggleWIFI(!wifi))}
-          />
+          <input type="checkbox" checked={wifi} onChange={toggleWIFI} />
           <span className="slider-toggle" />
         </label>
       </div>

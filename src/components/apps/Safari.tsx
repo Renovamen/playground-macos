@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { websites, wallpapers } from "~/configs";
 import { checkURL } from "~/utils";
-import { useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import type { SiteSectionData, SiteData } from "~/types";
 
 interface SafariState {
@@ -77,7 +77,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
 const numTracker = Math.floor(Math.random() * 99 + 1);
 
 const NavPage = ({ width, setGoURL }: NavProps) => {
-  const dark = useAppSelector((state) => state.system.dark);
+  const dark = useStore((state) => state.dark);
 
   const grid = width < 640 ? "grid-cols-4" : "grid-cols-8";
   const span = width < 640 ? "col-span-3" : "col-span-7";
@@ -125,7 +125,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
 };
 
 const NoInternetPage = () => {
-  const dark = useAppSelector((state) => state.system.dark);
+  const dark = useStore((state) => state.dark);
 
   return (
     <div
@@ -150,7 +150,7 @@ const NoInternetPage = () => {
 };
 
 const Safari = ({ width }: SafariProps) => {
-  const wifi = useAppSelector((state) => state.system.wifi);
+  const wifi = useStore((state) => state.wifi);
   const [state, setState] = useState<SafariState>({
     goURL: "",
     currentURL: ""

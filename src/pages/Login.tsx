@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useAppSelector } from "~/redux/hooks";
+import { useStore } from "~/stores";
 import { wallpapers, user } from "~/configs";
 import type { MacActions } from "~/types";
 
 export default function Login(props: MacActions) {
   const [password, setPassword] = useState("");
   const [sign, setSign] = useState("Click to enter");
-  const dark = useAppSelector((state) => state.system.dark);
+  const dark = useStore((state) => state.dark);
 
   const keyPress = (e: React.KeyboardEvent) => {
     const keyCode = e.key;
