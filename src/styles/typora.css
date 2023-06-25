@@ -1,0 +1,135 @@
+.typora .milkdown {
+  @apply max-w-4xl my-0 mx-auto p-7.5 pb-25;
+}
+
+.typora .milkdown .editor {
+  @apply outline-none;
+}
+
+/* headings */
+
+.typora h1,
+.typora h2,
+.typora h3,
+.typora h4,
+.typora h5,
+.typora h6 {
+  @apply my-4 font-bold;
+}
+
+.typora h1 {
+  @apply text-4xl;
+}
+
+.typora h2 {
+  @apply text-3xl;
+}
+
+.typora h3 {
+  @apply text-2xl;
+}
+
+.typora h4 {
+  @apply text-xl;
+}
+
+.typora h5 {
+  @apply text-base;
+}
+
+.typora h6 {
+  @apply text-base text-[#777];
+}
+
+/* basic */
+
+.typora a {
+  @apply text-[#4183C4] dark:text-blue-400;
+}
+
+.typora p,
+.typora ul,
+.typora ol,
+.typora dl,
+.typora table {
+  @apply my-3 mx-0;
+}
+
+/* listings */
+
+.typora li > ol,
+.typora li > ul {
+  @apply m-0;
+}
+
+.typora ul,
+.typora ol {
+  @apply pl-7.5;
+}
+
+.typora ul:first-child,
+.typora ol:first-child {
+  @apply mt-0;
+}
+
+.typora ul:last-child,
+.typora ol:last-child {
+  @apply mb-0;
+}
+
+.typora ul {
+  @apply list-disc;
+}
+
+.typora ol {
+  @apply list-decimal;
+}
+
+/* tables */
+
+.typora .tableWrapper {
+  @apply overflow-x-auto;
+}
+
+.typora table tr {
+  margin: 0;
+  padding: 0;
+}
+
+.typora table tr:nth-child(2n + 1) {
+  @apply bg-neutral-200/80 dark:bg-gray-700/70;
+}
+
+.typora table th,
+.typora table td {
+  @apply border c-border-300 m-0 py-1.5 px3.5;
+}
+
+.typora table th {
+  @apply font-bold;
+}
+
+.typora table th:first-child,
+.typora table td:first-child {
+  @apply mt-0;
+}
+
+.typora table th:last-child,
+.typora table td:last-child {
+  @apply mb-0;
+}
+
+/* code */
+
+.typora :not(pre) > code,
+.typora pre {
+  @apply bg-neutral-200/80 dark:bg-gray-700/70 border c-border-300 rounded text-sm;
+}
+
+.typora :not(pre) > code {
+  @apply px-1;
+}
+
+.typora pre {
+  @apply p-3;
+}

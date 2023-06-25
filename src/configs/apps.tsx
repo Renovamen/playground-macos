@@ -2,6 +2,7 @@ import FaceTime from "~/components/apps/FaceTime";
 import Terminal from "~/components/apps/Terminal";
 import Safari from "~/components/apps/Safari";
 import Bear from "~/components/apps/Bear";
+import Typora from "~/components/apps/Typora";
 import VSCode from "~/components/apps/VSCode";
 
 import type { AppsData } from "~/types";
@@ -22,6 +23,16 @@ const apps: AppsData[] = [
     height: 500,
     img: "img/icons/bear.png",
     content: <Bear />
+  },
+  {
+    id: "typora",
+    title: "Typora",
+    desktop: true,
+    show: false,
+    width: 600,
+    height: 580,
+    img: "img/icons/typora.png",
+    content: <Typora />
   },
   {
     id: "safari",
@@ -58,13 +69,6 @@ const apps: AppsData[] = [
     show: false,
     img: "img/icons/terminal.png",
     content: <Terminal />
-  },
-  {
-    id: "email",
-    title: "Mail",
-    desktop: false,
-    img: "img/icons/mail.png",
-    link: "mailto:renovamenzxh@gmail.com"
   },
   {
     id: "github",

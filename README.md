@@ -35,9 +35,11 @@ pnpm build
 
 ## Changelog
 
-- **Update 2021.12.05**: Simulated the real state of the device's battery using [Battery API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API). On the [browsers that don't support this API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API#browser_compatibility), the charge level will be displayed as 100%.
+- **Update 2023.06.25**: Built a simple [Typora](https://typora.io/) clone on top of [Milkdown](https://milkdown.dev/).
 
-- **Update 2021.12.05**: Refactored this project by using functional components and hooks to make the code cleaner. See [this branch](https://github.com/Renovamen/playground-macos/tree/class-component) for the previous version written using class components.
+- **Update 2021.12.05**: Simulated the device's actual battery state using [Battery API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API), displaying 100% charge on [unsupported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API#browser_compatibility).
+
+- **Update 2021.12.05**: Refactored for cleaner code by utilizing functional components and hooks. Refer to [this branch](https://github.com/Renovamen/playground-macos/tree/class-component) for the previous version implemented with class components.
 
 
 &nbsp;
