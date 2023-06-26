@@ -8,6 +8,8 @@ export interface AppsData {
   height?: number;
   minWidth?: number;
   minHeight?: number;
+  x?: number;
+  y?: number;
   content?: JSX.Element;
   link?: string;
 }

@@ -21,6 +21,7 @@ const apps: AppsData[] = [
     show: true,
     width: 860,
     height: 500,
+    y: -40,
     img: "img/icons/bear.png",
     content: <Bear />
   },
@@ -31,6 +32,7 @@ const apps: AppsData[] = [
     show: false,
     width: 600,
     height: 580,
+    y: -20,
     img: "img/icons/typora.png",
     content: <Typora />
   },
@@ -42,6 +44,7 @@ const apps: AppsData[] = [
     width: 1024,
     minWidth: 375,
     minHeight: 200,
+    x: -20,
     img: "img/icons/safari.png",
     content: <Safari />
   },
@@ -50,6 +53,10 @@ const apps: AppsData[] = [
     title: "VSCode",
     desktop: true,
     show: false,
+    width: 900,
+    height: 600,
+    x: -80,
+    y: -30,
     img: "img/icons/vscode.png",
     content: <VSCode />
   },

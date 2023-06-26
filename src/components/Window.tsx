@@ -57,6 +57,8 @@ interface WindowProps extends TrafficProps {
   minWidth?: number;
   minHeight?: number;
   title: string;
+  x?: number;
+  y?: number;
   z: number;
   focus: (id: string) => void;
   children: React.ReactNode;
@@ -107,16 +109,16 @@ const Window = (props: WindowProps) => {
   const dockSize = useStore((state) => state.dockSize);
   const { winWidth, winHeight } = useWindowSize();
 
-  const initWidth = Math.min(winWidth, props.width ? props.width : 640);
-  const initHeight = Math.min(winHeight, props.height ? props.height : 400);
+  const initWidth = Math.min(winWidth, props.width || 640);
+  const initHeight = Math.min(winHeight, props.height || 400);
 
   const [state, setState] = useState<WindowState>({
     width: initWidth,
     height: initHeight,
     // "+ winWidth" because of the boundary for windows
-    x: winWidth + Math.random() * (winWidth - initWidth),
+    x: winWidth + (winWidth - initWidth) / 2 + (props.x || 0),
     // "- minMarginY" because of the boundary for windows
-    y: Math.random() * (winHeight - initHeight - minMarginY)
+    y: (winHeight - initHeight - dockSize - minMarginY) / 2 + (props.y || 0)
   });
 
   useEffect(() => {

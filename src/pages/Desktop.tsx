@@ -102,7 +102,7 @@ export default function Desktop(props: MacActions) {
     setState({ ...state, spotlight: !state.spotlight });
   };
 
-  const setWinowsPosition = (id: string): void => {
+  const setWindowPosition = (id: string): void => {
     const r = document.querySelector(`#window-${id}`) as HTMLElement;
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
@@ -139,7 +139,7 @@ export default function Desktop(props: MacActions) {
   };
 
   const minimizeApp = (id: string): void => {
-    setWinowsPosition(id);
+    setWindowPosition(id);
 
     // get the corrosponding dock icon's position
     let r = document.querySelector(`#dock-${id}`) as HTMLElement;
@@ -221,6 +221,8 @@ export default function Desktop(props: MacActions) {
           height: app.height,
           minWidth: app.minWidth,
           minHeight: app.minHeight,
+          x: app.x,
+          y: app.y,
           z: state.appsZ[app.id],
           max: state.maxApps[app.id],
           min: state.minApps[app.id],
