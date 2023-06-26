@@ -8,6 +8,7 @@ export interface AppsData {
   height?: number;
   minWidth?: number;
   minHeight?: number;
+  aspectRatio?: number;
   x?: number;
   y?: number;
   content?: JSX.Element;

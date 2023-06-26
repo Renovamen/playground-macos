@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 import { useWindowSize } from "~/hooks";
 import { useStore } from "~/stores";
+import { minMarginX, minMarginY, appBarHeight } from "~/utils";
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
@@ -39,24 +40,22 @@ const ExitFullIcon = ({ size }: { size: number }) => {
   );
 };
 
-const minMarginY = 32;
-const minMarginX = 100;
-
 interface TrafficProps {
   id: string;
   max: boolean;
+  aspectRatio?: number;
   setMax: (id: string, target?: boolean) => void;
   setMin: (id: string) => void;
   close: (id: string) => void;
 }
 
 interface WindowProps extends TrafficProps {
+  title: string;
   min: boolean;
   width?: number;
   height?: number;
   minWidth?: number;
   minHeight?: number;
-  title: string;
   x?: number;
   y?: number;
   z: number;
@@ -71,7 +70,9 @@ interface WindowState {
   y: number;
 }
 
-const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
+const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficProps) => {
+  const disableMax = aspectRatio !== undefined;
+
   const closeWindow = (e: React.MouseEvent | React.TouchEvent): void => {
     e.stopPropagation();
     close(id);
@@ -95,11 +96,14 @@ const TrafficLights = ({ id, close, max, setMax, setMin }: TrafficProps) => {
         <span className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`} />
       </button>
       <button
-        className="window-btn bg-green-500 dark:bg-green-400"
+        className={`window-btn ${
+          disableMax ? "c-bg-400" : "bg-green-500 dark:bg-green-400"
+        }`}
         onClick={() => setMax(id)}
         onTouchEnd={() => setMax(id)}
+        disabled={disableMax}
       >
-        {max ? <ExitFullIcon size={9} /> : <FullIcon size={6} />}
+        {!disableMax && (max ? <ExitFullIcon size={9} /> : <FullIcon size={6} />)}
       </button>
     </div>
   );
@@ -136,6 +140,7 @@ const Window = (props: WindowProps) => {
   const border = props.max ? "" : "border border-gray-500/30";
   const width = props.max ? winWidth : state.width;
   const height = props.max ? winHeight : state.height;
+  const disableMax = props.aspectRatio !== undefined;
 
   const children = React.cloneElement(props.children as React.ReactElement<any>, {
     width: width
@@ -184,6 +189,8 @@ const Window = (props: WindowProps) => {
       dragHandleClassName="window-bar"
       disableDragging={props.max}
       enableResizing={!props.max}
+      lockAspectRatio={props.aspectRatio}
+      lockAspectRatioExtraHeight={props.aspectRatio ? appBarHeight : undefined}
       style={{ zIndex: props.z }}
       onMouseDown={() => props.focus(props.id)}
       className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-lg shadow-black/30 ${minimized}`}
@@ -191,14 +198,15 @@ const Window = (props: WindowProps) => {
     >
       <div
         className="window-bar relative h-6 text-center c-bg-200"
-        onDoubleClick={() => props.setMax(props.id)}
+        onDoubleClick={() => !disableMax && props.setMax(props.id)}
       >
         <TrafficLights
           id={props.id}
-          close={props.close}
           max={props.max}
+          aspectRatio={props.aspectRatio}
           setMax={props.setMax}
           setMin={props.setMin}
+          close={props.close}
         />
         <span className="font-semibold c-text-700">{props.title}</span>
       </div>

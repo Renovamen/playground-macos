@@ -8,6 +8,7 @@ import Window from "~/components/Window";
 import Spotlight from "~/components/Spotlight";
 import { apps, wallpapers } from "~/configs";
 import { useStore } from "~/stores";
+import { minMarginY } from "~/utils";
 import type { MacActions } from "~/types";
 
 interface DesktopState {
@@ -29,8 +30,6 @@ interface DesktopState {
   hideDockAndTopbar: boolean;
   spotlight: boolean;
 }
-
-const minMarginY = 32;
 
 export default function Desktop(props: MacActions) {
   const [state, setState] = useState({
@@ -62,7 +61,7 @@ export default function Desktop(props: MacActions) {
     apps.forEach((app) => {
       showApps = {
         ...showApps,
-        [app.id]: app.show
+        [app.id]: !!app.show
       };
       appsZ = {
         ...appsZ,
@@ -215,12 +214,13 @@ export default function Desktop(props: MacActions) {
     return apps.map((app) => {
       if (app.desktop && state.showApps[app.id]) {
         const props = {
-          title: app.title,
           id: app.id,
+          title: app.title,
           width: app.width,
           height: app.height,
           minWidth: app.minWidth,
           minHeight: app.minHeight,
+          aspectRatio: app.aspectRatio,
           x: app.x,
           y: app.y,
           z: state.appsZ[app.id],

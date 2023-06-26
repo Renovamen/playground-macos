@@ -4,7 +4,7 @@ import Safari from "~/components/apps/Safari";
 import Bear from "~/components/apps/Bear";
 import Typora from "~/components/apps/Typora";
 import VSCode from "~/components/apps/VSCode";
-
+import { appBarHeight } from "~/utils";
 import type { AppsData } from "~/types";
 
 const apps: AppsData[] = [
@@ -18,9 +18,9 @@ const apps: AppsData[] = [
     id: "bear",
     title: "Bear",
     desktop: true,
-    show: true,
     width: 860,
     height: 500,
+    show: true,
     y: -40,
     img: "img/icons/bear.png",
     content: <Bear />
@@ -29,7 +29,6 @@ const apps: AppsData[] = [
     id: "typora",
     title: "Typora",
     desktop: true,
-    show: false,
     width: 600,
     height: 580,
     y: -20,
@@ -40,7 +39,6 @@ const apps: AppsData[] = [
     id: "safari",
     title: "Safari",
     desktop: true,
-    show: false,
     width: 1024,
     minWidth: 375,
     minHeight: 200,
@@ -52,10 +50,9 @@ const apps: AppsData[] = [
     id: "vscode",
     title: "VSCode",
     desktop: true,
-    show: false,
     width: 900,
     height: 600,
-    x: -80,
+    x: 80,
     y: -30,
     img: "img/icons/vscode.png",
     content: <VSCode />
@@ -64,16 +61,20 @@ const apps: AppsData[] = [
     id: "facetime",
     title: "FaceTime",
     desktop: true,
-    show: false,
     img: "img/icons/facetime.png",
-    height: 530,
+    width: 500 * 1.7,
+    height: 500 + appBarHeight,
+    minWidth: 350 * 1.7,
+    minHeight: 350 + appBarHeight,
+    aspectRatio: 1.7,
+    x: -80,
+    y: 20,
     content: <FaceTime />
   },
   {
     id: "terminal",
     title: "Terminal",
     desktop: true,
-    show: false,
     img: "img/icons/terminal.png",
     content: <Terminal />
   },
