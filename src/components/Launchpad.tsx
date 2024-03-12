@@ -62,8 +62,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
 
         <div
           className="max-w-[1100px] mx-auto mt-8 w-full px-4 sm:px-10"
-          display="grid"
-          grid="flow-row cols-4 sm:cols-7"
+          grid="~ flow-row cols-4 sm:cols-7"
         >
           {search().map((app) => (
             <div key={`launchpad-${app.id}`} className="h-32 sm:h-36 w-full flex-center">

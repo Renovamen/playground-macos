@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeExternalLinks from "rehype-external-links";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useStore } from "~/stores";
@@ -181,9 +182,11 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
     <div className="markdown w-full h-full c-text-700 bg-gray-50 dark:bg-gray-800 overflow-scroll py-6">
       <div className="w-2/3 px-2 mx-auto">
         <ReactMarkdown
-          linkTarget="_blank"
           remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[rehypeKatex]}
+          rehypePlugins={[
+            rehypeKatex,
+            [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }]
+          ]}
           components={Highlighter(dark as boolean)}
         >
           {storeMd[contentID]}
