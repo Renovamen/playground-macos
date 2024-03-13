@@ -1,10 +1,7 @@
-import { useRef } from "react";
-import type { RefObject } from "react";
+import React from "react";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
-import { useStore } from "~/stores";
 import { music } from "~/configs";
-import { useClickOutside } from "~/hooks";
 
 interface SliderProps {
   icon: string;
@@ -39,7 +36,7 @@ interface CCMProps {
   setBrightness: (value: number) => void;
   setVolume: (value: number) => void;
   playing: boolean;
-  btnRef: RefObject<HTMLDivElement>;
+  btnRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function ControlCenterMenu({

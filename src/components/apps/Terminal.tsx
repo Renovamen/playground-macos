@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { terminal } from "~/configs";
 import type { TerminalData } from "~/types";
 
@@ -21,7 +21,7 @@ interface TerminalState {
 }
 
 // rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
-class HowDare extends Component<HowDareProps> {
+class HowDare extends React.Component<HowDareProps> {
   private canvas = null as HTMLCanvasElement | null;
   private ctx = null as CanvasRenderingContext2D | null;
   private intervalId = null as any;
@@ -92,7 +92,7 @@ class HowDare extends Component<HowDareProps> {
   }
 }
 
-export default class Terminal extends Component<{}, TerminalState> {
+export default class Terminal extends React.Component<{}, TerminalState> {
   private history = [] as string[];
   private curHistory = 0;
   private curInputTimes = 0;

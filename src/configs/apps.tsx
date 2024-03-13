@@ -1,9 +1,3 @@
-import FaceTime from "~/components/apps/FaceTime";
-import Terminal from "~/components/apps/Terminal";
-import Safari from "~/components/apps/Safari";
-import Bear from "~/components/apps/Bear";
-import Typora from "~/components/apps/Typora";
-import VSCode from "~/components/apps/VSCode";
 import { appBarHeight } from "~/utils";
 import type { AppsData } from "~/types";
 

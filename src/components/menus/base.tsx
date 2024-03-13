@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
+import React from "react";
 
 interface MenuItemProps {
   onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 interface MenuItemGroupProps {
   border?: boolean;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const MenuItem = (props: MenuItemProps) => {

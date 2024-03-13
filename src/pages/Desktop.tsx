@@ -1,13 +1,5 @@
-import { useState, useEffect } from "react";
-import type { RefObject } from "react";
-
-import TopBar from "~/components/menus/TopBar";
-import Dock from "~/components/dock/Dock";
-import Launchpad from "~/components/Launchpad";
-import Window from "~/components/Window";
-import Spotlight from "~/components/Spotlight";
+import React from "react";
 import { apps, wallpapers } from "~/configs";
-import { useStore } from "~/stores";
 import { minMarginY } from "~/utils";
 import type { MacActions } from "~/types";
 
@@ -45,7 +37,7 @@ export default function Desktop(props: MacActions) {
   } as DesktopState);
 
   const [spotlightBtnRef, setSpotlightBtnRef] =
-    useState<RefObject<HTMLDivElement> | null>(null);
+    useState<React.RefObject<HTMLDivElement> | null>(null);
 
   const { dark, brightness } = useStore((state) => ({
     dark: state.dark,
@@ -233,9 +225,9 @@ export default function Desktop(props: MacActions) {
         };
 
         return (
-          <Window key={`desktop-app-${app.id}`} {...props}>
+          <AppWindow key={`desktop-app-${app.id}`} {...props}>
             {app.content}
-          </Window>
+          </AppWindow>
         );
       } else {
         return <div key={`desktop-app-${app.id}`} />;
@@ -274,7 +266,7 @@ export default function Desktop(props: MacActions) {
           openApp={openApp}
           toggleLaunchpad={toggleLaunchpad}
           toggleSpotlight={toggleSpotlight}
-          btnRef={spotlightBtnRef as RefObject<HTMLDivElement>}
+          btnRef={spotlightBtnRef as React.RefObject<HTMLDivElement>}
         />
       )}
 

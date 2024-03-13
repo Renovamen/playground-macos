@@ -1,7 +1,4 @@
-import React, { useRef } from "react";
-import type { RefObject } from "react";
-import { useClickOutside } from "~/hooks";
-import { MenuItem, MenuItemGroup } from "./base";
+import React from "react";
 
 interface AppleMenuProps {
   logout: () => void;
@@ -9,7 +6,7 @@ interface AppleMenuProps {
   restart: (e: React.MouseEvent<HTMLLIElement>) => void;
   sleep: (e: React.MouseEvent<HTMLLIElement>) => void;
   toggleAppleMenu: () => void;
-  btnRef: RefObject<HTMLDivElement>;
+  btnRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function AppleMenu({

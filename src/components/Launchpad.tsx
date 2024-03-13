@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { wallpapers, launchpadApps } from "~/configs";
-import { useStore } from "~/stores";
 
 interface LaunchpadProps {
   show: boolean;

@@ -1,4 +1,4 @@
-import { StateCreator } from "zustand";
+import type { StateCreator } from "zustand";
 import { enterFullScreen, exitFullScreen } from "~/utils";
 
 export interface SystemSlice {

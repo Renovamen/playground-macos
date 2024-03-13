@@ -1,5 +1,3 @@
-import { useBattery } from "~/hooks";
-
 export default function Battery() {
   const batteryState = useBattery();
 

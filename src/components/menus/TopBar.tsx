@@ -1,22 +1,14 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
-import type { RefObject, ReactNode } from "react";
+import React from "react";
 import format from "date-fns/format";
-
-import AppleMenu from "./AppleMenu";
-import WifiMenu from "./WifiMenu";
-import Battery from "./Battery";
-import ControlCenterMenu from "./ControlCenterMenu";
 import { isFullScreen } from "~/utils";
-import { useStore } from "~/stores";
 import { music } from "~/configs";
-import { useAudio, useWindowSize, useInterval } from "~/hooks";
 import type { MacActions } from "~/types";
 
 // ------- import icons -------
 interface TopBarItemProps {
   hideOnMobile?: boolean;
   forceHover?: boolean;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   onMouseEnter?: () => void;
@@ -58,7 +50,7 @@ const CCMIcon = ({ size }: { size: number }) => {
 
 interface TopBarProps extends MacActions {
   title: string;
-  setSpotlightBtnRef: (value: RefObject<HTMLDivElement>) => void;
+  setSpotlightBtnRef: (value: React.RefObject<HTMLDivElement>) => void;
   hide: boolean;
   toggleSpotlight: () => void;
 }

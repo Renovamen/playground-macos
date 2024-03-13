@@ -1,6 +1,7 @@
 {
   "name": "playground-macos",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "vite build",
     "dev": "vite --host",
@@ -58,6 +59,7 @@
     "taze": "^0.13.3",
     "typescript": "^5.4.2",
     "unocss": "^0.58.5",
+    "unplugin-auto-import": "^0.17.5",
     "vite": "^5.1.6"
   },
   "packageManager": "pnpm@8.15.4"

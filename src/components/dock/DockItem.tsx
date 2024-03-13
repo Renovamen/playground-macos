@@ -1,15 +1,18 @@
-import { useRef } from "react";
-import type { RefObject } from "react";
+import React from "react";
 import useRaf from "@rooks/use-raf";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import type { MotionValue } from "framer-motion";
-import { useWindowSize } from "~/hooks";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type MotionValue
+} from "framer-motion";
 
 // Hover effect is adopted from https://github.com/PuruVJ/macos-web/blob/main/src/components/dock/DockItem.tsx
 
 const useDockHoverAnimation = (
   mouseX: MotionValue,
-  ref: RefObject<HTMLImageElement>,
+  ref: React.RefObject<HTMLImageElement>,
   dockSize: number,
   dockMag: number
 ) => {

@@ -1,6 +1,4 @@
 // Borrowed from: https://github.com/streamich/react-use/blob/master/src/useBattery.ts
-import { useEffect, useState } from "react";
-
 export interface BatteryState {
   charging: boolean;
   chargingTime: number;

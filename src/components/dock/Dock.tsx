@@ -1,7 +1,5 @@
 import { useMotionValue } from "framer-motion";
 import { apps } from "~/configs";
-import { useStore } from "~/stores";
-import DockItem from "./DockItem";
 
 interface DockProps {
   open: (id: string) => void;

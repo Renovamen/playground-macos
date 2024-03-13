@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { websites, wallpapers } from "~/configs";
 import { checkURL } from "~/utils";
-import { useStore } from "~/stores";
 import type { SiteSectionData, SiteData } from "~/types";
 
 interface SafariState {
