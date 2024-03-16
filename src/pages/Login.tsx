@@ -28,7 +28,7 @@ export default function Login(props: MacActions) {
 
   return (
     <div
-      className="w-full h-full login text-center"
+      className="size-full login text-center"
       style={{
         background: `url(${
           dark ? wallpapers.night : wallpapers.day
@@ -38,11 +38,7 @@ export default function Login(props: MacActions) {
     >
       <div className="inline-block w-auto relative top-1/2 -mt-40">
         {/* Avatar */}
-        <img
-          className="rounded-full w-24 h-24 my-0 mx-auto"
-          src={user.avatar}
-          alt="img"
-        />
+        <img className="rounded-full size-24 my-0 mx-auto" src={user.avatar} alt="img" />
         <div className="font-semibold mt-2 text-xl text-white">{user.name}</div>
 
         {/* Password Input */}
@@ -52,7 +48,7 @@ export default function Login(props: MacActions) {
             type="password"
             placeholder="Enter Password"
             onClick={(e) => e.stopPropagation()}
-            onKeyPress={keyPress}
+            onKeyDown={keyPress}
             value={password}
             onChange={handleInputChange}
           />
@@ -65,12 +61,12 @@ export default function Login(props: MacActions) {
       </div>
 
       {/* buttons */}
-      <div className="text-sm fixed bottom-16 left-0 right-0 mx-auto flex flex-row space-x-4 w-max">
+      <div className="text-sm fixed bottom-16 inset-x-0 mx-auto flex flex-row space-x-4 w-max">
         <div
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
-          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+          <div className="flex-center size-10 bg-gray-700 rounded-full">
             <span className="i-gg:sleep text-[40px]" />
           </div>
           <span>Sleep</span>
@@ -79,7 +75,7 @@ export default function Login(props: MacActions) {
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
-          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+          <div className="flex-center size-10 bg-gray-700 rounded-full">
             <span className="i-ri:restart-line text-4xl" />
           </div>
           <span>Restart</span>
@@ -88,7 +84,7 @@ export default function Login(props: MacActions) {
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
-          <div className="flex-center h-10 w-10 bg-gray-700 rounded-full">
+          <div className="flex-center size-10 bg-gray-700 rounded-full">
             <span className="i-ri:shut-down-line text-4xl" />
           </div>
           <span>Shut Down</span>

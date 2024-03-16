@@ -59,7 +59,7 @@ const Highlighter = (dark: boolean): any => {
 
 const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
   return (
-    <div className="w-full h-full bg-gray-700 text-white overflow-y-scroll">
+    <div text-white>
       <div className="h-12 pr-3 hstack space-x-3 justify-end">
         <span className="i-ic:baseline-cloud-off text-xl" />
         <span className="i-akar-icons:settings-vertical text-xl" />
@@ -84,46 +84,41 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
 
 const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
   return (
-    <div
-      className="w-full h-full overflow-y-scroll border-r c-border-300"
-      bg="gray-50 dark:gray-800"
-    >
-      <ul>
-        {items.map((item: BearMdData, index: number) => (
-          <li
-            key={`bear-midbar-${item.id}`}
-            className={`h-24 flex flex-col cursor-default border-l-2 ${
-              cur === index
-                ? "border-red-500 bg-white dark:bg-gray-900"
-                : "border-transparent bg-transparent"
-            } hover:(bg-white dark:bg-gray-900)`}
-            onClick={() => setContent(item.id, item.file, index)}
-          >
-            <div className="h-8 mt-3 hstack flex-none">
-              <div className="-mt-1 w-10 vstack flex-none c-text-500">
-                <span className={item.icon} />
-              </div>
-              <span className="relative text-gray-900 dark:text-gray-100 flex-grow font-bold">
-                {item.title}
-                {item.link && (
-                  <a
-                    className="absolute top-1 right-4"
-                    href={item.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span className="i-ant-design:link-outlined c-text-500" />
-                  </a>
-                )}
-              </span>
+    <ul>
+      {items.map((item: BearMdData, index: number) => (
+        <li
+          key={`bear-midbar-${item.id}`}
+          className={`h-24 flex flex-col cursor-default border-l-2 ${
+            cur === index
+              ? "border-red-500 bg-white dark:bg-gray-900"
+              : "border-transparent bg-transparent"
+          } hover:(bg-white dark:bg-gray-900)`}
+          onClick={() => setContent(item.id, item.file, index)}
+        >
+          <div className="h-8 mt-3 hstack flex-none">
+            <div className="-mt-1 w-10 vstack flex-none text-c-500">
+              <span className={item.icon} />
             </div>
-            <div className="h-16 ml-10 pb-2 pr-1 text-sm c-text-500 border-b c-border-300">
-              {item.excerpt}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <span className="relative flex-grow font-bold" text="gray-900 dark:gray-100">
+              {item.title}
+              {item.link && (
+                <a
+                  className="absolute top-1 right-4"
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="i-ant-design:link-outlined text-c-500" />
+                </a>
+              )}
+            </span>
+          </div>
+          <div className="flex-grow ml-10" p="b-2 r-1" text="sm c-500" border="b c-300">
+            {item.excerpt}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -177,19 +172,17 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
   }, [contentID, contentURL, fetchMarkdown]);
 
   return (
-    <div className="markdown w-full h-full c-text-700 bg-gray-50 dark:bg-gray-800 overflow-scroll py-6">
-      <div className="w-2/3 px-2 mx-auto">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[
-            rehypeKatex,
-            [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }]
-          ]}
-          components={Highlighter(dark as boolean)}
-        >
-          {storeMd[contentID]}
-        </ReactMarkdown>
-      </div>
+    <div className="markdown w-2/3 mx-auto px-2 py-6 text-c-700">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[
+          rehypeKatex,
+          [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }]
+        ]}
+        components={Highlighter(dark as boolean)}
+      >
+        {storeMd[contentID]}
+      </ReactMarkdown>
     </div>
   );
 };
@@ -223,18 +216,22 @@ const Bear = () => {
   };
 
   return (
-    <div className="bear font-avenir flex w-full h-full">
-      <div className="flex-none w-44">
+    <div className="bear font-avenir flex h-full">
+      <div className="flex-none w-44 overflow-auto bg-gray-700">
         <Sidebar cur={state.curSidebar} setMidBar={setMidBar} />
       </div>
-      <div className="flex-none w-60">
+      <div
+        className="flex-none w-60 overflow-auto"
+        bg="gray-50 dark:gray-800"
+        border="r c-300"
+      >
         <Middlebar
           items={state.midbarList}
           cur={state.curMidbar}
           setContent={setContent}
         />
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow overflow-auto" bg="gray-50 dark:gray-800">
         <Content contentID={state.contentID} contentURL={state.contentURL} />
       </div>
     </div>

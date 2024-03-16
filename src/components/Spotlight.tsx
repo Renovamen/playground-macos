@@ -47,7 +47,7 @@ export default function Spotlight({
   const [appList, setAppList] = useState<JSX.Element | null>(null);
 
   const textWhite = "text-white";
-  const textBlack = "c-text-black";
+  const textBlack = "text-c-black";
   const textSelected = "bg-blue-500";
 
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
@@ -171,7 +171,7 @@ export default function Spotlight({
         )}
         {portfolio.appList.length !== 0 && (
           <div>
-            <div className="spotlight-type mt-1.5 before:(content-empty absolute left-0 top-0 ml-2 w-63.5 border-t menu-border)">
+            <div className="spotlight-type mt-1.5 before:(content-empty absolute left-0 top-0 ml-2 w-63.5 border-t border-menu)">
               Portfolio
             </div>
             <ul className="w-full text-xs">{portfolio.appList}</ul>
@@ -268,16 +268,19 @@ export default function Spotlight({
       onClick={focusOnInput}
       ref={spotlightRef}
     >
-      <div className="w-full grid grid-cols-8 sm:grid-cols-11 h-12 sm:h-14 rounded-lg bg-transparent">
+      <div
+        className="w-full h-12 sm:h-14 rounded-lg bg-transparent"
+        grid="~ cols-8 sm:cols-11"
+      >
         <div className="col-start-1 col-span-1 flex-center">
-          <span className="i-bx:search ml-1 c-text-600 text-[28px]" />
+          <span className="i-bx:search ml-1 text-c-600 text-[28px]" />
         </div>
         <input
           id="spotlight-input"
           className={`col-start-2 col-span-7 ${
             curDetails ? "sm:col-span-9" : "sm:col-span-10"
-          } c-text-black bg-transparent no-outline px-1`}
-          text="xl sm:2xl"
+          } bg-transparent no-outline px-1`}
+          text="c-black xl sm:2xl"
           placeholder="Spotlight Search"
           value={searchText}
           onChange={handleInputChange}
@@ -295,47 +298,44 @@ export default function Spotlight({
         )}
       </div>
       {searchText !== "" && (
-        <div className="h-85 bg-transparent flex flex-row border-t menu-border">
-          <div className="flex-none w-32 sm:w-72 px-2.5 border-r menu-border overflow-y-scroll">
+        <div className="h-85 bg-transparent flex border-t border-menu">
+          <div className="flex-none w-32 sm:w-72 px-2.5 border-r border-menu overflow-y-scroll">
             {appList}
           </div>
-          <div className="flex-grow">
-            {curDetails && (
-              <div className="h-full w-full flex flex-col">
-                <div
-                  className="mx-auto w-4/5 h-56 border-b menu-border"
-                  flex="none center col"
-                >
-                  <img
-                    className="w-32 mx-auto"
-                    src={curDetails.img}
-                    alt={curDetails.title}
-                    title={curDetails.title}
-                  />
-                  <div className="mt-4 text-xl c-text-black">{curDetails.title}</div>
-                  <div className="text-xs c-text-500">
-                    {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
-                  </div>
+          {curDetails && (
+            <div className="flex-grow flex flex-col">
+              <div className="mx-auto w-4/5 h-56" flex="none center col" border="b menu">
+                <img
+                  className="w-32 mx-auto"
+                  src={curDetails.img}
+                  alt={curDetails.title}
+                  title={curDetails.title}
+                />
+                <div mt-4 text="xl c-black">
+                  {curDetails.title}
                 </div>
-                <div className="flex-grow flex text-xs">
-                  <div className="flex-none flex-col vstack w-1/2 items-end c-text-500">
-                    <div>Kind</div>
-                    <div>Size</div>
-                    <div>Created</div>
-                    <div>Modified</div>
-                    <div>Last opened</div>
-                  </div>
-                  <div className="flex-grow flex-col vstack pl-2 c-text-black">
-                    <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
-                    <div>{`${getRandom(0, 999)} G`}</div>
-                    <div>{getRandomDate()}</div>
-                    <div>{getRandomDate()}</div>
-                    <div>{getRandomDate()}</div>
-                  </div>
+                <div text="xs c-500">
+                  {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
                 </div>
               </div>
-            )}
-          </div>
+              <div className="flex-grow hstack text-xs">
+                <div className="flex-none w-1/2 text-right text-c-500">
+                  <div>Kind</div>
+                  <div>Size</div>
+                  <div>Created</div>
+                  <div>Modified</div>
+                  <div>Last opened</div>
+                </div>
+                <div className="flex-grow pl-2 text-c-black">
+                  <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
+                  <div>{`${getRandom(0, 999)} G`}</div>
+                  <div>{getRandomDate()}</div>
+                  <div>{getRandomDate()}</div>
+                  <div>{getRandomDate()}</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

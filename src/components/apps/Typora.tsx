@@ -28,7 +28,7 @@ const MilkdownEditor = () => {
           .markdownUpdated((_, markdown) => setTyporaMd(markdown));
 
         root.className =
-          "typora bg-white dark:bg-gray-800 c-text-700 h-full overflow-y-scroll";
+          "typora bg-white dark:bg-gray-800 text-c-700 h-full overflow-y-scroll";
       })
       .use(listener)
       .use(commonmark)

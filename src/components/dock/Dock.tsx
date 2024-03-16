@@ -35,17 +35,17 @@ export default function Dock({
 
   return (
     <div
-      className={`dock w-full sm:w-max fixed left-0 right-0 mx-auto bottom-1 ${
-        hide ? "z-0" : "z-50"
-      } overflow-x-scroll sm:overflow-x-visible`}
+      className={`dock fixed inset-x-0 mx-auto bottom-1 ${hide ? "z-0" : "z-50"}`}
+      w="full sm:max"
+      overflow="x-scroll sm:x-visible"
     >
       <ul
-        className="mx-auto w-max px-2 space-x-2 flex backdrop-blur-2xl c-border-400/40 c-bg-white/20"
-        border="1 rounded-none sm:rounded-xl"
+        className="flex space-x-2 px-2 backdrop-blur-2xl bg-c-white/20"
+        border="~ c-400/40 rounded-none sm:rounded-xl"
         onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
         style={{
-          height: `${(dockSize as number) + 15}px`
+          height: `${(dockSize + 15) / 16}rem`
         }}
       >
         {apps.map((app) => (
@@ -59,8 +59,8 @@ export default function Dock({
             openApp={openApp}
             isOpen={app.desktop && showApps[app.id]}
             link={app.link}
-            dockSize={dockSize as number}
-            dockMag={dockMag as number}
+            dockSize={dockSize}
+            dockMag={dockMag}
           />
         ))}
       </ul>

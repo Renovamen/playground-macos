@@ -11,12 +11,9 @@ interface SliderProps {
 
 const SliderComponent = ({ icon, value, setValue }: SliderProps) => {
   return (
-    <div className="slider flex w-full">
-      <div
-        className="w-7 h-7 flex-center c-bg-100 c-border-300"
-        border="t l b rounded-l-full"
-      >
-        <span className={`${icon} c-text-500 text-xs`} />
+    <div className="slider flex">
+      <div className="size-7 flex-center bg-c-100" border="t l b c-300 rounded-l-full">
+        <span className={icon} text="xs c-500" />
       </div>
       <Slider
         min={1}
@@ -72,8 +69,10 @@ export default function ControlCenterMenu({
 
   return (
     <div
-      className="fixed grid shadow-menu w-80 h-96 max-w-full top-9.5 right-0 sm:right-1.5 p-2.5 c-text-black c-bg-100/70 border rounded-2xl menu-border"
-      grid="cols-4 rows-5 gap-2"
+      className="w-80 h-96 max-w-full shadow-menu p-2.5 text-c-black bg-c-100/70"
+      pos="fixed top-9.5 right-0 sm:right-1.5"
+      border="~ menu rounded-2xl"
+      grid="~ cols-4 rows-5 gap-2"
       ref={controlCenterRef}
     >
       <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">

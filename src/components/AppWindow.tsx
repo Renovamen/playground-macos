@@ -86,7 +86,7 @@ const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficP
         <span className="icon i-gg:close text-[9px]" />
       </button>
       <button
-        className={`window-btn ${max ? "c-bg-400" : "bg-yellow-500 dark:bg-yellow-400"}`}
+        className={`window-btn ${max ? "bg-c-400" : "bg-yellow-500 dark:bg-yellow-400"}`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
         disabled={max}
@@ -95,7 +95,7 @@ const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficP
       </button>
       <button
         className={`window-btn ${
-          disableMax ? "c-bg-400" : "bg-green-500 dark:bg-green-400"
+          disableMax ? "bg-c-400" : "bg-green-500 dark:bg-green-400"
         }`}
         onClick={() => setMax(id)}
         onTouchEnd={() => setMax(id)}
@@ -191,11 +191,11 @@ const Window = (props: WindowProps) => {
       lockAspectRatioExtraHeight={props.aspectRatio ? appBarHeight : undefined}
       style={{ zIndex: props.z }}
       onMouseDown={() => props.focus(props.id)}
-      className={`absolute ${round} overflow-hidden bg-transparent w-full h-full ${border} shadow-lg shadow-black/30 ${minimized}`}
+      className={`overflow-hidden ${round} ${border} shadow-lg shadow-black/30 ${minimized}`}
       id={`window-${props.id}`}
     >
       <div
-        className="window-bar relative h-6 text-center c-bg-200"
+        className="window-bar relative h-6 text-center bg-c-200"
         onDoubleClick={() => !disableMax && props.setMax(props.id)}
       >
         <TrafficLights
@@ -206,7 +206,7 @@ const Window = (props: WindowProps) => {
           setMin={props.setMin}
           close={props.close}
         />
-        <span className="font-semibold c-text-700">{props.title}</span>
+        <span className="font-semibold text-c-700">{props.title}</span>
       </div>
       <div className="innner-window w-full overflow-y-hidden">{children}</div>
     </Rnd>

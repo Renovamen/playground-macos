@@ -8,8 +8,7 @@ const getEmoji = () => {
   return emojis[Math.floor(Math.random() * emojis.length)];
 };
 
-const characters =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789富强民主文明和谐自由平等公正法治爱国敬业诚信友善";
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789落霞与孤鹜齐飞秋水共长天一色";
 
 interface HowDareProps {
   setRMRF: (value: boolean) => void;
@@ -78,14 +77,14 @@ class HowDare extends React.Component<HowDareProps> {
     return (
       <div
         id="how-dare-container"
-        className="fixed w-full h-full bg-black text-white"
+        className="fixed size-full bg-black text-white"
         onClick={() => this.props.setRMRF(false)}
       >
         <canvas id="how-dare"></canvas>
-        <div className="font-avenir absolute text-center h-28 mx-auto -mt-20 bottom-0 left-0 right-0 top-1/2">
-          <div className="text-4xl">{this.emoji}</div>
-          <div className="text-3xl mt-4">HOW DARE YOU!</div>
-          <div className="mt-4">Click to go back</div>
+        <div className="font-avenir absolute h-28 text-center space-y-4 m-auto inset-0">
+          <div text-4xl>{this.emoji}</div>
+          <div text-3xl>HOW DARE YOU!</div>
+          <div>Click to go back</div>
         </div>
       </div>
     );
@@ -226,33 +225,31 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span className="text-red-400">cat {"<file>"}</span> - See the content of{" "}
-          {"<file>"}
+          <span text-red-400>cat {"<file>"}</span> - See the content of {"<file>"}
         </li>
         <li>
-          <span className="text-red-400">cd {"<dir>"}</span> - Move into
+          <span text-red-400>cd {"<dir>"}</span> - Move into
           {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
           root
         </li>
         <li>
-          <span className="text-red-400">ls</span> - See files and directories in the
-          current directory
+          <span text-red-400>ls</span> - See files and directories in the current
+          directory
         </li>
         <li>
-          <span className="text-red-400">clear</span> - Clear the screen
+          <span text-red-400>clear</span> - Clear the screen
         </li>
         <li>
-          <span className="text-red-400">help</span> - Display this help menu
+          <span text-red-400>help</span> - Display this help menu
         </li>
         <li>
-          <span className="text-red-400">rm -rf /</span> - :)
+          <span text-red-400>rm -rf /</span> - :)
         </li>
         <li>
-          press <span className="text-red-400">up arrow / down arrow</span> - Select
-          history commands
+          press <span text-red-400>up arrow / down arrow</span> - Select history commands
         </li>
         <li>
-          press <span className="text-red-400">tab</span> - Auto complete
+          press <span text-red-400>tab</span> - Auto complete
         </li>
       </ul>
     );
@@ -349,16 +346,16 @@ export default class Terminal extends React.Component<{}, TerminalState> {
 
   generateInputRow = (id: number): void => {
     const newRow = (
-      <div key={`terminal-input-row-${id}`} className="w-full h-6 flex">
-        <div className="w-max hstack">
-          <span className="text-yellow-200">
-            zou@macbook-pro <span className="text-green-300">{this.getCurDirName()}</span>
+      <div key={`terminal-input-row-${id}`} flex>
+        <div className="w-max hstack space-x-1.5">
+          <span text-yellow-200>
+            zou@macbook-pro <span text-green-300>{this.getCurDirName()}</span>
           </span>
-          <span className="ml-1.5 text-red-400">{">"}</span>
+          <span text-red-400>{">"}</span>
         </div>
         <input
           id={`terminal-input-${id}`}
-          className="flex-1 w-full px-1 text-white outline-none bg-transparent"
+          className="flex-1 px-1 text-white outline-none bg-transparent"
           onKeyDown={this.keyPress}
           autoFocus={true}
         />
@@ -369,7 +366,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
 
   generateResultRow = (id: number, result: JSX.Element) => {
     const newRow = (
-      <div key={`terminal-result-row-${id}`} className="w-full h-max leading-5 flex">
+      <div key={`terminal-result-row-${id}`} break-all>
         {result}
       </div>
     );
@@ -379,18 +376,18 @@ export default class Terminal extends React.Component<{}, TerminalState> {
   render() {
     return (
       <div
-        className="terminal font-terminal font-normal relative w-full h-full bg-gray-800/90 overflow-y-scroll"
+        className="terminal font-terminal font-normal relative h-full bg-gray-800/90 overflow-y-scroll"
         text="white sm"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
         {this.state.rmrf && (
           <HowDare setRMRF={(value: boolean) => this.setState({ rmrf: value })} />
         )}
-        <div className="w-full h-max pt-2 px-1.5 ">
+        <div p="y-2 x-1.5">
           <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the terminal!
           Type `help` to get started.
         </div>
-        <div id="terminal-content" className="mt-2 px-1.5 pb-2">
+        <div id="terminal-content" p="x-1.5 b-2">
           {this.state.content}
         </div>
       </div>

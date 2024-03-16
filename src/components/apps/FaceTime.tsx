@@ -30,7 +30,7 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="h-11 w-11 rounded-full bg-zinc-600 flex-center">
+      <div className="size-11 rounded-full bg-zinc-600 flex-center">
         <span className="i-ph:link-bold" text="2xl white/80" />
       </div>
 
@@ -137,7 +137,6 @@ const FaceTime = () => {
       <div className="h-full bg-zinc-800">
         {!state.curImage ? (
           <Webcam
-            className="h-full w-full"
             mirrored={true}
             audio={false}
             ref={webcamRef}
@@ -148,9 +147,7 @@ const FaceTime = () => {
             }}
           />
         ) : (
-          state.curImage && (
-            <img className="h-full w-full" src={state.curImage} alt="your-image" />
-          )
+          state.curImage && <img size-full src={state.curImage} alt="your-image" />
         )}
       </div>
     </div>

@@ -97,15 +97,18 @@ export default function DockItem({
     <li
       id={`dock-${id}`}
       onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
-      className="hstack flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
+      className="flex flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
     >
-      <p className="tooltip absolute px-3 py-1 rounded-md text-sm c-text-black c-bg-300/80">
+      <p
+        className="tooltip absolute rounded-md bg-c-300/80"
+        p="x-3 y-1"
+        text="sm c-black"
+      >
         {title}
       </p>
       {link ? (
         <a href={link} target="_blank" rel="noreferrer">
           <motion.img
-            className="w-12"
             ref={imgRef}
             src={img}
             alt={title}
@@ -116,7 +119,6 @@ export default function DockItem({
         </a>
       ) : (
         <motion.img
-          className="w-12"
           ref={imgRef}
           src={img}
           alt={title}
@@ -125,7 +127,9 @@ export default function DockItem({
           style={winWidth < 640 ? {} : { width, willChange: "width" }}
         />
       )}
-      <div className={`h-1 w-1 m-0 rounded-full c-bg-800 ${isOpen ? "" : "invisible"}`} />
+      <div
+        className={`size-1 mx-auto rounded-full bg-c-800 ${isOpen ? "" : "invisible"}`}
+      />
     </li>
   );
 }

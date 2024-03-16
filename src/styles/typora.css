@@ -102,7 +102,7 @@
 
 .typora table th,
 .typora table td {
-  @apply border c-border-300 m-0 py-1.5 px3.5;
+  @apply border border-c-300 m-0 py-1.5 px3.5;
 }
 
 .typora table th {
@@ -123,7 +123,7 @@
 
 .typora :not(pre) > code,
 .typora pre {
-  @apply bg-neutral-200/80 dark:bg-gray-700/70 border c-border-300 rounded text-sm;
+  @apply bg-neutral-200/80 dark:bg-gray-700/70 border border-c-300 rounded text-sm;
 }
 
 .typora :not(pre) > code {

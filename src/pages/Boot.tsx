@@ -35,11 +35,11 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
   };
 
   return (
-    <div className="w-full h-full bg-black flex-center flex-col" onClick={handleClick}>
-      <span className="i-fa-brands:apple text-white -mt-4 w-20 h-20 sm:w-24 sm:h-24" />
+    <div className="size-full bg-black flex-center" onClick={handleClick}>
+      <div className="i-fa-brands:apple text-white -mt-4 size-20 sm:size-24" />
       {loading && (
         <div
-          className="absolute top-1/2 left-0 right-0 w-56 h-1 sm:h-1.5 bg-gray-500 rounded overflow-hidden"
+          className="absolute top-1/2 inset-x-0 w-56 h-1 sm:h-1.5 bg-gray-500 rounded overflow-hidden"
           m="t-16 sm:t-24 x-auto"
         >
           <span
@@ -52,7 +52,7 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
       )}
       {!restart && !loading && (
         <div
-          className="absolute top-1/2 left-0 right-0"
+          pos="absolute top-1/2 inset-x-0"
           m="t-16 sm:t-20 x-auto"
           text="sm gray-200 center"
         >
