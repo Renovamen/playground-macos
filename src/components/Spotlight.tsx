@@ -1,5 +1,5 @@
 import React from "react";
-import format from "date-fns/format";
+import { format } from "date-fns";
 import { apps, launchpadApps } from "~/configs";
 import type { LaunchpadData, AppsData } from "~/types";
 
@@ -311,7 +311,7 @@ export default function Spotlight({
                   alt={curDetails.title}
                   title={curDetails.title}
                 />
-                <div mt-4 text="xl c-black">
+                <div m="t-4" text="xl c-black">
                   {curDetails.title}
                 </div>
                 <div text="xs c-500">

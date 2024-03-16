@@ -1,5 +1,5 @@
 import React from "react";
-import format from "date-fns/format";
+import { format } from "date-fns";
 import { isFullScreen } from "~/utils";
 import { music } from "~/configs";
 import type { MacActions } from "~/types";

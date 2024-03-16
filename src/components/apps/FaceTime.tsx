@@ -1,5 +1,5 @@
 import Webcam from "react-webcam";
-import format from "date-fns/format";
+import { format } from "date-fns";
 
 interface SidebarProps {
   state: FaceTimeState;
