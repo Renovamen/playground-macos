@@ -108,10 +108,10 @@ const bear: BearData[] = [
       },
       {
         id: "midgard",
-        title: "Interactable Resume",
+        title: "Midgard",
         file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
         icon: "i-bx:game",
-        excerpt: "An interactable version of my resume, powered by Vue...",
+        excerpt: "An interactive version of my resume, powered by Vue...",
         link: "https://resume.zxh.io/"
       },
       {

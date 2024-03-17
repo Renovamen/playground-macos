@@ -23,14 +23,15 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "Machine Learning / Computer Vision / Vision-Language Learning"
+        content: "Machine Learning / Computer Vision / Multimodal Learning"
       },
-      // {
-      //   id: "about-who-cares",
-      //   title: "who-cares.txt",
-      //   type: "file",
-      //   content: ""
-      // },
+      {
+        id: "about-who-cares",
+        title: "who-cares.txt",
+        type: "file",
+        content:
+          "I'm looking for a research internship for Summer 2024. I'm open to collaboration on research projects."
+      },
       {
         id: "about-contact",
         title: "contact.txt",

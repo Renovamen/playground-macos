@@ -2,13 +2,13 @@
 
 ## Biography
 
-Hey there! I am a PhD student at the [Computer Science and Engineering](https://www.eecs.psu.edu/) department of [Pennsylvania State University](https://www.psu.edu/). Previously, I received my master's degree in [Computer Science](https://www.bu.edu/cs/) at [Boston University](https://www.bu.edu/) and bachelor's degree in [Software Engineering](http://sse.tongji.edu.cn/) at [Tongji University](https://www.tongji.edu.cn/).
+Hey there! I am a PhD student at the [Computer Science and Engineering](https://www.eecs.psu.edu/) department of [Pennsylvania State University](https://www.psu.edu/). Previously, I received my master's degree in [Computer Science](https://www.bu.edu/cs/) from [Boston University](https://www.bu.edu/) and my bachelor’s degree in [Software Engineering](http://sse.tongji.edu.cn/) from [Tongji University](https://www.tongji.edu.cn/).
 
 I'm trying to find a balance between research and engineering.
 
-My current research interests lie primarily in understanding and improving continuity, generalizability, efficiency and other key properties of machine learning. I am also interested in vision-language and video models.
+My current research interests primarily focus on understanding and enhancing the continuity, generalizability, efficiency, and other key properties of machine learning. I am also interested in large multimodal models.
 
-I'm also learning web development and building machine learning softwares and systems.
+I'm also learning web development and building machine learning software and systems.
 
 
 ## Contact
