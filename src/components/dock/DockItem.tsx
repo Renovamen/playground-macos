@@ -97,10 +97,10 @@ export default function DockItem({
     <li
       id={`dock-${id}`}
       onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
-      className="flex flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
+      className="relative flex flex-col justify-end mb-1"
     >
       <p
-        className="tooltip absolute rounded-md bg-c-300/80"
+        className="tooltip absolute inset-x-0 mx-auto w-max rounded-md bg-c-300/80"
         p="x-3 y-1"
         text="sm c-black"
       >

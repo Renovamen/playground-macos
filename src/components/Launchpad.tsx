@@ -63,26 +63,19 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
           grid="~ flow-row cols-4 sm:cols-7"
         >
           {search().map((app) => (
-            <div key={`launchpad-${app.id}`} className="h-32 sm:h-36 w-full flex-center">
-              <div className="h-full w-full flex flex-col">
-                <a
-                  className="h-max"
-                  href={app.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <img
-                    className="w-14 sm:w-20 mx-auto"
-                    src={app.img}
-                    alt={app.title}
-                    title={app.title}
-                  />
-                </a>
-                <span className="mt-2 mx-auto text-white text-xs sm:text-sm">
-                  {app.title}
-                </span>
-              </div>
+            <div key={`launchpad-${app.id}`} h="32 sm:36" flex="~ col">
+              <a
+                className="w-14 sm:w-20 mx-auto"
+                href={app.link}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img src={app.img} alt={app.title} title={app.title} />
+              </a>
+              <span m="t-2 x-auto" text="white xs sm:sm">
+                {app.title}
+              </span>
             </div>
           ))}
         </div>

@@ -9,17 +9,13 @@ const getEmoji = () => {
   return EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 };
 
-interface HowDareProps {
-  setRMRF: (value: boolean) => void;
-}
-
 interface TerminalState {
   rmrf: boolean;
   content: JSX.Element[];
 }
 
 // rain animation is adopted from: https://codepen.io/P3R0/pen/MwgoKv
-const HowDare = (props: HowDareProps) => {
+const HowDare = ({ setRMRF }: { setRMRF: (value: boolean) => void }) => {
   const FONT_SIZE = 12;
 
   const [emoji, setEmoji] = useState("");
@@ -76,7 +72,7 @@ const HowDare = (props: HowDareProps) => {
     <div
       ref={containerRef}
       className="fixed size-full bg-black text-white"
-      onClick={() => props.setRMRF(false)}
+      onClick={() => setRMRF(false)}
     >
       <canvas ref={canvasRef}></canvas>
       <div className="font-avenir absolute h-28 text-center space-y-4 m-auto inset-0">

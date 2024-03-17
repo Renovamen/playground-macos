@@ -57,7 +57,9 @@ export default function Login(props: MacActions) {
           </div>
         </div>
 
-        <div className="text-sm mt-2 text-gray-200 cursor-pointer">{sign}</div>
+        <div mt-2 cursor-pointer text="sm gray-200">
+          {sign}
+        </div>
       </div>
 
       {/* buttons */}

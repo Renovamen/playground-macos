@@ -4,7 +4,6 @@ import { isFullScreen } from "~/utils";
 import { music } from "~/configs";
 import type { MacActions } from "~/types";
 
-// ------- import icons -------
 interface TopBarItemProps {
   hideOnMobile?: boolean;
   forceHover?: boolean;
@@ -14,25 +13,27 @@ interface TopBarItemProps {
   onMouseEnter?: () => void;
 }
 
-const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
-  const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
-  const hover = props.forceHover
-    ? "bg-gray-100/30 dark:bg-gray-400/40"
-    : "hover:(bg-gray-100/30 dark:bg-gray-400/40)";
-  return (
-    <div
-      ref={ref}
-      className={`hstack space-x-1 h-6 px-1 cursor-default rounded ${hide} ${hover} ${
-        props.className || ""
-      }`}
-      onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-    >
-      {props.children}
-    </div>
-  );
-});
-TopBarItem.displayName = "TopBarItem";
+const TopBarItem = forwardRef(
+  (props: TopBarItemProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+    const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
+    const bg = props.forceHover
+      ? "bg-gray-100/30 dark:bg-gray-400/40"
+      : "hover:(bg-gray-100/30 dark:bg-gray-400/40)";
+
+    return (
+      <div
+        ref={ref}
+        className={`hstack space-x-1 h-6 px-1 cursor-default rounded ${hide} ${bg} ${
+          props.className || ""
+        }`}
+        onClick={props.onClick}
+        onMouseEnter={props.onMouseEnter}
+      >
+        {props.children}
+      </div>
+    );
+  }
+);
 
 const CCMIcon = ({ size }: { size: number }) => {
   return (

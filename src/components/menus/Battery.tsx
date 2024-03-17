@@ -1,11 +1,11 @@
 export default function Battery() {
   const batteryState = useBattery();
 
-  const width = (): number => {
+  const width = () => {
     return 0.1 + batteryState.level * 0.96;
   };
 
-  const color = (): string => {
+  const color = () => {
     if (batteryState.charging) return "bg-green-400";
 
     if (batteryState.level < 0.2) return "bg-red-500";
@@ -20,7 +20,7 @@ export default function Battery() {
         <span className="i-bi:battery text-2xl" />
         <div className={`battery-level ${color()}`} style={{ width: `${width()}rem` }} />
         {batteryState.charging && (
-          <span className="i-bi:lightning-charge-fill text-xs absolute top-1/2 -mt-1.5 left-0 ml-1" />
+          <span className="i-bi:lightning-charge-fill absolute inset-0 m-auto -translate-x-0.5 text-xs" />
         )}
       </div>
     </div>

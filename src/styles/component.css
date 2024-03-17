@@ -56,7 +56,7 @@
 
 .dock li .tooltip {
   @apply hidden;
-  top: calc(-100% - 5px);
+  top: calc(-100% - 10px);
 }
 
 .dock li:hover .tooltip {

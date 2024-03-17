@@ -95,15 +95,15 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
           } hover:(bg-white dark:bg-gray-900)`}
           onClick={() => setContent(item.id, item.file, index)}
         >
-          <div className="h-8 mt-3 hstack flex-none">
-            <div className="-mt-1 w-10 vstack flex-none text-c-500">
+          <div className="h-8 mt-3 hstack">
+            <div className="-mt-1 w-10 vstack text-c-500">
               <span className={item.icon} />
             </div>
-            <span className="relative flex-grow font-bold" text="gray-900 dark:gray-100">
+            <span className="relative flex-1 font-bold" text="gray-900 dark:gray-100">
               {item.title}
               {item.link && (
                 <a
-                  className="absolute top-1 right-4"
+                  pos="absolute top-1 right-4"
                   href={item.link}
                   target="_blank"
                   rel="noreferrer"
@@ -113,7 +113,7 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
               )}
             </span>
           </div>
-          <div className="flex-grow ml-10" p="b-2 r-1" text="sm c-500" border="b c-300">
+          <div className="flex-1 ml-10" p="b-2 r-1" text="sm c-500" border="b c-300">
             {item.excerpt}
           </div>
         </li>
@@ -217,21 +217,17 @@ const Bear = () => {
 
   return (
     <div className="bear font-avenir flex h-full">
-      <div className="flex-none w-44 overflow-auto bg-gray-700">
+      <div className="w-44 overflow-auto bg-gray-700">
         <Sidebar cur={state.curSidebar} setMidBar={setMidBar} />
       </div>
-      <div
-        className="flex-none w-60 overflow-auto"
-        bg="gray-50 dark:gray-800"
-        border="r c-300"
-      >
+      <div className="w-60 overflow-auto" bg="gray-50 dark:gray-800" border="r c-300">
         <Middlebar
           items={state.midbarList}
           cur={state.curMidbar}
           setContent={setContent}
         />
       </div>
-      <div className="flex-grow overflow-auto" bg="gray-50 dark:gray-800">
+      <div className="flex-1 overflow-auto" bg="gray-50 dark:gray-800">
         <Content contentID={state.contentID} contentURL={state.contentURL} />
       </div>
     </div>

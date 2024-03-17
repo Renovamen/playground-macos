@@ -2,41 +2,37 @@ import React from "react";
 import { Rnd } from "react-rnd";
 import { minMarginX, minMarginY, appBarHeight } from "~/utils";
 
-const FullIcon = ({ size }: { size: number }) => {
-  return (
-    <svg
-      className="icon"
-      viewBox="0 0 13 13"
-      width={size}
-      height={size}
-      xmlns="http://www.w3.org/2000/svg"
-      fillRule="evenodd"
-      clipRule="evenodd"
-      strokeLinejoin="round"
-      strokeMiterlimit={2}
-    >
-      <path d="M9.26 12.03L.006 2.73v9.3H9.26zM2.735.012l9.3 9.3v-9.3h-9.3z" />
-    </svg>
-  );
-};
+const FullIcon = ({ size }: { size: number }) => (
+  <svg
+    className="icon"
+    viewBox="0 0 13 13"
+    width={size}
+    height={size}
+    xmlns="http://www.w3.org/2000/svg"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+  >
+    <path d="M9.26 12.03L.006 2.73v9.3H9.26zM2.735.012l9.3 9.3v-9.3h-9.3z" />
+  </svg>
+);
 
-const ExitFullIcon = ({ size }: { size: number }) => {
-  return (
-    <svg
-      className="icon"
-      viewBox="0 0 19 19"
-      width={size}
-      height={size}
-      xmlns="http://www.w3.org/2000/svg"
-      fillRule="evenodd"
-      clipRule="evenodd"
-      strokeLinejoin="round"
-      strokeMiterlimit={2}
-    >
-      <path d="M18.373 9.23L9.75.606V9.23h8.624zM.6 9.742l8.623 8.624V9.742H.599z" />
-    </svg>
-  );
-};
+const ExitFullIcon = ({ size }: { size: number }) => (
+  <svg
+    className="icon"
+    viewBox="0 0 19 19"
+    width={size}
+    height={size}
+    xmlns="http://www.w3.org/2000/svg"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    strokeLinejoin="round"
+    strokeMiterlimit={2}
+  >
+    <path d="M18.373 9.23L9.75.606V9.23h8.624zM.6 9.742l8.623 8.624V9.742H.599z" />
+  </svg>
+);
 
 interface TrafficProps {
   id: string;
