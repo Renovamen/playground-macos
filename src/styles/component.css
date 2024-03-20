@@ -1,3 +1,21 @@
+
+@layer components {
+  /* scroll bar */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-[#999] dark:bg-[#313030] rounded-[5px] cursor-pointer scale-125;
+  }
+  *::-webkit-scrollbar-track {
+    @apply bg-[#FFF] dark:bg-[#080808];
+    @apply bg-transparent;
+  }
+}
+
+
+
 /* --------- Login --------- */
 
 .login input::placeholder {
