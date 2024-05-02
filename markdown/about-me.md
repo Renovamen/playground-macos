@@ -20,13 +20,13 @@ Contact me by:
 - [Google Scholar](https://scholar.google.com/citations?user=RuW6xgMAAAAJ)
 - Linkedin: [xiaohan-zou](https://www.linkedin.com/in/xiaohan-zou)
 - 知乎: [@西伯利亚大恶龙](https://www.zhihu.com/people/chao-neng-gui-su)
-- Personal Website: [zxh.io](https://zxh.io)
+- Personal Website: [zxh.me](https://zxh.me)
 
 
 ## Résumé
 
-- Normal version: [English](https://zxh.io/files/cv/en.pdf) / [中文](https://zxh.io/files/cv/cn.pdf)
+- Normal version: [English](https://zxh.me/files/cv/en.pdf) / [中文](https://zxh.me/files/cv/cn.pdf)
 
   中文版的更新很可能不及时
 
-- Interesting version: [portfolio.zxh.io](https://portfolio.zxh.io) / [resume.zxh.io](https://resume.zxh.io)
+- Interesting version: [portfolio.zxh.me](https://portfolio.zxh.me) / [resume.zxh.io](https://resume.zxh.io)
