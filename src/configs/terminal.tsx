@@ -85,11 +85,11 @@ const terminal: TerminalData[] = [
               Personal Website:{" "}
               <a
                 className="text-blue-300"
-                href="https://zxh.io"
+                href="https://zxh.me"
                 target="_blank"
                 rel="noreferrer"
               >
-                https://zxh.io
+                https://zxh.me
               </a>
             </li>
             <li>
